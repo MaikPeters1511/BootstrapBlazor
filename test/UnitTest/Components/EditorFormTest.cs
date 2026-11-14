@@ -742,7 +742,7 @@ public class EditorFormTest : BootstrapBlazorTestBase
                 builder.CloseComponent();
             }));
         });
-        Assert.Contains("class=\"switch\"", cut.Markup);
+        Assert.Contains("class=\"bb-switch\"", cut.Markup);
     }
 
     [Fact]

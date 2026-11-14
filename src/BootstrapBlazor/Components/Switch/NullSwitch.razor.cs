@@ -13,13 +13,13 @@ namespace BootstrapBlazor.Components;
 /// </summary>
 public partial class NullSwitch
 {
-    private string? ClassName => CssBuilder.Default("switch")
+    private string? ClassName => CssBuilder.Default("bb-switch")
         .AddClass("is-checked", ComponentValue)
         .AddClass("disabled", IsDisabled)
         .AddClassFromAttributes(AdditionalAttributes)
         .Build();
 
-    private string? CoreClassName => CssBuilder.Default("switch-core")
+    private string? CoreClassName => CssBuilder.Default("bb-switch-core")
         .AddClass($"border-{OnColor.ToDescriptionString()}", OnColor != Color.None && ComponentValue)
         .AddClass($"bg-{OnColor.ToDescriptionString()}", OnColor != Color.None && ComponentValue)
         .AddClass($"border-{OffColor.ToDescriptionString()}", OffColor != Color.None && !ComponentValue)

@@ -128,7 +128,7 @@ pre code.hljs {
     padding: var(--bb-padding);
 }
 
-.input-group > .switch {
+.input-group > .bb-switch {
     --bb-switch-padding: 2px .5rem;
 }
 
@@ -140,7 +140,7 @@ pre code.hljs {
     --bb-select-padding: var(--bb-padding);
 }
 
-.switch {
+.bb-switch {
     --bb-switch-padding: 3px 0;
 }
 

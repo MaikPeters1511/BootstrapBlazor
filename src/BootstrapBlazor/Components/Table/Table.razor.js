@@ -794,7 +794,7 @@ const setCopyColumn = table => {
             input = td.querySelector('.form-select')
         }
         if (input === null) {
-            input = td.querySelector('.switch')
+            input = td.querySelector('.bb-switch')
             if (input) {
                 if (input.classList.contains('is-checked')) {
                     ret = 'True'

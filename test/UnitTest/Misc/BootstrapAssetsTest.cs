@@ -177,6 +177,18 @@ public class BootstrapAssetsTest
         Assert.DoesNotMatch(@"(?m)^\s*--bs-(primary|success|info|warning|danger|body-color|body-bg):", content);
     }
 
+    [Theory]
+    [InlineData("bg", "background-color")]
+    [InlineData("border", "border-color")]
+    [InlineData("fg", "color")]
+    public void CompatScss_ColorUtilities_Important(string utility, string property)
+    {
+        // Bootstrap 5 color utilities were !important, Bootstrap 6 ones are layered and lose against component css
+        // components set colors with bg-{color} / border-{color} / fg-{color}, so compat.scss makes them win again
+        var content = File.ReadAllText(Path.Combine(GetProjectRoot(), "src", "BootstrapBlazor", "wwwroot", "scss", "compat.scss"));
+        Assert.Matches($@"\.{utility}-#\{{\$color\}}\s*\{{\s*{property}:[^;]*!important;", content);
+    }
+
     [Fact]
     public void RootScss_DisabledRule_InRebootLayer()
     {
