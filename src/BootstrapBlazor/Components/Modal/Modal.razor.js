@@ -23,6 +23,29 @@ export function init(id, invoke, shownCallback, closeCallback) {
     })
     EventHandler.on(window, 'popstate', modal.pop)
 
+    // A native dialog closes itself on Escape and the browser does not let a page cancel a second Escape.
+    // Take the key here: keydown with preventDefault stops the close request, the component decides
+    modal.handlerEscape = e => {
+        if (e.key !== 'Escape' || e.defaultPrevented || !modal.getShownDialog()) {
+            return
+        }
+        e.preventDefault()
+        if (el.getAttribute('data-bs-keyboard') === 'true') {
+            invoke.invokeMethodAsync('RequestCloseCallback')
+        }
+    }
+    EventHandler.on(document, 'keydown', modal.handlerEscape)
+
+    // A click on the backdrop makes Bootstrap hide the dialog on its own: stop that and hand it over
+    // to the component, so OnClosingAsync runs (and can prevent the close) like for the close button
+    EventHandler.on(el, 'hide.bs.dialog', e => {
+        if (modal.forceHide) {
+            return
+        }
+        e.preventDefault()
+        invoke.invokeMethodAsync('RequestCloseCallback')
+    })
+
     // every ModalDialog is a native <dialog> element, the last one is the top most
     modal.getDialogs = () => [...el.children].filter(d => d.tagName === 'DIALOG')
 
@@ -43,7 +66,14 @@ export function init(id, invoke, shownCallback, closeCallback) {
     modal.hide = () => {
         const dialog = modal.getShownDialog()
         if (dialog) {
-            bootstrap.Dialog.getOrCreateInstance(dialog).hide()
+            // the component already ran OnClosingAsync, do not ask again
+            modal.forceHide = true
+            try {
+                bootstrap.Dialog.getOrCreateInstance(dialog).hide()
+            }
+            finally {
+                modal.forceHide = false
+            }
         }
     }
 
@@ -77,6 +107,8 @@ export function dispose(id) {
     if (modal) {
         EventHandler.off(modal.el, 'shown.bs.dialog')
         EventHandler.off(modal.el, 'hidden.bs.dialog')
+        EventHandler.off(modal.el, 'hide.bs.dialog')
+        EventHandler.off(document, 'keydown', modal.handlerEscape)
         EventHandler.off(window, 'popstate', modal.pop)
 
         modal.getDialogs().forEach(dialog => {

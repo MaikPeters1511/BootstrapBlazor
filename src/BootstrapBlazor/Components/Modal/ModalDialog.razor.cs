@@ -452,6 +452,12 @@ public partial class ModalDialog
         await CloseAsync();
     }
 
+    /// <summary>
+    /// <para lang="zh">用户按 Esc 键或点击背景关闭弹窗，与点击关闭按钮的逻辑一致</para>
+    /// <para lang="en">The user closes the dialog with Escape or a click on the backdrop, same logic as the close button</para>
+    /// </summary>
+    internal Task RequestCloseAsync() => OnClickCloseAsync();
+
     private async Task CloseAsync()
     {
         if (GetResultDialog != null)

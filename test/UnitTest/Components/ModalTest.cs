@@ -194,6 +194,42 @@ public class ModalTest : BootstrapBlazorTestBase
     }
 
     [Fact]
+    public async Task RequestCloseCallback_OnClosing_Ok()
+    {
+        // Escape and a click on the backdrop close a native dialog, the script hands them over to the component
+        // so OnClosingAsync runs and can prevent the close like it does for the close button
+        var closing = 0;
+        var cut = Context.Render<Modal>(builder =>
+        {
+            builder.Add(a => a.OnClosingAsync, () =>
+            {
+                closing++;
+                return Task.FromResult(false);
+            });
+            builder.AddChildContent<ModalDialog>();
+        });
+        await cut.InvokeAsync(() => cut.Instance.RequestCloseCallback());
+        Assert.Equal(1, closing);
+    }
+
+    [Fact]
+    public async Task RequestCloseCallback_RegisteredCallback_Ok()
+    {
+        var closing = false;
+        var cut = Context.Render<Modal>(builder =>
+        {
+            builder.AddChildContent<ModalDialog>();
+        });
+        cut.Instance.RegisterOnClosingCallback(() =>
+        {
+            closing = true;
+            return Task.FromResult(false);
+        });
+        await cut.InvokeAsync(() => cut.Instance.RequestCloseCallback());
+        Assert.True(closing);
+    }
+
+    [Fact]
     public async Task RegisterOnClosingAsync_Ok()
     {
         var closing = false;

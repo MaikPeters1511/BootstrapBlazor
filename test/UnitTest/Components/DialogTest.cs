@@ -26,6 +26,25 @@ public class DialogTest : BootstrapBlazorTestBase
     }
 
     [Fact]
+    public async Task ShowModal_RequestClose_ResultClose()
+    {
+        // closing with Escape or a click on the backdrop completes the dialog result like the close button
+        var cut = Context.Render<BootstrapBlazorRoot>(pb =>
+        {
+            pb.Add(a => a.EnableErrorLogger, false);
+            pb.AddChildContent<MockDialogTest>();
+        });
+        var modal = cut.FindComponent<Modal>();
+        var dialog = cut.FindComponent<MockDialogTest>().Instance.DialogService;
+        var task = cut.InvokeAsync(() => dialog.ShowModal("title", "test-content"));
+        cut.WaitForState(() => cut.Markup.Contains("btn-solid theme-primary"));
+
+        await cut.InvokeAsync(() => modal.Instance.RequestCloseCallback());
+        var result = await task.WaitAsync(TimeSpan.FromSeconds(3));
+        Assert.Equal(DialogResult.Close, result);
+    }
+
+    [Fact]
     public async Task Show_Ok()
     {
         #region Show
