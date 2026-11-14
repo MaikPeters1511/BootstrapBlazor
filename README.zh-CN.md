@@ -105,6 +105,22 @@ dotnet add package BootstrapBlazor
 builder.Services.AddBootstrapBlazor();
 ```
 
+## Bootstrap 版本
+
+组件库基于 **Bootstrap 6**（当前为 `6.0.0-alpha.1`）。Bootstrap 6 重命名了大量样式，按 Bootstrap 5 编写的代码需要调整：
+
+| Bootstrap 5 | Bootstrap 6 |
+| --- | --- |
+| `btn-primary`、`btn-outline-danger` | `btn-solid theme-primary`、`btn-outline theme-danger` |
+| `text-danger`、`text-muted` | `fg-danger`、`fg-3` |
+| `alert-info`、`text-bg-info` | `theme-info` |
+| `col-sm-6`、`d-md-none` | `sm:col-6`、`md:d-none` |
+| `dropdown-menu`、`dropdown-item` | `menu`、`menu-item` |
+| `modal-header`、`modal-body`、`modal-footer` | `dialog-header`、`dialog-body`、`dialog-footer` |
+| `navbar-expand-md` | `md:navbar-expand` |
+
+常用的 Bootstrap 5 CSS 变量（`--bs-primary`、`--bs-body-bg`、`--bs-border-radius` 等）仍然可用，并映射到 Bootstrap 6 的变量。Bootstrap 6 不再提供单独的 RTL 样式文件。
+
 ## 用法示例
 ```razor
 <Display Value="@_text"></Display>

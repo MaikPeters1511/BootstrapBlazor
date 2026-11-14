@@ -50,6 +50,22 @@ it's either **index.html** or **_Layout.cshtml/_Host.cshtml/App.razor** dependin
 builder.Services.AddBootstrapBlazor();
 ```
 
+## Bootstrap version
+
+The components are built on **Bootstrap 6** (currently `6.0.0-alpha.1`). Bootstrap 6 renamed many classes, so markup written for Bootstrap 5 has to be updated:
+
+| Bootstrap 5 | Bootstrap 6 |
+| --- | --- |
+| `btn-primary`, `btn-outline-danger` | `btn-solid theme-primary`, `btn-outline theme-danger` |
+| `text-danger`, `text-muted` | `fg-danger`, `fg-3` |
+| `alert-info`, `text-bg-info` | `theme-info` |
+| `col-sm-6`, `d-md-none` | `sm:col-6`, `md:d-none` |
+| `dropdown-menu`, `dropdown-item` | `menu`, `menu-item` |
+| `modal-header`, `modal-body`, `modal-footer` | `dialog-header`, `dialog-body`, `dialog-footer` |
+| `navbar-expand-md` | `md:navbar-expand` |
+
+The Bootstrap 5 CSS variables used most often (`--bs-primary`, `--bs-body-bg`, `--bs-border-radius`, ...) are still available and map to the Bootstrap 6 tokens. Bootstrap 6 no longer ships a separate RTL stylesheet.
+
 ## Usage
 ```razor
 <Display Value="@_text"></Display>
