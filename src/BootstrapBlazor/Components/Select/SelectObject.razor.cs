@@ -99,15 +99,15 @@ public partial class SelectObject<TItem>
         .Build();
 
     private string? AppendClassString => CssBuilder.Default("form-select-append")
-        .AddClass($"text-{Color.ToDescriptionString()}", Color != Color.None && !IsDisabled && !IsValid.HasValue)
-        .AddClass($"text-success", IsValid.HasValue && IsValid.Value)
-        .AddClass($"text-danger", IsValid.HasValue && !IsValid.Value)
+        .AddClass($"fg-{Color.ToDescriptionString()}", Color != Color.None && !IsDisabled && !IsValid.HasValue)
+        .AddClass($"fg-success", IsValid.HasValue && IsValid.Value)
+        .AddClass($"fg-danger", IsValid.HasValue && !IsValid.Value)
         .Build();
 
     private string? ClearClassString => CssBuilder.Default("clear-icon")
-        .AddClass($"text-{Color.ToDescriptionString()}", Color != Color.None)
-        .AddClass($"text-success", IsValid.HasValue && IsValid.Value)
-        .AddClass($"text-danger", IsValid.HasValue && !IsValid.Value)
+        .AddClass($"fg-{Color.ToDescriptionString()}", Color != Color.None)
+        .AddClass($"fg-success", IsValid.HasValue && IsValid.Value)
+        .AddClass($"fg-danger", IsValid.HasValue && !IsValid.Value)
         .Build();
 
     /// <summary>

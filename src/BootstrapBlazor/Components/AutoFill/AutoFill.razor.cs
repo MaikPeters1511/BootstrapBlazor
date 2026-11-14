@@ -199,9 +199,9 @@ public partial class AutoFill<TValue>
         .Build();
 
     private string? ClearClassString => CssBuilder.Default("clear-icon")
-        .AddClass($"text-{Color.ToDescriptionString()}", Color != Color.None)
-        .AddClass($"text-success", IsValid.HasValue && IsValid.Value)
-        .AddClass($"text-danger", IsValid.HasValue && !IsValid.Value)
+        .AddClass($"fg-{Color.ToDescriptionString()}", Color != Color.None)
+        .AddClass($"fg-success", IsValid.HasValue && IsValid.Value)
+        .AddClass($"fg-danger", IsValid.HasValue && !IsValid.Value)
         .Build();
 
     private string? PlaceHolderStyleString => Math.Abs(RowHeight - 50f) > 0.1f

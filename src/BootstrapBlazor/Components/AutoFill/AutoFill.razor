@@ -28,10 +28,10 @@
 
 @code {
     RenderFragment RenderDropdown =>
-    @<div class="dropdown-menu">
+    @<div class="menu">
         @if (IsVirtualize)
         {
-            <div class="dropdown-menu-body dropdown-virtual">
+            <div class="menu-body dropdown-virtual">
                 @if (OnQueryAsync == null)
                 {
                     @RenderVirtualizeByItems()
@@ -44,11 +44,11 @@
         }
         else if (ShowNoDataTip && Rows.Count == 0)
         {
-            <div class="dropdown-item">@NoDataTip</div>
+            <div class="menu-item">@NoDataTip</div>
         }
         else
         {
-            <div class="dropdown-menu-body">
+            <div class="menu-body">
                 @foreach (var item in Rows)
                 {
                     @RenderRow(item)
@@ -58,7 +58,7 @@
     </div>;
 
     RenderFragment<TValue> RenderRow => item =>
-    @<div @key="@item" class="dropdown-item" @onclick="() => OnClickItem(item)">
+    @<div @key="@item" class="menu-item" @onclick="() => OnClickItem(item)">
         @if (ItemTemplate != null)
         {
             @ItemTemplate(item)
@@ -70,7 +70,7 @@
     </div>;
 
     RenderFragment<PlaceholderContext> RenderPlaceholderRow => context =>
-    @<div class="dropdown-item" style="@PlaceHolderStyleString">
+    @<div class="menu-item" style="@PlaceHolderStyleString">
         <div class="is-ph"></div>
     </div>;
 }

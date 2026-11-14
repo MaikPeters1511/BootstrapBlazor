@@ -7,28 +7,28 @@
 
 <DemoBlock Title="@Localizer["MultiSelectColorTitle"]" Introduction="@Localizer["MultiSelectColorIntro"]" Name="Color">
     <div class="row g-3">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <MultiSelect TValue="string" Items="@Items1" />
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <MultiSelect TValue="string" Color="Color.Primary" Items="@Items2"></MultiSelect>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <MultiSelect TValue="string" Color="Color.Success" Items="@Items3"></MultiSelect>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <MultiSelect TValue="string" Color="Color.Danger" Items="@Items4"></MultiSelect>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <MultiSelect TValue="string" Color="Color.Warning" Items="@Items5"></MultiSelect>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <MultiSelect TValue="string" Color="Color.Info" Items="@Items6"></MultiSelect>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <MultiSelect TValue="string" Color="Color.Secondary" Items="@Items7"></MultiSelect>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <MultiSelect TValue="string" Color="Color.Dark" Items="@Items8"></MultiSelect>
         </div>
     </div>
@@ -39,7 +39,7 @@
         @((MarkupString)Localizer["MultiSelectIsSingleLineDescription"].Value)
     </section>
     <div class="row g-3">
-        <div class="col-12 col-sm-4">
+        <div class="col-12 sm:col-4">
             <MultiSelect TValue="string" Items="@Items1" IsSingleLine="true"></MultiSelect>
         </div>
     </div>
@@ -50,10 +50,10 @@
         @((MarkupString)Localizer["MultiSelectBindingStringDescription"].Value)
     </section>
     <div class="row g-3">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <MultiSelect Items="@Items1" @bind-Value="@SelectedItemsValue"></MultiSelect>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Button Icon="fa-solid fa-plus" Text="@Localizer["MultiSelectAdd"]" OnClick="@AddItems" class="me-1"></Button>
             <Button Icon="fa-solid fa-minus" Text="@Localizer["MultiSelectDecrease"]" OnClick="@RemoveItems"></Button>
             <Button Icon="fa-regular fa-trash-can" Text="@Localizer["MultiSelectClean"]" OnClick="@ClearItems"></Button>
@@ -65,10 +65,10 @@
 <DemoBlock Title="@Localizer["MultiSelectBindingCollectionTitle"]" Introduction="@Localizer["MultiSelectBindingCollectionIntro"]" Name="BindingCollection">
     <section ignore>@((MarkupString)Localizer["MultiSelectBindingCollectionDescription"].Value)</section>
     <div class="row g-3">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <MultiSelect Items="@Items" @bind-Value="@SelectedArrayValues" Max="4" Min="2"></MultiSelect>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Button Icon="fa-solid fa-plus" Text="@Localizer["MultiSelectAdd"]" OnClick="@AddListItems" class="me-1"></Button>
             <Button Icon="fa-solid fa-minus" Text="@Localizer["MultiSelectDecrease"]" OnClick="@RemoveListItems"></Button>
             <Button Icon="fa-regular fa-trash-can" Text="@Localizer["MultiSelectClean"]" OnClick="@ClearListItems"></Button>
@@ -80,10 +80,10 @@
 <DemoBlock Title="@Localizer["MultiSelectBindingNumberTitle"]" Introduction="@Localizer["MultiSelectBindingNumberIntro"]" Name="BindingNumber">
     <section ignore>@((MarkupString)Localizer["MultiSelectBindingNumberDescription"].Value)</section>
     <div class="row g-3">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <MultiSelect Items="@LongItems" @bind-Value="@SelectedIntArrayValues"></MultiSelect>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Button Icon="fa-solid fa-plus" Text="@Localizer["MultiSelectAdd"]" OnClick="@AddArrayItems" class="me-1"></Button>
             <Button Icon="fa-solid fa-minus" Text="@Localizer["MultiSelectDecrease"]" OnClick="@RemoveArrayItems"></Button>
             <Button Icon="fa-regular fa-trash-can" Text="@Localizer["MultiSelectClean"]" OnClick="@ClearArrayItems"></Button>
@@ -117,7 +117,7 @@ private enum MultiSelectEnumFoo
     <section ignore>
         <p>@((MarkupString)Localizer["MultiSelectSearchDescription"].Value)</p>
         <div class="row g-3">
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <BootstrapInputGroup>
                     <BootstrapInputGroupLabel DisplayText="IsClearable" />
                     <Checkbox @bind-Value="@_isClearable" />
@@ -127,12 +127,12 @@ private enum MultiSelectEnumFoo
     </section>
 
     <div class="row g-3">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <MultiSelect Items="@Items" @bind-Value="@SelectedSearchItemsValue"
                          ShowSearch="true" IsClearable="_isClearable" OnSearchTextChanged="@OnSearch">
             </MultiSelect>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <MultiSelect Items="@LongItems" @bind-Value="@SelectedMaxItemsValue"
                          ShowSearch="true" IsClearable="_isClearable">
             </MultiSelect>
@@ -147,7 +147,7 @@ private enum MultiSelectEnumFoo
 
 <DemoBlock Title="@Localizer["MultiSelectGroupTitle"]" Introduction="@Localizer["MultiSelectGroupIntro"]" Name="Group">
     <div class="row g-3">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <MultiSelect TValue="string" Items="GroupItems"></MultiSelect>
         </div>
     </div>
@@ -166,10 +166,10 @@ private enum MultiSelectEnumFoo
     <section ignore>@((MarkupString)Localizer["MultiSelectClientValidationDescription"].Value)</section>
     <ValidateForm Model="@Model">
         <div class="row g-3">
-            <div class="col-12 col-sm-8">
+            <div class="col-12 sm:col-8">
                 <MultiSelect Items="Items" @bind-Value="@Model.Address"></MultiSelect>
             </div>
-            <div class="col-12 col-sm-4 align-self-end">
+            <div class="col-12 sm:col-4 align-self-end">
                 <Button ButtonType="ButtonType.Submit">@Localizer["MultiSelectClientValidationSubmit"]</Button>
             </div>
         </div>
@@ -231,10 +231,10 @@ private enum MultiSelectEnumFoo
 <DemoBlock Title="@Localizer["MultiSelectCascadingTitle"]" Introduction="@Localizer["MultiSelectCascadingIntro"]" Name="Cascading">
     <section ignore>@((MarkupString)Localizer["MultiSelectCascadingDescription"].Value)</section>
     <div class="row g-3">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Select TValue="string" Items="@_cascadingItems2" OnSelectedItemChanged="@OnCascadeBindSelectClick"></Select>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <MultiSelect TValue="string" Items="@CascadingItems1"></MultiSelect>
         </div>
     </div>
@@ -242,7 +242,7 @@ private enum MultiSelectEnumFoo
 
 <DemoBlock Title="@Localizer["MultiSelectItemTemplateTitle"]" Introduction="@Localizer["MultiSelectItemTemplateIntro"]" Name="ItemTemplate">
     <div class="row">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <MultiSelect TValue="string" Items="@TemplateItems">
                 <ItemTemplate>
                     <div class="mul-select-item">
@@ -258,7 +258,7 @@ private enum MultiSelectEnumFoo
 
 <DemoBlock Title="@Localizer["MultiSelectDisplayTemplateTitle"]" Introduction="@Localizer["MultiSelectDisplayTemplateIntro"]" Name="DisplayTemplate">
     <div class="row">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <MultiSelect TValue="string" Items="@TemplateItems">
                 <DisplayTemplate>
                     @foreach (var item in context)
@@ -275,7 +275,7 @@ private enum MultiSelectEnumFoo
 
 <DemoBlock Title="@Localizer["MultiSelectPopoverTitle"]" Introduction="@Localizer["MultiSelectPopoverIntro"]" Name="Popover">
     <div class="row">
-        <div class="col-12 col-sm-6 overflow-hidden">
+        <div class="col-12 sm:col-6 overflow-hidden">
             <MultiSelect TValue="string" Items="@Items" IsPopover="true" ShowSearch="true" ShowToolbar="true"></MultiSelect>
         </div>
     </div>
@@ -286,10 +286,10 @@ private enum MultiSelectEnumFoo
         @((MarkupString)Localizer["MultiSelectIsEditableDescription"].Value)
     </section>
     <div class="row g-3">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <MultiSelect @bind-Value="@_editString" Items="@EditableItems" IsEditable="true" Max="2" EditSubmitKey="EditSubmitKey.Enter" OnEditCallback="OnEditCallback"></MultiSelect>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Display Value="@_editString"></Display>
         </div>
     </div>
@@ -301,19 +301,19 @@ private enum MultiSelectEnumFoo
     <section ignore>
         <p>@((MarkupString)Localizer["MultiSelectVirtualizeDescription"].Value)</p>
         <div class="row g-3">
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <BootstrapInputGroup>
                     <BootstrapInputGroupLabel DisplayText="ShowSearch" />
                     <Checkbox @bind-Value="@_showSearch" />
                 </BootstrapInputGroup>
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <BootstrapInputGroup>
                     <BootstrapInputGroupLabel DisplayText="ShowToolbar" />
                     <Checkbox @bind-Value="@_showToolbar" />
                 </BootstrapInputGroup>
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <BootstrapInputGroup>
                     <BootstrapInputGroupLabel DisplayText="IsClearable" />
                     <Checkbox @bind-Value="@_isClearable" />

@@ -45,17 +45,17 @@ Location = await provider.Locate(Ip);</Pre>
         @((MarkupString)Localizer["LocatorsProviderDesc"].Value)
     </section>
     <div class="row g-3 form-inline">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Select Items="_providers" Value="@ProviderName" OnValueChanged="OnProviderNameChanged"
                     ShowLabel="true" DisplayText="LocatorProvider">
             </Select>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <BootstrapInput @bind-Value="Ip" DisplayText="@Localizer["LocatorsNormalInputText"]" ShowLabel="true" />
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Display Value="Location" DisplayText="@Localizer["LocatorsNormalDisplayText"]" ShowLabel="true" />
         </div>
         <div class="col-12">

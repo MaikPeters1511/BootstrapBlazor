@@ -72,19 +72,19 @@
         </TableColumns>
         <EditTemplate>
             <div class="row g-3">
-                <div class="col-12 col-sm-6">
+                <div class="col-12 sm:col-6">
                     <BootstrapInput @bind-Value="@context.Name" placeholder="@Localizer["PlaceHolder"].Value" maxlength="50">
                     </BootstrapInput>
                 </div>
-                <div class="col-12 col-sm-6">
+                <div class="col-12 sm:col-6">
                     <BootstrapInput @bind-Value="@context.Address" placeholder="@Localizer["PlaceHolder"].Value" maxlength="50">
                     </BootstrapInput>
                 </div>
-                <div class="col-12 col-sm-6">
+                <div class="col-12 sm:col-6">
                     <DateTimePicker @bind-Value="@context.DateTime">
                     </DateTimePicker>
                 </div>
-                <div class="col-12 col-sm-6">
+                <div class="col-12 sm:col-6">
                     <BootstrapInput @bind-Value="@context.Count">
                     </BootstrapInput>
                 </div>

@@ -73,7 +73,7 @@ public class MultiSelectTest : BootstrapBlazorTestBase
 
         cut.InvokeAsync(() =>
         {
-            var items = cut.FindAll(".dropdown-item");
+            var items = cut.FindAll(".menu-item");
             items[0].Click();
             items[1].Click();
             items[2].Click();
@@ -168,7 +168,7 @@ public class MultiSelectTest : BootstrapBlazorTestBase
         Assert.Equal(2, values.Count);
 
         // 选中第四个
-        var items = cut.FindAll(".dropdown-menu .dropdown-item");
+        var items = cut.FindAll(".menu .menu-item");
         var item = items[items.Count - 1];
         await cut.InvokeAsync(() => item.Click());
         values = cut.FindAll(".multi-select-items .multi-select-item");
@@ -290,7 +290,7 @@ public class MultiSelectTest : BootstrapBlazorTestBase
             });
         });
         await cut.InvokeAsync(() => cut.Instance.TriggerOnSearch("a"));
-        cut.Contains("<div class=\"dropdown-item\">无数据</div>");
+        cut.Contains("<div class=\"menu-item\">无数据</div>");
     }
 
     [Fact]
@@ -333,7 +333,7 @@ public class MultiSelectTest : BootstrapBlazorTestBase
                 return Task.CompletedTask;
             });
         });
-        cut.InvokeAsync(() => cut.Find(".dropdown-item").Click());
+        cut.InvokeAsync(() => cut.Find(".menu-item").Click());
         Assert.True(toggle);
 
         // 增加代码覆盖率
@@ -343,14 +343,14 @@ public class MultiSelectTest : BootstrapBlazorTestBase
         {
             pb.Add(a => a.Max, 1);
         });
-        cut.InvokeAsync(() => cut.Find(".dropdown-item").Click());
+        cut.InvokeAsync(() => cut.Find(".menu-item").Click());
 
         cut.Render(pb =>
         {
             pb.Add(a => a.Max, 0);
             pb.Add(a => a.Min, 1);
         });
-        cut.InvokeAsync(() => cut.Find(".dropdown-item").Click());
+        cut.InvokeAsync(() => cut.Find(".menu-item").Click());
 
         var foo = new Foo();
         cut.Render(pb =>
@@ -358,7 +358,7 @@ public class MultiSelectTest : BootstrapBlazorTestBase
             pb.Add(a => a.Value, "");
             pb.Add(a => a.ValueExpression, foo.GenerateValueExpression());
         });
-        cut.InvokeAsync(() => cut.Find(".dropdown-item").Click());
+        cut.InvokeAsync(() => cut.Find(".menu-item").Click());
     }
 
     [Fact]
@@ -413,7 +413,7 @@ public class MultiSelectTest : BootstrapBlazorTestBase
                 new("2", "Test2")
             });
         });
-        cut.DoesNotContain("data-bs-toggle=\"dropdown\"");
+        cut.DoesNotContain("data-bs-toggle=\"menu\"");
     }
 
     [Fact]
@@ -428,7 +428,7 @@ public class MultiSelectTest : BootstrapBlazorTestBase
                 new("2", "Test2")
             });
         });
-        cut.Contains("data-bs-toggle=\"dropdown\"");
+        cut.Contains("data-bs-toggle=\"menu\"");
     }
 
     [Fact]
@@ -547,7 +547,7 @@ public class MultiSelectTest : BootstrapBlazorTestBase
 
         cut.InvokeAsync(() =>
         {
-            cut.Find(".dropdown-item").Click();
+            cut.Find(".menu-item").Click();
         });
         cut.InvokeAsync(() =>
         {
@@ -718,7 +718,7 @@ public class MultiSelectTest : BootstrapBlazorTestBase
         await cut.InvokeAsync(() => cut.Instance.TriggerOnSearch("2"));
 
         // 下拉框仅显示一个选项 Test2
-        var items = cut.FindAll(".dropdown-item");
+        var items = cut.FindAll(".menu-item");
         Assert.Single(items);
 
         // 点击 Clear 按钮
@@ -728,7 +728,7 @@ public class MultiSelectTest : BootstrapBlazorTestBase
         Assert.Empty(selectedItems);
 
         // 下拉框显示所有选项
-        items = cut.FindAll(".dropdown-item");
+        items = cut.FindAll(".menu-item");
         Assert.Equal(2, items.Count);
     }
 
@@ -768,7 +768,7 @@ public class MultiSelectTest : BootstrapBlazorTestBase
         await cut.InvokeAsync(() => cut.Instance.TriggerOnSearch("2"));
 
         // 下拉框仅显示一个选项 Test2
-        var items = cut.FindAll(".dropdown-item");
+        var items = cut.FindAll(".menu-item");
         Assert.Single(items);
 
         query = false;
@@ -810,7 +810,7 @@ public class MultiSelectTest : BootstrapBlazorTestBase
         var select = cut.Instance;
         Assert.Equal("3", select.Value);
 
-        var item = cut.Find(".dropdown-item");
+        var item = cut.Find(".menu-item");
         await cut.InvokeAsync(() =>
         {
             item.Click();
@@ -870,5 +870,18 @@ public class MultiSelectTest : BootstrapBlazorTestBase
             span.Click();
         });
         Assert.True(clear);
+    }
+
+    [Fact]
+    public void BootstrapCheckClass_Ok()
+    {
+        // Bootstrap 6 styles checkboxes with .check
+        var cut = Context.Render<MultiSelect<string>>(pb =>
+        {
+            pb.Add(a => a.Items, new List<SelectedItem> { new("1", "Test1"), new("2", "Test2") });
+        });
+        var inputs = cut.FindAll(".multi-select-item input[type=checkbox]");
+        Assert.NotEmpty(inputs);
+        Assert.All(inputs, i => Assert.Contains("check", i.ClassList));
     }
 }

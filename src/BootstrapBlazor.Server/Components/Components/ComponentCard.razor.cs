@@ -17,7 +17,7 @@ public sealed partial class ComponentCard
 
     private string ImageUrl => $"{WebsiteOption.Value.AssetRootPath}images/{Image}";
 
-    private string? ClassString => CssBuilder.Default("col-12 col-sm-6 col-md-4 col-lg-3")
+    private string? ClassString => CssBuilder.Default("col-12 sm:col-6 md:col-4 lg:col-3")
         .AddClass("d-none", IsHide)
         .Build();
 

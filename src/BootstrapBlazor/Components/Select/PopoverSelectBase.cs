@@ -38,7 +38,7 @@ public abstract class PopoverSelectBase<TValue> : PopoverDropdownBase<TValue>
     /// <para lang="zh">data-bs-toggle 值</para>
     /// <para lang="en">data-bs-toggle Value</para>
     /// </summary>
-    protected string? ToggleString => IsPopover ? Constants.DropdownToggleString : "dropdown";
+    protected string? ToggleString => IsPopover ? Constants.DropdownToggleString : "menu";
 
     /// <summary>
     /// <para lang="zh">偏移量字符串</para>

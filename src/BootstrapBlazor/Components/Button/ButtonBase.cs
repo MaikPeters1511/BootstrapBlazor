@@ -19,8 +19,8 @@ public abstract class ButtonBase : TooltipWrapperBase
     /// <para lang="en">Gets the button style collection</para>
     /// </summary>
     protected string? ClassName => CssBuilder.Default("btn")
-        .AddClass($"btn-outline-{Color.ToDescriptionString()}", IsOutline)
-        .AddClass($"btn-{Color.ToDescriptionString()}", !IsOutline && Color != Color.None)
+        .AddClass(Color.ToButtonClass(true), IsOutline)
+        .AddClass(Color.ToButtonClass(), !IsOutline && Color != Color.None)
         .AddClass($"btn-{Size.ToDescriptionString()}", Size != Size.None)
         .AddClass("btn-block", IsBlock)
         .AddClass("btn-round", ButtonStyle == ButtonStyle.Round)

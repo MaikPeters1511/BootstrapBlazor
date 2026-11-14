@@ -55,7 +55,7 @@ export function init(id, invoke, options) {
 
     if (!popover.isPopover) {
         EventHandler.on(itemsElement, 'click', ms.closeButtonSelector, () => {
-            const dropdown = bootstrap.Dropdown.getInstance(popover.toggleElement)
+            const dropdown = bootstrap.Menu.getInstance(popover.toggleElement)
             if (dropdown && dropdown._isShown()) {
                 dropdown.hide()
             }

@@ -58,12 +58,12 @@ public class QueryBuilderTest : BootstrapBlazorTestBase
     public async Task Dropdown_Ok()
     {
         var cut = Context.Render<QueryBuilder<Foo>>();
-        var items = cut.FindAll(".dropdown-item");
+        var items = cut.FindAll(".menu-item");
         Assert.Equal(2, items.Count);
         var groups = cut.FindAll("ul");
         Assert.Single(groups);
 
-        // 点击组合条件 dropdown-item
+        // 点击组合条件 menu-item
         await cut.InvokeAsync(() => items[0].Click());
         groups = cut.FindAll("ul");
 
@@ -78,8 +78,8 @@ public class QueryBuilderTest : BootstrapBlazorTestBase
         // 还有一个组合条件
         Assert.Single(groups);
 
-        // 点击单行条件 dropdown-item
-        items = cut.FindAll(".dropdown-item");
+        // 点击单行条件 menu-item
+        items = cut.FindAll(".menu-item");
         await cut.InvokeAsync(() => items[1].Click());
         var rows = cut.FindAll(".qb-row");
 

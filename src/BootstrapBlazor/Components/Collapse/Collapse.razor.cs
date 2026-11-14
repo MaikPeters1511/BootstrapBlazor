@@ -25,7 +25,7 @@ public partial class Collapse
         .AddClass(item.HeaderClass)
         .Build();
 
-    private static string? GetClassString(bool collapsed) => CssBuilder.Default("accordion-collapse collapse")
+    private static string? GetClassString(bool collapsed) => CssBuilder.Default("collapse")
         .AddClass("show", !collapsed)
         .Build();
 

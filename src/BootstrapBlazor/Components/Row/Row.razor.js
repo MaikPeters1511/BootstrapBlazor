@@ -70,7 +70,7 @@ const calc = (colSpan, itemsPerRow) => {
     if (colSpan > 0) itemsPerRow = itemsPerRow * colSpan
     let ret = "col-12"
     if (itemsPerRow !== 12) {
-        ret = `col-12 col-sm-${itemsPerRow}`
+        ret = `col-12 sm:col-${itemsPerRow}`
     }
     return ret
 }

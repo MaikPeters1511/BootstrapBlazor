@@ -15,7 +15,8 @@ public partial class Carousel
     /// <para lang="zh">获得 class 样式集合</para>
     /// <para lang="en">Get the class style collection</para>
     /// </summary>
-    private string? ClassName => CssBuilder.Default("carousel slide")
+    private string? ClassName => CssBuilder.Default("carousel")
+        .AddClass("carousel-no-touch", DisableTouchSwiping)
         .AddClass("carousel-fade", IsFade)
         .AddClassFromAttributes(AdditionalAttributes)
         .Build();
@@ -140,7 +141,9 @@ public partial class Carousel
     [NotNull]
     private IIconTheme? IconTheme { get; set; }
 
-    private string? DisableTouchSwipingString => DisableTouchSwiping ? "false" : null;
+    private string AutoPlayString => PlayMode == CarouselPlayMode.AutoPlayOnload ? "true" : "false";
+
+    private string? AutoPlayAfterManuallyString => PlayMode == CarouselPlayMode.AutoPlayAfterManually ? "after-manually" : null;
 
     private string? PauseString => HoverPause ? "hover" : "false";
 

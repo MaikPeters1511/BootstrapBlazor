@@ -53,11 +53,11 @@ public partial class DropdownItem
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
 
-    private string? ItemIconString => CssBuilder.Default("dropdown-item-icon")
+    private string? ItemIconString => CssBuilder.Default("menu-item-icon")
         .AddClass(Icon, !string.IsNullOrEmpty(Icon))
         .Build();
 
-    private string? ItemClassString => CssBuilder.Default("dropdown-item")
+    private string? ItemClassString => CssBuilder.Default("menu-item")
         .AddClass("disabled", IsDisabled)
         .Build();
 

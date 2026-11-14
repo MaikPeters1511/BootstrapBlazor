@@ -29,7 +29,7 @@
         }
     }
 
-    .dropdown-menu {
+    .menu {
         overflow: visible;
         padding: 0;
         max-height: none;
@@ -44,7 +44,7 @@
         }
     }
 
-    .dropdown-header {
+    .menu-header {
         color: #fff;
         padding: var(--bb-widget-header-padding);
         border-radius: var(--bs-border-radius) var(--bs-border-radius) 0 0;
@@ -63,7 +63,7 @@
         border-radius: 0 0 var(--bs-border-radius) var(--bs-border-radius);
     }
 
-    .dropdown-item {
+    .menu-item {
         &:not(:last-child) {
             border-bottom: 1px solid var(--bb-widget-border-color);
         }

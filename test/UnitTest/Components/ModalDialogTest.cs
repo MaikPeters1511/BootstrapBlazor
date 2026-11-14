@@ -10,6 +10,94 @@ namespace UnitTest.Components;
 public class ModalDialogTest : BootstrapBlazorTestBase
 {
     [Fact]
+    public void NativeDialog_Ok()
+    {
+        // Bootstrap 6: every ModalDialog is a native <dialog class="dialog"> element
+        var cut = Context.Render<BootstrapBlazorRoot>(pb =>
+        {
+            pb.AddChildContent<Modal>(pb =>
+            {
+                pb.AddChildContent<ModalDialog>(pb =>
+                {
+                    pb.Add(d => d.Title, "test-title");
+                });
+            });
+        });
+        var title = cut.Find("dialog.dialog > .dialog-header .dialog-title");
+        Assert.Equal("test-title", title.TextContent);
+        cut.Find("dialog.dialog > .dialog-body");
+        cut.Find("dialog.dialog > .dialog-footer");
+
+        // Bootstrap 5 modal markup is gone
+        Assert.Empty(cut.FindAll(".modal-dialog"));
+        Assert.Empty(cut.FindAll(".modal-content"));
+        Assert.Empty(cut.FindAll(".modal-header"));
+        Assert.Empty(cut.FindAll(".modal-body"));
+        Assert.Empty(cut.FindAll(".modal-footer"));
+    }
+
+    [Theory]
+    [InlineData(Size.Small, "dialog-sm")]
+    [InlineData(Size.Large, "dialog-lg")]
+    [InlineData(Size.ExtraLarge, "dialog-xl")]
+    [InlineData(Size.ExtraExtraLarge, "dialog-xxl")]
+    public void NativeDialog_Size_Ok(Size size, string expected)
+    {
+        var cut = Context.Render<BootstrapBlazorRoot>(pb =>
+        {
+            pb.AddChildContent<Modal>(pb =>
+            {
+                pb.AddChildContent<ModalDialog>(pb =>
+                {
+                    pb.Add(d => d.Size, size);
+                });
+            });
+        });
+        Assert.Contains(expected, cut.Find("dialog.dialog").ClassList);
+    }
+
+    [Theory]
+    [InlineData(FullScreenSize.Always, "dialog-fullscreen")]
+    [InlineData(FullScreenSize.Small, "sm-down:dialog-fullscreen")]
+    [InlineData(FullScreenSize.Medium, "md-down:dialog-fullscreen")]
+    [InlineData(FullScreenSize.Large, "lg-down:dialog-fullscreen")]
+    [InlineData(FullScreenSize.ExtraLarge, "xl-down:dialog-fullscreen")]
+    [InlineData(FullScreenSize.ExtraExtraLarge, "2xl-down:dialog-fullscreen")]
+    public void NativeDialog_FullScreenSize_Ok(FullScreenSize size, string expected)
+    {
+        var cut = Context.Render<BootstrapBlazorRoot>(pb =>
+        {
+            pb.AddChildContent<Modal>(pb =>
+            {
+                pb.AddChildContent<ModalDialog>(pb =>
+                {
+                    pb.Add(d => d.FullScreenSize, size);
+                });
+            });
+        });
+        Assert.Contains(expected, cut.Find("dialog.dialog").ClassList);
+    }
+
+    [Fact]
+    public void NativeDialog_ScrollingAndCentered_Ok()
+    {
+        var cut = Context.Render<BootstrapBlazorRoot>(pb =>
+        {
+            pb.AddChildContent<Modal>(pb =>
+            {
+                pb.AddChildContent<ModalDialog>(pb =>
+                {
+                    pb.Add(d => d.IsScrolling, true);
+                    pb.Add(d => d.IsCentered, true);
+                });
+            });
+        });
+        var classList = cut.Find("dialog.dialog").ClassList;
+        Assert.Contains("dialog-scrollable", classList);
+        Assert.Contains("dialog-centered", classList);
+    }
+
+    [Fact]
     public void ShowPrintButton_Ok()
     {
         var cut = Context.Render<BootstrapBlazorRoot>(pb =>
@@ -119,10 +207,10 @@ public class ModalDialogTest : BootstrapBlazorTestBase
 
         var button = cut.Find(".btn-maximize");
         button.Click();
-        cut.WaitForAssertion(() => cut.Contains("modal-fullscreen"));
+        cut.WaitForAssertion(() => cut.Contains("dialog-fullscreen"));
 
         button.Click();
-        cut.WaitForAssertion(() => cut.DoesNotContain("modal-fullscreen"));
+        cut.WaitForAssertion(() => cut.DoesNotContain("dialog-fullscreen"));
     }
 
     [Fact]

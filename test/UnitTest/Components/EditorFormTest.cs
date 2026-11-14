@@ -754,7 +754,7 @@ public class EditorFormTest : BootstrapBlazorTestBase
             pb.Add(a => a.Model, dummy);
             pb.Add(a => a.AutoGenerateAllItem, true);
         });
-        Assert.Contains("col-12 col-sm-12", cut.Markup);
+        Assert.Contains("col-12 sm:col-12", cut.Markup);
     }
 
     private class Dummy

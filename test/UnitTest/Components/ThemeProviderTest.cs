@@ -16,7 +16,7 @@ public class ThemeProviderTest : BootstrapBlazorTestBase
             pb.Add(a => a.Alignment, Alignment.Center);
         });
         cut.Contains("dropdown bb-theme-mode");
-        cut.DoesNotContain("dropdown-menu-center shadow");
+        cut.DoesNotContain("menu-center shadow");
     }
 
     [Fact]

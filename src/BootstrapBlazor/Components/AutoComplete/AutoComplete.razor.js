@@ -7,7 +7,7 @@ import Popover from "../../modules/base-popover.js"
 
 export function init(id, invoke, value, changedEventCallback) {
     const el = document.getElementById(id)
-    const menu = el.querySelector('.dropdown-menu')
+    const menu = el.querySelector('.menu')
     const input = document.getElementById(`${id}_input`)
     const ac = { el, invoke, menu, input }
     Data.set(id, ac)
@@ -51,7 +51,7 @@ export function init(id, invoke, value, changedEventCallback) {
         })
     }
 
-    EventHandler.on(menu, 'click', '.dropdown-item', e => {
+    EventHandler.on(menu, 'click', '.menu-item', e => {
         ac.close();
     });
 
@@ -174,7 +174,7 @@ const handlerKeydown = (ac, e) => {
         const skipEnter = el.getAttribute('data-bb-skip-enter') === 'true';
         if (!skipEnter) {
             let activeItem = null;
-            const items = [...menu.querySelectorAll('.dropdown-item')];
+            const items = [...menu.querySelectorAll('.menu-item')];
             if (items.length === 1) {
                 activeItem = items[0];
             }
@@ -199,7 +199,7 @@ const handlerKeydown = (ac, e) => {
     }
     else if (key === 'ArrowUp' || key === 'ArrowDown') {
         ac.show();
-        const items = [...menu.querySelectorAll('.dropdown-item')];
+        const items = [...menu.querySelectorAll('.menu-item')];
         let current = menu.querySelector('.active');
         if (current !== null) {
             current.classList.remove('active');

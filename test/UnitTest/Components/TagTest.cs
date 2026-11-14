@@ -12,7 +12,7 @@ public class TagTest : BootstrapBlazorTestBase
     {
         var cut = Context.Render<Tag>(builder => builder.Add(a => a.Color, Color.Primary));
 
-        Assert.Contains("alert-primary", cut.Markup);
+        Assert.Contains("theme-primary", cut.Markup);
     }
 
     [Fact]

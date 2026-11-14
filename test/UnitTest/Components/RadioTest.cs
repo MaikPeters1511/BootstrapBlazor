@@ -261,4 +261,15 @@ public class RadioTest : BootstrapBlazorTestBase
     {
 
     }
+
+    [Fact]
+    public void BootstrapRadioClass_Ok()
+    {
+        // Bootstrap 6 styles radios with .radio, form-check-input stays as component hook
+        var cut = Context.Render<Radio<bool>>();
+        var input = cut.Find("input");
+        Assert.Contains("radio", input.ClassList);
+        Assert.Contains("form-check-input", input.ClassList);
+        Assert.DoesNotContain("check", input.ClassList);
+    }
 }

@@ -17,7 +17,7 @@ public partial class PopConfirmButtonContent
     /// <para lang="en">Gets the close button style</para>
     /// </summary>
     private string? CloseButtonClass => CssBuilder.Default("btn btn-xs")
-        .AddClass($"btn-{CloseButtonColor.ToDescriptionString()}")
+        .AddClass(CloseButtonColor.ToButtonClass())
         .Build();
 
     /// <summary>
@@ -25,10 +25,10 @@ public partial class PopConfirmButtonContent
     /// <para lang="en">Gets the confirm button style</para>
     /// </summary>
     private string? ConfirmButtonClass => CssBuilder.Default("btn btn-xs")
-        .AddClass($"btn-{ConfirmButtonColor.ToDescriptionString()}")
+        .AddClass(ConfirmButtonColor.ToButtonClass())
         .Build();
 
-    private string? IconString => CssBuilder.Default("text-info")
+    private string? IconString => CssBuilder.Default("fg-info")
         .AddClass(Icon)
         .Build();
 

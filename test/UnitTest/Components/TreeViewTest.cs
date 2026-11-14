@@ -87,7 +87,7 @@ public class TreeViewTest : BootstrapBlazorTestBase
         var content = cut.FindAll(".tree-content");
         Assert.Contains("form-check disabled", content[0].InnerHtml);
         Assert.Contains("tree-node disabled", content[0].InnerHtml);
-        Assert.Contains("form-check-input disabled", content[0].InnerHtml);
+        Assert.Contains("form-check-input check disabled", content[0].InnerHtml);
 
         cut.Render(pb =>
         {
@@ -102,7 +102,7 @@ public class TreeViewTest : BootstrapBlazorTestBase
         });
         content = cut.FindAll(".tree-content");
         Assert.Contains("node-icon fa-solid fa-caret-right", content[0].InnerHtml);
-        Assert.Contains("form-check-input disabled", content[0].InnerHtml);
+        Assert.Contains("form-check-input check disabled", content[0].InnerHtml);
         Assert.Contains("tree-node disabled", content[0].InnerHtml);
     }
 
@@ -1847,7 +1847,7 @@ public class TreeViewTest : BootstrapBlazorTestBase
         Assert.Equal(1, count);
 
         // 点击确定按钮
-        var button = cut.Find(".popover-body .btn-primary");
+        var button = cut.Find(".popover-body .btn-solid.theme-primary");
         await cut.InvokeAsync(() => button.Click());
         Assert.True(edit);
 

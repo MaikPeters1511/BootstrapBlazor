@@ -103,14 +103,14 @@ public class ButtonTest : BootstrapBlazorTestBase
     }
 
     [Theory]
-    [InlineData(Color.Primary, "btn-primary")]
-    [InlineData(Color.Secondary, "btn-secondary")]
-    [InlineData(Color.Info, "btn-info")]
-    [InlineData(Color.Success, "btn-success")]
-    [InlineData(Color.Warning, "btn-warning")]
-    [InlineData(Color.Danger, "btn-danger")]
-    [InlineData(Color.Light, "btn-light")]
-    [InlineData(Color.Dark, "btn-dark")]
+    [InlineData(Color.Primary, "btn-solid theme-primary")]
+    [InlineData(Color.Secondary, "btn-solid theme-secondary")]
+    [InlineData(Color.Info, "btn-solid theme-info")]
+    [InlineData(Color.Success, "btn-solid theme-success")]
+    [InlineData(Color.Warning, "btn-solid theme-warning")]
+    [InlineData(Color.Danger, "btn-solid theme-danger")]
+    [InlineData(Color.Light, "btn-solid theme-light")]
+    [InlineData(Color.Dark, "btn-solid theme-dark")]
     [InlineData(Color.Link, "btn-link")]
     [InlineData(Color.None, "btn")]
     public void Color_Ok(Color color, string @class)
@@ -126,13 +126,13 @@ public class ButtonTest : BootstrapBlazorTestBase
     public void DialogCloseButton_Color()
     {
         var cut = Context.Render<DialogCloseButton>();
-        Assert.Contains("btn-secondary", cut.Markup);
+        Assert.Contains("btn-solid theme-secondary", cut.Markup);
 
         cut.Render(pb =>
         {
             pb.Add(a => a.Color, Color.Danger);
         });
-        Assert.Contains("btn-danger", cut.Markup);
+        Assert.Contains("btn-solid theme-danger", cut.Markup);
     }
 
     [Fact]
@@ -238,7 +238,7 @@ public class ButtonTest : BootstrapBlazorTestBase
         {
             pb.Add(b => b.IsOutline, true);
         });
-        Assert.Contains("btn-outline-primary", cut.Markup);
+        Assert.Contains("btn-outline theme-primary", cut.Markup);
     }
 
     [Theory]
@@ -521,5 +521,30 @@ public class ButtonTest : BootstrapBlazorTestBase
         var button = cut.Find("button");
         await cut.InvokeAsync(() => button.Click());
         await tcs.Task;
+    }
+
+    [Theory]
+    [InlineData(Color.Primary, false, "btn-solid theme-primary")]
+    [InlineData(Color.Danger, true, "btn-outline theme-danger")]
+    [InlineData(Color.Dark, false, "btn-solid theme-dark")]
+    [InlineData(Color.Light, true, "btn-outline theme-light")]
+    [InlineData(Color.Link, false, "btn-link")]
+    public void BootstrapButtonClass_Ok(Color color, bool isOutline, string expected)
+    {
+        // Bootstrap 6: btn-primary -> btn-solid theme-primary, btn-outline-danger -> btn-outline theme-danger
+        var cut = Context.Render<Button>(pb =>
+        {
+            pb.Add(a => a.Color, color);
+            pb.Add(a => a.IsOutline, isOutline);
+        });
+        var classes = cut.Find("button").ClassList;
+        foreach (var name in expected.Split(' '))
+        {
+            Assert.Contains(name, classes);
+        }
+        Assert.DoesNotContain("btn-primary", classes);
+        Assert.DoesNotContain("btn-outline-danger", classes);
+        Assert.DoesNotContain("btn-dark", classes);
+        Assert.DoesNotContain("btn-outline-light", classes);
     }
 }

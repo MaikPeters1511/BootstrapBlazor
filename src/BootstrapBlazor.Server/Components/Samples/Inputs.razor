@@ -10,7 +10,7 @@
            Name="Normal">
     <section ignore>@((MarkupString)Localizer["InputsNormalDescription"].Value)</section>
     <div class="row g-3">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <BootstrapInput PlaceHolder="@Localizer["NormalPlaceHolder"]"
                             TValue="string"
                             IsAutoFocus="true"
@@ -18,7 +18,7 @@
                             ShowLabel="true"
                             DisplayText="@Localizer["IsSelectAllTextOnFocusLabel"]" />
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <BootstrapInput PlaceHolder="@Localizer["PlaceHolder"]"
                             TValue="string"
                             IsSelectAllTextOnEnter="true"
@@ -32,22 +32,22 @@
            Introduction="@Localizer["InputsColorIntro"]"
            Name="Color">
     <div class="row g-3">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <BootstrapInput TValue="string" Color="Color.Primary" />
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <BootstrapInput TValue="string" Color="Color.Info" />
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <BootstrapInput TValue="string" Color="Color.Warning" />
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <BootstrapInput TValue="string" Color="Color.Danger" />
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <BootstrapInput TValue="string" Color="Color.Secondary" />
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <BootstrapInput TValue="string" Color="Color.Dark" />
         </div>
     </div>
@@ -142,10 +142,10 @@
            Introduction="@Localizer["InputsGenericIntro"]"
            Name="Generic">
     <div class="row g-3">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <BootstrapInput FormatString="000" step="1" PlaceHolder="@Localizer["PlaceHolder"]" @bind-Value="@GenericModel.Count" />
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <div class="col-form-label">@Localizer["InputsGenericBindValue"]: @GenericModel.Count.ToString("000")</div>
         </div>
     </div>
@@ -161,19 +161,19 @@
            Introduction="@Localizer["InputsFormatStringIntro"]"
            Name="FormatString">
     <div class="row g-3">
-        <div class="col-12 col-sm-6 col-form-label">@Localizer["InputsFormatStringSetting"] <code class="ms-1">FormatString</code></div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6 col-form-label">@Localizer["InputsFormatStringSetting"] <code class="ms-1">FormatString</code></div>
+        <div class="col-12 sm:col-6">
             <BootstrapInput Value="DateTime.Now" FormatString="yyyy-MM-dd" IsDisabled="true" />
         </div>
-        <div class="col-12 col-sm-6 col-form-label">@Localizer["InputsFormatStringSetting"] <code class="ms-1">Formatter</code></div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6 col-form-label">@Localizer["InputsFormatStringSetting"] <code class="ms-1">Formatter</code></div>
+        <div class="col-12 sm:col-6">
             <BootstrapInput Value="DateTime.Now" Formatter="@DateTimeFormatter" IsDisabled="true" />
         </div>
     </div>
     <section ignore class="my-3">@((MarkupString)Localizer["InputsFormatStringTips"].Value)</section>
     <div class="row g-3">
-        <div class="col-12 col-sm-6 col-form-label">@Localizer["InputsFormatStringSetting"] <code class="ms-1">Formatter</code></div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6 col-form-label">@Localizer["InputsFormatStringSetting"] <code class="ms-1">Formatter</code></div>
+        <div class="col-12 sm:col-6">
             <BootstrapInput Value="@ByteArray" Formatter="@ByteArrayFormatter" IsDisabled="true" />
         </div>
     </div>
@@ -226,23 +226,23 @@
            Introduction="@Localizer["ClearableIntro"]"
            Name="IsClearable">
     <div class="row g-3">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <BootstrapInput Value="Model.Name" IsClearable="true" ShowLabel="true" DisplayText="Clearable" />
         </div>
     </div>
     <div class="row form-inline g-3 mt-0">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <BootstrapInput Value="Model.Name" IsClearable="true" ShowLabel="true" DisplayText="Clearable" />
         </div>
     </div>
     <div class="row g-3 mt-0">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <BootstrapInputGroup>
                 <BootstrapInputGroupLabel ShowRequiredMark DisplayText="Clearable"></BootstrapInputGroupLabel>
                 <BootstrapInput Value="@Model.Name" IsClearable="true" />
             </BootstrapInputGroup>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <BootstrapInputGroup>
                 <BootstrapInput Value="@Model.Name" IsClearable="true" />
                 <BootstrapInputGroupLabel ShowRequiredMark DisplayText="Clearable"></BootstrapInputGroupLabel>

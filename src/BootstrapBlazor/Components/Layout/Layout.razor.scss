@@ -115,7 +115,7 @@
         padding: 0.5rem 0;
         height: calc(100% - var(--bb-layout-header-height));
 
-        .menu {
+        .bb-menu {
             --bb-menu-item-hover-bg: var(--bb-layout-menu-item-hover-bg);
             --bb-menu-item-hover-color: var(--bb-layout-header-color);
         }
@@ -346,14 +346,14 @@
                 &:not(:hover) {
                     --bb-layout-sidebar-width: var(--bb-layout-sidebar-collapse-width);
 
-                    .menu.is-vertical {
+                    .bb-menu.is-vertical {
                         --bb-layout-sidebar-width: var(--bb-layout-sidebar-collapse-width);
                     }
                 }
 
                 &:hover {
                     .layout-title,
-                    .menu.is-vertical .menu-text {
+                    .bb-menu.is-vertical .bb-menu-text {
                         opacity: 1;
                     }
                 }
@@ -365,14 +365,14 @@
                 &:not(.is-expand) {
                     --bb-layout-sidebar-width: var(--bb-layout-sidebar-collapse-width);
 
-                    .menu.is-vertical {
+                    .bb-menu.is-vertical {
                         --bb-layout-sidebar-width: var(--bb-layout-sidebar-collapse-width);
                     }
                 }
 
                 &.is-expand {
                     .layout-title,
-                    .menu.is-vertical .menu-text {
+                    .bb-menu.is-vertical .bb-menu-text {
                         opacity: 1;
                     }
                 }
@@ -390,7 +390,7 @@
             }
 
             .layout-title,
-            .menu.is-vertical .menu-text {
+            .bb-menu.is-vertical .bb-menu-text {
                 opacity: 0;
             }
         }

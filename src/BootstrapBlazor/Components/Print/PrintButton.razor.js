@@ -21,9 +21,9 @@ export function init(id) {
 }
 
 const print = el => {
-    const modal = el.closest('.modal-content')
+    const modal = el.closest('dialog.dialog')
     if (modal) {
-        const modalBody = [...modal.querySelectorAll('.modal-body')];
+        const modalBody = [...modal.querySelectorAll('.dialog-body')];
         if (modalBody.length > 0) {
             modal.classList.add('d-none');
 

@@ -19,18 +19,28 @@ public partial class ModalDialog
     /// <para lang="zh">获得 弹窗组件样式</para>
     /// <para lang="en">Get Popup Component Style</para>
     /// </summary>
-    private string? ClassName => CssBuilder.Default("modal-dialog")
-        .AddClass("modal-dialog-centered", IsCentered && !IsDraggable)
-        .AddClass($"modal-{Size.ToDescriptionString()}", Size != Size.None && FullScreenSize != FullScreenSize.Always && !MaximizeStatus)
-        .AddClass($"modal-{FullScreenSize.ToDescriptionString()}", FullScreenSize != FullScreenSize.None && !MaximizeStatus)
-        .AddClass("modal-dialog-scrollable", IsScrolling)
-        .AddClass("modal-fullscreen", MaximizeStatus)
+    private string? ClassName => CssBuilder.Default("dialog")
+        .AddClass("dialog-centered", IsCentered && !IsDraggable)
+        .AddClass($"dialog-{Size.ToDescriptionString()}", Size != Size.None && FullScreenSize != FullScreenSize.Always && !MaximizeStatus)
+        .AddClass(FullScreenClassString, FullScreenSize != FullScreenSize.None && !MaximizeStatus)
+        .AddClass("dialog-scrollable", IsScrolling)
+        .AddClass("dialog-fullscreen", MaximizeStatus)
         .AddClass("is-draggable", IsDraggable)
         .AddClass("is-draggable-center", IsCentered && IsDraggable && _firstRender)
         .AddClass("d-none", IsHidePreviousDialog && !IsShown)
         .AddClass(Class, !string.IsNullOrEmpty(Class))
         .AddClassFromAttributes(AdditionalAttributes)
         .Build();
+
+    private string FullScreenClassString => FullScreenSize switch
+    {
+        FullScreenSize.Always => "dialog-fullscreen",
+        FullScreenSize.Small => "sm-down:dialog-fullscreen",
+        FullScreenSize.Medium => "md-down:dialog-fullscreen",
+        FullScreenSize.Large => "lg-down:dialog-fullscreen",
+        FullScreenSize.ExtraLarge => "xl-down:dialog-fullscreen",
+        _ => "2xl-down:dialog-fullscreen"
+    };
 
     /// <summary>
     /// <para lang="zh">获得/设置 是否显示对话框</para>

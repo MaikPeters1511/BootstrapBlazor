@@ -167,7 +167,7 @@ public class TableTest : BootstrapBlazorTestBase
         }
         else if (insertMode == InsertRowMode.Last)
         {
-            var button = cut.FindAll("tbody tr button").Last(i => i.ClassList.Contains("btn-success"));
+            var button = cut.FindAll("tbody tr button").Last(i => i.ClassList.Contains("theme-success"));
             await cut.InvokeAsync(() =>
             {
                 button.Click();
@@ -810,7 +810,7 @@ public class TableTest : BootstrapBlazorTestBase
 
         cut.InvokeAsync(() =>
         {
-            var items = cut.FindAll(".dropdown-item");
+            var items = cut.FindAll(".menu-item");
             cut.InvokeAsync(() => items[1].Click());
         });
         var conditions = cut.FindComponent<StringFilter>().Instance.GetFilterConditions();
@@ -948,7 +948,7 @@ public class TableTest : BootstrapBlazorTestBase
             });
         });
         cut.Contains("Test_Column_List");
-        cut.DoesNotContain("dropdown-menu-popover");
+        cut.DoesNotContain("menu-popover");
 
         // 过滤掉 Count 列只显示 Name 和 Address 列
         var labels = cut.FindAll(".form-check-label");
@@ -968,7 +968,7 @@ public class TableTest : BootstrapBlazorTestBase
         {
             pb.Add(a => a.IsPopoverToolbarDropdownButton, true);
         });
-        table.Contains("dropdown-menu-popover");
+        table.Contains("menu-popover");
 
         state.Columns[0].Width = 100;
         await cut.InvokeAsync(item.Instance.OnToggleClick);
@@ -1424,7 +1424,7 @@ public class TableTest : BootstrapBlazorTestBase
         Assert.Equal(20, table.Instance.PageItems);
 
         // change page items
-        var select = cut.FindAll(".table-page-info .select .dropdown-item");
+        var select = cut.FindAll(".table-page-info .select .menu-item");
         Assert.Equal(6, select.Count);
 
         var item = select.ElementAt(1);
@@ -2994,7 +2994,7 @@ public class TableTest : BootstrapBlazorTestBase
             });
         });
 
-        var item = cut.FindAll(".dropdown-item").First(i => i.TextContent == "test");
+        var item = cut.FindAll(".menu-item").First(i => i.TextContent == "test");
         cut.InvokeAsync(() => item.Click());
         Assert.True(clickCallback);
     }
@@ -3426,7 +3426,7 @@ public class TableTest : BootstrapBlazorTestBase
         });
         if (!isExcel)
         {
-            var btn = cut.Find(".table-cell .btn-primary");
+            var btn = cut.Find(".table-cell .btn-solid.theme-primary");
             await cut.InvokeAsync(() => btn.Click());
             Assert.True(edited);
         }
@@ -4722,10 +4722,10 @@ public class TableTest : BootstrapBlazorTestBase
         });
 
         // 点击编辑按钮
-        var btn = cut.Find("tr .btn-primary");
+        var btn = cut.Find("tr .btn-solid.theme-primary");
         await cut.InvokeAsync(() => btn.Click());
 
-        var btnSave = cut.Find(".form-footer .btn-primary");
+        var btnSave = cut.Find(".form-footer .btn-solid.theme-primary");
         await cut.InvokeAsync(() => btnSave.Click());
 
         // 卡片模式下点击编辑按钮
@@ -4734,7 +4734,7 @@ public class TableTest : BootstrapBlazorTestBase
         {
             pb.Add(a => a.RenderMode, TableRenderMode.CardView);
         });
-        btn = cut.Find(".table-row .btn-primary");
+        btn = cut.Find(".table-row .btn-solid.theme-primary");
         await cut.InvokeAsync(() => btn.Click());
     }
 
@@ -6147,7 +6147,7 @@ public class TableTest : BootstrapBlazorTestBase
         await cut.InvokeAsync(() => button[0].Click());
 
         // 保存按钮
-        var saveButton = cut.Find(".bb-editor-footer .btn-primary");
+        var saveButton = cut.Find(".bb-editor-footer .btn-solid.theme-primary");
         await cut.InvokeAsync(() => saveButton.Click());
         Assert.False(afterCancelSave);
 
@@ -6202,7 +6202,7 @@ public class TableTest : BootstrapBlazorTestBase
         await cut.InvokeAsync(() => button[0].Click());
 
         // 保存按钮
-        var saveButton = cut.Find(".bb-editor-footer .btn-primary");
+        var saveButton = cut.Find(".bb-editor-footer .btn-solid.theme-primary");
         await cut.InvokeAsync(() => saveButton.Click());
         Assert.False(afterCancelSave);
 
@@ -7289,7 +7289,7 @@ public class TableTest : BootstrapBlazorTestBase
         });
         Assert.Contains("fa-regular fa-pen-to-square", table.Find("tbody").ToMarkup());
 
-        var button = table.Find("tbody tr:first-child .btn-primary");
+        var button = table.Find("tbody tr:first-child .btn-solid.theme-primary");
         Assert.Contains("disabled=\"disabled\"", button.OuterHtml);
     }
 
@@ -7336,7 +7336,7 @@ public class TableTest : BootstrapBlazorTestBase
         });
         Assert.Contains("fa-solid fa-xmark", table.Find("tbody").ToMarkup());
 
-        var button = table.Find("tbody tr:first-child .btn-danger");
+        var button = table.Find("tbody tr:first-child .btn-solid.theme-danger");
         Assert.Contains("pop-confirm disabled", button.OuterHtml);
     }
 
@@ -7423,12 +7423,12 @@ public class TableTest : BootstrapBlazorTestBase
         await cut.InvokeAsync(() => update.Click());
         if (mode == EditMode.InCell)
         {
-            var cancel = cut.Find("tbody tr .btn-warning");
+            var cancel = cut.Find("tbody tr .btn-solid.theme-warning");
             await cut.InvokeAsync(() => cancel.Click());
         }
         else if (mode == EditMode.EditForm)
         {
-            var button = cut.Find("tbody form .form-footer .btn-secondary");
+            var button = cut.Find("tbody form .form-footer .btn-solid.theme-secondary");
             await cut.InvokeAsync(() => button.Click());
         }
     }
@@ -7541,7 +7541,7 @@ public class TableTest : BootstrapBlazorTestBase
             });
         });
 
-        var buttons = cut.FindAll(".dropdown-menu-end .dropdown-item");
+        var buttons = cut.FindAll(".dropdown-export .menu-item");
         foreach (var button in buttons)
         {
             cut.InvokeAsync(() =>
@@ -7567,7 +7567,7 @@ public class TableTest : BootstrapBlazorTestBase
             });
         });
 
-        buttons = cut.FindAll(".dropdown-menu-end .dropdown-item");
+        buttons = cut.FindAll(".dropdown-export .menu-item");
         foreach (var button in buttons)
         {
             cut.InvokeAsync(() =>
@@ -8955,7 +8955,7 @@ public class TableTest : BootstrapBlazorTestBase
         });
 
         // 更改可见列
-        var checkbox = cut.Find(".dropdown-item .form-check-input");
+        var checkbox = cut.Find(".menu-item .form-check-input");
 
         await cut.InvokeAsync(() => checkbox.Click());
         await cut.InvokeAsync(() => checkbox.Click());
@@ -9862,11 +9862,11 @@ public class TableTest : BootstrapBlazorTestBase
             pb.Add(a => a.ShowMoreButton, true);
             pb.Add(a => a.MoreButtonDropdownTemplate, context => builder =>
             {
-                builder.AddMarkupContent(0, "<div>dropdown-item-more-template</div>");
+                builder.AddMarkupContent(0, "<div>menu-item-more-template</div>");
             });
         });
 
-        cut.Contains("<div>dropdown-item-more-template</div");
+        cut.Contains("<div>menu-item-more-template</div");
         cut.Contains("更多");
 
         cut.Render(pb =>
@@ -9904,7 +9904,7 @@ public class TableTest : BootstrapBlazorTestBase
             pb.Add(a => a.ShowColumnListControls, true);
         });
 
-        cut.Contains("dropdown-menu dropdown-menu-end shadow dropdown-menu-controls");
+        cut.Contains("menu shadow menu-controls");
         cut.Contains("column-list-items");
 
         var buttons = cut.FindAll(".column-list-controls button");

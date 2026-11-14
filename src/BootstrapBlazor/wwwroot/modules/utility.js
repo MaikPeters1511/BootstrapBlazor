@@ -768,7 +768,7 @@ export function setTheme(theme, sync) {
     if (sync === true) {
         const providers = document.querySelectorAll('.bb-theme-mode');
         providers.forEach(p => {
-            const activeItem = p.querySelector(`.dropdown-item[data-bb-theme-value="${theme}"]`);
+            const activeItem = p.querySelector(`.menu-item[data-bb-theme-value="${theme}"]`);
             setActiveTheme(p, activeItem)
         })
         saveTheme(theme);

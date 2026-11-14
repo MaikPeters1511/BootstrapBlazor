@@ -48,7 +48,7 @@ public class AutoCompleteTest : BootstrapBlazorTestBase
 
         // 开启 SkipMatch 候选项不过滤
         cut.Contains("data-bb-skip-match=\"true\"");
-        var items = cut.FindAll(".dropdown-item");
+        var items = cut.FindAll(".menu-item");
         Assert.Equal(4, items.Count);
     }
 
@@ -63,9 +63,9 @@ public class AutoCompleteTest : BootstrapBlazorTestBase
 
         // 选中候选项 test123 后 TriggerFilter 不应过滤候选项
         // 否则再次输入时 SkipMatch 失效 候选项被锁定为上次选中值的过滤子集
-        await cut.InvokeAsync(() => cut.FindAll(".dropdown-item")[2].Click());
+        await cut.InvokeAsync(() => cut.FindAll(".menu-item")[2].Click());
 
-        var items = cut.FindAll(".dropdown-item");
+        var items = cut.FindAll(".menu-item");
         Assert.Equal(4, items.Count);
     }
 
@@ -80,14 +80,14 @@ public class AutoCompleteTest : BootstrapBlazorTestBase
         Assert.Contains("<div class=\"auto-complete\"", cut.Markup);
         Assert.Contains("data-bb-trigger-delete=\"true\"", cut.Markup);
 
-        var menus = cut.FindAll(".dropdown-item");
+        var menus = cut.FindAll(".menu-item");
         Assert.Single(menus);
 
         cut.Render(pb =>
         {
             pb.Add(a => a.ShowNoDataTip, false);
         });
-        menus = cut.FindAll(".dropdown-item");
+        menus = cut.FindAll(".menu-item");
         Assert.Empty(menus);
 
         var items = new List<string>() { "test1", "test2" };
@@ -95,7 +95,7 @@ public class AutoCompleteTest : BootstrapBlazorTestBase
         {
             pb.Add(a => a.Items, items);
         });
-        menus = cut.FindAll(".dropdown-item");
+        menus = cut.FindAll(".menu-item");
         Assert.Equal(2, menus.Count);
     }
 
@@ -108,7 +108,7 @@ public class AutoCompleteTest : BootstrapBlazorTestBase
             pb.Add(a => a.Value, "test12");
             pb.Add(a => a.DisplayCount, 2);
         });
-        var menus = cut.FindAll(".dropdown-item");
+        var menus = cut.FindAll(".menu-item");
 
         // 由于 Value = test12
         // 并且设置了 DisplayCount = 2
@@ -158,7 +158,7 @@ public class AutoCompleteTest : BootstrapBlazorTestBase
 
         // Color
         cut.Render(pb => pb.Add(a => a.Color, Color.Danger));
-        cut.Contains("clear-icon text-danger");
+        cut.Contains("clear-icon fg-danger");
 
         // 反射 Validate
         var classStringProperty = cut.Instance.GetType().GetProperty("ClearClassString", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
@@ -169,11 +169,11 @@ public class AutoCompleteTest : BootstrapBlazorTestBase
 
         validProperty.SetValue(cut.Instance, true);
         var validClassString = classStringProperty.GetValue(cut.Instance);
-        Assert.Equal("clear-icon text-danger text-success", validClassString);
+        Assert.Equal("clear-icon fg-danger fg-success", validClassString);
 
         validProperty.SetValue(cut.Instance, false);
         validClassString = classStringProperty.GetValue(cut.Instance);
-        Assert.Equal("clear-icon text-danger text-danger", validClassString);
+        Assert.Equal("clear-icon fg-danger fg-danger", validClassString);
     }
 
     [Fact]
@@ -197,7 +197,7 @@ public class AutoCompleteTest : BootstrapBlazorTestBase
         });
 
         await cut.InvokeAsync(() => cut.Instance.TriggerFilter("t"));
-        var menus = cut.FindAll(".dropdown-item");
+        var menus = cut.FindAll(".menu-item");
         Assert.Equal(3, menus.Count);
     }
 
@@ -212,7 +212,7 @@ public class AutoCompleteTest : BootstrapBlazorTestBase
 
         // 正常匹配 无结果显示 NoDataTip
         await cut.InvokeAsync(() => cut.Instance.TriggerFilter("a"));
-        var menus = cut.FindAll(".dropdown-item");
+        var menus = cut.FindAll(".menu-item");
         Assert.Single(menus);
 
         // 模糊匹配
@@ -221,15 +221,15 @@ public class AutoCompleteTest : BootstrapBlazorTestBase
             pb.Add(a => a.IsLikeMatch, true);
         });
         await cut.InvokeAsync(() => cut.Instance.TriggerFilter("as"));
-        menus = cut.FindAll(".dropdown-item");
+        menus = cut.FindAll(".menu-item");
         Assert.Equal(2, menus.Count);
 
         await cut.InvokeAsync(() => cut.Instance.TriggerFilter("k1"));
-        menus = cut.FindAll(".dropdown-item");
+        menus = cut.FindAll(".menu-item");
         Assert.Single(menus);
 
         await cut.InvokeAsync(() => cut.Instance.TriggerFilter(""));
-        menus = cut.FindAll(".dropdown-item");
+        menus = cut.FindAll(".menu-item");
         Assert.Equal(2, menus.Count);
     }
 
@@ -245,7 +245,7 @@ public class AutoCompleteTest : BootstrapBlazorTestBase
 
         // 大小写敏感
         await cut.InvokeAsync(() => cut.Instance.TriggerFilter("t"));
-        var menus = cut.FindAll(".dropdown-item");
+        var menus = cut.FindAll(".menu-item");
         Assert.Single(menus);
 
         // 忽略大小写
@@ -254,7 +254,7 @@ public class AutoCompleteTest : BootstrapBlazorTestBase
             pb.Add(a => a.IgnoreCase, true);
         });
         await cut.InvokeAsync(() => cut.Instance.TriggerFilter("t"));
-        menus = cut.FindAll(".dropdown-item");
+        menus = cut.FindAll(".menu-item");
         Assert.Equal(2, menus.Count);
     }
 
@@ -290,7 +290,7 @@ public class AutoCompleteTest : BootstrapBlazorTestBase
         });
 
         await cut.InvokeAsync(() => cut.Instance.TriggerFilter("t"));
-        var menus = cut.FindAll(".dropdown-item");
+        var menus = cut.FindAll(".menu-item");
         Assert.Equal(2, menus.Count);
     }
 
@@ -305,7 +305,7 @@ public class AutoCompleteTest : BootstrapBlazorTestBase
         });
 
         await cut.InvokeAsync(() => cut.Instance.TriggerFilter("t"));
-        var menus = cut.FindAll(".dropdown-item");
+        var menus = cut.FindAll(".menu-item");
         Assert.Equal(3, menus.Count);
     }
 
@@ -354,7 +354,7 @@ public class AutoCompleteTest : BootstrapBlazorTestBase
             pb.Add(a => a.OnSelectedItemChanged, v => { selectedItem = v; return Task.CompletedTask; });
         });
 
-        var item = cut.Find(".dropdown-item");
+        var item = cut.Find(".menu-item");
         await cut.InvokeAsync(() => item.Click());
         Assert.Equal("test1", selectedItem);
     }
@@ -411,7 +411,7 @@ public class AutoCompleteTest : BootstrapBlazorTestBase
         await cut.InvokeAsync(() => cut.Instance.TriggerBlur());
         Assert.Equal("test2", val);
 
-        var item = cut.Find(".dropdown-item");
+        var item = cut.Find(".menu-item");
         await cut.InvokeAsync(() => item.Click());
     }
 

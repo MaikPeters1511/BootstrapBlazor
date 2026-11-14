@@ -21,7 +21,7 @@ export function init(id) {
             popover.hide()
         }
         else {
-            const dropdown = bootstrap.Dropdown.getInstance(popover.toggleElement)
+            const dropdown = bootstrap.Menu.getInstance(popover.toggleElement)
             if (dropdown) {
                 dropdown.hide()
             }

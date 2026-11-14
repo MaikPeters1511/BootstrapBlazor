@@ -1,0 +1,92 @@
+// Bootstrap 6 removed these Bootstrap 5 tokens
+// map them to the Bootstrap 6 tokens so the library and user stylesheets keep working
+:root {
+    --bs-body-bg: var(--bs-bg-body);
+    --bs-body-color: var(--bs-fg-body);
+    --bs-body-color-rgb: 33, 37, 41;
+    --bs-emphasis-color-rgb: 0, 0, 0;
+    --bs-secondary-color: var(--bs-fg-3);
+    --bs-tertiary-bg: var(--bs-bg-2);
+    --bs-primary: var(--bs-primary-bg);
+    --bs-primary-rgb: 13, 110, 253;
+    --bs-secondary: var(--bs-secondary-fg);
+    --bs-success: var(--bs-success-bg);
+    --bs-danger: var(--bs-danger-bg);
+    --bs-warning: var(--bs-warning-bg);
+    --bs-info: var(--bs-info-bg);
+    --bs-light: var(--bs-gray-100);
+    --bs-dark: var(--bs-gray-900);
+    --bs-blue: var(--bs-blue-500);
+    --bs-indigo: var(--bs-indigo-500);
+    --bs-purple: var(--bs-purple-500);
+    --bs-pink: var(--bs-pink-500);
+    --bs-red: var(--bs-red-500);
+    --bs-orange: var(--bs-orange-500);
+    --bs-yellow: var(--bs-yellow-500);
+    --bs-green: var(--bs-green-500);
+    --bs-teal: var(--bs-teal-500);
+    --bs-cyan: var(--bs-cyan-500);
+    --bs-border-radius: var(--bs-radius-4);
+    --bs-border-radius-pill: var(--bs-radius-pill);
+}
+
+[data-bs-theme='dark'] {
+    --bs-body-color-rgb: 222, 226, 230;
+    --bs-emphasis-color-rgb: 255, 255, 255;
+}
+
+// Bootstrap 6 has no light / dark theme, Color.Light and Color.Dark still need one
+.theme-light {
+    --bs-theme-base: var(--bs-gray-100);
+    --bs-theme-fg: light-dark(var(--bs-gray-700), var(--bs-gray-200));
+    --bs-theme-fg-emphasis: light-dark(var(--bs-gray-900), var(--bs-gray-050));
+    --bs-theme-bg: var(--bs-gray-100);
+    --bs-theme-bg-subtle: light-dark(var(--bs-gray-050), var(--bs-gray-800));
+    --bs-theme-bg-muted: light-dark(var(--bs-gray-100), var(--bs-gray-700));
+    --bs-theme-border: light-dark(var(--bs-gray-300), var(--bs-gray-600));
+    --bs-theme-focus-ring: color-mix(in oklch, var(--bs-gray-400) 50%, var(--bs-bg-body));
+    --bs-theme-contrast: var(--bs-gray-900);
+}
+
+.theme-dark {
+    --bs-theme-base: var(--bs-gray-900);
+    --bs-theme-fg: light-dark(var(--bs-gray-900), var(--bs-gray-100));
+    --bs-theme-fg-emphasis: light-dark(var(--bs-gray-975), var(--bs-white));
+    --bs-theme-bg: var(--bs-gray-900);
+    --bs-theme-bg-subtle: light-dark(var(--bs-gray-200), var(--bs-gray-800));
+    --bs-theme-bg-muted: light-dark(var(--bs-gray-300), var(--bs-gray-700));
+    --bs-theme-border: light-dark(var(--bs-gray-800), var(--bs-gray-500));
+    --bs-theme-focus-ring: color-mix(in oklch, var(--bs-gray-700) 50%, var(--bs-bg-body));
+    --bs-theme-contrast: var(--bs-white);
+}
+
+// Bootstrap 6 has no light / dark color utilities
+.fg-light {
+    --bs-fg: var(--bs-gray-100);
+    color: var(--bs-fg);
+}
+
+.fg-dark {
+    --bs-fg: var(--bs-gray-900);
+    color: var(--bs-fg);
+}
+
+.bg-light {
+    --bs-bg: var(--bs-gray-100);
+    background-color: var(--bs-bg);
+}
+
+.bg-dark {
+    --bs-bg: var(--bs-gray-900);
+    background-color: var(--bs-bg);
+}
+
+.border-light {
+    --bs-bc: var(--bs-gray-100);
+    border-color: var(--bs-bc);
+}
+
+.border-dark {
+    --bs-bc: var(--bs-gray-900);
+    border-color: var(--bs-bc);
+}

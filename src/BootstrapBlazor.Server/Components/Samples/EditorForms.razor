@@ -74,10 +74,10 @@
                     <EditorItem @bind-Field="@context.Address"></EditorItem>
                     <EditorItem @bind-Field="@context.Count">
                         <EditTemplate Context="value">
-                            <div class="col-12 col-sm-6">
+                            <div class="col-12 sm:col-6">
                                 <Select SkipValidate="true" @bind-Value="@value.Count" Items="@DummyItems" ShowSearch="true"></Select>
                             </div>
-                            <div class="col-12 col-sm-6">
+                            <div class="col-12 sm:col-6">
                                 <BootstrapInput Value="@value.Count" Readonly="true"></BootstrapInput>
                             </div>
                         </EditTemplate>

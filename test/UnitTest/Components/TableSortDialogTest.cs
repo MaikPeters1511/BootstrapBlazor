@@ -57,7 +57,7 @@ public class TableSortDialogTest : BootstrapBlazorTestBase
         cut.WaitForAssertion(() => cut.Contains("dialog-advance-sort"));
 
         // 点击 Clear
-        var btnClear = cut.Find(".table-advance-sort-toolbar .btn-danger");
+        var btnClear = cut.Find(".table-advance-sort-toolbar .btn-solid.theme-danger");
         cut.InvokeAsync(() => btnClear.Click());
 
         // 点击 Add
@@ -71,7 +71,7 @@ public class TableSortDialogTest : BootstrapBlazorTestBase
         Assert.Equal(new string[] { "Asc", "Desc" }, orderSelect.Instance.Items.Select(i => i.Value));
 
         // 点击 Remove
-        var btnRemove = cut.Find(".row .btn-danger");
+        var btnRemove = cut.Find(".row .btn-solid.theme-danger");
         cut.InvokeAsync(() => btnRemove.Click());
 
         btnAdd = cut.Find(".table-advance-sort-toolbar .btn");
@@ -84,7 +84,7 @@ public class TableSortDialogTest : BootstrapBlazorTestBase
         Assert.Equal(new string[] { "Asc", "Desc" }, orderSelect.Instance.Items.Select(i => i.Value));
 
         // 关闭弹窗
-        var btnClose = cut.Find(".modal-footer .btn-primary");
+        var btnClose = cut.Find(".dialog-footer .btn-solid.theme-primary");
         cut.InvokeAsync(() => btnClose.Click());
 
         Assert.Equal("Name Asc", sortList[0]);

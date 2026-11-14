@@ -127,7 +127,7 @@ public partial class DropUpload
         .Build();
 
     private string? TextClassString => CssBuilder.Default("upload-drop-text")
-        .AddClass("text-muted", CheckStatus())
+        .AddClass("fg-3", CheckStatus())
         .Build();
 
     /// <summary>

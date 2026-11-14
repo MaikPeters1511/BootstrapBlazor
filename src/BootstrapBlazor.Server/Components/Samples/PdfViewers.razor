@@ -10,13 +10,13 @@
 <DemoBlock Title="@Localizer["PdfViewerNormalTitle"]" Introduction="@Localizer["PdfViewerNormalIntro"]" Name="Normal">
     <section ignore>
         <div class="row g-3">
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <BootstrapInputGroup>
                     <BootstrapInputGroupLabel DisplayText="UseGoogleDocs"></BootstrapInputGroupLabel>
                     <Switch @bind-Value="@_useGoogleDocs"></Switch>
                 </BootstrapInputGroup>
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <BootstrapInputGroup>
                     <BootstrapInputGroupLabel DisplayText="PageIndex"></BootstrapInputGroupLabel>
                     <Select @bind-Value="@_pageIndex">
@@ -29,7 +29,7 @@
                     </Select>
                 </BootstrapInputGroup>
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <BootstrapInputGroup>
                     <BootstrapInputGroupLabel>ShowToolbar</BootstrapInputGroupLabel>
                     <Switch @bind-Value="_showToolbar"></Switch>

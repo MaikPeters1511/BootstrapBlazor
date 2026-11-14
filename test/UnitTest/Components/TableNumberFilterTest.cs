@@ -20,7 +20,7 @@ public class TableNumberFilterTest : BootstrapBlazorTestBase
         var input = cut.Find("[type=\"number\"]");
         await cut.InvokeAsync(() => input.Change("1"));
 
-        var action = cut.Find(".dropdown-item");
+        var action = cut.Find(".menu-item");
         await cut.InvokeAsync(() => action.Click());
 
         // check filter

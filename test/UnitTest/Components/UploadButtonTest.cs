@@ -23,7 +23,7 @@ public class UploadButtonTest : BootstrapBlazorTestBase
         });
         cut.Contains("fa-solid fa-chrome");
         cut.Contains("browser-class");
-        cut.Contains("btn btn-success");
+        cut.Contains("btn btn-solid theme-success");
         cut.DoesNotContain("form-label");
 
         // DefaultFileList

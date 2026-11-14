@@ -7,23 +7,19 @@
 <DemoBlock Title="@Localizer["ModalsNormalTitle"]"
            Introduction="@Localizer["ModalsNormalIntro"]"
            Name="Normal">
-    <div class="modal d-block position-relative" style="z-index: 2;">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">@Localizer["ModalsNormalPopupTitle"]</h5>
-                    <button type="button" class="btn-close" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p>@Localizer["ModalsNormalPopupText"]</p>
-                </div>
-                <div class="modal-footer">
-                    <Button Color="Color.Secondary" Text="Close" Icon="fa-solid fa-xmark"></Button>
-                    <Button Text="Save" Icon="fa-solid fa-floppy-disk"></Button>
-                </div>
-            </div>
+    <dialog class="dialog position-relative" open style="z-index: 2;">
+        <div class="dialog-header">
+            <h5 class="dialog-title">@Localizer["ModalsNormalPopupTitle"]</h5>
+            <button type="button" class="btn-close" aria-label="Close"></button>
         </div>
-    </div>
+        <div class="dialog-body">
+            <p>@Localizer["ModalsNormalPopupText"]</p>
+        </div>
+        <div class="dialog-footer">
+            <Button Color="Color.Secondary" Text="Close" Icon="fa-solid fa-xmark"></Button>
+            <Button Text="Save" Icon="fa-solid fa-floppy-disk"></Button>
+        </div>
+    </dialog>
     <div class="mt-3">
         <p>@((MarkupString)Localizer["ModalsNormalIsKeyboard"].Value)</p>
         <Button OnClick="() => Modal.Toggle()">@Localizer["ModalsNormalPopups"]</Button>
@@ -68,7 +64,7 @@
            Introduction="@Localizer["ModalsDialogSizeIntro"]"
            Name="DialogSize">
     <div class="row g-3">
-        <div class="col-12 col-sm-4 col-lg-auto">
+        <div class="col-12 sm:col-4 lg:col-auto">
             <Button OnClick="() => SizeSmallModal.Toggle()">@Localizer["ModalsSmallPopup"]</Button>
             <Modal @ref="SizeSmallModal">
                 <ModalDialog Size="Size.Small" Title="@Localizer["ModalsSmallPopup"]">
@@ -78,7 +74,7 @@
                 </ModalDialog>
             </Modal>
         </div>
-        <div class="col-12 col-sm-4 col-lg-auto">
+        <div class="col-12 sm:col-4 lg:col-auto">
             <Button OnClick="() => LargeModal.Toggle()">@Localizer["ModalsBigPopup"]</Button>
             <Modal @ref="LargeModal">
                 <ModalDialog Size="Size.Large" Title="@Localizer["ModalsBigPopup"]">
@@ -88,7 +84,7 @@
                 </ModalDialog>
             </Modal>
         </div>
-        <div class="col-12 col-sm-4 col-lg-auto">
+        <div class="col-12 sm:col-4 lg:col-auto">
             <Button OnClick="() => ExtraLargeModal.Toggle()">@Localizer["ModalsOverSizedPopup"]</Button>
             <Modal @ref="ExtraLargeModal">
                 <ModalDialog Size="Size.ExtraLarge" Title="@Localizer["ModalsOverSizedPopup"]">
@@ -98,7 +94,7 @@
                 </ModalDialog>
             </Modal>
         </div>
-        <div class="col-12 col-sm-4 col-lg-auto">
+        <div class="col-12 sm:col-4 lg:col-auto">
             <Button OnClick="() => ExtraExtraLargeModal.Toggle()">@Localizer["ModalsSuperLargePopup"]</Button>
             <Modal @ref="ExtraExtraLargeModal">
                 <ModalDialog Size="Size.ExtraExtraLarge" Title="@Localizer["ModalsSuperLargePopup"]">
@@ -115,7 +111,7 @@
            Introduction="@Localizer["ModalsFullScreenSizeIntro"]"
            Name="FullScreenSize">
     <div class="row g-3">
-        <div class="col-12 col-sm-4 col-lg-auto">
+        <div class="col-12 sm:col-4 lg:col-auto">
             <Button OnClick="() => SmallFullScreenModal.Toggle()">@Localizer["ModalsFullScreenPopup"]</Button>
             <Modal @ref="SmallFullScreenModal">
                 <ModalDialog FullScreenSize="FullScreenSize.Always" Title="@Localizer["ModalsFullScreenPopup"]">
@@ -125,7 +121,7 @@
                 </ModalDialog>
             </Modal>
         </div>
-        <div class="col-12 col-sm-4 col-lg-auto">
+        <div class="col-12 sm:col-4 lg:col-auto">
             <Button OnClick="() => LargeFullScreenModal.Toggle()">@Localizer["ModalsFullScreenPopup992"]</Button>
             <Modal @ref="LargeFullScreenModal">
                 <ModalDialog FullScreenSize="FullScreenSize.Large" Title="@Localizer["ModalsLargeFullScreenPopup"]">
@@ -135,7 +131,7 @@
                 </ModalDialog>
             </Modal>
         </div>
-        <div class="col-12 col-sm-4 col-lg-auto">
+        <div class="col-12 sm:col-4 lg:col-auto">
             <Button OnClick="() => ExtraLargeFullScreenModal.Toggle()">@Localizer["ModalsFullScreenPopup1200"]</Button>
             <Modal @ref="ExtraLargeFullScreenModal">
                 <ModalDialog FullScreenSize="FullScreenSize.ExtraLarge" Title="@Localizer["ModalsLargeFullScreenPopupWindow"]">
@@ -145,7 +141,7 @@
                 </ModalDialog>
             </Modal>
         </div>
-        <div class="col-12 col-sm-4 col-lg-auto">
+        <div class="col-12 sm:col-4 lg:col-auto">
             <Button OnClick="() => ExtraExtraLargeFullScreenModal.Toggle()">@Localizer["ModalsFullScreenPopup1400"]</Button>
             <Modal @ref="ExtraExtraLargeFullScreenModal">
                 <ModalDialog FullScreenSize="FullScreenSize.ExtraExtraLarge" Title="@Localizer["ModalsSuperLargeFullScreenPopupWindow"]">
@@ -175,7 +171,7 @@
            Introduction="@Localizer["ModalsLongContentIntro"]"
            Name="LongContent">
     <div class="row g-3">
-        <div class="col-12 col-sm-4 col-lg-auto">
+        <div class="col-12 sm:col-4 lg:col-auto">
             <Button OnClick="() => LongContentModal.Toggle()">@Localizer["ModalsVeryLongContent"]</Button>
             <Modal @ref="LongContentModal">
                 <ModalDialog IsCentered="true" Title="@Localizer["ModalsVeryLongContent"]">
@@ -202,7 +198,7 @@
                 </ModalDialog>
             </Modal>
         </div>
-        <div class="col-12 col-sm-4 col-lg-auto">
+        <div class="col-12 sm:col-4 lg:col-auto">
             <Button OnClick="() => ScrollModal.Toggle()">@Localizer["ModalsScrollBarPopup"]</Button>
             <Modal @ref="ScrollModal">
                 <ModalDialog IsCentered="true" IsScrolling="true" Title="@Localizer["ModalsScrollBarPopup"]" ShowExportPdfButtonInHeader="true">

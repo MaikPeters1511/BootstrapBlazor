@@ -114,15 +114,15 @@ else
             }
             @if (ShouldShowExtendButtons())
             {
-                <div class="nav-link-bar dropdown dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <div class="nav-link-bar dropdown dropdown-toggle" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-haspopup="true" aria-expanded="false">
                     <Tooltip Title="@CloseTabNavLinkTooltipText" Placement="Placement.Left" Trigger="hover">
                         <div class="nav-link-bar-button nav-link-close"><i class="@DropdownIcon"></i></div>
                     </Tooltip>
                 </div>
-                <div class="dropdown-menu dropdown-menu-end shadow">
-                    <div class="dropdown-item" @onclick="@CloseCurrentTab"><span>@CloseCurrentTabText</span></div>
-                    <div class="dropdown-item" @onclick="@OnClickCloseOtherTabs"><span>@CloseOtherTabsText</span></div>
-                    <div class="dropdown-item" @onclick="@OnClickCloseAllTabs"><span>@CloseAllTabsText</span></div>
+                <div class="menu shadow">
+                    <div class="menu-item" @onclick="@CloseCurrentTab"><span>@CloseCurrentTabText</span></div>
+                    <div class="menu-item" @onclick="@OnClickCloseOtherTabs"><span>@CloseOtherTabsText</span></div>
+                    <div class="menu-item" @onclick="@OnClickCloseAllTabs"><span>@CloseAllTabsText</span></div>
                 </div>
             }
             @if (AfterNavigatorTemplate != null)

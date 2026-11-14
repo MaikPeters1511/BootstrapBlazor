@@ -40,14 +40,14 @@ public class AutoFillTest : BootstrapBlazorTestBase
     {
         var cut = Context.Render<AutoFill<Foo>>();
         Assert.Contains("<div class=\"auto-complete auto-fill\"", cut.Markup);
-        var menus = cut.FindAll(".dropdown-item");
+        var menus = cut.FindAll(".menu-item");
         Assert.Single(menus);
 
         cut.Render(pb =>
         {
             pb.Add(a => a.ShowNoDataTip, false);
         });
-        menus = cut.FindAll(".dropdown-item");
+        menus = cut.FindAll(".menu-item");
         Assert.Empty(menus);
     }
 
@@ -96,7 +96,7 @@ public class AutoFillTest : BootstrapBlazorTestBase
             });
         });
 
-        var item = cut.Find(".dropdown-item");
+        var item = cut.Find(".menu-item");
         await cut.InvokeAsync(() => item.Click());
         Assert.NotNull(val);
         Assert.Equal("test1", val.Name);
@@ -125,7 +125,7 @@ public class AutoFillTest : BootstrapBlazorTestBase
             pb.Add(pb => pb.OnCustomFilter, null!);
         });
         await cut.InvokeAsync(() => cut.Instance.TriggerFilter(""));
-        var items = cut.FindAll(".dropdown-item");
+        var items = cut.FindAll(".menu-item");
         Assert.Equal(2, items.Count);
     }
 
@@ -191,7 +191,7 @@ public class AutoFillTest : BootstrapBlazorTestBase
                 return Task.CompletedTask;
             });
         });
-        var item = cut.Find(".dropdown-item");
+        var item = cut.Find(".menu-item");
         await cut.InvokeAsync(() => item.Click());
         Assert.NotNull(selectedItem);
     }
@@ -221,7 +221,7 @@ public class AutoFillTest : BootstrapBlazorTestBase
         });
 
         await cut.InvokeAsync(() => cut.Instance.TriggerFilter("t"));
-        var menus = cut.FindAll(".dropdown-item");
+        var menus = cut.FindAll(".menu-item");
         Assert.Equal(4, menus.Count);
 
         cut.Render(pb =>
@@ -229,7 +229,7 @@ public class AutoFillTest : BootstrapBlazorTestBase
             pb.Add(a => a.DisplayCount, 2);
         });
         await cut.InvokeAsync(() => cut.Instance.TriggerFilter("t"));
-        menus = cut.FindAll(".dropdown-item");
+        menus = cut.FindAll(".menu-item");
         Assert.Equal(2, menus.Count);
 
         cut.Render(pb =>
@@ -238,7 +238,7 @@ public class AutoFillTest : BootstrapBlazorTestBase
             pb.Add(a => a.DisplayCount, null);
         });
         await cut.InvokeAsync(() => cut.Instance.TriggerFilter("t"));
-        menus = cut.FindAll(".dropdown-item");
+        menus = cut.FindAll(".menu-item");
         Assert.Equal(2, menus.Count);
     }
 
@@ -254,7 +254,7 @@ public class AutoFillTest : BootstrapBlazorTestBase
         });
 
         await cut.InvokeAsync(() => cut.Instance.TriggerFilter("t"));
-        var menus = cut.FindAll(".dropdown-item");
+        var menus = cut.FindAll(".menu-item");
         Assert.Equal(4, menus.Count);
 
         cut.Render(pb =>
@@ -262,7 +262,7 @@ public class AutoFillTest : BootstrapBlazorTestBase
             pb.Add(a => a.DisplayCount, 2);
         });
         await cut.InvokeAsync(() => cut.Instance.TriggerFilter("t"));
-        menus = cut.FindAll(".dropdown-item");
+        menus = cut.FindAll(".menu-item");
         Assert.Equal(2, menus.Count);
 
         cut.Render(pb =>
@@ -271,7 +271,7 @@ public class AutoFillTest : BootstrapBlazorTestBase
             pb.Add(a => a.DisplayCount, null);
         });
         await cut.InvokeAsync(() => cut.Instance.TriggerFilter("a"));
-        menus = cut.FindAll(".dropdown-item");
+        menus = cut.FindAll(".menu-item");
         Assert.Equal(4, menus.Count);
 
         cut.Render(pb =>
@@ -280,7 +280,7 @@ public class AutoFillTest : BootstrapBlazorTestBase
             pb.Add(a => a.IsLikeMatch, false);
         });
         await cut.InvokeAsync(() => cut.Instance.TriggerFilter("t"));
-        menus = cut.FindAll(".dropdown-item");
+        menus = cut.FindAll(".menu-item");
         Assert.Single(menus);
 
         cut.Render(pb =>
@@ -289,7 +289,7 @@ public class AutoFillTest : BootstrapBlazorTestBase
             pb.Add(a => a.IsLikeMatch, true);
         });
         await cut.InvokeAsync(() => cut.Instance.TriggerFilter("t"));
-        menus = cut.FindAll(".dropdown-item");
+        menus = cut.FindAll(".menu-item");
         Assert.Single(menus);
 
         cut.Render(pb =>
@@ -298,7 +298,7 @@ public class AutoFillTest : BootstrapBlazorTestBase
             pb.Add(a => a.IsLikeMatch, false);
         });
         await cut.InvokeAsync(() => cut.Instance.TriggerFilter("t"));
-        menus = cut.FindAll(".dropdown-item");
+        menus = cut.FindAll(".menu-item");
         Assert.Single(menus);
 
         cut.Render(pb =>
@@ -307,7 +307,7 @@ public class AutoFillTest : BootstrapBlazorTestBase
             pb.Add(a => a.IsLikeMatch, true);
         });
         await cut.InvokeAsync(() => cut.Instance.TriggerFilter("t"));
-        menus = cut.FindAll(".dropdown-item");
+        menus = cut.FindAll(".menu-item");
         Assert.Single(menus);
     }
 
@@ -385,13 +385,13 @@ public class AutoFillTest : BootstrapBlazorTestBase
             pb.Add(a => a.RowHeight, 50f);
             pb.Add(a => a.OnGetDisplayText, f => f?.Name);
         });
-        cut.Contains("<div class=\"dropdown-item\"><div class=\"is-ph\"></div></div>");
+        cut.Contains("<div class=\"menu-item\"><div class=\"is-ph\"></div></div>");
 
         cut.Render(pb =>
         {
             pb.Add(a => a.RowHeight, 35f);
         });
-        cut.Contains("<div class=\"dropdown-item\" style=\"height: 35px;\"><div class=\"is-ph\"></div></div>");
+        cut.Contains("<div class=\"menu-item\" style=\"height: 35px;\"><div class=\"is-ph\"></div></div>");
     }
 
     [Fact]

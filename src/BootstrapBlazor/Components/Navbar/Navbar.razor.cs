@@ -34,9 +34,9 @@ public partial class Navbar
 
     private string? ClassString => CssBuilder.Default("navbar")
         .AddClass($"navbar-expand", Size == Size.None)
-        .AddClass($"navbar-expand-{Size.ToDescriptionString()}", Size != Size.None)
+        .AddClass($"{(Size == Size.ExtraExtraLarge ? "2xl" : Size.ToDescriptionString())}:navbar-expand", Size != Size.None)
         .AddClass(BackgroundColorCssClass)
-        .AddClass("bg-body-tertiary", string.IsNullOrEmpty(BackgroundColorCssClass))
+        .AddClass("bg-2", string.IsNullOrEmpty(BackgroundColorCssClass))
         .AddClassFromAttributes(AdditionalAttributes)
         .Build();
 }

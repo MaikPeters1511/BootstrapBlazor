@@ -125,7 +125,7 @@ public class SelectGenericTest : BootstrapBlazorTestBase
             });
         });
         Assert.Contains("_input\" disabled=\"disabled\"", cut.Markup);
-        Assert.Contains("dropdown-item active disabled", cut.Markup);
+        Assert.Contains("menu-item active disabled", cut.Markup);
     }
 
     [Fact]
@@ -171,11 +171,11 @@ public class SelectGenericTest : BootstrapBlazorTestBase
 
         var pi = typeof(SelectGeneric<string>).BaseType!.GetProperty("ClearClassString", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)!;
         val = pi.GetValue(select.Instance, null)!.ToString();
-        Assert.Contains("text-success", val);
+        Assert.Contains("fg-success", val);
 
         validPi.SetValue(select.Instance, false);
         val = pi.GetValue(select.Instance, null)!.ToString();
-        Assert.Contains("text-danger", val);
+        Assert.Contains("fg-danger", val);
     }
 
     [Fact]
@@ -195,7 +195,7 @@ public class SelectGenericTest : BootstrapBlazorTestBase
     public void Enum_Ok()
     {
         var cut = Context.Render<SelectGeneric<EnumEducation>>();
-        Assert.Equal(2, cut.FindAll(".dropdown-item").Count);
+        Assert.Equal(2, cut.FindAll(".menu-item").Count);
     }
 
     [Fact]
@@ -208,7 +208,7 @@ public class SelectGenericTest : BootstrapBlazorTestBase
                 ["placeholder"] = ""
             });
         });
-        Assert.Equal(3, cut.FindAll(".dropdown-item").Count);
+        Assert.Equal(3, cut.FindAll(".menu-item").Count);
     }
 
     [Fact]
@@ -234,7 +234,7 @@ public class SelectGenericTest : BootstrapBlazorTestBase
         Assert.True(triggered);
 
         // 切换候选项时触发 OnSelectedItemChanged 回调测试
-        var items = cut.FindAll(".dropdown-item");
+        var items = cut.FindAll(".menu-item");
         var count = items.Count;
         Assert.Equal(2, count);
 
@@ -244,7 +244,7 @@ public class SelectGenericTest : BootstrapBlazorTestBase
 
         // 切换回 空值 触发 OnSelectedItemChanged 回调测试
         triggered = false;
-        items = cut.FindAll(".dropdown-item");
+        items = cut.FindAll(".menu-item");
         item = items[0];
         await cut.InvokeAsync(() => { item.Click(); });
         Assert.True(triggered);
@@ -265,7 +265,7 @@ public class SelectGenericTest : BootstrapBlazorTestBase
 
         // 切换回 空值 触发 OnSelectedItemChanged 回调测试
         triggered = false;
-        items = cut.FindAll(".dropdown-item");
+        items = cut.FindAll(".menu-item");
         count = items.Count;
         Assert.Equal(3, count);
         item = items[0];
@@ -300,7 +300,7 @@ public class SelectGenericTest : BootstrapBlazorTestBase
         Assert.NotNull(comparer);
         comparer.ModelEqualityComparer = (x, y) => x.Id == y.Id;
 
-        var items = cut.FindAll(".dropdown-item");
+        var items = cut.FindAll(".menu-item");
         await cut.InvokeAsync(() => items[1].Click());
         Assert.NotNull(selectedValue);
     }
@@ -412,7 +412,7 @@ public class SelectGenericTest : BootstrapBlazorTestBase
             });
         });
 
-        cut.Find(".dropdown-item").Click();
+        cut.Find(".menu-item").Click();
     }
 
     [Fact]
@@ -565,8 +565,8 @@ public class SelectGenericTest : BootstrapBlazorTestBase
             pb.Add(a => a.Value, "2");
             pb.Add(a => a.IsPopover, true);
         });
-        Assert.DoesNotContain("dropdown-menu-arrow", cut.Markup);
-        Assert.DoesNotContain("data-bs-toggle=\"dropdown\"", cut.Markup);
+        Assert.DoesNotContain("menu-arrow", cut.Markup);
+        Assert.DoesNotContain("data-bs-toggle=\"menu\"", cut.Markup);
     }
 
     [Fact]
@@ -624,7 +624,7 @@ public class SelectGenericTest : BootstrapBlazorTestBase
 
         cut.InvokeAsync(() =>
         {
-            var item = cut.Find(".dropdown-item");
+            var item = cut.Find(".menu-item");
             item.Click();
             Assert.True(item.ClassList.Contains("active"));
         });
@@ -679,7 +679,7 @@ public class SelectGenericTest : BootstrapBlazorTestBase
         await cut.InvokeAsync(() => cut.Instance.TriggerOnSearch("2"));
 
         // 下拉框仅显示一个选项 Test2
-        var items = cut.FindAll(".dropdown-item");
+        var items = cut.FindAll(".menu-item");
         Assert.Single(items);
 
         // UI 值为 Test2
@@ -698,7 +698,7 @@ public class SelectGenericTest : BootstrapBlazorTestBase
         Assert.Equal("", el.Value);
 
         // 下拉框显示所有选项
-        items = cut.FindAll(".dropdown-item");
+        items = cut.FindAll(".menu-item");
         Assert.Equal(2, items.Count);
     }
 
@@ -737,7 +737,7 @@ public class SelectGenericTest : BootstrapBlazorTestBase
         await cut.InvokeAsync(() => cut.Instance.TriggerOnSearch("2"));
 
         // 下拉框仅显示一个选项 Test2
-        var items = cut.FindAll(".dropdown-item");
+        var items = cut.FindAll(".menu-item");
         Assert.Single(items);
 
         // UI 值为 Test2
@@ -792,7 +792,7 @@ public class SelectGenericTest : BootstrapBlazorTestBase
         var select = cut.Instance;
         Assert.Equal("3", select.Value);
 
-        var item = cut.Find(".dropdown-item");
+        var item = cut.Find(".menu-item");
         await cut.InvokeAsync(() => { item.Click(); });
         Assert.Equal("1", value);
 
@@ -1017,7 +1017,7 @@ public class SelectGenericTest : BootstrapBlazorTestBase
                 break;
             }
         }
-        var button = cut.Find(".btn-danger");
+        var button = cut.Find(".btn-solid.theme-danger");
         await cut.InvokeAsync(() =>
         {
             button.Click();

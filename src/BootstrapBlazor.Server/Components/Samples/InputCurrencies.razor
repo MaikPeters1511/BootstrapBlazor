@@ -11,10 +11,10 @@
            Name="Normal">
     <section ignore>
         <div class="form-inline row g-2">
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <Switch @bind-Value="@_showIsoCurrencySymbol" ShowLabel="true" DisplayText="Iso"></Switch>
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <Switch @bind-Value="@_showClearIcon" ShowLabel="true" DisplayText="Cleable"></Switch>
             </div>
         </div>
@@ -31,10 +31,10 @@
            Name="CultureName">
     <section ignore>@((MarkupString)Localizer["InputCurrencyCultureDesc"].Value)</section>
     <div class="row g-2">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <BootstrapInputCurrency Value="@_value" ShowLabel="true" DisplayText="人民币" CultureName="zh-CN" Decimals="3" />
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <BootstrapInputCurrency Value="@_value" ShowLabel="true" DisplayText="葡萄牙货币" CultureName="pt-BR" />
         </div>
     </div>

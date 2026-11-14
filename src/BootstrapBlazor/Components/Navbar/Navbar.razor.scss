@@ -15,94 +15,55 @@
     margin-block-end: .5rem;
 }
 
-.navbar-expand {
-    .navbar-nav:last-child {
+// Bootstrap 6 collapses the navbar into a drawer, this component keeps the collapse
+.navbar-collapse {
+    flex-basis: 100%;
+    flex-grow: 1;
+    align-items: center;
+}
+
+.navbar-nav-scroll {
+    max-height: var(--bs-scroll-height, 75vh);
+    overflow-y: auto;
+}
+
+@mixin navbar-expand {
+    .navbar-collapse {
+        display: flex !important;
+        flex-basis: auto;
+        block-size: auto !important;
+        overflow: visible;
+    }
+
+    .navbar-nav-scroll {
+        overflow: visible;
+    }
+
+    .navbar-nav {
         margin-block-start: 0;
+        margin-block-end: 0;
+    }
+
+    .navbar-nav:last-child {
         margin-inline-start: .5rem;
     }
-}
 
-@media (min-width: 576px) {
-    .navbar-expand-sm {
-        .navbar-nav {
-            margin-block-start: 0;
-            margin-block-end: 0;
-        }
-
-        .navbar-nav:last-child {
-            margin-inline-start: .5rem;
-        }
-
-        .navbar-nav:not(:last-child) {
-            margin-inline-end: auto;
-        }
+    .navbar-nav:not(:last-child) {
+        margin-inline-end: auto;
     }
 }
 
-@media (min-width: 768px) {
-    .navbar-expand-md {
-        .navbar-nav {
-            margin-block-start: 0;
-            margin-block-end: 0;
-        }
-
-        .navbar-nav:last-child {
-            margin-inline-start: .5rem;
-        }
-
-        .navbar-nav:not(:last-child) {
-            margin-inline-end: auto;
-        }
-    }
+.navbar-expand {
+    @include navbar-expand;
 }
 
-@media (min-width: 992px) {
-    .navbar-expand-lg {
-        .navbar-nav {
-            margin-block-start: 0;
-            margin-block-end: 0;
-        }
+// same container queries as Bootstrap 6 (.navbar is an inline-size container)
+$navbar-breakpoints: ("sm": 576px, "md": 768px, "lg": 1024px, "xl": 1280px, "\\32 xl": 1536px);
 
-        .navbar-nav:last-child {
-            margin-inline-start: .5rem;
-        }
-
-        .navbar-nav:not(:last-child) {
-            margin-inline-end: auto;
-        }
-    }
-}
-
-@media (min-width: 1200px) {
-    .navbar-expand-xl {
-        .navbar-nav {
-            margin-block-start: 0;
-            margin-block-end: 0;
-        }
-
-        .navbar-nav:last-child {
-            margin-inline-start: .5rem;
-        }
-
-        .navbar-nav:not(:last-child) {
-            margin-inline-end: auto;
-        }
-    }
-}
-
-@media (min-width: 1400px) {
-    .navbar-expand-xxl {
-        .navbar-nav {
-            margin-block-start: 0;
-            margin-block-end: 0;
-        }
-
-        .navbar-nav:last-child {
-            margin-inline-start: .5rem;
-        }
-
-        .navbar-nav:not(:last-child) {
-            margin-inline-end: auto;
+@each $name, $width in $navbar-breakpoints {
+    @container (width >= #{$width}) {
+        .#{$name}\:navbar-expand {
+            @include navbar-expand;
         }
     }
 }

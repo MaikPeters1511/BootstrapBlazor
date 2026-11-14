@@ -21,10 +21,10 @@
            Introduction="@Localizer["PlayersHlsIntro"]"
            Name="Hls">
     <div class="row g-3 mb-3">
-        <div class="col-12 col-sm-auto">
+        <div class="col-12 sm:col-auto">
             <Dropdown Items="Items" Value="@_url" OnSelectedItemChanged="ChangeUrl" />
         </div>
-        <div class="col-12 col-sm-auto">
+        <div class="col-12 sm:col-auto">
             <Display @bind-Value="@_url" />
         </div>
     </div>

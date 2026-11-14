@@ -8,20 +8,20 @@ export function init(id, invoke, options) {
 
     const invokeMethod = e => {
         const item = e.target;
-        const items = [...el.querySelectorAll("[data-bs-toggle=\"dropdown\"]")];
+        const items = [...el.querySelectorAll("[data-bs-toggle=\"menu\"]")];
         const index = items.indexOf(item);
-        invoke.invokeMethodAsync(method, index, e.type === 'shown.bs.dropdown');
+        invoke.invokeMethodAsync(method, index, e.type === 'shown.bs.menu');
     }
 
     const { method } = options;
-    EventHandler.on(el, 'shown.bs.dropdown', invokeMethod);
-    EventHandler.on(el, 'hidden.bs.dropdown', invokeMethod);
+    EventHandler.on(el, 'shown.bs.menu', invokeMethod);
+    EventHandler.on(el, 'hidden.bs.menu', invokeMethod);
 }
 
 export function dispose(id) {
     const el = document.getElementById(id);
     if (el) {
-        EventHandler.off(el, 'shown.bs.dropdown');
-        EventHandler.off(el, 'hidden.bs.dropdown');
+        EventHandler.off(el, 'shown.bs.menu');
+        EventHandler.off(el, 'hidden.bs.menu');
     }
 }

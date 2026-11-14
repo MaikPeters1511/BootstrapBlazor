@@ -19,6 +19,16 @@ public class LogoutTest : BootstrapBlazorTestBase
     }
 
     [Fact]
+    public void BootstrapMenuPlacement_Ok()
+    {
+        var cut = Context.Render<Logout>();
+        var toggle = cut.Find("[data-bs-toggle=\"menu\"]");
+        Assert.Equal("bottom-end", toggle.GetAttribute("data-bs-placement"));
+        cut.Find(".menu");
+        Assert.DoesNotContain("menu-end", cut.Markup);
+    }
+
+    [Fact]
     public void ImageUrl_Ok()
     {
         // 未设置 Items

@@ -1145,7 +1145,7 @@ public partial class Table<TItem>
 
         var option = new DrawerOption()
         {
-            Class = "drawer-table-edit",
+            Class = "bb-drawer-table-edit",
             Placement = Placement.Right,
             AllowResize = true,
             IsBackdrop = true,

@@ -11,9 +11,46 @@
     <BundleStyleFile>$(MSBuildThisFileDirectory)wwwroot/css/bootstrap.blazor.bundle.min.css;$(MSBuildThisFileDirectory)wwwroot/css/bootstrap.blazor.bundle.rtl.min.css</BundleStyleFile>
   </PropertyGroup>
 
-  <Target Name="CopyJs" AfterTargets="Build" Condition="'$(TargetFramework)' == '$(RunTargetFramework)'" Inputs="$(BootstrapOriginJsFile)" Outputs="$(BootstrapTargetJsFile)">
-    <Message Text="Copy bootstrap.bundle.min.js ..." Importance="high"></Message>
-    <Copy SourceFiles="$(BootstrapOriginJsFile)" DestinationFiles="$(BootstrapTargetJsFile)" SkipUnchangedFiles="true"></Copy>
+  <!-- Bootstrap 6 ships ESM only. Convert the bundle to a classic script exposing window.bootstrap -->
+  <UsingTask TaskName="ConvertBootstrapJs" TaskFactory="RoslynCodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
+    <ParameterGroup>
+      <Source ParameterType="System.String" Required="true" />
+      <Destination ParameterType="System.String" Required="true" />
+    </ParameterGroup>
+    <Task>
+      <Using Namespace="System" />
+      <Using Namespace="System.IO" />
+      <Using Namespace="System.Linq" />
+      <Using Namespace="System.Text.RegularExpressions" />
+      <Code Type="Fragment" Language="cs">
+        <![CDATA[
+var js = File.ReadAllText(Source);
+var banner = Regex.Match(js, @"^\s*/\*![\s\S]*?\*/").Value;
+var body = Regex.Replace(js.Substring(banner.Length), @"\s*//# sourceMappingURL=.*\s*$", "");
+var export = Regex.Match(body, @"\bexport\s*\{([^}]*)\}\s*;?\s*$");
+if (!export.Success)
+{
+    Log.LogError("ConvertBootstrapJs: no trailing export statement found in {0}", Source);
+}
+else
+{
+    var members = string.Join(",", export.Groups[1].Value.Split(',').Select(m =>
+    {
+        var parts = Regex.Split(m.Trim(), @"\s+as\s+");
+        return parts.Length == 2 ? parts[1] + ":" + parts[0] : parts[0];
+    }));
+    body = body.Substring(0, export.Index) + "window.bootstrap={" + members + "};";
+    Directory.CreateDirectory(Path.GetDirectoryName(Destination));
+    File.WriteAllText(Destination, banner.Trim() + "\n(function(){\"use strict\";" + body.Trim() + "})();\n");
+}
+]]>
+      </Code>
+    </Task>
+  </UsingTask>
+
+  <Target Name="CopyJs" AfterTargets="Build" Condition="'$(TargetFramework)' == '$(RunTargetFramework)'" Inputs="$(BootstrapOriginJsFile);$(MSBuildThisFileFullPath)" Outputs="$(BootstrapTargetJsFile)">
+    <Message Text="Convert bootstrap.bundle.min.js ..." Importance="high"></Message>
+    <ConvertBootstrapJs Source="$(BootstrapOriginJsFile)" Destination="$(BootstrapTargetJsFile)" />
   </Target>
 
   <Target Name="CssBundler" AfterTargets="CopyJs" Condition="'$(TargetFramework)' == '$(RunTargetFramework)'" Inputs="$(StyleFile)" Outputs="$(BundleStyleFile)">

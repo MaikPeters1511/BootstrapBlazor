@@ -75,13 +75,13 @@ public class TableDialogTest : TableDialogTestBase
         cut.Contains("test-save");
         cut.Contains("test-close");
 
-        cut.Contains("modal-lg");
+        cut.Contains("dialog-lg");
         cut.DoesNotContain("btn-maximize");
         cut.Contains("is-draggable");
         cut.Contains("--bb-row-label-width: 200px;");
 
         // 编辑弹窗逻辑
-        var form = cut.Find(".modal-body form");
+        var form = cut.Find(".dialog-body form");
         await cut.InvokeAsync(() => form.Submit());
         var modal = cut.FindComponent<Modal>();
         await cut.InvokeAsync(() => modal.Instance.CloseCallback());
@@ -109,7 +109,7 @@ public class TableDialogTest : TableDialogTestBase
             pb.Add(a => a.EditDialogFullScreenSize, FullScreenSize.Always);
         });
         await cut.InvokeAsync(() => table.Instance.AddAsync());
-        Assert.Contains(" modal-fullscreen ", cut.Markup);
+        Assert.Contains(" dialog-fullscreen ", cut.Markup);
         await cut.InvokeAsync(() => modal.Instance.CloseCallback());
 
         var closed = false;
@@ -135,10 +135,10 @@ public class TableDialogTest : TableDialogTestBase
         await cut.InvokeAsync(() => table.Instance.AddAsync());
 
         // 编辑弹窗逻辑
-        var input = cut.Find(".modal-body form input.form-control");
+        var input = cut.Find(".dialog-body form input.form-control");
         await cut.InvokeAsync(() => input.Change("Test_Name"));
 
-        form = cut.Find(".modal-body form");
+        form = cut.Find(".dialog-body form");
         await cut.InvokeAsync(() => form.Submit());
         await cut.InvokeAsync(() => modal.Instance.CloseCallback());
 
@@ -159,10 +159,10 @@ public class TableDialogTest : TableDialogTestBase
         cut.Contains("test_edit_footer");
 
         // 编辑弹窗逻辑
-        input = cut.Find(".modal-body form input.form-control");
+        input = cut.Find(".dialog-body form input.form-control");
         await cut.InvokeAsync(() => input.Change("Test_Name"));
 
-        form = cut.Find(".modal-body form");
+        form = cut.Find(".dialog-body form");
         await cut.InvokeAsync(() => form.Submit());
         await cut.InvokeAsync(() => modal.Instance.CloseCallback());
         Assert.True(itemsChanged);
@@ -176,10 +176,10 @@ public class TableDialogTest : TableDialogTestBase
         });
         // Add 弹窗
         await cut.InvokeAsync(() => table.Instance.AddAsync());
-        input = cut.Find(".modal-body form input.form-control");
+        input = cut.Find(".dialog-body form input.form-control");
         await cut.InvokeAsync(() => input.Change("Test_Name"));
 
-        form = cut.Find(".modal-body form");
+        form = cut.Find(".dialog-body form");
         await cut.InvokeAsync(() => form.Submit());
         await cut.InvokeAsync(() => modal.Instance.CloseCallback());
         Assert.Equal(3, items.Count);
@@ -191,10 +191,10 @@ public class TableDialogTest : TableDialogTestBase
 
         // Add 弹窗
         await cut.InvokeAsync(() => table.Instance.AddAsync());
-        input = cut.Find(".modal-body form input.form-control");
+        input = cut.Find(".dialog-body form input.form-control");
         await cut.InvokeAsync(() => input.Change("Test_Name"));
 
-        form = cut.Find(".modal-body form");
+        form = cut.Find(".dialog-body form");
         await cut.InvokeAsync(() => form.Submit());
         await cut.InvokeAsync(() => modal.Instance.CloseCallback());
         Assert.Equal(3, items.Count);
@@ -216,10 +216,10 @@ public class TableDialogTest : TableDialogTestBase
 
         // Add 弹窗
         await cut.InvokeAsync(() => table.Instance.AddAsync());
-        input = cut.Find(".modal-body form input.form-control");
+        input = cut.Find(".dialog-body form input.form-control");
         await cut.InvokeAsync(() => input.Change("Test_Name"));
 
-        form = cut.Find(".modal-body form");
+        form = cut.Find(".dialog-body form");
         await cut.InvokeAsync(() => form.Submit());
         await cut.InvokeAsync(() => modal.Instance.CloseCallback());
 
@@ -410,7 +410,7 @@ public class TableDialogTest : TableDialogTestBase
 
         // 模拟点击确认按钮
         cut.WaitForAssertion(() => cut.Find(".swal2-actions"));
-        var closeButton = cut.Find(".swal2-actions .btn-danger");
+        var closeButton = cut.Find(".swal2-actions .btn-solid.theme-danger");
         await cut.InvokeAsync(() => closeButton.Click());
 
         // 关闭 Swal 确认弹窗
@@ -460,7 +460,7 @@ public class TableDialogTest : TableDialogTestBase
         await cut.InvokeAsync(item.Instance.OnToggleClick);
         await cut.InvokeAsync(() => table.Instance.AddAsync());
 
-        var form = cut.Find(".modal-body form");
+        var form = cut.Find(".dialog-body form");
         await cut.InvokeAsync(() => form.Submit());
         await cut.InvokeAsync(() => modal.Instance.CloseCallback());
     }

@@ -20,7 +20,7 @@ public partial class PopConfirmButton
         .Build();
 
     private string? InternalClassName => CssBuilder.Default()
-        .AddClass($"link-{Color.ToDescriptionString()}", Color != Color.None)
+        .AddClass($"fg-{Color.ToDescriptionString()}", Color != Color.None)
         .AddClassFromAttributes(AdditionalAttributes)
         .Build();
 

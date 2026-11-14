@@ -72,13 +72,13 @@
            Name="ShowPrefixIcon">
     <section ignore>@((MarkupString)Localizer["SearchesShowPrefixIconDescription"].Value)</section>
     <div class="row g-3">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Search PlaceHolder="@Localizer["SearchesPlaceHolder"]"
                     OnSearch="@OnModelSearch"
                     ShowClearButton="false" ShowSearchButton="false"
                     ShowPrefixIcon="true" PrefixIcon="fa fa-flag"></Search>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Search PlaceHolder="@Localizer["SearchesPlaceHolder"]"
                     OnSearch="@OnModelSearch"
                     ShowClearButton="false" ShowSearchButton="false"
@@ -162,19 +162,19 @@ private async Task OnClickClear()
            Name="ButtonTemplate">
     <section ignore>
         <div class="row g-3">
-            <div class="col-12 col-sm-4">
+            <div class="col-12 sm:col-4">
                 <BootstrapInputGroup>
                     <BootstrapInputGroupLabel DisplayText="IsClearable"></BootstrapInputGroupLabel>
                     <Checkbox @bind-Value="_isClearable"></Checkbox>
                 </BootstrapInputGroup>
             </div>
-            <div class="col-12 col-sm-4">
+            <div class="col-12 sm:col-4">
                 <BootstrapInputGroup>
                     <BootstrapInputGroupLabel DisplayText="ShowClearButton"></BootstrapInputGroupLabel>
                     <Checkbox @bind-Value="_showClearButton"></Checkbox>
                 </BootstrapInputGroup>
             </div>
-            <div class="col-12 col-sm-4">
+            <div class="col-12 sm:col-4">
                 <BootstrapInputGroup>
                     <BootstrapInputGroupLabel DisplayText="ShowSearchButton"></BootstrapInputGroupLabel>
                     <Checkbox @bind-Value="_showSearchButton"></Checkbox>
@@ -183,7 +183,7 @@ private async Task OnClickClear()
         </div>
     </section>
     <div class="row g-3">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Search PlaceHolder="@Localizer["SearchesPlaceHolder"]"
                     OnSearch="@OnModelSearch" Debounce="200"
                     IsClearable="_isClearable" ShowClearButton="_showClearButton" ShowSearchButton="_showSearchButton"

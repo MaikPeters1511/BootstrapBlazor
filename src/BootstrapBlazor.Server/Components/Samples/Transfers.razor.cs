@@ -100,10 +100,10 @@ public sealed partial class Transfers : ComponentBase
 
     private static string? SetItemClass(SelectedItem item) => item.Value switch
     {
-        "2" => "bg-success text-white",
-        "4" => "bg-info text-white",
-        "6" => "bg-primary text-white",
-        "8" => "bg-warning text-white",
+        "2" => "bg-success fg-white",
+        "4" => "bg-info fg-white",
+        "6" => "bg-primary fg-white",
+        "8" => "bg-warning fg-white",
         _ => null
     };
 

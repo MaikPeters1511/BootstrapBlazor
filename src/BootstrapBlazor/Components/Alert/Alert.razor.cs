@@ -16,12 +16,11 @@ public partial class Alert
     /// <para lang="en">Gets the class name</para>
     /// </summary>
     private string? ClassName => CssBuilder.Default("alert fade show")
-        .AddClass($"alert-{Color.ToDescriptionString()}", Color != Color.None)
+        .AddClass($"theme-{Color.ToDescriptionString()}", Color != Color.None)
         .AddClass($"border-{Color.ToDescriptionString()}", ShowBorder)
         .AddClass("d-none", !IsShown)
         .AddClass("shadow", ShowShadow)
         .AddClass("alert-bar", ShowBar)
-        .AddClass("alert-dismissible", ShowDismiss)
         .AddClassFromAttributes(AdditionalAttributes)
         .Build();
 

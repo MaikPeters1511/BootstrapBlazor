@@ -19,8 +19,8 @@ public partial class BootstrapInputNumber<TValue>
     /// <para lang="en">Get Button Style</para>
     /// </summary>
     protected string? ButtonClassString => CssBuilder.Default("btn")
-        .AddClass("btn-outline-secondary", Color == Color.None)
-        .AddClass($"btn-outline-{Color.ToDescriptionString()}", Color != Color.None)
+        .AddClass("btn-outline theme-secondary", Color == Color.None)
+        .AddClass(Color.ToButtonClass(true), Color != Color.None)
         .Build();
 
     /// <summary>

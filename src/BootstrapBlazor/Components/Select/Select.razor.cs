@@ -185,7 +185,7 @@ public partial class Select<TValue> : ISelect, ILookup
         .AddClass(CssClass).AddClass(ValidCss)
         .Build();
 
-    private string? ActiveItem(SelectedItem item) => CssBuilder.Default("dropdown-item")
+    private string? ActiveItem(SelectedItem item) => CssBuilder.Default("menu-item")
         .AddClass("active", item.Value == CurrentValueAsString)
         .AddClass("disabled", item.IsDisabled)
         .Build();

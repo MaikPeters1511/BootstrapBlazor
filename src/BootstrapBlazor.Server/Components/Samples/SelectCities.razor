@@ -11,25 +11,25 @@
            Introduction="@Localizer["CityNormalIntro"]"
            Name="Normal">
     <div class="row g-3 mb-3">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <BootstrapInputGroup>
                 <BootstrapInputGroupLabel DisplayText="ShowSearch"></BootstrapInputGroupLabel>
                 <Switch @bind-Value="_showSearch"></Switch>
             </BootstrapInputGroup>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <BootstrapInputGroup>
                 <BootstrapInputGroupLabel DisplayText="AutoClose"></BootstrapInputGroupLabel>
                 <Switch @bind-Value="_autoClose"></Switch>
             </BootstrapInputGroup>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <BootstrapInputGroup>
                 <BootstrapInputGroupLabel DisplayText="IsMultiple"></BootstrapInputGroupLabel>
                 <Switch Value="@_isMultiple" OnValueChanged="OnValueChagned"></Switch>
             </BootstrapInputGroup>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <BootstrapInputGroup>
                 <BootstrapInputGroupLabel DisplayText="IsDisabled"></BootstrapInputGroupLabel>
                 <Switch @bind-Value="@_isDisabled"></Switch>

@@ -28,7 +28,7 @@ await SwalService.Show(op);</Pre>
            Name="Normal">
     <div class="row g-3">
         <div class="col-4 align-self-center text-center">
-            <div class="text-success">@Localizer["SweetAlertsNormalSuccess"]</div>
+            <div class="fg-success">@Localizer["SweetAlertsNormalSuccess"]</div>
         </div>
         <div class="col-4">
             <div class="swal2-icon swal2-success">
@@ -44,7 +44,7 @@ await SwalService.Show(op);</Pre>
     </div>
     <div class="row g-3">
         <div class="col-4 align-self-center text-center">
-            <div class="text-danger">@Localizer["SweetAlertsNormalFail"]</div>
+            <div class="fg-danger">@Localizer["SweetAlertsNormalFail"]</div>
         </div>
         <div class="col-4">
             <div class="swal2-icon swal2-error">
@@ -60,7 +60,7 @@ await SwalService.Show(op);</Pre>
     </div>
     <div class="row g-3">
         <div class="col-4 align-self-center text-center">
-            <div class="text-warning">@Localizer["SweetAlertsNormalWarn"]</div>
+            <div class="fg-warning">@Localizer["SweetAlertsNormalWarn"]</div>
         </div>
         <div class="col-4">
             <div class="swal2-icon swal2-warning"><div class="swal2-icon-content">!</div></div>
@@ -71,7 +71,7 @@ await SwalService.Show(op);</Pre>
     </div>
     <div class="row g-3">
         <div class="col-4 align-self-center text-center">
-            <div class="text-info">@Localizer["SweetAlertsNormalHint"]</div>
+            <div class="fg-info">@Localizer["SweetAlertsNormalHint"]</div>
         </div>
         <div class="col-4">
             <div class="swal2-icon swal2-info"><div class="swal2-icon-content">i</div></div>
@@ -82,7 +82,7 @@ await SwalService.Show(op);</Pre>
     </div>
     <div class="row g-3">
         <div class="col-4 align-self-center text-center">
-            <div class="text-secondary">@Localizer["SweetAlertsNormalDoubt"]</div>
+            <div class="fg-secondary">@Localizer["SweetAlertsNormalDoubt"]</div>
         </div>
         <div class="col-4">
             <div class="swal2-icon swal2-question"><div class="swal2-icon-content">?</div></div>
@@ -97,10 +97,10 @@ await SwalService.Show(op);</Pre>
            Introduction="@Localizer["SweetAlertsDisplayIntro"]"
            Name="Display">
     <div class="row g-3">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Button Icon="fa-solid fa-font-awesome" Text="Title" Color="Color.Success" OnClick="@ShowTitle" />
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Button Icon="fa-solid fa-font-awesome" Text="Content" Color="Color.Success" OnClick="@ShowContent" />
         </div>
     </div>

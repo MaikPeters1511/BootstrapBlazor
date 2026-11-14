@@ -38,7 +38,7 @@ public class LinkButtonTest : BootstrapBlazorTestBase
 
         Assert.Contains("fa-solid fa-font-awesome", cut.Markup);
 
-        Assert.Contains("link-primary", cut.Markup);
+        Assert.Contains("fg-primary", cut.Markup);
     }
 
     [Fact]
@@ -46,13 +46,13 @@ public class LinkButtonTest : BootstrapBlazorTestBase
     {
         var cut = Context.Render<LinkButton>(builder => builder.Add(s => s.Color, Color.None));
 
-        Assert.DoesNotContain("link-primary", cut.Markup);
+        Assert.DoesNotContain("fg-primary", cut.Markup);
 
         cut.Render(pb => pb.Add(a => a.Color, Color.Danger));
-        cut.WaitForAssertion(() => Assert.Contains("link-danger", cut.Markup));
+        cut.WaitForAssertion(() => Assert.Contains("fg-danger", cut.Markup));
 
         cut.Render(pb => pb.Add(a => a.IsDisabled, true));
-        cut.WaitForAssertion(() => Assert.DoesNotContain("link-danger", cut.Markup));
+        cut.WaitForAssertion(() => Assert.DoesNotContain("fg-danger", cut.Markup));
     }
 
     [Fact]

@@ -5,23 +5,23 @@
     --bb-alert-bar-width: #{$bb-alert-bar-width};
 
     &.alert-bar {
-        &.alert-info {
+        &.theme-info {
             border-left: var(--bb-alert-bar-width) solid var(--bs-info);
         }
 
-        &.alert-success {
+        &.theme-success {
             border-left: var(--bb-alert-bar-width) solid var(--bs-success);
         }
 
-        &.alert-primary {
+        &.theme-primary {
             border-left: var(--bb-alert-bar-width) solid var(--bs-primary);
         }
 
-        &.alert-warning {
+        &.theme-warning {
             border-left: var(--bb-alert-bar-width) solid var(--bs-warning);
         }
 
-        &.alert-danger {
+        &.theme-danger {
             border-left: var(--bb-alert-bar-width) solid var(--bs-danger);
         }
     }

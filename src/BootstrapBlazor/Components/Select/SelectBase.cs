@@ -192,9 +192,9 @@ public abstract class SelectBase<TValue> : PopoverSelectBase<TValue>
     /// <para lang="en">Gets the append class string</para>
     /// </summary>
     protected string? AppendClassString => CssBuilder.Default("form-select-append")
-        .AddClass($"text-{Color.ToDescriptionString()}", Color != Color.None && !IsDisabled && !IsValid.HasValue)
-        .AddClass($"text-success", IsValid.HasValue && IsValid.Value)
-        .AddClass($"text-danger", IsValid.HasValue && !IsValid.Value)
+        .AddClass($"fg-{Color.ToDescriptionString()}", Color != Color.None && !IsDisabled && !IsValid.HasValue)
+        .AddClass($"fg-success", IsValid.HasValue && IsValid.Value)
+        .AddClass($"fg-danger", IsValid.HasValue && !IsValid.Value)
         .Build();
 
     /// <summary>
@@ -202,9 +202,9 @@ public abstract class SelectBase<TValue> : PopoverSelectBase<TValue>
     /// <para lang="en">Gets the clear icon class string</para>
     /// </summary>
     protected string? ClearClassString => CssBuilder.Default("clear-icon")
-        .AddClass($"text-{Color.ToDescriptionString()}", Color != Color.None)
-        .AddClass($"text-success", IsValid.HasValue && IsValid.Value)
-        .AddClass($"text-danger", IsValid.HasValue && !IsValid.Value)
+        .AddClass($"fg-{Color.ToDescriptionString()}", Color != Color.None)
+        .AddClass($"fg-success", IsValid.HasValue && IsValid.Value)
+        .AddClass($"fg-danger", IsValid.HasValue && !IsValid.Value)
         .Build();
 
     /// <summary>

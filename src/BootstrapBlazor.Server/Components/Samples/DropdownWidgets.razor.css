@@ -3,18 +3,18 @@
     border-radius: var(--bs-border-radius);
 }
 
-.dropdown-item-center {
+.menu-item-center {
     display: flex;
     align-items: center;
 }
 
-.dropdown-item-progress {
+.menu-item-progress {
     position: relative;
     min-width: 190px;
     margin-bottom: .5rem;
 }
 
-.dropdown-item small {
+.menu-item small {
     position: absolute;
     right: 0;
 }

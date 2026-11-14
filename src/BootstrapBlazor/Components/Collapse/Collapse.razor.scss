@@ -20,6 +20,24 @@
             flex: 1 1 auto;
             width: 1%;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+
+            // Bootstrap 6 renders the chevron with an .accordion-icon element inside summary, this component keeps the button
+            &::after {
+                flex-shrink: 0;
+                width: var(--bs-accordion-btn-icon-width);
+                height: var(--bs-accordion-btn-icon-width);
+                margin-inline-start: auto;
+                content: "";
+                background-color: currentcolor;
+                mask: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e") center / contain no-repeat;
+                transition: var(--bs-accordion-btn-icon-transition);
+            }
+
+            &:not(.collapsed)::after {
+                transform: var(--bs-accordion-btn-icon-transform);
+            }
 
             .accordion-item-icon {
                 margin-inline-end: .5rem;

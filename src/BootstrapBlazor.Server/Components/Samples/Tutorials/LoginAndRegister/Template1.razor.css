@@ -3,7 +3,7 @@
     --bs-border-radius: 10px;
 }
 
-    .login-item-floating ::deep .btn-primary {
+    .login-item-floating ::deep .btn-solid.theme-primary {
         --bs-primary: #4318FF;
         --bs-btn-hover-bg: #4318FF;
         --bs-btn-bg: var(--bs-primary);

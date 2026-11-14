@@ -1,6 +1,6 @@
 ﻿@use "../../wwwroot/scss/variables" as *;
 
-.drawer {
+.bb-drawer {
     --bb-drawer-bg: var(--bs-body-bg);
     --bb-drawer-zindex: #{$bb-drawer-zindex};
     --bb-drawer-body-shadow: #{$bb-drawer-body-shadow};
@@ -18,12 +18,12 @@
     margin: 0;
     z-index: var(--bb-drawer-zindex);
 
-    &.drawer-table-edit {
-        .drawer-body {
+    &.bb-drawer-table-edit {
+        .bb-drawer-body {
             padding: 0;
         }
 
-        .drawer-content {
+        .bb-drawer-content {
             padding: var(--bb-drawer-body-padding);
         }
 
@@ -43,7 +43,7 @@
         pointer-events: none;
     }
 
-    .drawer-body {
+    .bb-drawer-body {
         position: absolute;
         box-sizing: border-box;
         background-color: var(--bb-drawer-bg);
@@ -54,7 +54,7 @@
         display: flex;
         padding: var(--bb-drawer-body-padding);
 
-        .drawer-content {
+        .bb-drawer-content {
             overflow: auto;
             flex: 1;
         }
@@ -103,12 +103,12 @@
             transform: translateY(0);
         }
 
-        .drawer-bar {
+        .bb-drawer-bar {
             background-color: var(--bb-drawer-bar-bg);
             position: absolute;
             z-index: 1055;
 
-            .drawer-bar-body {
+            .bb-drawer-bar-body {
                 position: absolute;
                 inset: 0 -1px;
                 cursor: col-resize;
@@ -119,20 +119,20 @@
             }
 
             &.drag, &.drag:hover {
-                .drawer-bar-body {
+                .bb-drawer-bar-body {
                     background-color: var(--bb-drawer-bar-drag-color);
                 }
             }
         }
 
         &.left, &.right {
-            .drawer-bar {
+            .bb-drawer-bar {
                 width: 2px;
             }
         }
 
         &.left {
-            .drawer-bar {
+            .bb-drawer-bar {
                 right: 0;
                 top: 0;
                 bottom: 0;
@@ -140,7 +140,7 @@
         }
 
         &.right {
-            .drawer-bar {
+            .bb-drawer-bar {
                 left: 0;
                 top: 0;
                 bottom: 0;
@@ -148,10 +148,10 @@
         }
 
         &.top, &.bottom {
-            .drawer-bar {
+            .bb-drawer-bar {
                 height: 2px;
 
-                .drawer-bar-body {
+                .bb-drawer-bar-body {
                     inset: -1px 0;
                     cursor: row-resize;
                 }
@@ -159,7 +159,7 @@
         }
 
         &.top {
-            .drawer-bar {
+            .bb-drawer-bar {
                 left: 0;
                 right: 0;
                 bottom: 0;
@@ -167,7 +167,7 @@
         }
 
         &.bottom {
-            .drawer-bar {
+            .bb-drawer-bar {
                 left: 0;
                 right: 0;
                 top: 0;
@@ -176,12 +176,30 @@
     }
 }
 
-.drawer-overflow-hidden {
+.bb-drawer-overflow-hidden {
     overflow: hidden;
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .drawer .drawer-body {
+    .bb-drawer .bb-drawer-body {
         transition: none;
+    }
+}
+
+.bb-drawer-backdrop {
+    --bb-drawer-backdrop-bg: #000;
+    --bb-drawer-backdrop-opacity: .5;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1050;
+    background-color: var(--bb-drawer-backdrop-bg);
+    opacity: 0;
+    transition: opacity .15s linear;
+
+    &.show {
+        opacity: var(--bb-drawer-backdrop-opacity);
     }
 }

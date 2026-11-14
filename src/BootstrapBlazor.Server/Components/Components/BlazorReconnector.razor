@@ -7,14 +7,14 @@
         <div class="connection-body">
             <div class="row g-3">
                 @RenderBootstrapBlazor
-                <div class="col-12 col-sm-5">
+                <div class="col-12 sm:col-5">
                     <h5>@Localizer["Title"]</h5>
                     <p><b>@Localizer["ReconnectingTitle"]</b></p>
                     <p>@((MarkupString)Localizer["ReconnectingDescription"].Value)</p>
                 </div>
-                <div class="col-12 col-sm-2">
+                <div class="col-12 sm:col-2">
                     <div class="d-flex align-items-center justify-content-center h-100">
-                        <a href="javascript:window.Blazor.reconnect()" class="btn btn-primary">@Localizer["ReconnectButton"]</a>
+                        <a href="javascript:window.Blazor.reconnect()" class="btn btn-solid theme-primary">@Localizer["ReconnectButton"]</a>
                     </div>
                 </div>
             </div>
@@ -25,15 +25,15 @@
         <div class="connection-body">
             <div class="row g-3">
                 @RenderBootstrapBlazor
-                <div class="col-12 col-sm-5">
+                <div class="col-12 sm:col-5">
                     <h5>@Localizer["Title"]</h5>
                     <p><b>@Localizer["ReconnectFailedTitle"]</b></p>
                     <div>@((MarkupString)Localizer["ReconnectFailedDescription"].Value)</div>
                 </div>
-                <div class="col-12 col-sm-2">
+                <div class="col-12 sm:col-2">
                     <div class="d-flex flex-column align-items-center justify-content-center h-100">
-                        <a href="javascript:window.Blazor.reconnect()" class="btn btn-primary mb-3">@Localizer["ReconnectButton"]</a>
-                        <a href="javascript:location.reload()" class="btn btn-info">@Localizer["ReloadButton"]</a>
+                        <a href="javascript:window.Blazor.reconnect()" class="btn btn-solid theme-primary mb-3">@Localizer["ReconnectButton"]</a>
+                        <a href="javascript:location.reload()" class="btn btn-solid theme-info">@Localizer["ReloadButton"]</a>
                     </div>
                 </div>
             </div>
@@ -44,14 +44,14 @@
         <div class="connection-body">
             <div class="row g-3">
                 @RenderBootstrapBlazor
-                <div class="col-12 col-sm-5">
+                <div class="col-12 sm:col-5">
                     <h5>@Localizer["Title"]</h5>
                     <p><b>@Localizer["ReconnectRejectedTitle"]</b></p>
                     <div>@((MarkupString)Localizer["ReconnectRejectedDescription"].Value)</div>
                 </div>
-                <div class="col-12 col-sm-2">
+                <div class="col-12 sm:col-2">
                     <div class="d-flex flex-column align-items-center justify-content-center h-100">
-                        <a href="javascript:location.reload()" class="btn btn-info">@Localizer["ReloadButton"]</a>
+                        <a href="javascript:location.reload()" class="btn btn-solid theme-info">@Localizer["ReloadButton"]</a>
                     </div>
                 </div>
             </div>
@@ -63,7 +63,7 @@
     private string TemplateUrl => $"{WebsiteOption.Value.GiteeRepositoryUrl}/wikis/%E9%A1%B9%E7%9B%AE%E6%A8%A1%E6%9D%BF%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B";
 
     RenderFragment RenderBootstrapBlazor =>
-    @<div class="col-12 col-sm-5">
+    @<div class="col-12 sm:col-5">
         <h5>@Localizer["UILibraryTitle"]</h5>
         <div class="d-flex">
             <div class="flex-fill">
@@ -73,7 +73,7 @@
                 <div>@Localizer["TemplateText"] <a class="connection-link" href="@TemplateUrl" target="_blank">@Localizer["TemplateLink"]</a></div>
             </div>
             <img altt="QQ" src="@WebsiteOption.Value.GetAssetUrl("images/QQGroup@2x.png")" alt="QQGroup" />
-            <div class="connection-body-tail d-none d-sm-block"></div>
+            <div class="connection-body-tail d-none sm:d-block"></div>
         </div>
     </div>;
 }

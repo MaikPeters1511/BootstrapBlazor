@@ -21,7 +21,7 @@ public partial class MultiSelect<TValue>
         .AddClass("is-clearable", IsClearable)
         .Build();
 
-    private string? DropdownMenuClassString => CssBuilder.Default("dropdown-menu")
+    private string? DropdownMenuClassString => CssBuilder.Default("menu")
         .AddClass("is-fixed-toolbar", ShowToolbar)
         .Build();
 
@@ -36,7 +36,7 @@ public partial class MultiSelect<TValue>
         .AddClass(CssClass).AddClass(ValidCss)
         .Build();
 
-    private string? GetItemClassString(SelectedItem item) => CssBuilder.Default("dropdown-item")
+    private string? GetItemClassString(SelectedItem item) => CssBuilder.Default("menu-item")
         .AddClass("active", GetCheckedState(item))
         .AddClass("disabled", item.IsDisabled)
         .Build();

@@ -95,6 +95,30 @@ public class MenuTest : BootstrapBlazorTestBase
         }
     ];
 
+    [Theory]
+    [InlineData(true)]
+    [InlineData(false)]
+    public void BootstrapMenuClass_Ok(bool isVertical)
+    {
+        // Bootstrap 6 owns .menu, .submenu and .menu-text. The Menu component uses the bb- prefix
+        var cut = Context.Render<Menu>(pb =>
+        {
+            pb.Add(m => m.Items, Items);
+            pb.Add(m => m.IsVertical, isVertical);
+        });
+        cut.WaitForAssertion(() => cut.Contains("Menu1"));
+
+        var root = cut.Find(".bb-menu");
+        Assert.DoesNotContain("menu", root.ClassList);
+        Assert.NotEmpty(cut.FindAll(".bb-menu-text"));
+        Assert.Empty(cut.FindAll(".menu-text"));
+        Assert.Empty(cut.FindAll(".submenu"));
+        if (isVertical)
+        {
+            Assert.NotEmpty(cut.FindAll(".bb-submenu"));
+        }
+    }
+
     [Fact]
     public void Items_Ok()
     {
@@ -182,6 +206,10 @@ public class MenuTest : BootstrapBlazorTestBase
         });
 
         Assert.Contains("is-bottom", cut.Markup);
+
+        // Bootstrap 6: the menu opens upwards through data-bs-placement
+        var toggle = cut.Find("[data-bs-toggle=\"menu\"]");
+        Assert.Equal("top-start", toggle.GetAttribute("data-bs-placement"));
     }
 
     [Fact]

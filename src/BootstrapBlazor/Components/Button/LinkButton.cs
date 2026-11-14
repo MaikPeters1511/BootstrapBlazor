@@ -57,8 +57,8 @@ public class LinkButton : ButtonBase
 
     private string? ClassString => CssBuilder.Default("btn link-button")
         .AddClass("btn-vertical", IsVertical)
-        .AddClass($"btn-outline-{Color.ToDescriptionString()}", IsOutline)
-        .AddClass($"link-{Color.ToDescriptionString()}", Color != Color.None && !IsOutline && !IsDisabled)
+        .AddClass(Color.ToButtonClass(true), IsOutline)
+        .AddClass($"fg-{Color.ToDescriptionString()}", Color != Color.None && !IsOutline && !IsDisabled)
         .AddClass($"btn-{Size.ToDescriptionString()}", Size != Size.None)
         .AddClass("btn-block", IsBlock)
         .AddClass("btn-round", ButtonStyle == ButtonStyle.Round)

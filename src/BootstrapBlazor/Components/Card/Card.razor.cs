@@ -164,7 +164,7 @@ public partial class Card
     /// </summary>
     private string? BodyClassName => CssBuilder.Default("card-body")
         .AddClass(BodyCustomClass)
-        .AddClass($"text-{Color.ToDescriptionString()}", Color != Color.None)
+        .AddClass($"fg-{Color.ToDescriptionString()}", Color != Color.None)
         .AddClass("collapse", IsCollapsible && Collapsed)
         .AddClass("collapse show", IsCollapsible && !Collapsed)
         .Build();
@@ -181,7 +181,7 @@ public partial class Card
     /// </summary>
     private string? FooterClassName => CssBuilder.Default("card-footer")
         .AddClass(FooterCustomClass)
-        .AddClass("text-muted", IsCenter)
+        .AddClass("fg-3", IsCenter)
         .Build();
 
     /// <summary>

@@ -32,80 +32,80 @@ private IBaiduOcr? OcrService { get; set; }</Pre>
     @if (Invoice != null)
     {
         <div class="row form-inline g-3 mt-0">
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <Display ShowLabel="true" DisplayText="@Localizer["InvoiceCodeLabel"]" @bind-Value="Invoice.InvoiceCode"></Display>
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <Display ShowLabel="true" DisplayText="@Localizer["InvoiceNumLabel"]" Value="Invoice.InvoiceNum"></Display>
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <Display ShowLabel="true" DisplayText="@Localizer["InvoiceServiceTypeLabel"]" @bind-Value="Invoice.ServiceType"></Display>
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <Display ShowLabel="true" DisplayText="@Localizer["SheetNumLabel"]" Value="Invoice.SheetNum"></Display>
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <Display ShowLabel="true" DisplayText="@Localizer["InvoiceTypeLabel"]" @bind-Value="Invoice.InvoiceType"></Display>
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <Display ShowLabel="true" DisplayText="@Localizer["InvoiceTypeOrgLabel"]" Value="Invoice.InvoiceTypeOrg"></Display>
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <Display ShowLabel="true" DisplayText="@Localizer["InvoiceTagLabel"]" @bind-Value="Invoice.InvoiceTag"></Display>
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <Display ShowLabel="true" DisplayText="@Localizer["InvoiceDateLabel"]" Value="Invoice.InvoiceDate"></Display>
             </div>
             <div class="col-12">
                 <Display ShowLabel="true" DisplayText="@Localizer["CheckCodeLabel"]" Value="Invoice.CheckCode"></Display>
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <Display ShowLabel="true" DisplayText="@Localizer["PurchaserNameLabel"]" @bind-Value="Invoice.PurchaserName"></Display>
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <Display ShowLabel="true" DisplayText="@Localizer["PurchaserRegisterNumLabel"]" Value="Invoice.PurchaserRegisterNum"></Display>
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <Display ShowLabel="true" DisplayText="@Localizer["PurchaserBankLabel"]" @bind-Value="Invoice.PurchaserBank"></Display>
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <Display ShowLabel="true" DisplayText="@Localizer["PurchaserAddressLabel"]" Value="Invoice.PurchaserAddress"></Display>
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <Display ShowLabel="true" DisplayText="@Localizer["SellerNameLabel"]" @bind-Value="Invoice.SellerName"></Display>
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <Display ShowLabel="true" DisplayText="@Localizer["SellerRegisterNumLabel"]" Value="Invoice.SellerRegisterNum"></Display>
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <Display ShowLabel="true" DisplayText="@Localizer["SellerBankLabel"]" @bind-Value="Invoice.SellerBank"></Display>
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <Display ShowLabel="true" DisplayText="@Localizer["SellerAddressLabel"]" Value="Invoice.SellerAddress"></Display>
             </div>
             <div class="col-12">
                 <Display ShowLabel="true" DisplayText="@Localizer["RemarksLabel"]" @bind-Value="Invoice.Remarks"></Display>
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <Display ShowLabel="true" DisplayText="@Localizer["AmountInFiguresLabel"]" Value="Invoice.AmountInFiguers"></Display>
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <Display ShowLabel="true" DisplayText="@Localizer["TotalAmountLabel"]" Value="Invoice.TotalAmount"></Display>
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <Display ShowLabel="true" DisplayText="@Localizer["TotalTaxLabel"]" @bind-Value="Invoice.TotalTax"></Display>
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
             </div>
             @if (Invoice.CommodityName?.Any() ?? false)
             {
-                <div class="col-12 col-sm-6">
+                <div class="col-12 sm:col-6">
                     <Display ShowLabel="true" DisplayText="@Localizer["CommodityNameLabel"]" Value="Invoice.CommodityName.First().CommodityName"></Display>
                 </div>
             }
             @if (Invoice.CommodityTaxRate?.Any() ?? false)
             {
-                <div class="col-12 col-sm-6">
+                <div class="col-12 sm:col-6">
                     <Display ShowLabel="true" DisplayText="@Localizer["CommodityTaxRateLabel"]" Value="Invoice.CommodityTaxRate.First().CommodityTaxRate"></Display>
                 </div>
             }

@@ -56,7 +56,7 @@ public class CascaderTest : BootstrapBlazorTestBase
         Assert.True(valid);
 
         var span = cut.Find(".clear-icon");
-        Assert.True(span.ClassList.Contains("text-success"));
+        Assert.True(span.ClassList.Contains("fg-success"));
 
         foo.Name = null;
         var cascader = cut.FindComponent<Cascader<string>>();
@@ -69,7 +69,7 @@ public class CascaderTest : BootstrapBlazorTestBase
         Assert.True(invalid);
 
         span = cut.Find(".clear-icon");
-        Assert.True(span.ClassList.Contains("text-danger"));
+        Assert.True(span.ClassList.Contains("fg-danger"));
     }
 
     [Fact]
@@ -83,7 +83,7 @@ public class CascaderTest : BootstrapBlazorTestBase
         cut.Contains("border-success");
 
         var span = cut.Find(".clear-icon");
-        Assert.True(span.ClassList.Contains("text-success"));
+        Assert.True(span.ClassList.Contains("fg-success"));
     }
 
     [Fact]
@@ -117,12 +117,12 @@ public class CascaderTest : BootstrapBlazorTestBase
             });
         });
 
-        var dropdownItems = cut.FindAll(".dropdown-item");
+        var dropdownItems = cut.FindAll(".menu-item");
         await cut.InvokeAsync(() => dropdownItems[1].Click());
         Assert.Equal("2", value);
         Assert.Single(selectedItems);
 
-        dropdownItems = cut.FindAll(".dropdown-item");
+        dropdownItems = cut.FindAll(".menu-item");
         await cut.InvokeAsync(() => dropdownItems[0].Click());
         Assert.Equal("1", value);
 
@@ -140,8 +140,8 @@ public class CascaderTest : BootstrapBlazorTestBase
         {
             pb.Add(a => a.Items, null);
         });
-        cut.Contains("dropdown-menu shadow");
-        cut.DoesNotContain("dropdown-item");
+        cut.Contains("menu shadow");
+        cut.DoesNotContain("menu-item");
     }
 
     [Fact]
@@ -261,7 +261,7 @@ public class CascaderTest : BootstrapBlazorTestBase
                 return Task.CompletedTask;
             });
         });
-        var dropdownItems = cut.FindAll(".dropdown-item");
+        var dropdownItems = cut.FindAll(".menu-item");
         await cut.InvokeAsync(() => dropdownItems[1].Click());
         Assert.Equal("", value);
 

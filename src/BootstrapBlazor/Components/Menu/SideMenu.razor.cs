@@ -13,7 +13,7 @@ namespace BootstrapBlazor.Components;
 /// </summary>
 public partial class SideMenu
 {
-    private string? GetMenuClassString => CssBuilder.Default("submenu")
+    private string? GetMenuClassString => CssBuilder.Default("bb-submenu")
         .AddClass("show", MenuItem is { IsCollapsed: false })
         .AddClassFromAttributes(AdditionalAttributes)
         .Build();

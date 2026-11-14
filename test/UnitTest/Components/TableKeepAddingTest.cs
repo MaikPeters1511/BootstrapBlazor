@@ -91,10 +91,10 @@ public class TableKeepAddingTest : TableDialogTestBase
         var saveAndCloseText = editDialogLocalizer["SaveAndCloseButtonText"].Value;
 
         // 「保存并新增」按钮已渲染 主保存按钮文本为「保存并关闭」
-        var keepAddingButton = cut.Find(".bb-editor-footer .btn-danger");
+        var keepAddingButton = cut.Find(".bb-editor-footer .btn-solid.theme-danger");
         Assert.Contains("test-keep-adding", keepAddingButton.TextContent);
         Assert.Contains("test-keep-adding-icon", keepAddingButton.InnerHtml);
-        Assert.Contains(saveAndCloseText, cut.Find(".bb-editor-footer .btn-primary").TextContent);
+        Assert.Contains(saveAndCloseText, cut.Find(".bb-editor-footer .btn-solid.theme-primary").TextContent);
 
         // 点击「保存并新增」按钮
         var hideCount = Context.JSInterop.Invocations.Count(i => i.Arguments.Any(a => a?.ToString() == "hide"));
@@ -119,7 +119,7 @@ public class TableKeepAddingTest : TableDialogTestBase
         // 再次打开新建弹窗 点击主保存按钮提交 数据保存并关闭弹窗
         await cut.InvokeAsync(() => table.Instance.AddAsync());
         hideCount = Context.JSInterop.Invocations.Count(i => i.Arguments.Any(a => a?.ToString() == "hide"));
-        await cut.InvokeAsync(() => cut.Find(".bb-editor-footer .btn-primary").Click());
+        await cut.InvokeAsync(() => cut.Find(".bb-editor-footer .btn-solid.theme-primary").Click());
         cut.WaitForAssertion(() => Assert.Equal(4, table.Instance.Rows.Count));
         cut.WaitForAssertion(() => Assert.Equal(hideCount + 1, Context.JSInterop.Invocations.Count(i => i.Arguments.Any(a => a?.ToString() == "hide"))));
 
@@ -132,7 +132,7 @@ public class TableKeepAddingTest : TableDialogTestBase
         await cut.InvokeAsync(checkbox.Instance.OnToggleClick);
         await cut.InvokeAsync(() => table.Instance.EditAsync());
         Assert.False(cut.FindComponent<EditDialog<Foo>>().Instance.ShowKeepAddingButton);
-        Assert.Empty(cut.FindAll(".bb-editor-footer .btn-danger"));
+        Assert.Empty(cut.FindAll(".bb-editor-footer .btn-solid.theme-danger"));
         await cut.InvokeAsync(() => modal.Instance.CloseCallback());
 
         // 未设置 OnKeepAddingAsync 时回落使用 OnAddAsync 创建下一条数据
@@ -140,7 +140,7 @@ public class TableKeepAddingTest : TableDialogTestBase
         await cut.InvokeAsync(() => table.Instance.AddAsync());
         Assert.Equal(3, addCount);
 
-        await cut.InvokeAsync(() => cut.Find(".bb-editor-footer .btn-danger").Click());
+        await cut.InvokeAsync(() => cut.Find(".bb-editor-footer .btn-solid.theme-danger").Click());
         cut.WaitForAssertion(() => Assert.Equal(5, table.Instance.Rows.Count));
         Assert.Equal(4, addCount);
         cut.WaitForAssertion(() => Assert.Equal("add-4", cut.FindComponent<EditorForm<Foo>>().Instance.Model!.Name));
@@ -210,10 +210,10 @@ public class TableKeepAddingTest : TableDialogTestBase
 
         // 抽屉已打开 且渲染出「保存并新增」按钮
         Assert.True(cut.FindComponent<Drawer>().Instance.IsOpen);
-        Assert.Contains("保存并新增", cut.Find(".bb-editor-footer .btn-info").TextContent);
+        Assert.Contains("保存并新增", cut.Find(".bb-editor-footer .btn-solid.theme-info").TextContent);
 
         // 点击「保存并新增」按钮
-        await cut.InvokeAsync(() => cut.Find(".bb-editor-footer .btn-info").Click());
+        await cut.InvokeAsync(() => cut.Find(".bb-editor-footer .btn-solid.theme-info").Click());
         cut.WaitForAssertion(() => Assert.Equal(3, table.Instance.Rows.Count));
 
         // 抽屉保持打开状态
@@ -227,7 +227,7 @@ public class TableKeepAddingTest : TableDialogTestBase
         Assert.Equal(10, cut.FindComponent<EditorForm<Foo>>().Instance.Model!.Count);
 
         // 点击关闭按钮关闭抽屉 下一条数据尚未保存 saved 为 false
-        await cut.InvokeAsync(() => cut.Find(".bb-editor-footer .btn-secondary").Click());
+        await cut.InvokeAsync(() => cut.Find(".bb-editor-footer .btn-solid.theme-secondary").Click());
         cut.WaitForAssertion(() => Assert.Empty(cut.FindComponents<Drawer>()));
         Assert.Equal(false, closedResult);
 
@@ -235,7 +235,7 @@ public class TableKeepAddingTest : TableDialogTestBase
         await cut.InvokeAsync(() => table.Instance.AddAsync());
         Assert.True(cut.FindComponent<Drawer>().Instance.IsOpen);
 
-        await cut.InvokeAsync(() => cut.Find(".bb-editor-footer .btn-primary").Click());
+        await cut.InvokeAsync(() => cut.Find(".bb-editor-footer .btn-solid.theme-primary").Click());
         cut.WaitForAssertion(() => Assert.Equal(4, table.Instance.Rows.Count));
         cut.WaitForAssertion(() => Assert.Empty(cut.FindComponents<Drawer>()));
     }
@@ -281,11 +281,11 @@ public class TableKeepAddingTest : TableDialogTestBase
         // 默认文本与默认颜色
         cut.Contains(localizer["KeepAddingButtonText"].Value);
         cut.Contains(localizer["SaveAndCloseButtonText"].Value);
-        cut.Contains("btn-info");
+        cut.Contains("btn-solid theme-info");
         cut.Contains("MODEL:");
 
         // 点击「保存并新增」按钮 保存成功 表单绑定到下一条模型 且不关闭
-        await cut.InvokeAsync(() => cut.Find("button.btn-info").Click());
+        await cut.InvokeAsync(() => cut.Find("button.btn-solid.theme-info").Click());
         cut.WaitForAssertion(() => Assert.Equal(1, saveCount));
 
         Assert.Same(model, lastModel);
@@ -293,13 +293,13 @@ public class TableKeepAddingTest : TableDialogTestBase
         cut.WaitForAssertion(() => cut.Contains("MODEL:second-name"));
 
         // 点击主保存按钮 保存成功并关闭
-        await cut.InvokeAsync(() => cut.Find("button.btn-primary").Click());
+        await cut.InvokeAsync(() => cut.Find("button.btn-solid.theme-primary").Click());
         cut.WaitForAssertion(() => Assert.Equal(2, saveCount));
         cut.WaitForAssertion(() => Assert.Equal(1, closeCount));
 
         // 保存失败时保持打开状态 且不创建下一条数据模型
         saveResult = false;
-        await cut.InvokeAsync(() => cut.Find("button.btn-primary").Click());
+        await cut.InvokeAsync(() => cut.Find("button.btn-solid.theme-primary").Click());
         cut.WaitForAssertion(() => Assert.Equal(3, saveCount));
 
         Assert.Equal(1, closeCount);
@@ -319,14 +319,14 @@ public class TableKeepAddingTest : TableDialogTestBase
 
         // 未设置 OnKeepAddingAsync 时点击「保存并新增」按钮等同主保存按钮
         cut.Render(pb => pb.Add(a => a.OnKeepAddingAsync, (Func<Foo, Task<Foo>>?)null));
-        await cut.InvokeAsync(() => cut.Find("button.btn-info").Click());
+        await cut.InvokeAsync(() => cut.Find("button.btn-solid.theme-info").Click());
         cut.WaitForAssertion(() => Assert.Equal(5, saveCount));
 
         Assert.Equal(3, closeCount);
 
         // Tracking 模式不显示「保存并新增」按钮
         cut.Render(pb => pb.Add(a => a.IsTracking, true));
-        Assert.Empty(cut.FindAll("button.btn-info"));
+        Assert.Empty(cut.FindAll("button.btn-solid.theme-info"));
         cut.Contains(localizer["SaveButtonText"].Value);
     }
 

@@ -618,7 +618,7 @@
 
     RenderFragment RenderAdvanceSearchButton =>
         @<Button class="@AdvanceSearchClass" Icon="@AdvanceButtonIcon" OnClickWithoutRender="ShowSearchDialog">
-            <span class="d-none d-sm-inline-block">@AdvanceButtonText</span>
+            <span class="d-none sm:d-inline-block">@AdvanceButtonText</span>
         </Button>;
 
     RenderFragment RenderExtendButtonsHeader =>
@@ -769,14 +769,14 @@
                         {
                             <Button Color="Color.Secondary" Icon="@ResetSearchButtonIcon" OnClickWithoutRender="ClearSearchClick"
                                     class="btn-table-reset">
-                                <span class="d-none d-sm-inline-block">@ResetSearchButtonText</span>
+                                <span class="d-none sm:d-inline-block">@ResetSearchButtonText</span>
                             </Button>
                         }
                         @if (ShowSearchButton)
                         {
                             <Button Color="Color.Secondary" Icon="@SearchButtonIcon" OnClickWithoutRender="SearchClick"
                                     class="btn-table-search">
-                                <span class="d-none d-sm-inline-block">@SearchButtonText</span>
+                                <span class="d-none sm:d-inline-block">@SearchButtonText</span>
                             </Button>
                         }
                     </div>
@@ -784,13 +784,13 @@
                         @if (ShowResetButton)
                         {
                             <Button Color="Color.Secondary" Icon="@ResetSearchButtonIcon" OnClickWithoutRender="ClearSearchClick">
-                                <span class="d-none d-sm-inline-block">@ResetSearchButtonText</span>
+                                <span class="d-none sm:d-inline-block">@ResetSearchButtonText</span>
                             </Button>
                         }
                         @if (ShowSearchButton)
                         {
                             <Button Color="Color.Secondary" Icon="@SearchButtonIcon" OnClickWithoutRender="SearchClick">
-                                <span class="d-none d-sm-inline-block">@SearchButtonText</span>
+                                <span class="d-none sm:d-inline-block">@SearchButtonText</span>
                             </Button>
                         }
                     </div>
@@ -844,7 +844,7 @@
                      ShowPageInfo="ShowPageInfo" PageInfoTemplate="InternalPageInfoTemplate"></Pagination>;
 
     RenderFragment<TableColumnState> RenderColumnListItem => item =>
-        @<div class="dropdown-item">
+        @<div class="menu-item">
             <Checkbox ShowAfterLabel="true" DisplayText="@item.DisplayName"
                       IsDisabled="@GetColumnsListState(item)"
                       Value="@item.Visible"
@@ -924,28 +924,28 @@
                 @if (ShowAdvancedSort)
                 {
                     <Button class="@AdvancedSortClass" Icon="@AdvancedSortButtonIcon" OnClickWithoutRender="ShowSortDialog">
-                        <span class="d-none d-sm-inline-block">@AdvancedSortButtonText</span>
+                        <span class="d-none sm:d-inline-block">@AdvancedSortButtonText</span>
                     </Button>
                 }
                 @if (ShowRefresh)
                 {
                     <Button Icon="@RefreshButtonIcon" Color="@Color.Secondary" OnClickWithoutRender="@OnClickRefreshAsync">
-                        <span class="d-none d-sm-inline-block">@RefreshButtonText</span>
+                        <span class="d-none sm:d-inline-block">@RefreshButtonText</span>
                     </Button>
                 }
                 @if (!IsExcel && ShowCardView)
                 {
                     <Button Icon="@CardViewButtonIcon" Color="@Color.Secondary" OnClick="@OnClickCardView">
-                        <span class="d-none d-sm-inline-block">@CardViewButtonText</span>
+                        <span class="d-none sm:d-inline-block">@CardViewButtonText</span>
                     </Button>
                 }
                 @if (ShowColumnList)
                 {
                     <div class="dropdown-column btn-group dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" data-bs-auto-close="outside"
+                        <button class="btn btn-solid theme-secondary dropdown-toggle" data-bs-auto-close="outside" data-bs-placement="bottom-end"
                                 data-bs-toggle="@ToggleDropdownString" type="button" title="@ColumnButtonTitleText">
                             <i class="@ColumnListButtonIcon"></i>
-                            <span class="d-none d-sm-inline-block">@ColumnButtonText</span>
+                            <span class="d-none sm:d-inline-block">@ColumnButtonText</span>
                             <span class="caret"></span>
                         </button>
                         <div class="@DropdownListClassString">
@@ -972,13 +972,13 @@
                 @if (ShowExportButton)
                 {
                     <div class="dropdown-export btn-group dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" data-bs-toggle="@ToggleDropdownString"
+                        <button class="btn btn-solid theme-secondary dropdown-toggle" data-bs-toggle="@ToggleDropdownString" data-bs-placement="bottom-end"
                                 type="button" title="@ExportButtonText">
                             <i class="@ExportButtonIcon"></i>
-                            <span class="d-none d-sm-inline-block">@ExportButtonText</span>
+                            <span class="d-none sm:d-inline-block">@ExportButtonText</span>
                             <span class="caret"></span>
                         </button>
-                        <div class="dropdown-menu dropdown-menu-end shadow">
+                        <div class="menu shadow">
                             @if (ExportButtonDropdownTemplate != null)
                             {
                                 @ExportButtonDropdownTemplate(new TableExportContext<TItem>(this, Rows, () => BuildQueryPageOptions(false), ExportAsync))
@@ -987,21 +987,21 @@
                             {
                                 if (ShowExportCsvButton)
                                 {
-                                    <div class="dropdown-item" @onclick="@ExportCsvAsync">
+                                    <div class="menu-item" @onclick="@ExportCsvAsync">
                                         <i class="@CsvExportIcon"></i>
                                         <span>@ExportCsvDropdownItemText</span>
                                     </div>
                                 }
                                 if (ShowExportExcelButton)
                                 {
-                                    <div class="dropdown-item" @onclick="@ExportExcelAsync">
+                                    <div class="menu-item" @onclick="@ExportExcelAsync">
                                         <i class="@ExcelExportIcon"></i>
                                         <span>@ExportExcelDropdownItemText</span>
                                     </div>
                                 }
                                 if (ShowExportPdfButton)
                                 {
-                                    <div class="dropdown-item" @onclick="@ExportPdfAsync">
+                                    <div class="menu-item" @onclick="@ExportPdfAsync">
                                         <i class="@PdfExportIcon"></i>
                                         <span>@ExportPdfDropdownItemText</span>
                                     </div>
@@ -1041,14 +1041,14 @@
                         {
                             <Button Color="@Color.Secondary" Icon="@SearchButtonIcon"
                                     OnClickWithoutRender="@SearchClick">
-                                <span class="d-none d-sm-inline-block">@SearchButtonText</span>
+                                <span class="d-none sm:d-inline-block">@SearchButtonText</span>
                             </Button>
                         }
                         @if (ShowResetButton)
                         {
                             <Button Color="@Color.Secondary" Icon="@ResetSearchButtonIcon"
                                     OnClickWithoutRender="@ClearSearchClick">
-                                <span class="d-none d-sm-inline-block">@ResetSearchButtonText</span>
+                                <span class="d-none sm:d-inline-block">@ResetSearchButtonText</span>
                             </Button>
                         }
                         @if (ShowAdvancedSearch)

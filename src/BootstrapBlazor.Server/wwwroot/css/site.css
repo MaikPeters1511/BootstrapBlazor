@@ -90,16 +90,16 @@ h3, h4, h5 {
     color: #c0c4cc;
 }
 
-.menu .nav-link.nav-table {
+.bb-menu .nav-link.nav-table {
     color: var(--bb-primary-color);
     font-weight: bold;
 }
 
-    .menu .nav-link.nav-table:hover {
+    .bb-menu .nav-link.nav-table:hover {
         color: unset;
     }
 
-.menu {
+.bb-menu {
     --bb-menu-active-color: var(--bb-primary-color);
     --bb-menu-bar-bg: var(--bb-primary-color);
     --bb-menu-item-hover-bg: var(--bb-primary-color);
@@ -203,8 +203,8 @@ h3, h4, h5 {
     display: none;
 }
 
-.dropdown-menu {
-    --bs-dropdown-link-active-bg: var(--bb-primary-color);
+.menu {
+    --bs-menu-item-active-bg: var(--bb-primary-color);
 }
 
 [data-bs-theme=dark] .hljs {

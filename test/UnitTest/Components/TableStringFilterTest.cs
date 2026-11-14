@@ -34,7 +34,7 @@ public class TableStringFilterTest : BootstrapBlazorTestBase
             var filter = cut.FindComponent<BootstrapInput<string>>().Instance;
             filter.SetValue("test");
 
-            var items = cut.FindAll(".dropdown-item");
+            var items = cut.FindAll(".menu-item");
             items[1].Click();
         });
         var conditions = cut.FindComponent<StringFilter>().Instance.GetFilterConditions();

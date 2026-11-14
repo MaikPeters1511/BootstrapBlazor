@@ -32,7 +32,7 @@ public partial class SelectGeneric<TValue> : ISelectGeneric<TValue>, IModelEqual
         .AddClass(CssClass).AddClass(ValidCss)
         .Build();
 
-    private string? ActiveItem(SelectedItem<TValue> item) => CssBuilder.Default("dropdown-item")
+    private string? ActiveItem(SelectedItem<TValue> item) => CssBuilder.Default("menu-item")
         .AddClass("active", Equals(item.Value, Value))
         .AddClass("disabled", item.IsDisabled)
         .Build();

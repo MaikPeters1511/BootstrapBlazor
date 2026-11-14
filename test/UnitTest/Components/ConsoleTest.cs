@@ -62,7 +62,7 @@ public class ConsoleTest : BootstrapBlazorTestBase
                 new() { Message = "Test1" }, new() { Message = "Test2" }
             });
         });
-        Assert.DoesNotContain("btn-secondary", cut.Markup);
+        Assert.DoesNotContain("btn-solid theme-secondary", cut.Markup);
         Assert.False(clearClicked);
 
         // 实例触发 OnClear 方法
@@ -76,7 +76,7 @@ public class ConsoleTest : BootstrapBlazorTestBase
                 return Task.CompletedTask;
             }));
         });
-        cut.Find(".btn-secondary").Click();
+        cut.Find(".btn-solid.theme-secondary").Click();
         Assert.True(clearClicked);
     }
 
@@ -126,7 +126,7 @@ public class ConsoleTest : BootstrapBlazorTestBase
             builder.Add(a => a.ClearButtonColor, Color.Primary);
         });
 
-        Assert.Contains("btn-primary", cut.Markup);
+        Assert.Contains("btn-solid theme-primary", cut.Markup);
     }
 
     [Fact]
@@ -224,7 +224,7 @@ public class ConsoleTest : BootstrapBlazorTestBase
             });
         });
 
-        Assert.Contains("text-danger", cut.Markup);
+        Assert.Contains("fg-danger", cut.Markup);
     }
 
     [Fact]

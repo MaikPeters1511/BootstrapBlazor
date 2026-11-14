@@ -11,10 +11,10 @@
 
 <DemoBlock Title="@Localizer["HasSecondsTitle"]" Introduction="@Localizer["HasSecondsIntro"]" Name="HasSeconds">
     <div class="row">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <TimePicker @bind-Value="@SecondValue" HasSeconds="false" />
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Display Value="@SecondValue" FormatString="hh\:mm" />
         </div>
     </div>

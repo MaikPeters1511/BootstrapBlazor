@@ -93,7 +93,7 @@ public class TableTestEFCore : BootstrapBlazorTestBase
             });
         });
 
-        var items = cut.FindAll(".dropdown-item");
+        var items = cut.FindAll(".menu-item");
         items[1].Click();
         var conditions = cut.FindComponent<EnumFilter>().Instance.GetFilterConditions();
         Assert.NotNull(conditions.Filters);

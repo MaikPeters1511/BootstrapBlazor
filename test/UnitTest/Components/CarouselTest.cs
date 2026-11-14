@@ -11,7 +11,7 @@ public class CarouselTest : BootstrapBlazorTestBase
     public void Images_Ok()
     {
         var cut = Context.Render<Carousel>();
-        Assert.Contains("carousel slide", cut.Markup);
+        Assert.Contains("class=\"carousel\"", cut.Markup);
     }
 
     [Fact]
@@ -68,7 +68,8 @@ public class CarouselTest : BootstrapBlazorTestBase
             pb.Add(b => b.DisableTouchSwiping, true);
         });
 
-        Assert.Contains("data-bs-touch=\"false\"", cut.Markup);
+        Assert.Contains("carousel-no-touch", cut.Markup);
+        Assert.DoesNotContain("data-bs-touch", cut.Markup);
     }
 
     [Fact]
@@ -258,18 +259,30 @@ public class CarouselTest : BootstrapBlazorTestBase
                 builder.CloseComponent();
             }));
         });
-        cut.Contains("data-bs-ride=\"carousel\"");
+        cut.Contains("data-bs-autoplay=\"true\"");
+        cut.DoesNotContain("data-bs-ride");
+        cut.DoesNotContain("data-bb-autoplay");
 
         cut.Render(pb =>
         {
             pb.Add(a => a.PlayMode, CarouselPlayMode.AutoPlayAfterManually);
         });
-        cut.WaitForAssertion(() => cut.Contains("data-bs-ride=\"true\""));
+        cut.WaitForAssertion(() => cut.Contains("data-bs-autoplay=\"false\" data-bb-autoplay=\"after-manually\""));
 
         cut.Render(pb =>
         {
             pb.Add(a => a.PlayMode, CarouselPlayMode.Manually);
         });
-        cut.WaitForAssertion(() => cut.Contains("data-bs-ride=\"false\""));
+        cut.WaitForAssertion(() => cut.DoesNotContain("data-bb-autoplay"));
+    }
+
+    [Fact]
+    public void BootstrapCarouselClass_Ok()
+    {
+        // Bootstrap 6 carousel is scroll-snap based, the slide class is gone
+        var cut = Context.Render<Carousel>();
+        var classes = cut.Find(".carousel").ClassList;
+        Assert.DoesNotContain("slide", classes);
+        Assert.DoesNotContain("carousel-no-touch", classes);
     }
 }

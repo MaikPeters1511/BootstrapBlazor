@@ -70,7 +70,7 @@
 
     <ValidateForm Model="@AsyncModel">
         <div class="row g-3">
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <BootstrapInput @bind-Value="@AsyncModel.UserName" DisplayText="@Localizer["AsyncValidationUserName"]" />
             </div>
             <div class="col-12">
@@ -107,7 +107,7 @@
 
     <ValidateForm Model="@AsyncValidatableModel">
         <div class="row g-3">
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <BootstrapInput @bind-Value="@AsyncValidatableModel.UserName" DisplayText="@Localizer["AsyncValidationUserName"]" />
             </div>
             <div class="col-12">
@@ -140,7 +140,7 @@ private List&lt;IValidator&gt; ValidatorAsyncRules { get; } = [new UniqueUserNam
 
     <ValidateForm Model="@ValidatorAsyncModel">
         <div class="row g-3">
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <BootstrapInput @bind-Value="@ValidatorAsyncModel.UserName" DisplayText="@Localizer["AsyncValidationUserName"]"
                                 ValidateRules="@ValidatorAsyncRules" />
             </div>
@@ -167,20 +167,20 @@ private List&lt;IValidator&gt; ValidatorAsyncRules { get; } = [new UniqueUserNam
 
     <ValidateForm Model="@Model2" OnValidSubmit="@OnValidSubmit2" OnInvalidSubmit="@OnInvalidSubmit2">
         <div class="row g-3">
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <BootstrapInputGroupLabel @bind-Value="@Model2.Name" />
                 <BootstrapInputGroup>
                     <BootstrapInputGroupLabel DisplayText="Test" />
                     <Display @bind-Value="@Model2.Name"></Display>
                 </BootstrapInputGroup>
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <BootstrapInputNumber @bind-Value="@Model2.Count" />
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <DateTimePicker @bind-Value="@Model2.DateTime" />
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <Select @bind-Value="@Model2.Education" />
             </div>
             <div class="col-12">
@@ -198,16 +198,16 @@ private List&lt;IValidator&gt; ValidatorAsyncRules { get; } = [new UniqueUserNam
     <section ignore>@((MarkupString)Localizer["ValidateFormCustomDisplayErrorDescription"].Value)</section>
     <ValidateForm @ref="FooForm" Model="@Model3" OnValidSubmit="@OnValidSetError">
         <div class="row g-3">
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <BootstrapInput @bind-Value="@Model3.Name" />
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <BootstrapInputNumber @bind-Value="@Model3.Count" />
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <DateTimePicker @bind-Value="@Model3.DateTime" />
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <Select @bind-Value="@Model3.Education" />
             </div>
             <div class="col-12">
@@ -225,16 +225,16 @@ private List&lt;IValidator&gt; ValidatorAsyncRules { get; } = [new UniqueUserNam
     <ValidateForm Model="@Model4" OnInvalidSubmit="@OnInvalidSubmitAddress"
                   ValidateAllProperties="true">
         <div class="row g-3">
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <BootstrapInput @bind-Value="@Model4.Name" />
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <BootstrapInputNumber @bind-Value="@Model4.Count" />
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <DateTimePicker @bind-Value="@Model4.DateTime" />
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <Select @bind-Value="@Model4.Education" />
             </div>
             <div class="col-12">
@@ -257,10 +257,10 @@ private List&lt;IValidator&gt; ValidatorAsyncRules { get; } = [new UniqueUserNam
     <ValidateForm @ref="ComplexForm" Model="@ComplexModel" OnInvalidSubmit="@OnInvalidComplexModel"
                   OnValidSubmit="@OnValidComplexModel">
         <div class="row g-3">
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <BootstrapInput @bind-Value="@ComplexModel.Name" />
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <BootstrapInput @bind-Value="@ComplexModel.Dummy.Dummy2.Name" />
             </div>
             <div class="col-12">
@@ -284,10 +284,10 @@ private List&lt;IValidator&gt; ValidatorAsyncRules { get; } = [new UniqueUserNam
     <section ignore>@((MarkupString)Localizer["ValidateFormDynamicFormDescription"].Value)</section>
     <ValidateForm Model="@DynamicModel" OnInvalidSubmit="@OnInvalidDynamicModel" OnValidSubmit="@OnValidDynamicModel">
         <div class="row g-3">
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <BootstrapInput @bind-Value="@DynamicModel.Name" />
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 @if (ShowAddress)
                 {
                     <BootstrapInput @bind-Value="@DynamicModel.Address" />
@@ -341,10 +341,10 @@ private List&lt;IValidator&gt; ValidatorAsyncRules { get; } = [new UniqueUserNam
 
     <ValidateForm Model="@Model8">
         <div class="row g-3">
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <BootstrapInput @bind-Value="@Model8.Name" />
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <BootstrapInput @bind-Value="@Model8.Address" ValidateRules="@CustomerRules" />
             </div>
             <div class="col-12">
@@ -368,10 +368,10 @@ private async Task OnValidator()
 
     <ValidateForm Model="@Model9" @ref="ValidatorForm">
         <div class="row g-3">
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <BootstrapInput @bind-Value="@Model9.Name" />
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <BootstrapInput @bind-Value="@Model9.Address" />
             </div>
         </div>
@@ -383,10 +383,10 @@ private async Task OnValidator()
     <section ignore>@((MarkupString)Localizer["DisableAutoSubmitFormByEnterDesc"].Value)</section>
     <ValidateForm Model="@Model10" DisableAutoSubmitFormByEnter="true">
         <div class="row g-3">
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <BootstrapInput @bind-Value="@Model10.Name" />
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <BootstrapInput @bind-Value="@Model10.Address" ValidateRules="@CustomerRules" />
             </div>
             <div class="col-12">
@@ -423,10 +423,10 @@ private async Task OnValidator()
     </section>
     <ValidateForm Model="@ValidataModel" OnInvalidSubmit="OnInvalidValidatableObject">
         <div class="row g-3">
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <BootstrapInput @bind-Value="@ValidataModel.Telephone1" />
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <BootstrapInput @bind-Value="@ValidataModel.Telephone2" />
             </div>
             <div class="col-12">
@@ -487,10 +487,10 @@ private async Task OnValidator()
     </section>
     <ValidateForm Model="@ValidateCollectionModel" OnInvalidSubmit="OnInvalidValidateCollection">
         <div class="row g-3">
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <BootstrapInput @bind-Value="@ValidateCollectionModel.Telephone1" />
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <BootstrapInput @bind-Value="@ValidateCollectionModel.Telephone2" />
             </div>
             <div class="col-12">
@@ -504,10 +504,10 @@ private async Task OnValidator()
 <DemoBlock Title="@Localizer["ValidateMetadataTypeTitle"]" Introduction="@Localizer["ValidateMetadataTypeIntro"]" Name="MetadataType">
     <ValidateForm Model="@_mockModel">
         <div class="row g-3">
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <BootstrapInput @bind-Value="@_mockModel.Email" />
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <BootstrapInput @bind-Value="@_mockModel.ConfirmEmail" />
             </div>
             <div class="col-12">

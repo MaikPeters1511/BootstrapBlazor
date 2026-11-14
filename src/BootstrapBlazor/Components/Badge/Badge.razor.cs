@@ -12,7 +12,7 @@ namespace BootstrapBlazor.Components;
 public partial class Badge
 {
     private string? ClassString => CssBuilder.Default("badge")
-        .AddClass($"text-bg-{Color.ToDescriptionString()}", Color != Color.None)
+        .AddClass($"theme-{Color.ToDescriptionString()}", Color != Color.None)
         .AddClass("rounded-pill", IsPill)
         .AddClassFromAttributes(AdditionalAttributes)
         .Build();

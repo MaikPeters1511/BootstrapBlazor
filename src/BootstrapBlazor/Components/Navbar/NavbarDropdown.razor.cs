@@ -48,7 +48,8 @@ public partial class NavbarDropdown
     /// <para lang="zh">菜单对齐方式样式</para>
     /// <para lang="en">Menu alignment style</para>
     /// </summary>
-    private string? MenuAlignmentClass => CssBuilder.Default("dropdown-menu shadow")
-        .AddClass($"dropdown-menu-{MenuAlignment.ToDescriptionString()}", MenuAlignment == Alignment.Right)
+    private string? MenuAlignmentClass => CssBuilder.Default("menu shadow")
         .Build();
+
+    private string MenuPlacementString => Direction.ToMenuPlacement(MenuAlignment);
 }

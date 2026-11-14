@@ -26,29 +26,29 @@
         </div>
         <GroupBox Title="@Localizer["Feature"]">
             <div class="row g-3 form-inline text-end">
-                <div class="col-12 col-sm-3">
+                <div class="col-12 sm:col-3">
                     <Switch DisplayText="@Localizer["FeatureShowLunar"]" ShowLabel="true" @bind-Value="_showLunar" />
                 </div>
-                <div class="col-12 col-sm-3">
+                <div class="col-12 sm:col-3">
                     <Switch DisplayText="@Localizer["FeatureShowSolarTerm"]" ShowLabel="true" @bind-Value="_showSolarTerm" />
                 </div>
-                <div class="col-12 col-sm-3">
+                <div class="col-12 sm:col-3">
                     <Switch DisplayText="@Localizer["FeatureShowFestivals"]" ShowLabel="true" @bind-Value="_showFestivals" />
                 </div>
-                <div class="col-12 col-sm-3">
+                <div class="col-12 sm:col-3">
                     <Switch DisplayText="@Localizer["FeatureShowHolidays"]" ShowLabel="true" @bind-Value="_showHolidays" />
                 </div>
             </div>
         </GroupBox>
     </section>
     <div class="row g-3">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <DateTimeRange @bind-Value="@BindValueDemoDateTimeRangeValue" OnValueChanged="v => BindValueDemoOnValueChanged(v, 1)"
                            ShowLunar="_showLunar" ShowSolarTerm="_showSolarTerm"
                            ShowFestivals="_showFestivals" ShowHolidays="_showHolidays"
                            ShowSelectedValue="true" AutoClose="true"></DateTimeRange>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <BootstrapInputGroup>
                 <BootstrapInputGroupLabel DisplayText="@Localizer["Limit"]" />
                 <Display TValue="string" Value="@BindValueDemoRange" />
@@ -59,13 +59,13 @@
 
 <DemoBlock Title="@Localizer["MaxMinValueTitle"]" Introduction="@Localizer["MaxMinValueIntro"]" Name="MaxMinValue">
     <div class="row g-3">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <DateTimeRange @bind-Value="@MaxMinDateTimeRangeValue"
                            OnValueChanged="v => MaxMinOnValueChanged(v, 2)"
                            MinValue="DateTime.Today.AddDays(-7)"
                            MaxValue="DateTime.Today.AddDays(7)" />
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <BootstrapInputGroup>
                 <BootstrapInputGroupLabel DisplayText="@Localizer["Limit"]" />
                 <Display TValue="string" Value="@MaxMinRange" />
@@ -76,10 +76,10 @@
 
 <DemoBlock Title="@Localizer["DisabledTitle"]" Introduction="@Localizer["DisabledIntro"]" Name="Disabled">
     <div class="row g-3">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <DateTimeRange Value="@DisabledDateTimeRangeValue" IsDisabled="@IsDisabled" />
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Switch @bind-Value="@IsDisabled" />
         </div>
     </div>
@@ -105,10 +105,10 @@
 
     <ValidateForm Model="@ValidateFormModel">
         <div class="@ValidateFormClassString">
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <DateTimePicker @bind-Value="@ValidateFormModel.DateTime" />
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <DateTimeRange @bind-Value="@ValidateFormModel.Range" />
             </div>
             <div class="col-12">
@@ -124,11 +124,11 @@
 
 <DemoBlock Title="@Localizer["ViewModeTitle"]" Introduction="@Localizer["ViewModeIntro"]" Name="ViewMode">
     <div class="row g-3">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <DateTimeRange @bind-Value="@YearRangeValue" ViewMode="DatePickerViewMode.Year" DateFormat="yyyy">
             </DateTimeRange>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <DateTimeRange @bind-Value="@MonthRangeValue" ViewMode="DatePickerViewMode.Month" DateFormat="yyyy-MM">
             </DateTimeRange>
         </div>

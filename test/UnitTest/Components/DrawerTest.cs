@@ -55,7 +55,7 @@ public class DrawerTest : BootstrapBlazorTestBase
         {
             builder.Add(a => a.AllowResize, true);
         });
-        cut.Contains("<div class=\"drawer-bar\"><div class=\"drawer-bar-body\"></div></div>");
+        cut.Contains("<div class=\"bb-drawer-bar\"><div class=\"bb-drawer-bar-body\"></div></div>");
     }
 
     [Fact]
@@ -72,7 +72,7 @@ public class DrawerTest : BootstrapBlazorTestBase
             }));
         });
 
-        cut.Find(".drawer-backdrop").Click();
+        cut.Find(".bb-drawer-backdrop").Click();
         Assert.False(isOpen);
     }
 
@@ -87,7 +87,7 @@ public class DrawerTest : BootstrapBlazorTestBase
             builder.Add(a => a.OnClickBackdrop, () => { isOpen = false; return Task.CompletedTask; });
         });
 
-        cut.Find(".drawer-backdrop").Click();
+        cut.Find(".bb-drawer-backdrop").Click();
         Assert.False(isOpen);
     }
 
@@ -170,13 +170,13 @@ public class DrawerTest : BootstrapBlazorTestBase
                 s.CloseComponent();
             });
         });
-        cut.Contains("drawer-backdrop");
+        cut.Contains("bb-drawer-backdrop");
 
         cut.Render(pb =>
         {
             pb.Add(a => a.ShowBackdrop, false);
         });
-        cut.DoesNotContain("drawer-backdrop");
+        cut.DoesNotContain("bb-drawer-backdrop");
     }
 
     [Fact]
@@ -298,5 +298,22 @@ public class DrawerTest : BootstrapBlazorTestBase
         private object? BodyContext { get; set; }
 
         public string? GetBodyContext() => BodyContext.ToString();
+    }
+
+    [Fact]
+    public void BootstrapDrawerClass_Ok()
+    {
+        // Bootstrap 6 ships its own .drawer component (dialog based), the classes of this component are prefixed with bb-
+        var cut = Context.Render<Drawer>(pb =>
+        {
+            pb.Add(a => a.IsBackdrop, true);
+            pb.Add(a => a.IsOpen, true);
+        });
+        var root = cut.Find(".bb-drawer");
+        Assert.DoesNotContain("drawer", root.ClassList);
+        Assert.NotNull(cut.Find(".bb-drawer > .bb-drawer-body > .bb-drawer-content"));
+        var backdrop = cut.Find(".bb-drawer-backdrop");
+        Assert.DoesNotContain("modal-backdrop", backdrop.ClassList);
+        Assert.DoesNotContain("drawer-backdrop", backdrop.ClassList);
     }
 }

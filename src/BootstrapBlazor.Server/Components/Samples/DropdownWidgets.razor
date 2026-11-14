@@ -15,7 +15,7 @@
                 <BodyTemplate>
                     @for (var index = 0; index < 4; index++)
                     {
-                        <div class="dropdown-item dropdown-item-center">
+                        <div class="menu-item menu-item-center">
                             <Avatar IsCircle="true" IsIcon="true" Size="Size.Small" />
                             <div class="ms-2">
                                 <div class="d-flex position-relative">
@@ -38,8 +38,8 @@
                 <BodyTemplate>
                     @for (var index = 0; index < 10; index++)
                     {
-                        <div class="dropdown-item dropdown-item-center">
-                            <i class="fa-solid fa-users text-primary"></i>
+                        <div class="menu-item menu-item-center">
+                            <i class="fa-solid fa-users fg-primary"></i>
                             <div class="ms-2">5 new members joined</div>
                         </div>
                     }
@@ -53,22 +53,22 @@
                     <span>@Localizer["BasicUsageTasks"]</span>
                 </HeaderTemplate>
                 <BodyTemplate>
-                    <div class="dropdown-item">
-                        <div class="dropdown-item-progress">
+                    <div class="menu-item">
+                        <div class="menu-item-progress">
                             <span>Design some buttons</span>
                             <small>20%</small>
                         </div>
                         <BootstrapBlazor.Components.Progress IsAnimated="true" IsStriped="true" Value="20" Color="Color.Primary"></BootstrapBlazor.Components.Progress>
                     </div>
-                    <div class="dropdown-item">
-                        <div class="dropdown-item-progress">
+                    <div class="menu-item">
+                        <div class="menu-item-progress">
                             <span>Create a nice theme</span>
                             <small>40%</small>
                         </div>
                         <BootstrapBlazor.Components.Progress Value="40" Color="Color.Success"></BootstrapBlazor.Components.Progress>
                     </div>
-                    <div class="dropdown-item">
-                        <div class="dropdown-item-progress">
+                    <div class="menu-item">
+                        <div class="menu-item-progress">
                             <span>Some task I need to do</span>
                             <small>60%</small>
                         </div>

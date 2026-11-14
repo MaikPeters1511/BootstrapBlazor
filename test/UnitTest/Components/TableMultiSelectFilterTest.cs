@@ -18,7 +18,7 @@ public class TableMultiSelectFilterTest : BootstrapBlazorTestBase
         });
         cut.Contains("filter-row");
 
-        var actions = cut.FindAll(".dropdown-item");
+        var actions = cut.FindAll(".menu-item");
         await cut.InvokeAsync(() => actions[1].Click());
 
         // check filter
@@ -36,7 +36,7 @@ public class TableMultiSelectFilterTest : BootstrapBlazorTestBase
             pb.Add(a => a.Column, new MockColumn());
             pb.Add(a => a.IsHeaderRow, false);
         });
-        var item = cut.Find(".dropdown-menu .dropdown-item");
+        var item = cut.Find(".menu .menu-item");
         await cut.InvokeAsync(() => item.Click());
 
         var filter = cut.FindComponent<MultiSelectFilter<string>>();
@@ -72,7 +72,7 @@ public class TableMultiSelectFilterTest : BootstrapBlazorTestBase
             pb.Add(a => a.Column, new MockColumnList());
             pb.Add(a => a.IsHeaderRow, false);
         });
-        var item = cut.Find(".dropdown-menu .dropdown-item");
+        var item = cut.Find(".menu .menu-item");
         await cut.InvokeAsync(() => item.Click());
 
         var filter = cut.FindComponent<MultiSelectFilter<List<string>>>();

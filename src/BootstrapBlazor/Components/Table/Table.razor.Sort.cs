@@ -462,8 +462,8 @@ public partial class Table<TItem>
     /// <para lang="zh">获得 高级排序样式</para>
     /// <para lang="en">Get Advanced Sort Style</para>
     /// </summary>
-    protected string? AdvancedSortClass => CssBuilder.Default("btn btn-secondary")
-        .AddClass("btn-info", AdvancedSortItems.Count > 0)
+    protected string? AdvancedSortClass => CssBuilder.Default("btn btn-solid theme-secondary")
+        .AddClass("btn-solid theme-info", AdvancedSortItems.Count > 0)
         .Build();
 
     /// <summary>

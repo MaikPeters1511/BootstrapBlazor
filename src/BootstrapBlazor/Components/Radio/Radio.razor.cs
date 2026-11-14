@@ -27,6 +27,11 @@ public partial class Radio<TValue> : Checkbox<TValue>
     [EditorRequired]
     public string? GroupName { get; set; }
 
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    protected override string InputTypeClass => "radio";
+
     private string? ClassString => CssBuilder.Default("form-check")
         .AddClass("is-checked", State == CheckboxState.Checked)
         .AddClass($"form-check-{Size.ToDescriptionString()}", Size != Size.None)

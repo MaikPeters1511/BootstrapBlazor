@@ -9,7 +9,7 @@
         @RenderBackdrop()
     }
     <div class="@DrawerClassString" style="@DrawerStyleString" @onclick:stopPropagation>
-        <div class="drawer-content">
+        <div class="bb-drawer-content">
             @if (!IsLazyLoadChildContent || _firstOpened)
             {
                 <CascadingValue Name="BodyContext" Value="BodyContext" IsFixed="true">
@@ -21,8 +21,8 @@
         </div>
         @if (AllowResize)
         {
-            <div class="drawer-bar">
-                <div class="drawer-bar-body"></div>
+            <div class="bb-drawer-bar">
+                <div class="bb-drawer-bar-body"></div>
             </div>
         }
     </div>

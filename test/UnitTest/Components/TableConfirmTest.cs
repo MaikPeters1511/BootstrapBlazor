@@ -42,7 +42,7 @@ public class TableConfirmTest : BootstrapBlazorTestBase
         Assert.Equal("true", button.GetAttribute("data-bb-keep-open-on-outside-click"));
         cut1.InvokeAsync(() => button.Click());
 
-        var buttonConfirm = cut1.Find(".popover-confirm-buttons .btn-primary");
+        var buttonConfirm = cut1.Find(".popover-confirm-buttons .btn-solid.theme-primary");
         cut1.InvokeAsync(() => buttonConfirm.Click());
         Assert.True(trigger);
         Assert.True(clicked);

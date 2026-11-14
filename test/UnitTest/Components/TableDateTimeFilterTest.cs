@@ -20,7 +20,7 @@ public class TableDateTimeFilterTest : BootstrapBlazorTestBase
         var button = cut.Find(".is-now");
         await cut.InvokeAsync(() => button.Click());
 
-        var action = cut.Find(".dropdown-item");
+        var action = cut.Find(".menu-item");
         await cut.InvokeAsync(() => action.Click());
     }
 

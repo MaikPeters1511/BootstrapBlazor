@@ -8,6 +8,58 @@ namespace UnitTest.Components;
 public class DropdownTest : BootstrapBlazorTestBase
 {
     [Fact]
+    public void BootstrapMenuMarkup_Ok()
+    {
+        // Bootstrap 6 replaced dropdown-menu/dropdown-item by menu/menu-item
+        var cut = Context.Render<Dropdown<EnumEducation>>(pb =>
+        {
+            pb.Add(a => a.Items, new SelectedItem[] { new("1", "Test1"), new("2", "Test2") });
+        });
+        var toggle = cut.Find("[data-bs-toggle=\"menu\"]");
+        Assert.Contains("dropdown-toggle", toggle.ClassList);
+        Assert.Equal(2, cut.FindAll(".menu > .menu-item").Count);
+        Assert.Empty(cut.FindAll(".dropdown-menu"));
+        Assert.Empty(cut.FindAll(".dropdown-item"));
+        Assert.Empty(cut.FindAll("[data-bs-toggle=\"dropdown\"]"));
+    }
+
+    [Theory]
+    [InlineData(Direction.Dropdown, Alignment.None, "bottom-start")]
+    [InlineData(Direction.Dropdown, Alignment.Left, "bottom-start")]
+    [InlineData(Direction.Dropdown, Alignment.Center, "bottom")]
+    [InlineData(Direction.Dropdown, Alignment.Right, "bottom-end")]
+    [InlineData(Direction.Dropup, Alignment.Left, "top-start")]
+    [InlineData(Direction.Dropup, Alignment.Center, "top")]
+    [InlineData(Direction.Dropup, Alignment.Right, "top-end")]
+    [InlineData(Direction.Dropleft, Alignment.Left, "start-start")]
+    [InlineData(Direction.Dropright, Alignment.Right, "end-start")]
+    public void BootstrapMenuPlacement_Ok(Direction direction, Alignment alignment, string expected)
+    {
+        // Bootstrap 6 uses data-bs-placement on the toggle instead of dropup/dropdown-menu-end classes
+        var cut = Context.Render<Dropdown<EnumEducation>>(pb =>
+        {
+            pb.Add(a => a.Direction, direction);
+            pb.Add(a => a.MenuAlignment, alignment);
+        });
+        var toggle = cut.Find("[data-bs-toggle=\"menu\"]");
+        Assert.Equal(expected, toggle.GetAttribute("data-bs-placement"));
+        Assert.DoesNotContain("menu-end", cut.Markup);
+    }
+
+    [Fact]
+    public void BootstrapMenuPlacement_Split_Ok()
+    {
+        var cut = Context.Render<Dropdown<EnumEducation>>(pb =>
+        {
+            pb.Add(a => a.ShowSplit, true);
+            pb.Add(a => a.MenuAlignment, Alignment.Right);
+        });
+        var toggle = cut.Find("[data-bs-toggle=\"menu\"]");
+        Assert.Contains("dropdown-toggle-split", toggle.ClassList);
+        Assert.Equal("bottom-end", toggle.GetAttribute("data-bs-placement"));
+    }
+
+    [Fact]
     public async Task ShowSplit_OK()
     {
         var clicked = false;
@@ -81,12 +133,12 @@ public class DropdownTest : BootstrapBlazorTestBase
         {
             pb.Add(a => a.MenuAlignment, Alignment.Left);
         });
-        Assert.DoesNotContain("dropdown-menu-end", cut.Markup);
+        Assert.Contains("data-bs-placement=\"bottom-start\"", cut.Markup);
         cut.Render(pb =>
         {
             pb.Add(a => a.MenuAlignment, Alignment.Right);
         });
-        Assert.Contains("dropdown-menu-end", cut.Markup);
+        Assert.Contains("data-bs-placement=\"bottom-end\"", cut.Markup);
     }
 
     [Fact]
@@ -102,7 +154,7 @@ public class DropdownTest : BootstrapBlazorTestBase
             pb.Add(a => a.IsFixedButtonText, true);
         });
 
-        var items = cut.FindAll(".dropdown-item");
+        var items = cut.FindAll(".menu-item");
         await cut.InvokeAsync(() =>
         {
             items[0].Click();
@@ -115,7 +167,7 @@ public class DropdownTest : BootstrapBlazorTestBase
         {
             pb.Add(a => a.IsFixedButtonText, false);
         });
-        items = cut.FindAll(".dropdown-item");
+        items = cut.FindAll(".menu-item");
         await cut.InvokeAsync(() =>
         {
             items[1].Click();
@@ -128,7 +180,7 @@ public class DropdownTest : BootstrapBlazorTestBase
         {
             pb.Add(a => a.ShowFixedButtonTextInDropdown, true);
         });
-        items = cut.FindAll(".dropdown-item");
+        items = cut.FindAll(".menu-item");
         Assert.Equal(2, items.Count);
     }
 
@@ -165,7 +217,7 @@ public class DropdownTest : BootstrapBlazorTestBase
     public void Enum_Ok()
     {
         var cut = Context.Render<Dropdown<EnumEducation>>();
-        Assert.Equal(2, cut.FindAll(".dropdown-item").Count);
+        Assert.Equal(2, cut.FindAll(".menu-item").Count);
     }
 
     [Fact]
@@ -178,7 +230,7 @@ public class DropdownTest : BootstrapBlazorTestBase
                 ["placeholder"] = ""
             });
         });
-        Assert.Equal(2, cut.FindAll(".dropdown-item").Count);
+        Assert.Equal(2, cut.FindAll(".menu-item").Count);
     }
 
     [Fact]
@@ -199,7 +251,7 @@ public class DropdownTest : BootstrapBlazorTestBase
                 return Task.CompletedTask;
             });
         });
-        var items = cut.FindAll(".dropdown-item");
+        var items = cut.FindAll(".menu-item");
         await cut.InvokeAsync(() => items[1].Click());
         Assert.True(triggered);
     }
@@ -216,7 +268,7 @@ public class DropdownTest : BootstrapBlazorTestBase
                 return Task.CompletedTask;
             });
         });
-        var items = cut.FindAll(".dropdown-item");
+        var items = cut.FindAll(".menu-item");
         await cut.InvokeAsync(() => items[1].Click());
         Assert.True(triggered);
     }
@@ -228,7 +280,7 @@ public class DropdownTest : BootstrapBlazorTestBase
         {
             pb.Add(a => a.Color, Color.Danger);
         });
-        Assert.Contains("btn-danger", cut.Markup);
+        Assert.Contains("btn-solid theme-danger", cut.Markup);
     }
 
     [Fact]
@@ -238,8 +290,8 @@ public class DropdownTest : BootstrapBlazorTestBase
         {
             pb.Add(a => a.IsOutline, true);
         });
-        Assert.Contains("btn-outline-primary", cut.Markup);
-        Assert.DoesNotContain("btn-primary", cut.Markup);
+        Assert.Contains("btn-outline theme-primary", cut.Markup);
+        Assert.DoesNotContain("btn-solid theme-primary", cut.Markup);
 
         cut.Render(pb =>
         {
@@ -247,8 +299,8 @@ public class DropdownTest : BootstrapBlazorTestBase
             pb.Add(a => a.IsOutline, true);
             pb.Add(a => a.Color, Color.Danger);
         });
-        Assert.Equal(2, cut.FindAll(".btn-outline-danger").Count);
-        Assert.DoesNotContain("btn-danger", cut.Markup);
+        Assert.Equal(2, cut.FindAll(".btn-outline.theme-danger").Count);
+        Assert.DoesNotContain("btn-solid theme-danger", cut.Markup);
     }
 
     [Fact]
@@ -285,7 +337,7 @@ public class DropdownTest : BootstrapBlazorTestBase
                 new("2", "Test2")
             });
         });
-        cut.Contains("<div class=\"dropdown-item disabled\">Test1</div>");
+        cut.Contains("<div class=\"menu-item disabled\">Test1</div>");
     }
 
     [Fact]
@@ -300,7 +352,7 @@ public class DropdownTest : BootstrapBlazorTestBase
             {
                 builder.OpenComponent<DropdownItem>(0);
                 builder.AddAttribute(1, "Icon", "fa-solid fa-icon1");
-                builder.AddAttribute(2, "Text", "dropdown-item-test1");
+                builder.AddAttribute(2, "Text", "menu-item-test1");
                 builder.AddAttribute(3, "OnClick", () =>
                 {
                     clicked = true;
@@ -310,43 +362,43 @@ public class DropdownTest : BootstrapBlazorTestBase
 
                 builder.OpenComponent<DropdownItem>(0);
                 builder.AddAttribute(1, "Icon", "fa-solid fa-icon2");
-                builder.AddAttribute(2, "Text", "dropdown-item-test2");
+                builder.AddAttribute(2, "Text", "menu-item-test2");
                 builder.AddAttribute(3, "Disabled", true);
                 builder.CloseComponent();
 
                 builder.OpenComponent<DropdownItem>(0);
                 builder.AddAttribute(1, "Icon", "fa-solid fa-icon3");
-                builder.AddAttribute(2, "Text", "dropdown-item-test3");
+                builder.AddAttribute(2, "Text", "menu-item-test3");
                 builder.AddAttribute(3, "Disabled", false);
                 builder.AddAttribute(4, "OnDisabledCallback", () => true);
                 builder.CloseComponent();
 
                 builder.OpenComponent<DropdownItem>(0);
                 builder.AddAttribute(1, "Icon", "fa-solid fa-icon4");
-                builder.AddAttribute(2, "Text", "dropdown-item-test4");
+                builder.AddAttribute(2, "Text", "menu-item-test4");
                 builder.AddAttribute(3, "ChildContent",
-                    new RenderFragment(pb1 => pb1.AddMarkupContent(0, "<div>dropdown-item-childcontent</div>")));
+                    new RenderFragment(pb1 => pb1.AddMarkupContent(0, "<div>menu-item-childcontent</div>")));
                 builder.CloseComponent();
             });
         });
         cut.Contains("fa-solid fa-icon1");
-        cut.Contains("dropdown-item-test1");
+        cut.Contains("menu-item-test1");
 
         cut.Contains("fa-solid fa-icon2");
-        cut.Contains("dropdown-item-test2");
+        cut.Contains("menu-item-test2");
 
         cut.Contains("fa-solid fa-icon3");
-        cut.Contains("dropdown-item-test3");
+        cut.Contains("menu-item-test3");
 
         cut.DoesNotContain("fa-solid fa-icon4");
-        cut.DoesNotContain("dropdown-item-test4");
-        cut.Contains("dropdown-item-childcontent");
+        cut.DoesNotContain("menu-item-test4");
+        cut.Contains("menu-item-childcontent");
 
-        cut.Contains("dropdown-item disabled");
+        cut.Contains("menu-item disabled");
 
         Assert.False(clicked);
 
-        var item = cut.Find(".dropdown-item");
+        var item = cut.Find(".menu-item");
         await cut.InvokeAsync((() => item.Click()));
         Assert.True(clicked);
     }

@@ -8,22 +8,22 @@
 <DemoBlock Title="@Localizer["SwitchesNormalTitle"]" Introduction="@Localizer["SwitchesNormalIntro"]" Name="Normal">
     <p>@Localizer["SwitchesNormalDescription"]</p>
     <div class="row g-3">
-        <div class="col-6 col-sm-4 col-md-3 col-lg-auto">
+        <div class="col-6 sm:col-4 md:col-3 lg:col-auto">
             <Switch ValueChanged="@OnValueChanged" Value="@BindValue" OnColor="Color.Secondary" OnText="@Localizer["SwitchesOnText"]" OffText="@Localizer["SwitchesOffText"]"></Switch>
         </div>
-        <div class="col-6 col-sm-4 col-md-3 col-lg-auto">
+        <div class="col-6 sm:col-4 md:col-3 lg:col-auto">
             <Switch Value="true" OnColor="Color.Success" OnText="@Localizer["SwitchesOnText"]" OffText="@Localizer["SwitchesOffText"]"></Switch>
         </div>
-        <div class="col-6 col-sm-4 col-md-3 col-lg-auto">
+        <div class="col-6 sm:col-4 md:col-3 lg:col-auto">
             <Switch Value="true" OnColor="Color.Danger" OnText="@Localizer["SwitchesOnText"]" OffText="@Localizer["SwitchesOffText"]"></Switch>
         </div>
-        <div class="col-6 col-sm-4 col-md-3 col-lg-auto">
+        <div class="col-6 sm:col-4 md:col-3 lg:col-auto">
             <Switch Value="true" OnColor="Color.Warning" OnText="@Localizer["SwitchesOnText"]" OffText="@Localizer["SwitchesOffText"]"></Switch>
         </div>
-        <div class="col-6 col-sm-4 col-md-3 col-lg-auto">
+        <div class="col-6 sm:col-4 md:col-3 lg:col-auto">
             <Switch Value="true" OnColor="Color.Info" OnText="@Localizer["SwitchesOnText"]" OffText="@Localizer["SwitchesOffText"]"></Switch>
         </div>
-        <div class="col-6 col-sm-4 col-md-3 col-lg-auto">
+        <div class="col-6 sm:col-4 md:col-3 lg:col-auto">
             <Switch Value="true" OnColor="Color.Dark" OnText="@Localizer["SwitchesOnText"]" OffText="@Localizer["SwitchesOffText"]"></Switch>
         </div>
     </div>
@@ -77,11 +77,11 @@
 <DemoBlock Title="@Localizer["SwitchesInnerTextTitle"]" Introduction="@Localizer["SwitchesInnerTextIntro"]" Name="InnerText">
     <section ignore>@((MarkupString)Localizer["SwitchesInnerTextDescription"].Value)</section>
     <div class="row g-3">
-        <div class="col-6 col-sm-4 col-md-3 col-lg-auto">
+        <div class="col-6 sm:col-4 md:col-3 lg:col-auto">
             <label class="form-label">@Localizer["SwitchesInnerTextLabelText1"]</label>
             <Switch OnColor="Color.Primary" ShowInnerText="true" />
         </div>
-        <div class="col-6 col-sm-4 col-md-3 col-lg-auto">
+        <div class="col-6 sm:col-4 md:col-3 lg:col-auto">
             <label class="form-label">@Localizer["SwitchesInnerTextLabelText2"]</label>
             <Switch OnColor="Color.Primary" ShowInnerText="true" OnInnerText="@Localizer["SwitchesInnerTextOnInnerText"]" OffInnerText="@Localizer["SwitchesInnerTextOffInnerText"]" />
         </div>

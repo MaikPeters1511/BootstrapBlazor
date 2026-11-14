@@ -25,7 +25,7 @@
     </ul>
     <p>本例中点击 <b>连接</b> 按钮后程序连接到一个发送数据后自动关闭的模拟服务端，通过输出日志查看运行情况，点击 <code>断开</code> 按钮后程序停止自动重连</p>
     <div class="row form-inline g-3">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Button Text="连接" Icon="fa-solid fa-play"
                     OnClick="OnConnectAsync" IsDisabled="@_client.IsConnected"></Button>
             <Button Text="断开" Icon="fa-solid fa-stop" class="ms-2"

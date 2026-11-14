@@ -13,7 +13,7 @@
     --bb-select-append-color: #{$bb-select-append-color};
 }
 
-.select:not(.cascade) .dropdown-menu {
+.select:not(.cascade) .menu {
     width: 100%;
 }
 
@@ -22,8 +22,8 @@
     --bb-select-dropdown-menu-margin-top: 8px;
 }
 
-.cascade .dropdown-menu,
-.selec .dropdown-menu {
+.cascade .menu,
+.selec .menu {
     margin-block-start: var(--bb-select-dropdown-menu-margin-top) !important;
 }
 
@@ -41,15 +41,15 @@
     background-color: var(--bs-secondary-bg);
 }
 
-.dropdown-item {
+.menu-item {
     cursor: pointer;
 }
 
-.dropdown-item.preActive {
+.menu-item.preActive {
     background-color: var(--bb-dropdown-link-pre-active-bg);
 }
 
-.dropdown-menu-arrow {
+.menu-arrow {
     width: 0;
     height: 0;
     border-width: 0 6px 6px;
@@ -62,7 +62,7 @@
     display: none;
 }
 
-.dropdown-menu-arrow:after {
+.menu-arrow:after {
     content: " ";
     width: 0;
     height: 0;
@@ -74,12 +74,12 @@
     left: -6px;
 }
 
-[data-bs-theme='dark'] .dropdown-menu-arrow:after {
+[data-bs-theme='dark'] .menu-arrow:after {
     content: none;
 }
 
-.show > .dropdown-menu,
-.show > .dropdown-menu-arrow {
+.show > .menu,
+.show > .menu-arrow {
     display: block;
 }
 
@@ -96,8 +96,8 @@
     transform: rotate(0);
 }
 
-.dropdown-menu[data-popper-placement="bottom-start"].show + .dropdown-menu-arrow,
-.dropdown-menu[data-bs-popper="none"].show + .dropdown-menu-arrow {
+.menu[data-popper-placement="bottom-start"].show + .menu-arrow,
+.menu[data-bs-popper="none"].show + .menu-arrow {
     display: block;
 }
 
@@ -188,7 +188,7 @@
     border-color: transparent transparent var(--bs-info);
 }
 
-.dropdown-menu {
+.menu {
     --bb-select-search-padding: #{$bb-select-search-padding};
     --bb-select-search-margin-bottom: #{$bb-select-search-margin-bottom};
     --bb-select-search-padding-right: #{$bb-select-search-padding-right};
@@ -198,7 +198,7 @@
     --bb-select-search-icon-top: #{$bb-select-search-icon-top};
     --bb-select-search-height: #{$bb-select-search-height};
 
-    .dropdown-menu-search {
+    .menu-search {
         padding: var(--bb-select-search-padding);
         position: relative;
         border-block-end: var(--bs-border-width) solid var(--bb-select-search-border-color);
@@ -219,7 +219,7 @@
         }
     }
 
-    .dropdown-menu-body {
+    .menu-body {
         max-height: var(--bb-dropdown-max-height);
         overflow: auto;
     }

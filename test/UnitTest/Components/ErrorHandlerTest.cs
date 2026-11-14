@@ -28,7 +28,7 @@ public class ErrorHandlerTest : BootstrapBlazorTestBase
         cut.Contains("test error logger");
 
         // 关闭弹窗
-        var btn = cut.Find(".modal-header .btn-close");
+        var btn = cut.Find(".dialog-header .btn-close");
         await cut.InvokeAsync(() => btn.Click());
     }
 

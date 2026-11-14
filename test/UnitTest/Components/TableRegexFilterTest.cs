@@ -45,7 +45,7 @@ public class TableRegexFilterTest : BootstrapBlazorTestBase
             var filter = cut.FindComponent<BootstrapInput<string>>().Instance;
             filter.SetValue("^test\\d+$");
 
-            var items = cut.FindAll(".dropdown-item");
+            var items = cut.FindAll(".menu-item");
             items[1].Click();
         });
         var conditions = cut.FindComponent<RegexFilter>().Instance.GetFilterConditions();

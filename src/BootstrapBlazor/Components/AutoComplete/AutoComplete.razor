@@ -27,11 +27,11 @@
 
 @code {
     RenderFragment RenderDropdown =>
-    @<div class="dropdown-menu">
-        <div class="dropdown-menu-body">
+    @<div class="menu">
+        <div class="menu-body">
             @foreach (var item in Rows)
             {
-                <div @key="item" class="dropdown-item" @onclick="() => OnClickItem(item)">
+                <div @key="item" class="menu-item" @onclick="() => OnClickItem(item)">
                     @if (ItemTemplate == null)
                     {
                         <div>@item</div>
@@ -44,7 +44,7 @@
             }
             @if (ShowNoDataTip && Rows.Count == 0)
             {
-                <div class="dropdown-item">@NoDataTip</div>
+                <div class="menu-item">@NoDataTip</div>
             }
         </div>
     </div>;
