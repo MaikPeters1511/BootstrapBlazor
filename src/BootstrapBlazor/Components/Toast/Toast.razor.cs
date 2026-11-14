@@ -30,10 +30,10 @@ public partial class Toast
         .Build();
 
     private string? IconBarString => CssBuilder.Default("toast-bar me-2")
-        .AddClass("text-success", Options.Category == ToastCategory.Success)
-        .AddClass("text-info", Options.Category == ToastCategory.Information)
-        .AddClass("text-danger", Options.Category == ToastCategory.Error)
-        .AddClass("text-warning", Options.Category == ToastCategory.Warning)
+        .AddClass("fg-success", Options.Category == ToastCategory.Success)
+        .AddClass("fg-info", Options.Category == ToastCategory.Information)
+        .AddClass("fg-danger", Options.Category == ToastCategory.Error)
+        .AddClass("fg-warning", Options.Category == ToastCategory.Warning)
         .Build();
 
     private string? StyleString => CssBuilder.Default(Options.StyleString)

@@ -189,10 +189,10 @@ private void Navigation()
 <DemoBlock Title="@Localizer["TabsPlacementTitle"]" Introduction="@Localizer["TabsPlacementIntro"]" Name="Placement">
     <p class="text-center">
         <div class="btn-group">
-            <button class="btn btn-primary" @onclick="e => SetPlacement(Placement.Top)">Top</button>
-            <button class="btn btn-primary" @onclick="e => SetPlacement(Placement.Right)">Right</button>
-            <button class="btn btn-primary" @onclick="e => SetPlacement(Placement.Bottom)">Bottom</button>
-            <button class="btn btn-primary" @onclick="e => SetPlacement(Placement.Left)">Left</button>
+            <button class="btn btn-solid theme-primary" @onclick="e => SetPlacement(Placement.Top)">Top</button>
+            <button class="btn btn-solid theme-primary" @onclick="e => SetPlacement(Placement.Right)">Right</button>
+            <button class="btn btn-solid theme-primary" @onclick="e => SetPlacement(Placement.Bottom)">Bottom</button>
+            <button class="btn btn-solid theme-primary" @onclick="e => SetPlacement(Placement.Left)">Left</button>
         </div>
     </p>
     <Tab Placement="@_bindPlacement" Height="200">
@@ -334,11 +334,11 @@ private void Navigation()
         <Tips class="mb-3">
             <div>@((MarkupString)Localizer["TabsAppDescription"].Value)</div>
         </Tips>
-        <button type="button" class="btn btn-outline-primary" @onclick="@AddTab">
+        <button type="button" class="btn btn-outline theme-primary" @onclick="@AddTab">
             <i class="fa-solid fa-circle-plus"></i>
             <span>@Localizer["AddButtonText"]</span>
         </button>
-        <button type="button" class="btn btn-outline-danger" disabled="@((TabSetApp?.Items.Count() > 4) ? null : "disabled")" @onclick="@RemoveTab">
+        <button type="button" class="btn btn-outline theme-danger" disabled="@((TabSetApp?.Items.Count() > 4) ? null : "disabled")" @onclick="@RemoveTab">
             <i class="fa-solid fa-circle-minus"></i>
             <span>@Localizer["RemoveButtonText"]</span>
         </button>

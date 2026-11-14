@@ -12,11 +12,11 @@
     <p><b>@Localizer["RecognizerNormalDescription"]：</b></p>
     <p>@((MarkupString)Localizer["RecognizerNormalTips"].Value)</p>
     <div class="row">
-        <div class="col-12 col-sm-6 text-center">
+        <div class="col-12 sm:col-6 text-center">
             <SpeechWave Show="Start" TotalTime="5000" OnTimeout="OnTimeout" class="my-3" />
             <Button Text="@ButtonText" Icon="fa-fw fa-solid fa-microphone" OnClick="OnStart" />
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Textarea Value="@Result" rows="6" />
         </div>
     </div>

@@ -12,7 +12,7 @@
 
 ## 样式与本地化
 
-- 样式基于 Bootstrap 5，优先使用 CSS Variables，兼容现有主题。
+- 样式基于 Bootstrap 6，优先使用 CSS Variables，兼容现有主题。
 - 所有用户可见文本必须使用 `IStringLocalizer`，禁止硬编码中文/英文 UI 文本。
 - 增删资源键时同步检查 `src/BootstrapBlazor/Locales/` 和 `localization/`，保留其他组件仍使用的资源。
 

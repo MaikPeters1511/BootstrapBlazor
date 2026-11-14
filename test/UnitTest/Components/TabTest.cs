@@ -49,7 +49,7 @@ public class TabTest : BootstrapBlazorTestBase
         var menuItem = cut.Find(".tabs-item");
         await menuItem.ContextMenuAsync();
 
-        var item = cut.Find(".dropdown-menu .dropdown-item");
+        var item = cut.Find(".menu .menu-item");
         Assert.NotNull(item);
     }
 
@@ -334,7 +334,7 @@ public class TabTest : BootstrapBlazorTestBase
         // Close Current
         cut.InvokeAsync(() => cut.Instance.CloseAllTabs());
 
-        button = cut.Find(".dropdown-item");
+        button = cut.Find(".menu-item");
         button.Click();
     }
 
@@ -1187,7 +1187,7 @@ public class TabTest : BootstrapBlazorTestBase
             });
         });
 
-        var button = cut.FindAll(".dropdown-menu > .dropdown-item")[cut.FindAll(".dropdown-menu > .dropdown-item").Count - 1].Children[0];
+        var button = cut.FindAll(".menu > .menu-item")[cut.FindAll(".menu > .menu-item").Count - 1].Children[0];
         cut.InvokeAsync(() => button.Click());
         cut.Contains("Text2");
         cut.DoesNotContain("Text3");

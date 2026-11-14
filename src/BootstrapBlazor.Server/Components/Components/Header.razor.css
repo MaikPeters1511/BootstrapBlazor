@@ -57,11 +57,11 @@
     color: var(--bs-navbar-color);
 }
 
-::deep .bb-theme-mode .dropdown-menu li {
+::deep .bb-theme-mode .menu li {
     padding: 0 4px;
 }
 
-    ::deep .bb-theme-mode .dropdown-menu li button {
+    ::deep .bb-theme-mode .menu li button {
         border-radius: var(--bs-border-radius);
     }
 

@@ -34,8 +34,8 @@ public partial class EditorForm<TModel> : IShowLabel, IDisposable
             mdCols = Math.Max(0, Math.Min(12, Math.Ceiling(12d / ItemsPerRow.Value)));
         }
         return CssBuilder.Default("col-12")
-            .AddClass($"col-sm-{cols}", cols > 0) // <para lang="zh">指定 Cols</para><para lang="en">Specify Cols</para>
-            .AddClass($"col-sm-6 col-md-{mdCols}", mdCols > 0 && cols == 0 && item.Rows == 0 && !Utility.IsCheckboxList(item.PropertyType, item.ComponentType)) // <para lang="zh">指定 ItemsPerRow</para><para lang="en">Specify ItemsPerRow</para>
+            .AddClass($"sm:col-{cols}", cols > 0) // <para lang="zh">指定 Cols</para><para lang="en">Specify Cols</para>
+            .AddClass($"sm:col-6 md:col-{mdCols}", mdCols > 0 && cols == 0 && item.Rows == 0 && !Utility.IsCheckboxList(item.PropertyType, item.ComponentType)) // <para lang="zh">指定 ItemsPerRow</para><para lang="en">Specify ItemsPerRow</para>
             .Build();
     }
 

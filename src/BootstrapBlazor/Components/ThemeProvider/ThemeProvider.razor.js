@@ -22,7 +22,7 @@ export function init(id, invoke, themeValue, callback) {
     setTheme(currentTheme, true);
     theme.currentTheme = currentTheme;
 
-    EventHandler.on(el, 'click', '.dropdown-item', e => {
+    EventHandler.on(el, 'click', '.menu-item', e => {
         const activeTheme = e.delegateTarget.getAttribute('data-bb-theme-value');
         theme.currentTheme = activeTheme;
 

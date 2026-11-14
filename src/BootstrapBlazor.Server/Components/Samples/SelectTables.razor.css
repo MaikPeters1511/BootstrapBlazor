@@ -3,7 +3,7 @@
     --bb-divider-bg: #c0c4cc;
 }
 
-::deep .dropdown-item-demo {
+::deep .menu-item-demo {
     border-radius: var(--bs-border-radius);
     border: var(--bs-border-width) solid var(--bs-border-color);
     padding: .5rem;

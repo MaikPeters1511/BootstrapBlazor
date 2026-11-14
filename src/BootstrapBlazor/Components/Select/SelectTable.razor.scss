@@ -82,11 +82,11 @@
 
 .popover-dropdown {
     .dropdown-table {
-        --bs-dropdown-padding-x: .25rem;
-        --bs-dropdown-padding-y: .25rem;
-        --bs-dropdown-search-spacer-x: .5rem;
-        --bs-dropdown-search-spacer-y: .5rem;
-        --bs-dropdown-search-header-cap-padding-x: .5rem;
+        --bs-menu-padding-x: .25rem;
+        --bs-menu-padding-y: .25rem;
+        --bs-menu-search-spacer-x: .5rem;
+        --bs-menu-search-spacer-y: .5rem;
+        --bs-menu-search-header-cap-padding-x: .5rem;
         --bb-dropdown-max-height: 468px;
         --bb-dropdown-table-width: auto;
         overflow: hidden;
@@ -96,9 +96,9 @@
 
         .table-search {
             .card {
-                --bs-card-spacer-x: var(--bs-dropdown-search-spacer-x);
-                --bs-card-spacer-y: var(--bs-dropdown-search-spacer-y);
-                --bs-card-cap-padding-x: var(--bs-dropdown-search-header-cap-padding-x);
+                --bs-card-spacer-x: var(--bs-menu-search-spacer-x);
+                --bs-card-spacer-y: var(--bs-menu-search-spacer-y);
+                --bs-card-cap-padding-x: var(--bs-menu-search-header-cap-padding-x);
 
                 .card-body {
                     .form-body {

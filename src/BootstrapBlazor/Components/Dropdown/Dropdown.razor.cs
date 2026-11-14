@@ -29,8 +29,8 @@ public partial class Dropdown<TValue>
     /// </summary>
     private string? ButtonClassName => CssBuilder.Default("btn")
         .AddClass("dropdown-toggle", !ShowSplit)
-        .AddClass($"btn-outline-{Color.ToDescriptionString()}", IsOutline)
-        .AddClass($"btn-{Color.ToDescriptionString()}", !IsOutline && Color != Color.None)
+        .AddClass(Color.ToButtonClass(true), IsOutline)
+        .AddClass(Color.ToButtonClass(), !IsOutline && Color != Color.None)
         .AddClass($"btn-{Size.ToDescriptionString()}", Size != Size.None)
         .Build();
 
@@ -40,9 +40,9 @@ public partial class Dropdown<TValue>
     /// </summary>
     private string? ClassName => CssBuilder.Default("btn dropdown-toggle")
         .AddClass("dropdown-toggle-split")
-        .AddClass($"btn-outline-{Color.ToDescriptionString()}", IsOutline)
-        .AddClass($"btn-primary", !IsOutline && Color == Color.None)
-        .AddClass($"btn-{Color.ToDescriptionString()}", !IsOutline && Color != Color.None)
+        .AddClass(Color.ToButtonClass(true), IsOutline)
+        .AddClass($"btn-solid theme-primary", !IsOutline && Color == Color.None)
+        .AddClass(Color.ToButtonClass(), !IsOutline && Color != Color.None)
         .AddClass($"btn-{Size.ToDescriptionString()}", Size != Size.None)
         .Build();
 
@@ -56,16 +56,17 @@ public partial class Dropdown<TValue>
     /// <para lang="zh">菜单对齐方式样式</para>
     /// <para lang="en">Menu Alignment Class</para>
     /// </summary>
-    private string? MenuAlignmentClass => CssBuilder.Default("dropdown-menu shadow")
-        .AddClass($"dropdown-menu-{MenuAlignment.ToDescriptionString()}", MenuAlignment == Alignment.Right)
+    private string? MenuAlignmentClass => CssBuilder.Default("menu shadow")
         .Build();
+
+    private string? MenuPlacementString => IsPopover ? null : Direction.ToMenuPlacement(MenuAlignment);
 
     /// <summary>
     /// <para lang="zh">获得/设置 设置当前项是否 Active 方法</para>
     /// <para lang="en">Gets or sets Set Item Active Method</para>
     /// </summary>
     /// <param name="item"></param>
-    protected string? ActiveItem(SelectedItem item) => CssBuilder.Default("dropdown-item")
+    protected string? ActiveItem(SelectedItem item) => CssBuilder.Default("menu-item")
         .AddClass("active", () => item.Value == CurrentValueAsString)
         .AddClass("disabled", item.IsDisabled)
         .Build();

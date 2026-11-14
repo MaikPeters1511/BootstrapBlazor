@@ -19,7 +19,7 @@ export function unregisterSelect(select) {
         EventHandler.off(el, 'shown.bs.popover');
     }
     else {
-        EventHandler.off(el, 'shown.bs.dropdown');
+        EventHandler.off(el, 'shown.bs.menu');
     }
 }
 
@@ -47,7 +47,7 @@ const initKeydownHandler = select => {
                 return;
             }
 
-            const items = [...menu.querySelectorAll('.dropdown-item:not(.disabled)')];
+            const items = [...menu.querySelectorAll('.menu-item:not(.disabled)')];
             if (items.length > 0) {
                 let current = menu.querySelector('.active');
                 if (current !== null) {
@@ -92,7 +92,7 @@ const initShownHandler = select => {
         if (search) {
             search.focus();
         }
-        const active = popover.toggleMenu.querySelector('.dropdown-item.active');
+        const active = popover.toggleMenu.querySelector('.menu-item.active');
         if (active) {
             scrollIntoView(el, active);
         }
@@ -102,12 +102,12 @@ const initShownHandler = select => {
         EventHandler.on(el, 'shown.bs.popover', shown);
     }
     else {
-        EventHandler.on(el, 'shown.bs.dropdown', shown);
+        EventHandler.on(el, 'shown.bs.menu', shown);
     }
 }
 
 const indexOf = (el, element) => {
-    const items = el.querySelectorAll('.dropdown-item')
+    const items = el.querySelectorAll('.menu-item')
     return Array.prototype.indexOf.call(items, element)
 }
 

@@ -40,7 +40,7 @@ public class CardTest : BootstrapBlazorTestBase
     public void Color_Ok()
     {
         var cut = Context.Render<Card>(builder => builder.Add(a => a.Color, Color.Primary));
-        Assert.Contains("text-primary", cut.Markup);
+        Assert.Contains("fg-primary", cut.Markup);
     }
 
     [Fact]

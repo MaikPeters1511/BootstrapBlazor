@@ -22,14 +22,14 @@
     --bb-rate-active-color: var(--bs-primary);
 }</Pre>
     <div class="row mt-3">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Rate @bind-Value="IconListValue" class="custom-rate">
                 <ItemTemplate>
                     <i class="@GetIconList(int.Parse(Math.Round(context, 0, MidpointRounding.AwayFromZero).ToString()))"></i>
                 </ItemTemplate>
             </Rate>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <div class="d-flex align-items-center h-100">
                 @GetIconValueChanged()
             </div>

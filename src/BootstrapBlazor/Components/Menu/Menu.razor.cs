@@ -15,7 +15,7 @@ public partial class Menu
     /// <para lang="zh">获得 组件样式</para>
     /// <para lang="en">Get Component Style</para>
     /// </summary>
-    protected string? ClassString => CssBuilder.Default("menu")
+    protected string? ClassString => CssBuilder.Default("bb-menu")
         .AddClass("is-bottom", IsBottom)
         .AddClass("is-vertical", IsVertical)
         .AddClassFromAttributes(AdditionalAttributes)

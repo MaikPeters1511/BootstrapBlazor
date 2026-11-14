@@ -108,26 +108,26 @@
 
 <DemoBlock Title="@Localizer["IsButtonTitle"]" Introduction="@Localizer["IsButtonIntro"]" Name="IsButton">
     <div class="row g-3">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <CheckboxList IsButton="true" @bind-Value="@Value" Items="FooItems" ShowLabel="true" DisplayText="Test1"></CheckboxList>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <CheckboxList IsButton="true" @bind-Value="@Value" Items="FooItems" ShowLabel="true" DisplayText="Test2" Color="Color.Danger" IsDisabled="true"></CheckboxList>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <CheckboxList IsButton="true" @bind-Value="@Value" Items="FooItems" ShowLabel="true" DisplayText="Test3" Color="Color.Warning"></CheckboxList>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <CheckboxList IsButton="true" @bind-Value="@Value" Items="FooItems" ShowLabel="true" DisplayText="Test4" Color="Color.Info"></CheckboxList>
         </div>
     </div>
 
     <ValidateForm Model="Model" class="mt-3">
         <div class="row g-3 form-inline">
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <BootstrapInput @bind-Value="@Model.Name" />
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <CheckboxList @bind-Value="@SelectedItems" IsButton="true" Items="FooItems" ShowLabel="true" DisplayText="Hobby" />
             </div>
         </div>

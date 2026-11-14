@@ -6,12 +6,12 @@
 
 <DemoBlock Title="@Localizer["BindValueTitle"]" Introduction="@Localizer["BindValueIntro"]" Name="BindValue">
     <div class="row">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <div class="custom-clock">
                 <ClockPicker @bind-Value="@Value" IsAutoSwitch="_autoSwitch" />
             </div>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Switch @bind-Value="_autoSwitch" ShowLabel="true" DisplayText="@Localizer["AutoSwitchText"]"></Switch>
         </div>
     </div>

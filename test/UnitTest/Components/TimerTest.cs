@@ -141,14 +141,14 @@ public class TimerTest : BootstrapBlazorTestBase
 
         // pause
         var buttons = cut.FindAll(".timer-buttons button");
-        Assert.True(buttons[1].ClassList.Contains("btn-warning"));
+        Assert.True(buttons[1].ClassList.Contains("theme-warning"));
         Assert.Equal("暂停", buttons[1].GetInnerText());
         await cut.InvokeAsync(() => buttons[1].Click());
         await Task.Delay(1000, CancellationToken.None);
 
         // resume
         buttons = cut.FindAll(".timer-buttons button");
-        Assert.True(buttons[1].ClassList.Contains("btn-success"));
+        Assert.True(buttons[1].ClassList.Contains("theme-success"));
         Assert.Equal("继续", buttons[1].GetInnerText());
         await cut.InvokeAsync(() => buttons[1].Click());
 

@@ -152,7 +152,7 @@
     display: inline-block
 }
 
-.btn-primary {
+.btn-solid.theme-primary {
     color: #fff;
     background: #1890ff;
     border-color: #1890ff;
@@ -161,11 +161,11 @@
     box-shadow: 0 2px 0 rgba(0, 0, 0, .045)
 }
 
-    .btn-primary > a:only-child {
+    .btn-solid.theme-primary > a:only-child {
         color: currentColor
     }
 
-        .btn-primary > a:only-child:after {
+        .btn-solid.theme-primary > a:only-child:after {
             position: absolute;
             top: 0;
             right: 0;
@@ -175,17 +175,17 @@
             content: ""
         }
 
-    .btn-primary:focus, .btn-primary:hover {
+    .btn-solid.theme-primary:focus, .btn-solid.theme-primary:hover {
         color: #fff;
         background: #40a9ff;
         border-color: #40a9ff
     }
 
-        .btn-primary:focus > a:only-child, .btn-primary:hover > a:only-child {
+        .btn-solid.theme-primary:focus > a:only-child, .btn-solid.theme-primary:hover > a:only-child {
             color: currentColor
         }
 
-            .btn-primary:focus > a:only-child:after, .btn-primary:hover > a:only-child:after {
+            .btn-solid.theme-primary:focus > a:only-child:after, .btn-solid.theme-primary:hover > a:only-child:after {
                 position: absolute;
                 top: 0;
                 right: 0;
@@ -195,17 +195,17 @@
                 content: ""
             }
 
-    .btn-primary:active {
+    .btn-solid.theme-primary:active {
         color: #fff;
         background: #096dd9;
         border-color: #096dd9
     }
 
-        .btn-primary:active > a:only-child {
+        .btn-solid.theme-primary:active > a:only-child {
             color: currentColor
         }
 
-            .btn-primary:active > a:only-child:after {
+            .btn-solid.theme-primary:active > a:only-child:after {
                 position: absolute;
                 top: 0;
                 right: 0;
@@ -215,7 +215,7 @@
                 content: ""
             }
 
-    .btn-primary[disabled], .btn-primary[disabled]:active, .btn-primary[disabled]:focus, .btn-primary[disabled]:hover {
+    .btn-solid.theme-primary[disabled], .btn-solid.theme-primary[disabled]:active, .btn-solid.theme-primary[disabled]:focus, .btn-solid.theme-primary[disabled]:hover {
         color: rgba(0, 0, 0, .25);
         background: #f5f5f5;
         border-color: #d9d9d9;
@@ -224,11 +224,11 @@
         box-shadow: none
     }
 
-        .btn-primary[disabled]:active > a:only-child, .btn-primary[disabled]:focus > a:only-child, .btn-primary[disabled]:hover > a:only-child, .btn-primary[disabled] > a:only-child {
+        .btn-solid.theme-primary[disabled]:active > a:only-child, .btn-solid.theme-primary[disabled]:focus > a:only-child, .btn-solid.theme-primary[disabled]:hover > a:only-child, .btn-solid.theme-primary[disabled] > a:only-child {
             color: currentColor
         }
 
-            .btn-primary[disabled]:active > a:only-child:after, .btn-primary[disabled]:focus > a:only-child:after, .btn-primary[disabled]:hover > a:only-child:after, .btn-primary[disabled] > a:only-child:after {
+            .btn-solid.theme-primary[disabled]:active > a:only-child:after, .btn-solid.theme-primary[disabled]:focus > a:only-child:after, .btn-solid.theme-primary[disabled]:hover > a:only-child:after, .btn-solid.theme-primary[disabled] > a:only-child:after {
                 position: absolute;
                 top: 0;
                 right: 0;
@@ -238,28 +238,28 @@
                 content: ""
             }
 
-.btn-group .btn-primary:not(:first-child):not(:last-child) {
+.btn-group .btn-solid.theme-primary:not(:first-child):not(:last-child) {
     border-right-color: #40a9ff;
     border-left-color: #40a9ff
 }
 
-    .btn-group .btn-primary:not(:first-child):not(:last-child):disabled {
+    .btn-group .btn-solid.theme-primary:not(:first-child):not(:last-child):disabled {
         border-color: #d9d9d9
     }
 
-.btn-group .btn-primary:first-child:not(:last-child) {
+.btn-group .btn-solid.theme-primary:first-child:not(:last-child) {
     border-right-color: #40a9ff
 }
 
-    .btn-group .btn-primary:first-child:not(:last-child)[disabled] {
+    .btn-group .btn-solid.theme-primary:first-child:not(:last-child)[disabled] {
         border-right-color: #d9d9d9
     }
 
-.btn-group .btn-primary + .btn-primary, .btn-group .btn-primary:last-child:not(:first-child) {
+.btn-group .btn-solid.theme-primary + .btn-solid.theme-primary, .btn-group .btn-solid.theme-primary:last-child:not(:first-child) {
     border-left-color: #40a9ff
 }
 
-    .btn-group .btn-primary + .btn-primary[disabled], .btn-group .btn-primary:last-child:not(:first-child)[disabled] {
+    .btn-group .btn-solid.theme-primary + .btn-solid.theme-primary[disabled], .btn-group .btn-solid.theme-primary:last-child:not(:first-child)[disabled] {
         border-left-color: #d9d9d9
     }
 
@@ -430,7 +430,7 @@
                 content: ""
             }
 
-.btn-danger {
+.btn-solid.theme-danger {
     color: #fff;
     background: #ff4d4f;
     border-color: #ff4d4f;
@@ -439,11 +439,11 @@
     box-shadow: 0 2px 0 rgba(0, 0, 0, .045)
 }
 
-    .btn-danger > a:only-child {
+    .btn-solid.theme-danger > a:only-child {
         color: currentColor
     }
 
-        .btn-danger > a:only-child:after {
+        .btn-solid.theme-danger > a:only-child:after {
             position: absolute;
             top: 0;
             right: 0;
@@ -453,17 +453,17 @@
             content: ""
         }
 
-    .btn-danger:focus, .btn-danger:hover {
+    .btn-solid.theme-danger:focus, .btn-solid.theme-danger:hover {
         color: #fff;
         background: #ff7875;
         border-color: #ff7875
     }
 
-        .btn-danger:focus > a:only-child, .btn-danger:hover > a:only-child {
+        .btn-solid.theme-danger:focus > a:only-child, .btn-solid.theme-danger:hover > a:only-child {
             color: currentColor
         }
 
-            .btn-danger:focus > a:only-child:after, .btn-danger:hover > a:only-child:after {
+            .btn-solid.theme-danger:focus > a:only-child:after, .btn-solid.theme-danger:hover > a:only-child:after {
                 position: absolute;
                 top: 0;
                 right: 0;
@@ -473,17 +473,17 @@
                 content: ""
             }
 
-    .btn-danger:active {
+    .btn-solid.theme-danger:active {
         color: #fff;
         background: #d9363e;
         border-color: #d9363e
     }
 
-        .btn-danger:active > a:only-child {
+        .btn-solid.theme-danger:active > a:only-child {
             color: currentColor
         }
 
-            .btn-danger:active > a:only-child:after {
+            .btn-solid.theme-danger:active > a:only-child:after {
                 position: absolute;
                 top: 0;
                 right: 0;
@@ -493,7 +493,7 @@
                 content: ""
             }
 
-    .btn-danger[disabled], .btn-danger[disabled]:active, .btn-danger[disabled]:focus, .btn-danger[disabled]:hover {
+    .btn-solid.theme-danger[disabled], .btn-solid.theme-danger[disabled]:active, .btn-solid.theme-danger[disabled]:focus, .btn-solid.theme-danger[disabled]:hover {
         color: rgba(0, 0, 0, .25);
         background: #f5f5f5;
         border-color: #d9d9d9;
@@ -502,11 +502,11 @@
         box-shadow: none
     }
 
-        .btn-danger[disabled]:active > a:only-child, .btn-danger[disabled]:focus > a:only-child, .btn-danger[disabled]:hover > a:only-child, .btn-danger[disabled] > a:only-child {
+        .btn-solid.theme-danger[disabled]:active > a:only-child, .btn-solid.theme-danger[disabled]:focus > a:only-child, .btn-solid.theme-danger[disabled]:hover > a:only-child, .btn-solid.theme-danger[disabled] > a:only-child {
             color: currentColor
         }
 
-            .btn-danger[disabled]:active > a:only-child:after, .btn-danger[disabled]:focus > a:only-child:after, .btn-danger[disabled]:hover > a:only-child:after, .btn-danger[disabled] > a:only-child:after {
+            .btn-solid.theme-danger[disabled]:active > a:only-child:after, .btn-solid.theme-danger[disabled]:focus > a:only-child:after, .btn-solid.theme-danger[disabled]:hover > a:only-child:after, .btn-solid.theme-danger[disabled] > a:only-child:after {
                 position: absolute;
                 top: 0;
                 right: 0;
@@ -799,7 +799,7 @@
                 content: ""
             }
 
-    .btn-dangerous.btn-primary {
+    .btn-dangerous.btn-solid.theme-primary {
         color: #fff;
         background: #ff4d4f;
         border-color: #ff4d4f;
@@ -808,11 +808,11 @@
         box-shadow: 0 2px 0 rgba(0, 0, 0, .045)
     }
 
-        .btn-dangerous.btn-primary > a:only-child {
+        .btn-dangerous.btn-solid.theme-primary > a:only-child {
             color: currentColor
         }
 
-            .btn-dangerous.btn-primary > a:only-child:after {
+            .btn-dangerous.btn-solid.theme-primary > a:only-child:after {
                 position: absolute;
                 top: 0;
                 right: 0;
@@ -822,17 +822,17 @@
                 content: ""
             }
 
-        .btn-dangerous.btn-primary:focus, .btn-dangerous.btn-primary:hover {
+        .btn-dangerous.btn-solid.theme-primary:focus, .btn-dangerous.btn-solid.theme-primary:hover {
             color: #fff;
             background: #ff7875;
             border-color: #ff7875
         }
 
-            .btn-dangerous.btn-primary:focus > a:only-child, .btn-dangerous.btn-primary:hover > a:only-child {
+            .btn-dangerous.btn-solid.theme-primary:focus > a:only-child, .btn-dangerous.btn-solid.theme-primary:hover > a:only-child {
                 color: currentColor
             }
 
-                .btn-dangerous.btn-primary:focus > a:only-child:after, .btn-dangerous.btn-primary:hover > a:only-child:after {
+                .btn-dangerous.btn-solid.theme-primary:focus > a:only-child:after, .btn-dangerous.btn-solid.theme-primary:hover > a:only-child:after {
                     position: absolute;
                     top: 0;
                     right: 0;
@@ -842,17 +842,17 @@
                     content: ""
                 }
 
-        .btn-dangerous.btn-primary:active {
+        .btn-dangerous.btn-solid.theme-primary:active {
             color: #fff;
             background: #d9363e;
             border-color: #d9363e
         }
 
-            .btn-dangerous.btn-primary:active > a:only-child {
+            .btn-dangerous.btn-solid.theme-primary:active > a:only-child {
                 color: currentColor
             }
 
-                .btn-dangerous.btn-primary:active > a:only-child:after {
+                .btn-dangerous.btn-solid.theme-primary:active > a:only-child:after {
                     position: absolute;
                     top: 0;
                     right: 0;
@@ -862,7 +862,7 @@
                     content: ""
                 }
 
-        .btn-dangerous.btn-primary[disabled], .btn-dangerous.btn-primary[disabled]:active, .btn-dangerous.btn-primary[disabled]:focus, .btn-dangerous.btn-primary[disabled]:hover {
+        .btn-dangerous.btn-solid.theme-primary[disabled], .btn-dangerous.btn-solid.theme-primary[disabled]:active, .btn-dangerous.btn-solid.theme-primary[disabled]:focus, .btn-dangerous.btn-solid.theme-primary[disabled]:hover {
             color: rgba(0, 0, 0, .25);
             background: #f5f5f5;
             border-color: #d9d9d9;
@@ -871,11 +871,11 @@
             box-shadow: none
         }
 
-            .btn-dangerous.btn-primary[disabled]:active > a:only-child, .btn-dangerous.btn-primary[disabled]:focus > a:only-child, .btn-dangerous.btn-primary[disabled]:hover > a:only-child, .btn-dangerous.btn-primary[disabled] > a:only-child {
+            .btn-dangerous.btn-solid.theme-primary[disabled]:active > a:only-child, .btn-dangerous.btn-solid.theme-primary[disabled]:focus > a:only-child, .btn-dangerous.btn-solid.theme-primary[disabled]:hover > a:only-child, .btn-dangerous.btn-solid.theme-primary[disabled] > a:only-child {
                 color: currentColor
             }
 
-                .btn-dangerous.btn-primary[disabled]:active > a:only-child:after, .btn-dangerous.btn-primary[disabled]:focus > a:only-child:after, .btn-dangerous.btn-primary[disabled]:hover > a:only-child:after, .btn-dangerous.btn-primary[disabled] > a:only-child:after {
+                .btn-dangerous.btn-solid.theme-primary[disabled]:active > a:only-child:after, .btn-dangerous.btn-solid.theme-primary[disabled]:focus > a:only-child:after, .btn-dangerous.btn-solid.theme-primary[disabled]:hover > a:only-child:after, .btn-dangerous.btn-solid.theme-primary[disabled] > a:only-child:after {
                     position: absolute;
                     top: 0;
                     right: 0;
@@ -1279,7 +1279,7 @@
     margin-inline-start: -1px
 }
 
-.btn-group .btn-primary + .btn:not(.btn-primary):not([disabled]) {
+.btn-group .btn-solid.theme-primary + .btn:not(.btn-solid.theme-primary):not([disabled]) {
     border-left-color: transparent
 }
 
@@ -1390,18 +1390,18 @@
     border-color: #fff
 }
 
-    .btn-background-ghost.btn-primary {
+    .btn-background-ghost.btn-solid.theme-primary {
         color: #1890ff;
         background: 0 0;
         border-color: #1890ff;
         text-shadow: none
     }
 
-        .btn-background-ghost.btn-primary > a:only-child {
+        .btn-background-ghost.btn-solid.theme-primary > a:only-child {
             color: currentColor
         }
 
-            .btn-background-ghost.btn-primary > a:only-child:after {
+            .btn-background-ghost.btn-solid.theme-primary > a:only-child:after {
                 position: absolute;
                 top: 0;
                 right: 0;
@@ -1411,17 +1411,17 @@
                 content: ""
             }
 
-        .btn-background-ghost.btn-primary:focus, .btn-background-ghost.btn-primary:hover {
+        .btn-background-ghost.btn-solid.theme-primary:focus, .btn-background-ghost.btn-solid.theme-primary:hover {
             color: #40a9ff;
             background: 0 0;
             border-color: #40a9ff
         }
 
-            .btn-background-ghost.btn-primary:focus > a:only-child, .btn-background-ghost.btn-primary:hover > a:only-child {
+            .btn-background-ghost.btn-solid.theme-primary:focus > a:only-child, .btn-background-ghost.btn-solid.theme-primary:hover > a:only-child {
                 color: currentColor
             }
 
-                .btn-background-ghost.btn-primary:focus > a:only-child:after, .btn-background-ghost.btn-primary:hover > a:only-child:after {
+                .btn-background-ghost.btn-solid.theme-primary:focus > a:only-child:after, .btn-background-ghost.btn-solid.theme-primary:hover > a:only-child:after {
                     position: absolute;
                     top: 0;
                     right: 0;
@@ -1431,17 +1431,17 @@
                     content: ""
                 }
 
-        .btn-background-ghost.btn-primary:active {
+        .btn-background-ghost.btn-solid.theme-primary:active {
             color: #096dd9;
             background: 0 0;
             border-color: #096dd9
         }
 
-            .btn-background-ghost.btn-primary:active > a:only-child {
+            .btn-background-ghost.btn-solid.theme-primary:active > a:only-child {
                 color: currentColor
             }
 
-                .btn-background-ghost.btn-primary:active > a:only-child:after {
+                .btn-background-ghost.btn-solid.theme-primary:active > a:only-child:after {
                     position: absolute;
                     top: 0;
                     right: 0;
@@ -1451,7 +1451,7 @@
                     content: ""
                 }
 
-        .btn-background-ghost.btn-primary[disabled], .btn-background-ghost.btn-primary[disabled]:active, .btn-background-ghost.btn-primary[disabled]:focus, .btn-background-ghost.btn-primary[disabled]:hover {
+        .btn-background-ghost.btn-solid.theme-primary[disabled], .btn-background-ghost.btn-solid.theme-primary[disabled]:active, .btn-background-ghost.btn-solid.theme-primary[disabled]:focus, .btn-background-ghost.btn-solid.theme-primary[disabled]:hover {
             color: rgba(0, 0, 0, .25);
             background: #f5f5f5;
             border-color: #d9d9d9;
@@ -1460,11 +1460,11 @@
             box-shadow: none
         }
 
-            .btn-background-ghost.btn-primary[disabled]:active > a:only-child, .btn-background-ghost.btn-primary[disabled]:focus > a:only-child, .btn-background-ghost.btn-primary[disabled]:hover > a:only-child, .btn-background-ghost.btn-primary[disabled] > a:only-child {
+            .btn-background-ghost.btn-solid.theme-primary[disabled]:active > a:only-child, .btn-background-ghost.btn-solid.theme-primary[disabled]:focus > a:only-child, .btn-background-ghost.btn-solid.theme-primary[disabled]:hover > a:only-child, .btn-background-ghost.btn-solid.theme-primary[disabled] > a:only-child {
                 color: currentColor
             }
 
-                .btn-background-ghost.btn-primary[disabled]:active > a:only-child:after, .btn-background-ghost.btn-primary[disabled]:focus > a:only-child:after, .btn-background-ghost.btn-primary[disabled]:hover > a:only-child:after, .btn-background-ghost.btn-primary[disabled] > a:only-child:after {
+                .btn-background-ghost.btn-solid.theme-primary[disabled]:active > a:only-child:after, .btn-background-ghost.btn-solid.theme-primary[disabled]:focus > a:only-child:after, .btn-background-ghost.btn-solid.theme-primary[disabled]:hover > a:only-child:after, .btn-background-ghost.btn-solid.theme-primary[disabled] > a:only-child:after {
                     position: absolute;
                     top: 0;
                     right: 0;
@@ -1474,18 +1474,18 @@
                     content: ""
                 }
 
-    .btn-background-ghost.btn-danger {
+    .btn-background-ghost.btn-solid.theme-danger {
         color: #ff4d4f;
         background: 0 0;
         border-color: #ff4d4f;
         text-shadow: none
     }
 
-        .btn-background-ghost.btn-danger > a:only-child {
+        .btn-background-ghost.btn-solid.theme-danger > a:only-child {
             color: currentColor
         }
 
-            .btn-background-ghost.btn-danger > a:only-child:after {
+            .btn-background-ghost.btn-solid.theme-danger > a:only-child:after {
                 position: absolute;
                 top: 0;
                 right: 0;
@@ -1495,17 +1495,17 @@
                 content: ""
             }
 
-        .btn-background-ghost.btn-danger:focus, .btn-background-ghost.btn-danger:hover {
+        .btn-background-ghost.btn-solid.theme-danger:focus, .btn-background-ghost.btn-solid.theme-danger:hover {
             color: #ff7875;
             background: 0 0;
             border-color: #ff7875
         }
 
-            .btn-background-ghost.btn-danger:focus > a:only-child, .btn-background-ghost.btn-danger:hover > a:only-child {
+            .btn-background-ghost.btn-solid.theme-danger:focus > a:only-child, .btn-background-ghost.btn-solid.theme-danger:hover > a:only-child {
                 color: currentColor
             }
 
-                .btn-background-ghost.btn-danger:focus > a:only-child:after, .btn-background-ghost.btn-danger:hover > a:only-child:after {
+                .btn-background-ghost.btn-solid.theme-danger:focus > a:only-child:after, .btn-background-ghost.btn-solid.theme-danger:hover > a:only-child:after {
                     position: absolute;
                     top: 0;
                     right: 0;
@@ -1515,17 +1515,17 @@
                     content: ""
                 }
 
-        .btn-background-ghost.btn-danger:active {
+        .btn-background-ghost.btn-solid.theme-danger:active {
             color: #d9363e;
             background: 0 0;
             border-color: #d9363e
         }
 
-            .btn-background-ghost.btn-danger:active > a:only-child {
+            .btn-background-ghost.btn-solid.theme-danger:active > a:only-child {
                 color: currentColor
             }
 
-                .btn-background-ghost.btn-danger:active > a:only-child:after {
+                .btn-background-ghost.btn-solid.theme-danger:active > a:only-child:after {
                     position: absolute;
                     top: 0;
                     right: 0;
@@ -1535,7 +1535,7 @@
                     content: ""
                 }
 
-        .btn-background-ghost.btn-danger[disabled], .btn-background-ghost.btn-danger[disabled]:active, .btn-background-ghost.btn-danger[disabled]:focus, .btn-background-ghost.btn-danger[disabled]:hover {
+        .btn-background-ghost.btn-solid.theme-danger[disabled], .btn-background-ghost.btn-solid.theme-danger[disabled]:active, .btn-background-ghost.btn-solid.theme-danger[disabled]:focus, .btn-background-ghost.btn-solid.theme-danger[disabled]:hover {
             color: rgba(0, 0, 0, .25);
             background: #f5f5f5;
             border-color: #d9d9d9;
@@ -1544,11 +1544,11 @@
             box-shadow: none
         }
 
-            .btn-background-ghost.btn-danger[disabled]:active > a:only-child, .btn-background-ghost.btn-danger[disabled]:focus > a:only-child, .btn-background-ghost.btn-danger[disabled]:hover > a:only-child, .btn-background-ghost.btn-danger[disabled] > a:only-child {
+            .btn-background-ghost.btn-solid.theme-danger[disabled]:active > a:only-child, .btn-background-ghost.btn-solid.theme-danger[disabled]:focus > a:only-child, .btn-background-ghost.btn-solid.theme-danger[disabled]:hover > a:only-child, .btn-background-ghost.btn-solid.theme-danger[disabled] > a:only-child {
                 color: currentColor
             }
 
-                .btn-background-ghost.btn-danger[disabled]:active > a:only-child:after, .btn-background-ghost.btn-danger[disabled]:focus > a:only-child:after, .btn-background-ghost.btn-danger[disabled]:hover > a:only-child:after, .btn-background-ghost.btn-danger[disabled] > a:only-child:after {
+                .btn-background-ghost.btn-solid.theme-danger[disabled]:active > a:only-child:after, .btn-background-ghost.btn-solid.theme-danger[disabled]:focus > a:only-child:after, .btn-background-ghost.btn-solid.theme-danger[disabled]:hover > a:only-child:after, .btn-background-ghost.btn-solid.theme-danger[disabled] > a:only-child:after {
                     position: absolute;
                     top: 0;
                     right: 0;
@@ -1759,12 +1759,12 @@ a.btn-sm {
     direction: rtl
 }
 
-.btn-group-rtl.btn-group .btn-primary + .btn-primary, .btn-group-rtl.btn-group .btn-primary:last-child:not(:first-child) {
+.btn-group-rtl.btn-group .btn-solid.theme-primary + .btn-solid.theme-primary, .btn-group-rtl.btn-group .btn-solid.theme-primary:last-child:not(:first-child) {
     border-right-color: #40a9ff;
     border-left-color: #d9d9d9
 }
 
-    .btn-group-rtl.btn-group .btn-primary + .btn-primary[disabled], .btn-group-rtl.btn-group .btn-primary:last-child:not(:first-child)[disabled] {
+    .btn-group-rtl.btn-group .btn-solid.theme-primary + .btn-solid.theme-primary[disabled], .btn-group-rtl.btn-group .btn-solid.theme-primary:last-child:not(:first-child)[disabled] {
         border-right-color: #d9d9d9;
         border-left-color: #40a9ff
     }

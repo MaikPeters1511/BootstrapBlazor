@@ -26,9 +26,9 @@ public partial class SelectTree<TValue> : IModelEqualityComparer<TValue>
         .Build();
 
     private string? AppendClassName => CssBuilder.Default("form-select-append")
-        .AddClass($"text-{Color.ToDescriptionString()}", Color != Color.None && !IsDisabled && !IsValid.HasValue)
-        .AddClass($"text-success", IsValid.HasValue && IsValid.Value)
-        .AddClass($"text-danger", IsValid.HasValue && !IsValid.Value)
+        .AddClass($"fg-{Color.ToDescriptionString()}", Color != Color.None && !IsDisabled && !IsValid.HasValue)
+        .AddClass($"fg-success", IsValid.HasValue && IsValid.Value)
+        .AddClass($"fg-danger", IsValid.HasValue && !IsValid.Value)
         .Build();
 
     /// <summary>

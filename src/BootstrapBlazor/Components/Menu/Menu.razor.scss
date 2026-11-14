@@ -1,6 +1,6 @@
 @use "../../wwwroot/scss/variables" as *;
 
-.menu {
+.bb-menu {
     --bb-menu-nav-pading: #{$bb-menu-nav-pading};
     --bb-menu-nav-border-bottom: #{$bb-menu-nav-border-bottom};
     --bb-menu-min-width: #{$bb-menu-min-width};
@@ -12,22 +12,22 @@
     --bs-nav-link-color: var(--bs-body-color);
 }
 
-    .menu .nav {
+    .bb-menu .nav {
         padding: var(--bb-menu-nav-pading);
         border-bottom: var(--bb-menu-nav-border-bottom);
     }
 
-    .menu > .nav > li {
+    .bb-menu > .nav > li {
         position: relative;
         border-bottom: 2px solid transparent;
     }
 
-        .menu > .nav > li:has(.active):after {
+        .bb-menu > .nav > li:has(.active):after {
             width: 100%;
             left: 0;
         }
 
-        .menu > .nav > li:after {
+        .bb-menu > .nav > li:after {
             content: "";
             position: absolute;
             background-color: var(--bb-menu-bar-bg);
@@ -37,29 +37,29 @@
             transition: width .3s linear, left .3s linear;
         }
 
-    .menu .nav .nav-link, .cascade .dropdown-item {
+    .bb-menu .nav .nav-link, .cascade .menu-item {
         padding: 0.5rem 1rem;
         user-select: none;
         white-space: nowrap;
         position: relative;
     }
 
-        .menu .nav .nav-link.active, .menu .nav .nav-link:not(.disabled):hover {
+        .bb-menu .nav .nav-link.active, .bb-menu .nav .nav-link:not(.disabled):hover {
             color: var(--bb-menu-active-color);
         }
 
-    .menu .nav .dropdown-menu, .cascade .dropdown-menu {
+    .bb-menu .nav .menu, .cascade .menu {
         overflow: unset;
         max-height: unset;
         margin-block-start: 10px;
     }
 
-        .menu .nav .dropdown-menu .nav-link:not(.disabled):hover, .menu .nav .dropdown-menu .nav-link.active, .menu .submenu .nav-link.active, .menu .submenu .nav-link:not(.disabled):hover, .cascade .dropdown-item:not(.disabled):hover, .cascade .dropdown-item.active, .cascade .nav .nav-link:not(.disabled):hover, .cascade .nav .nav-link.active {
+        .bb-menu .nav .menu .nav-link:not(.disabled):hover, .bb-menu .nav .menu .nav-link.active, .bb-menu .bb-submenu .nav-link.active, .bb-menu .bb-submenu .nav-link:not(.disabled):hover, .cascade .menu-item:not(.disabled):hover, .cascade .menu-item.active, .cascade .nav .nav-link:not(.disabled):hover, .cascade .nav .nav-link.active {
             background-color: var(--bb-menu-item-hover-bg);
             color: var(--bb-menu-item-hover-color);
         }
 
-    .menu .nav .sub-menu, .cascade .has-leaf .sub-menu {
+    .bb-menu .nav .sub-menu, .cascade .has-leaf .sub-menu {
         display: none;
         background-color: var(--bb-menu-sub-bg);
         white-space: nowrap;
@@ -72,36 +72,36 @@
         box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
     }
 
-    .menu .nav .dropdown-menu, .menu .nav .sub-menu, .cascade .sub-menu {
+    .bb-menu .nav .menu, .bb-menu .nav .sub-menu, .cascade .sub-menu {
         min-width: var(--bb-menu-min-width);
     }
 
-    .menu .nav .nav-link:hover > .sub-menu, .cascade .dropdown-item:hover > .sub-menu {
+    .bb-menu .nav .nav-link:hover > .sub-menu, .cascade .menu-item:hover > .sub-menu {
         display: block;
     }
 
-    .menu .nav-item:hover > .nav-link > .sub-menu {
+    .bb-menu .nav-item:hover > .nav-link > .sub-menu {
         left: calc(100% + 20px);
         top: -15px;
     }
 
-    .menu .has-leaf > .nav-link-right {
+    .bb-menu .has-leaf > .nav-link-right {
         transition: transform .3s linear;
         position: absolute;
         right: 10px;
         top: 10px;
     }
 
-    .menu .nav .sub-menu .has-leaf > .nav-link-right {
+    .bb-menu .nav .sub-menu .has-leaf > .nav-link-right {
         right: 12px;
         top: 10px;
     }
 
-    .menu .has-leaf:hover > .nav-link-right {
+    .bb-menu .has-leaf:hover > .nav-link-right {
         transform: rotate(-90deg);
     }
 
-    .menu .menu-text {
+    .bb-menu .bb-menu-text {
         overflow: hidden;
         vertical-align: top;
         display: inline-block;
@@ -109,27 +109,27 @@
         transition: opacity .3s linear;
     }
 
-    .menu .nav .nav-link .menu-text {
+    .bb-menu .nav .nav-link .bb-menu-text {
         margin-left: 4px;
     }
 
-    .menu .nav .dropdown-toggle[aria-expanded="true"] + .dropdown-menu-arrow,
-    .cascade .show .dropdown-menu-arrow {
+    .bb-menu .nav .dropdown-toggle[aria-expanded="true"] + .menu-arrow,
+    .cascade .show .menu-arrow {
         display: block;
     }
 
-    .menu .nav .dropdown .dropdown-menu-arrow {
+    .bb-menu .nav .dropdown .menu-arrow {
         left: calc(50% - 6px);
     }
 
-    .menu .nav-link {
+    .bb-menu .nav-link {
         display: flex;
         align-items: center;
         line-height: 21px;
         transition: background-color .3s linear, color .3s linear;
     }
 
-        .menu .nav-link > .submenu-link {
+        .bb-menu .nav-link > .submenu-link {
             flex: 1 1 auto;
             min-width: 0;
             width: 1%;
@@ -138,44 +138,44 @@
             margin-inline-end: .5rem;
         }
 
-    .menu .widget > .badge:not(:first-child) {
+    .bb-menu .widget > .badge:not(:first-child) {
         margin-left: 4px;
     }
 
-    .menu.is-vertical {
+    .bb-menu.is-vertical {
         padding: 0 .5rem;
         border: none;
     }
 
-    .menu .submenu {
+    .bb-menu .bb-submenu {
         margin: 0;
         padding: 0;
         list-style: none;
     }
 
-        .menu .submenu li {
+        .bb-menu .bb-submenu li {
             margin-block-start: 2px;
         }
 
-        .menu .submenu .nav-link {
+        .bb-menu .bb-submenu .nav-link {
             border-radius: var(--bs-border-radius);
             padding: .5rem;
         }
 
-            .menu .submenu .nav-link .arrow {
+            .bb-menu .bb-submenu .nav-link .arrow {
                 transition: transform .3s linear;
             }
 
-            .menu .submenu .nav-link[aria-expanded="true"] > .arrow {
+            .bb-menu .bb-submenu .nav-link[aria-expanded="true"] > .arrow {
                 transform: rotate(-90deg);
             }
 
-            .menu .submenu .nav-link .menu-text,
-            .menu .submenu .nav-link .widget {
+            .bb-menu .bb-submenu .nav-link .bb-menu-text,
+            .bb-menu .bb-submenu .nav-link .widget {
                 margin: 0 4px;
             }
 
-.cascade .dropdown-menu {
+.cascade .menu {
     right: 0;
 }
 
@@ -187,25 +187,25 @@
     background-image: none;
 }
 
-.menu.is-bottom {
+.bb-menu.is-bottom {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
 }
 
-    .menu.is-bottom .nav {
+    .bb-menu.is-bottom .nav {
         flex-wrap: nowrap;
         justify-content: space-around;
         border-bottom: none;
         border-top: 1px solid var(--bs-gray-400);
     }
 
-        .menu.is-bottom .nav .dropdown-toggle[aria-expanded="true"] + .dropdown-menu-arrow {
+        .bb-menu.is-bottom .nav .dropdown-toggle[aria-expanded="true"] + .menu-arrow {
             display: none;
         }
 
-    .menu.is-bottom > .nav > li:after,
-    .menu.is-bottom .dropdown-menu-arrow:after {
+    .bb-menu.is-bottom > .nav > li:after,
+    .bb-menu.is-bottom .menu-arrow:after {
         content: none;
     }

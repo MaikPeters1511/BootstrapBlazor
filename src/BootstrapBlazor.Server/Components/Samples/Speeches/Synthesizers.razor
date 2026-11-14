@@ -10,10 +10,10 @@
            Introduction="@Localizer["SynthesizerNormalIntro"]"
            Name="Normal">
     <div class="row">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Textarea @bind-Value="InputText" rows="6" />
         </div>
-        <div class="col-12 col-sm-6 text-center">
+        <div class="col-12 sm:col-6 text-center">
             <SpeechWave Show="Start" ShowUsedTime="false" class="my-3" />
             <Button Text="@ButtonText" OnClick="OnStart" Icon="fa-fw fa-solid fa-microphone" />
         </div>

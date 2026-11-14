@@ -102,7 +102,7 @@ public class ContextMenuTest : BootstrapBlazorTestBase
         var v = pi.GetValue(menu.Instance);
         Assert.NotNull(v);
 
-        var item = menu.Find(".dropdown-item");
+        var item = menu.Find(".menu-item");
         Assert.DoesNotContain("blazor:onclick", item.InnerHtml);
 
         var contextItem = cut.FindComponent<ContextMenuItem>();
@@ -114,7 +114,7 @@ public class ContextMenuTest : BootstrapBlazorTestBase
                 return true;
             });
         });
-        item = menu.Find(".dropdown-item");
+        item = menu.Find(".menu-item");
         Assert.DoesNotContain("blazor:onclick", item.InnerHtml);
 
         // trigger OnBeforeShowCallback
@@ -135,7 +135,7 @@ public class ContextMenuTest : BootstrapBlazorTestBase
                 return Task.CompletedTask;
             });
         });
-        item = menu.Find(".dropdown-item");
+        item = menu.Find(".menu-item");
         item.Click();
         Assert.True(menuCallback);
 
@@ -281,7 +281,7 @@ public class ContextMenuTest : BootstrapBlazorTestBase
         var v = pi.GetValue(menu.Instance);
         Assert.NotNull(v);
 
-        var item = menu.Find(".dropdown-item");
+        var item = menu.Find(".menu-item");
         item.Click();
         Assert.True(clicked);
 
@@ -344,7 +344,7 @@ public class ContextMenuTest : BootstrapBlazorTestBase
         var v = pi.GetValue(menu.Instance);
         Assert.NotNull(v);
 
-        var item = menu.Find(".dropdown-item");
+        var item = menu.Find(".menu-item");
         item.Click();
         Assert.True(clicked);
 
@@ -393,11 +393,11 @@ public class ContextMenuTest : BootstrapBlazorTestBase
             });
         });
 
-        var menu = cut.Find(".dropdown-menu");
+        var menu = cut.Find(".menu");
         var children = menu.Children;
         Assert.Equal(3, children.Length);
-        Assert.Equal("dropdown-item", children[0].ClassName);
+        Assert.Equal("menu-item", children[0].ClassName);
         Assert.Equal("divider", children[1].ClassName);
-        Assert.Equal("dropdown-item", children[2].ClassName);
+        Assert.Equal("menu-item", children[2].ClassName);
     }
 }

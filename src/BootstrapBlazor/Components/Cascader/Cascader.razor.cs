@@ -133,9 +133,9 @@ public partial class Cascader<TValue>
         .Build();
 
     private string? ClearClassString => CssBuilder.Default("clear-icon")
-        .AddClass($"text-{Color.ToDescriptionString()}", Color != Color.None)
-        .AddClass($"text-success", IsValid.HasValue && IsValid.Value)
-        .AddClass($"text-danger", IsValid.HasValue && !IsValid.Value)
+        .AddClass($"fg-{Color.ToDescriptionString()}", Color != Color.None)
+        .AddClass($"fg-success", IsValid.HasValue && IsValid.Value)
+        .AddClass($"fg-danger", IsValid.HasValue && !IsValid.Value)
         .Build();
 
     /// <summary>
@@ -246,7 +246,7 @@ public partial class Cascader<TValue>
     /// <para lang="en">Get style collection</para>
     /// </summary>
     private string? AppendClassName => CssBuilder.Default("form-select-append")
-        .AddClass($"text-{Color.ToDescriptionString()}", Color != Color.None && !IsDisabled)
+        .AddClass($"fg-{Color.ToDescriptionString()}", Color != Color.None && !IsDisabled)
         .Build();
 
     private bool GetClearable() => IsClearable && !IsDisabled;

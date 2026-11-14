@@ -11,7 +11,7 @@ export function init(id, options) {
     const carousel = {
         element: el,
         controls: el.querySelectorAll('[data-bs-slide]'),
-        carousel: new bootstrap.Carousel(el, { delay })
+        carousel: new bootstrap.Carousel(el)
     }
     Data.set(id, carousel)
 
@@ -30,6 +30,11 @@ export function init(id, options) {
             el.classList.remove('hover')
         }, delay)
     })
+
+    // Bootstrap 6 has no "start cycling after the first manual slide" mode
+    if (el.getAttribute('data-bb-autoplay') === 'after-manually') {
+        EventHandler.one(el, 'slid.bs.carousel', () => carousel.carousel.cycle())
+    }
 
     if (method) {
         const slides = el.querySelectorAll('.carousel-item');

@@ -265,7 +265,7 @@ public class PopConfirmButtonTest : BootstrapBlazorTestBase
     public void Icon_Ok()
     {
         var cut = Context.Render<PopConfirmButtonContent>();
-        cut.Contains("text-info fa-solid fa-circle-exclamation");
+        cut.Contains("fg-info fa-solid fa-circle-exclamation");
         cut.Contains("fa-solid fa-xmark");
         cut.Contains("fa-solid fa-check");
     }

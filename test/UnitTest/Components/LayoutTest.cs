@@ -70,7 +70,7 @@ public class LayoutTest : BootstrapBlazorTestBase
         var tab = cut.Find(".tabs-item");
         await tab.ContextMenuAsync();
 
-        var buttons = cut.FindAll(".bb-cm-zone > .dropdown-menu .dropdown-item");
+        var buttons = cut.FindAll(".bb-cm-zone > .menu .menu-item");
         foreach (var button in buttons)
         {
             await cut.InvokeAsync(() => button.Click());
@@ -467,7 +467,7 @@ public class LayoutTest : BootstrapBlazorTestBase
             pb.Add(a => a.AdditionalAssemblies, new Assembly[] { GetType().Assembly });
             pb.Add(a => a.ShowTabExtendButtons, false);
         });
-        cut.DoesNotContain("<div class=\"nav-link-bar dropdown dropdown-toggle\" data-bs-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">");
+        cut.DoesNotContain("<div class=\"nav-link-bar dropdown dropdown-toggle\" data-bs-toggle=\"menu\" aria-haspopup=\"true\" aria-expanded=\"false\">");
     }
 
     [Fact]

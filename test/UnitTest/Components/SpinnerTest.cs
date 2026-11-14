@@ -12,7 +12,7 @@ public class SpinnerTest : TestBase
     {
         var cut = Context.Render<Spinner>(builder => builder.Add(s => s.Color, Color.Primary));
 
-        Assert.Contains("text-primary", cut.Markup);
+        Assert.Contains("fg-primary", cut.Markup);
     }
 
     [Fact]

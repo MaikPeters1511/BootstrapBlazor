@@ -63,10 +63,10 @@
 
 @code {
     RenderFragment RenderDropdown =>
-    @<ul class="dropdown-menu">
+    @<ul class="menu">
         @foreach (var item in _filterItems)
         {
-            <li class="dropdown-item" @onclick="() => OnClickItem(item)">
+            <li class="menu-item" @onclick="() => OnClickItem(item)">
                 @if (ItemTemplate != null)
                 {
                     @ItemTemplate(item)
@@ -79,7 +79,7 @@
         }
         @if (_filterItems.Count == 0)
         {
-            <li class="dropdown-item">@NoDataTip</li>
+            <li class="menu-item">@NoDataTip</li>
         }
     </ul>;
 }

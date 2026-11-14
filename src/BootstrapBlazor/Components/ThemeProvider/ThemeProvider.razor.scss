@@ -9,14 +9,14 @@
         display: inline-block;
     }
 
-    .dropdown-menu {
-        --bs-dropdown-min-width: var(--bb-theme-mode-width);
+    .menu {
+        --bs-menu-min-width: var(--bb-theme-mode-width);
 
         li:not(:first-child) {
             margin-block-start: var(--bb-theme-mode-item-margin-top);
         }
 
-        .dropdown-item {
+        .menu-item {
             span {
                 width: var(--bb-theme-mode-label-width);
             }

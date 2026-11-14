@@ -28,7 +28,7 @@ private MessageService? MessageService { get; set; }
             </BootstrapInputGroup>
         </div>
         <div class="col-12">
-            <button class="btn btn-primary" @onclick="@ShowMessage">@Localizer["MessagesMessagePrompt"]</button>
+            <button class="btn btn-solid theme-primary" @onclick="@ShowMessage">@Localizer["MessagesMessagePrompt"]</button>
         </div>
     </section>
     <Message @ref="Message" Placement="@Placement"></Message>
@@ -39,51 +39,51 @@ private MessageService? MessageService { get; set; }
 </DemoBlock>
 
 <DemoBlock Title="@Localizer["MessagesIconTitle"]" Introduction="@Localizer["MessagesIconIntro"]" Name="Icon">
-    <button class="btn btn-primary" @onclick="@ShowIconMessage">@Localizer["MessagesMessagePrompt"]</button>
+    <button class="btn btn-solid theme-primary" @onclick="@ShowIconMessage">@Localizer["MessagesMessagePrompt"]</button>
 </DemoBlock>
 
 <DemoBlock Title="@Localizer["MessagesCloseButtonTitle"]" Introduction="@Localizer["MessagesCloseButtonIntro"]" Name="CloseButton">
-    <button class="btn btn-primary" @onclick="@ShowCloseMessage">@Localizer["MessagesMessagePrompt"]</button>
+    <button class="btn btn-solid theme-primary" @onclick="@ShowCloseMessage">@Localizer["MessagesMessagePrompt"]</button>
 </DemoBlock>
 
 <DemoBlock Title="@Localizer["MessagesLeftBoardTitle"]" Introduction="@Localizer["MessagesLeftBoardIntro"]" Name="LeftBoard">
-    <button class="btn btn-primary" @onclick="@ShowBarMessage">@Localizer["MessagesMessagePrompt"]</button>
+    <button class="btn btn-solid theme-primary" @onclick="@ShowBarMessage">@Localizer["MessagesMessagePrompt"]</button>
 </DemoBlock>
 
 <DemoBlock Title="@Localizer["MessagesDifferentColorTitle"]" Introduction="@Localizer["MessagesDifferentColorIntro"]" Name="DifferentColor">
     <div class="row g-3">
-        <div class="col-6 col-sm-auto">
-            <button class="btn btn-primary" @onclick="@(e => ShowColorMessage(Color.Primary))">@Localizer["MessagesDifferentColorPrimary"]</button>
+        <div class="col-6 sm:col-auto">
+            <button class="btn btn-solid theme-primary" @onclick="@(e => ShowColorMessage(Color.Primary))">@Localizer["MessagesDifferentColorPrimary"]</button>
         </div>
-        <div class="col-6 col-sm-auto">
-            <button class="btn btn-success" @onclick="@(e => ShowColorMessage(Color.Success))">@Localizer["MessagesDifferentColorSuccess"]</button>
+        <div class="col-6 sm:col-auto">
+            <button class="btn btn-solid theme-success" @onclick="@(e => ShowColorMessage(Color.Success))">@Localizer["MessagesDifferentColorSuccess"]</button>
         </div>
-        <div class="col-6 col-sm-auto">
-            <button class="btn btn-info" @onclick="@(e => ShowColorMessage(Color.Info))">@Localizer["MessagesDifferentColorInfo"]</button>
+        <div class="col-6 sm:col-auto">
+            <button class="btn btn-solid theme-info" @onclick="@(e => ShowColorMessage(Color.Info))">@Localizer["MessagesDifferentColorInfo"]</button>
         </div>
-        <div class="col-6 col-sm-auto">
-            <button class="btn btn-danger" @onclick="@(e => ShowColorMessage(Color.Danger))">@Localizer["MessagesDifferentColorDanger"]</button>
+        <div class="col-6 sm:col-auto">
+            <button class="btn btn-solid theme-danger" @onclick="@(e => ShowColorMessage(Color.Danger))">@Localizer["MessagesDifferentColorDanger"]</button>
         </div>
-        <div class="col-6 col-sm-auto">
-            <button class="btn btn-warning" @onclick="@(e => ShowColorMessage(Color.Warning))">@Localizer["MessagesDifferentColorWarning"]</button>
+        <div class="col-6 sm:col-auto">
+            <button class="btn btn-solid theme-warning" @onclick="@(e => ShowColorMessage(Color.Warning))">@Localizer["MessagesDifferentColorWarning"]</button>
         </div>
-        <div class="col-6 col-sm-auto">
-            <button class="btn btn-secondary" @onclick="@(e => ShowColorMessage(Color.Secondary))">@Localizer["MessagesDifferentColorSecondary"]</button>
+        <div class="col-6 sm:col-auto">
+            <button class="btn btn-solid theme-secondary" @onclick="@(e => ShowColorMessage(Color.Secondary))">@Localizer["MessagesDifferentColorSecondary"]</button>
         </div>
     </div>
 </DemoBlock>
 
 <DemoBlock Title="@Localizer["MessagesPositionTitle"]" Introduction="@Localizer["MessagesPositionIntro"]" Name="Position">
-    <button class="btn btn-primary" @onclick="@ShowBottomMessage">@Localizer["MessagesMessagePrompt"]</button>
+    <button class="btn btn-solid theme-primary" @onclick="@ShowBottomMessage">@Localizer["MessagesMessagePrompt"]</button>
     <Message @ref="Message1" Placement="Placement.Bottom" />
 </DemoBlock>
 
 <DemoBlock Title="@Localizer["MessagesTemplateTitle"]" Introduction="@Localizer["MessagesTemplateIntro"]" Name="Template">
-    <button class="btn btn-primary" @onclick="@ShowTemplateMessage">@Localizer["MessagesTemplatePrompt"]</button>
+    <button class="btn btn-solid theme-primary" @onclick="@ShowTemplateMessage">@Localizer["MessagesTemplatePrompt"]</button>
 </DemoBlock>
 
 <DemoBlock Title="@Localizer["MessagesShowModeTitle"]" Introduction="@Localizer["MessagesShowModeIntro"]" Name="ShowMode">
-    <button class="btn btn-primary" @onclick="@ShowLastOnlyMessage">@Localizer["MessagesShowModePrompt"]</button>
+    <button class="btn btn-solid theme-primary" @onclick="@ShowLastOnlyMessage">@Localizer["MessagesShowModePrompt"]</button>
 </DemoBlock>
 
 <AttributeTable Type="typeof(Message)" />
@@ -93,8 +93,8 @@ private MessageService? MessageService { get; set; }
 @code {
     private RenderFragment RenderContent =>
     @<div class="message-custom">
-        <p class="text-primary">Message Header</p>
+        <p class="fg-primary">Message Header</p>
         <p>Message Body</p>
-        <div class="text-warning">Message Footer</div>
+        <div class="fg-warning">Message Footer</div>
     </div>;
 }

@@ -11,7 +11,7 @@ namespace BootstrapBlazor.Components;
 /// </summary>
 public partial class Drawer : IClosable
 {
-    private string? ClassString => CssBuilder.Default("drawer collapse")
+    private string? ClassString => CssBuilder.Default("bb-drawer collapse")
         .AddClass("no-bd", !ShowBackdrop)
         .AddClassFromAttributes(AdditionalAttributes)
         .Build();
@@ -29,7 +29,7 @@ public partial class Drawer : IClosable
 
     private bool IsVertical => Placement == Placement.Top || Placement == Placement.Bottom;
 
-    private string? DrawerClassString => CssBuilder.Default("drawer-body")
+    private string? DrawerClassString => CssBuilder.Default("bb-drawer-body")
         .AddClass("left", Placement != Placement.Right && Placement != Placement.Top && Placement != Placement.Bottom)
         .AddClass("top", Placement == Placement.Top)
         .AddClass("right", Placement == Placement.Right)
@@ -204,7 +204,7 @@ public partial class Drawer : IClosable
     private RenderFragment RenderBackdrop() => builder =>
     {
         builder.OpenElement(0, "div");
-        builder.AddAttribute(10, "class", "drawer-backdrop modal-backdrop fade");
+        builder.AddAttribute(10, "class", "bb-drawer-backdrop fade");
         if (IsBackdrop)
         {
             builder.AddAttribute(20, "onclick", EventCallback.Factory.Create(this, OnContainerClick));

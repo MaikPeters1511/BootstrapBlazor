@@ -23,13 +23,13 @@
 
 <DemoBlock Title="@Localizer["BaseUsageText2"]" Introduction="@Localizer["BaseUsageIntro2"]" Name="Reload">
     <div class="row g-3">
-        <div class="col-6 col-sm-4 col-md-3 col-xl-2">
+        <div class="col-6 sm:col-4 md:col-3 xl:col-2">
             <Dropdown TValue="string" Items="Items" OnSelectedItemChanged="@ChangeURL" />
         </div>
-        <div class="col-6 col-sm-4 col-md-3 col-xl-5">
+        <div class="col-6 sm:col-4 md:col-3 xl:col-5">
             <BootstrapInput @bind-Value="@Url" />
         </div>
-        <div class="col-6 col-sm-4 col-md-3 col-xl-auto">
+        <div class="col-6 sm:col-4 md:col-3 xl:col-auto">
             <Button Color="Color.Primary" OnClick="Apply">加载</Button>
         </div>
     </div>

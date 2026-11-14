@@ -94,12 +94,12 @@ public class ModalTest : BootstrapBlazorTestBase
             });
         });
 
-        var header = cut.Find(".backdrop .modal-title");
+        var header = cut.Find(".backdrop .dialog-title");
         Assert.Equal("", header.TextContent);
 
         var modal = cut.FindComponent<Modal>();
         await cut.InvokeAsync(() => modal.Instance.SetHeaderText("Test-Header"));
-        header = cut.Find(".backdrop .modal-title");
+        header = cut.Find(".backdrop .dialog-title");
         Assert.Equal("Test-Header", header.TextContent);
     }
 

@@ -14,7 +14,7 @@
            Introduction="@Localizer["SelectTreesDisableIntro"]"
            Name="Disable">
     <div class="row">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <SelectTree TValue="TreeFoo" Color="Color.Primary" Items="DisableItems" IsDisabled="true"></SelectTree>
         </div>
     </div>
@@ -24,10 +24,10 @@
            Introduction="@Localizer["SelectTreesBindingIntro"]"
            Name="Binding">
     <div class="row g-3">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <SelectTree Items="BindingItems" @bind-Value="Model"></SelectTree>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Display Value="Model.Text" />
         </div>
     </div>
@@ -38,10 +38,10 @@
            Name="ClientValidation">
     <ValidateForm Model="BindModel">
         <div class="row g-3">
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <SelectTree TValue="string" @bind-Value="BindModel.Text" ShowIcon="true" Items="BindItems" OnExpandNodeAsync="OnExpandNodeAsync" />
             </div>
-            <div class="col-12 col-sm-6 align-self-end">
+            <div class="col-12 sm:col-6 align-self-end">
                 <Button ButtonType="ButtonType.Submit">@Localizer["SelectTreesClientValidationButtonText"]</Button>
             </div>
         </div>
@@ -55,10 +55,10 @@
         <div>@((MarkupString)Localizer["SelectTreesEditDesc"].Value)</div>
     </section>
     <div class="row g-3">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <SelectTree Items="EditItems" @bind-Value="@Value" IsEditable="true"></SelectTree>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Display Value="@Value" />
         </div>
     </div>
@@ -68,7 +68,7 @@
            Introduction="@Localizer["SelectTreesIsPopoverIntro"]"
            Name="IsPopover">
     <div class="row">
-        <div class="col-12 col-sm-6 overflow-hidden">
+        <div class="col-12 sm:col-6 overflow-hidden">
             <SelectTree Items="PopoverItems" IsPopover="true" />
         </div>
     </div>

@@ -140,7 +140,7 @@ const initImg = (captcha, option) => {
     }
     img.onerror = () => {
         captcha.load.innerHTML = captcha.load.getAttribute('data-failed')
-        captcha.load.classList.add('text-danger')
+        captcha.load.classList.add('fg-danger')
     }
 }
 
@@ -150,7 +150,7 @@ const resetCanvas = (captcha, option) => {
     captcha.block.width = option.width
     captcha.block.style.left = '0'
     captcha.load.innerHTML = captcha.load.getAttribute('data-load')
-    captcha.load.classList.remove('text-danger')
+    captcha.load.classList.remove('fg-danger')
 }
 
 const resetBar = function (captcha) {

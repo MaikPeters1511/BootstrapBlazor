@@ -182,13 +182,13 @@ public class SelectTreeTest : BootstrapBlazorTestBase
         {
             builder.Add(p => p.Items, BindItems);
         });
-        cut.Contains("data-bs-toggle=\"dropdown\"");
+        cut.Contains("data-bs-toggle=\"menu\"");
 
         cut.Render(pb =>
         {
             pb.Add(a => a.IsPopover, true);
         });
-        cut.DoesNotContain("data-bs-toggle=\"dropdown\"");
+        cut.DoesNotContain("data-bs-toggle=\"menu\"");
     }
 
     [Fact]

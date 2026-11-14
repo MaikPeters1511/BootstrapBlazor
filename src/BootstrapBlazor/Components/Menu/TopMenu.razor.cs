@@ -13,6 +13,8 @@ namespace BootstrapBlazor.Components;
 /// </summary>
 public partial class TopMenu
 {
+    private string PlacementString => Parent.IsBottom ? "top-start" : "bottom-start";
+
     private string? GetDropdownClassString(MenuItem item, string className = "") => CssBuilder.Default(className)
         .AddClass("dropdown", string.IsNullOrEmpty(className) && !Parent.IsBottom)
         .AddClass("dropup", string.IsNullOrEmpty(className) && Parent.IsBottom)

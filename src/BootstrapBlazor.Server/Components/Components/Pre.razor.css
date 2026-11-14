@@ -30,7 +30,7 @@
     right: 3rem;
 }
 
-    ::deep .btn-group .btn-primary {
+    ::deep .btn-group .btn-solid.theme-primary {
         position: relative;
     }
 

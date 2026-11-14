@@ -21,11 +21,11 @@ public partial class InputUpload<TValue>
     public string? BrowserButtonIcon { get; set; }
 
     /// <summary>
-    /// <para lang="zh">获得/设置 上传按钮样式，默认 btn-primary</para>
-    /// <para lang="en">Gets or sets the upload button style. Default is btn-primary</para>
+    /// <para lang="zh">获得/设置 上传按钮样式，默认 btn-solid theme-primary</para>
+    /// <para lang="en">Gets or sets the upload button style. Default is btn-solid theme-primary</para>
     /// </summary>
     [Parameter]
-    public string BrowserButtonClass { get; set; } = "btn-primary";
+    public string BrowserButtonClass { get; set; } = "btn-solid theme-primary";
 
     /// <summary>
     /// <para lang="zh">获得/设置 浏览按钮显示文字</para>
@@ -36,11 +36,11 @@ public partial class InputUpload<TValue>
     public string? BrowserButtonText { get; set; }
 
     /// <summary>
-    /// <para lang="zh">获得/设置 删除按钮样式，默认 btn-danger</para>
-    /// <para lang="en">Gets or sets the delete button style. Default is btn-danger</para>
+    /// <para lang="zh">获得/设置 删除按钮样式，默认 btn-solid theme-danger</para>
+    /// <para lang="en">Gets or sets the delete button style. Default is btn-solid theme-danger</para>
     /// </summary>
     [Parameter]
-    public string DeleteButtonClass { get; set; } = "btn-danger";
+    public string DeleteButtonClass { get; set; } = "btn-solid theme-danger";
 
     /// <summary>
     /// <para lang="zh">获得/设置 删除按钮图标</para>

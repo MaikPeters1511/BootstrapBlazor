@@ -499,4 +499,15 @@ public class CheckboxListTest : BootstrapBlazorTestBase
             return base.FormatValueAsString(new List<string>() { "test" });
         }
     }
+
+    [Fact]
+    public void BootstrapCheckClass_Ok()
+    {
+        // Bootstrap 6 styles checkboxes with .check, form-check-input stays as component hook
+        var cut = Context.Render<Checkbox<bool>>();
+        var input = cut.Find("input");
+        Assert.Contains("check", input.ClassList);
+        Assert.Contains("form-check-input", input.ClassList);
+        Assert.DoesNotContain("radio", input.ClassList);
+    }
 }

@@ -1161,7 +1161,7 @@ const resetColumnListPopover = table => {
         const dropdown = toolbar.querySelector('.dropdown-column');
         if (dropdown) {
             const button = dropdown.querySelector('.dropdown-toggle');
-            const dropdownToggle = bootstrap.Dropdown.getInstance(button);
+            const dropdownToggle = bootstrap.Menu.getInstance(button);
             if (dropdownToggle) {
                 dropdownToggle.dispose();
             }

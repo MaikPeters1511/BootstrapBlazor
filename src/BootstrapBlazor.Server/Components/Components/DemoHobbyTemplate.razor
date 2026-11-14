@@ -1,7 +1,7 @@
 @using BootstrapBlazor.Server.Components.Samples.Table
 @inject IStringLocalizer<Foo> FooLocalizer
 
-<div class="col-12 col-sm-6">
+<div class="col-12 sm:col-6">
     <MultiSelect @bind-Value="Model.Hobby" Items="@Hobbies" />
 </div>
 

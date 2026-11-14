@@ -32,25 +32,25 @@
            Introduction="@Localizer["OtpInputsNormalIntro"]"
            Name="Normal">
     <section ignore class="row g-3 mb-3">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <BootstrapInputGroup>
                 <BootstrapInputGroupLabel DisplayText="Type"></BootstrapInputGroupLabel>
                 <Select @bind-Value="_otpInputType"></Select>
             </BootstrapInputGroup>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <BootstrapInputGroup>
                 <BootstrapInputGroupLabel DisplayText="PlaceHolder"></BootstrapInputGroupLabel>
                 <BootstrapInput @bind-Value="@_placeHolder"></BootstrapInput>
             </BootstrapInputGroup>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <BootstrapInputGroup>
                 <BootstrapInputGroupLabel DisplayText="Readonly"></BootstrapInputGroupLabel>
                 <Switch @bind-Value="@_readonly"></Switch>
             </BootstrapInputGroup>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <BootstrapInputGroup>
                 <BootstrapInputGroupLabel DisplayText="Disable"></BootstrapInputGroupLabel>
                 <Switch @bind-Value="@_disabled"></Switch>

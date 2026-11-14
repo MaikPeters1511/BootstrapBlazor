@@ -62,6 +62,6 @@ public class TimelineItem
     /// </summary>
     internal string? ToIconClassString() => CssBuilder.Default("timeline-item-icon")
         .AddClass(Icon, !string.IsNullOrEmpty(Icon))
-        .AddClass($"text-{Color.ToDescriptionString()}", Color != Color.None)
+        .AddClass($"fg-{Color.ToDescriptionString()}", Color != Color.None)
         .Build();
 }

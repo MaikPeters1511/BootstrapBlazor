@@ -17,10 +17,10 @@ public class DialogTest : BootstrapBlazorTestBase
         });
         var modal = cut.FindComponent<Modal>();
         var dialog = cut.FindComponent<MockDialogTest>().Instance.DialogService;
-        _ = cut.InvokeAsync(() => dialog.ShowModal("title", "<span class=\"text-danger\">test-content</span>"));
-        cut.WaitForState(() => cut.Markup.Contains("btn-primary"));
+        _ = cut.InvokeAsync(() => dialog.ShowModal("title", "<span class=\"fg-danger\">test-content</span>"));
+        cut.WaitForState(() => cut.Markup.Contains("btn-solid theme-primary"));
 
-        var closeButton = cut.Find(".btn-primary");
+        var closeButton = cut.Find(".btn-solid.theme-primary");
         await cut.InvokeAsync(() => closeButton.Click());
         await cut.InvokeAsync(() => modal.Instance.CloseCallback());
     }
@@ -105,7 +105,7 @@ public class DialogTest : BootstrapBlazorTestBase
             Component = BootstrapDynamicComponent.CreateComponent<Button>(),
             BodyTemplate = null
         }));
-        Assert.Contains("class=\"btn btn-primary\"", cut.Markup);
+        Assert.Contains("class=\"btn btn-solid theme-primary\"", cut.Markup);
         modal = cut.FindComponent<Modal>();
         await cut.InvokeAsync(() => modal.Instance.CloseCallback());
 
@@ -321,9 +321,9 @@ public class DialogTest : BootstrapBlazorTestBase
 
         // 点击的是 Yes 按钮
         _ = cut.InvokeAsync(() => dialog.ShowModal<MockModalDialog>(resultOption));
-        cut.WaitForState(() => cut.Markup.Contains("btn-primary"));
+        cut.WaitForState(() => cut.Markup.Contains("btn-solid theme-primary"));
 
-        var closeButton = cut.Find(".btn-primary");
+        var closeButton = cut.Find(".btn-solid.theme-primary");
         await cut.InvokeAsync(() => closeButton.Click());
         await cut.InvokeAsync(() => modal.Instance.CloseCallback());
         Assert.True(result);
@@ -332,9 +332,9 @@ public class DialogTest : BootstrapBlazorTestBase
         result = true;
         resultOption.BodyTemplate = null;
         _ = cut.InvokeAsync(() => dialog.ShowModal<MockModalDialog>(resultOption));
-        cut.WaitForState(() => cut.Markup.Contains("btn-danger"));
+        cut.WaitForState(() => cut.Markup.Contains("btn-solid theme-danger"));
 
-        closeButton = cut.Find(".btn-danger");
+        closeButton = cut.Find(".btn-solid.theme-danger");
         await cut.InvokeAsync(() => closeButton.Click());
         await cut.InvokeAsync(() => modal.Instance.CloseCallback());
         Assert.False(result);
@@ -343,9 +343,9 @@ public class DialogTest : BootstrapBlazorTestBase
         result = true;
         resultOption.BodyTemplate = null;
         _ = cut.InvokeAsync(() => dialog.ShowModal<MockModalDialog>(resultOption));
-        cut.WaitForState(() => cut.Markup.Contains("btn-secondary"));
+        cut.WaitForState(() => cut.Markup.Contains("btn-solid theme-secondary"));
 
-        closeButton = cut.Find(".btn-secondary");
+        closeButton = cut.Find(".btn-solid.theme-secondary");
         await cut.InvokeAsync(() => closeButton.Click());
         await cut.InvokeAsync(() => modal.Instance.CloseCallback());
         Assert.False(result);
@@ -362,9 +362,9 @@ public class DialogTest : BootstrapBlazorTestBase
             OnCloseAsync = () => Task.CompletedTask
         };
         _ = cut.InvokeAsync(() => dialog.ShowModal<MockModalDialog>(resultOption));
-        cut.WaitForState(() => cut.Markup.Contains("btn-secondary"));
+        cut.WaitForState(() => cut.Markup.Contains("btn-solid theme-secondary"));
 
-        closeButton = cut.Find(".btn-secondary");
+        closeButton = cut.Find(".btn-solid.theme-secondary");
         await cut.InvokeAsync(() => closeButton.Click());
         await cut.InvokeAsync(() => modal.Instance.CloseCallback());
 
@@ -380,17 +380,17 @@ public class DialogTest : BootstrapBlazorTestBase
         // 点击 FooterTemplate 中的 关闭 按钮
         resultOption.BodyTemplate = null;
         _ = cut.InvokeAsync(() => dialog.ShowModal<MockModalDialogClosingFalse>(resultOption));
-        cut.WaitForState(() => cut.Markup.Contains("btn-secondary"));
+        cut.WaitForState(() => cut.Markup.Contains("btn-solid theme-secondary"));
 
-        closeButton = cut.Find(".btn-secondary");
+        closeButton = cut.Find(".btn-solid.theme-secondary");
         await cut.InvokeAsync(() => closeButton.Click());
         await cut.InvokeAsync(() => modal.Instance.CloseCallback());
 
         // 测试 Markup 扩展模式弹窗
-        _ = cut.InvokeAsync(() => dialog.ShowModal("title", "<span class=\"text-danger\">test-content</span>"));
-        cut.WaitForState(() => cut.Markup.Contains("btn-primary"));
+        _ = cut.InvokeAsync(() => dialog.ShowModal("title", "<span class=\"fg-danger\">test-content</span>"));
+        cut.WaitForState(() => cut.Markup.Contains("btn-solid theme-primary"));
 
-        closeButton = cut.Find(".btn-primary");
+        closeButton = cut.Find(".btn-solid.theme-primary");
         await cut.InvokeAsync(() => closeButton.Click());
         await cut.InvokeAsync(() => modal.Instance.CloseCallback());
         #endregion
@@ -418,10 +418,14 @@ public class DialogTest : BootstrapBlazorTestBase
         Assert.DoesNotContain("modal-multiple", cut.Markup);
 
         // 弹出第二个弹窗
-        var buttonInDialog = cut.Find(".btn-primary");
+        var buttonInDialog = cut.Find(".btn-solid.theme-primary");
         buttonInDialog.Click();
         Assert.Contains("class=\"modal fade modal-multiple show\"", cut.Markup);
         Assert.Equal(2, cut.FindComponents<ModalDialog>().Count);
+
+        // Bootstrap 6: stacked native dialogs bring their own ::backdrop
+        Assert.Equal(2, cut.FindAll("dialog.dialog").Count);
+        Assert.Empty(cut.FindAll(".modal-backdrop"));
 
         // 关闭第二个弹窗
         await cut.InvokeAsync(() => modal.Instance.CloseCallback());
@@ -437,7 +441,7 @@ public class DialogTest : BootstrapBlazorTestBase
         {
             FullScreenSize = FullScreenSize.Large
         }));
-        Assert.Contains("modal-fullscreen-lg-down", cut.Markup);
+        Assert.Contains("lg-down:dialog-fullscreen", cut.Markup);
         await cut.InvokeAsync(() => modal.Instance.CloseCallback());
         #endregion
 
@@ -446,14 +450,14 @@ public class DialogTest : BootstrapBlazorTestBase
         {
             IsCentered = true
         }));
-        Assert.Contains("modal-dialog-centered", cut.Markup);
+        Assert.Contains("dialog-centered", cut.Markup);
         await cut.InvokeAsync(() => modal.Instance.CloseCallback());
 
         await cut.InvokeAsync(() => dialog.Show(new DialogOption()
         {
             IsCentered = false
         }));
-        Assert.DoesNotContain("modal-dialog-centered", cut.Markup);
+        Assert.DoesNotContain("dialog-centered", cut.Markup);
         await cut.InvokeAsync(() => modal.Instance.CloseCallback());
         #endregion
 

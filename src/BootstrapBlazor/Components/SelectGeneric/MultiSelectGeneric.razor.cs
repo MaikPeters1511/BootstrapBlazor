@@ -21,7 +21,7 @@ public partial class MultiSelectGeneric<TValue> : IModelEqualityComparer<TValue>
         .AddClass("is-clearable", IsClearable)
         .Build();
 
-    private string? DropdownMenuClassString => CssBuilder.Default("dropdown-menu")
+    private string? DropdownMenuClassString => CssBuilder.Default("menu")
         .AddClass("is-fixed-toolbar", ShowToolbar)
         .Build();
 
@@ -34,7 +34,7 @@ public partial class MultiSelectGeneric<TValue> : IModelEqualityComparer<TValue>
         .AddClass(CssClass).AddClass(ValidCss)
         .Build();
 
-    private string? GetItemClassString(SelectedItem<TValue> item) => CssBuilder.Default("dropdown-item")
+    private string? GetItemClassString(SelectedItem<TValue> item) => CssBuilder.Default("menu-item")
         .AddClass("active", GetCheckedState(item))
         .AddClass("disabled", item.IsDisabled)
         .Build();

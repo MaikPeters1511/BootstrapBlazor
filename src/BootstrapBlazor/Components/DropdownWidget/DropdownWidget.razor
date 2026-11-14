@@ -11,21 +11,21 @@
             @foreach (var item in GetItems())
             {
                 <li class="dropdown-center">
-                    <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" title="@item.Title">
+                    <a href="#" class="dropdown-toggle" data-bs-toggle="menu" data-bs-placement="bottom" title="@item.Title">
                         <i class="@item.Icon"></i>
                         @if (!string.IsNullOrEmpty(item.BadgeNumber))
                         {
                             <Badge Color="@item.BadgeColor">@item.BadgeNumber</Badge>
                         }
                     </a>
-                    <div class="dropdown-menu shadow">
+                    <div class="menu shadow">
                         @if (item.ShowArrow)
                         {
                             <div class="dropdown-arrow arrow-@item.HeaderColor.ToDescriptionString()"></div>
                         }
                         @if (item.HeaderTemplate != null)
                         {
-                            <div class="dropdown-header bg-@item.HeaderColor.ToDescriptionString()">
+                            <div class="menu-header bg-@item.HeaderColor.ToDescriptionString()">
                                 @item.HeaderTemplate
                             </div>
                         }

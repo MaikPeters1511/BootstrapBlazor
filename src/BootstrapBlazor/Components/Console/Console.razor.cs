@@ -36,7 +36,7 @@ public partial class Console
     /// </summary>
     /// <param name="item"></param>
     private static string? GetClassString(ConsoleMessageItem item) => CssBuilder.Default()
-        .AddClass($"text-{item.Color.ToDescriptionString()}", item.Color != Color.None)
+        .AddClass($"fg-{item.Color.ToDescriptionString()}", item.Color != Color.None)
         .AddClass(item.CssClass, !string.IsNullOrEmpty(item.CssClass))
         .Build();
 

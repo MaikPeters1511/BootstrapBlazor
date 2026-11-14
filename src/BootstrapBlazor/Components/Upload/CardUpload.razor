@@ -44,19 +44,19 @@
                         }
                         @if (ShowZoomButton)
                         {
-                            <button type="button" class="btn btn-sm btn-secondary btn-zoom" disabled="@GetDisabledString(item)" @onclick="() => OnClickZoom(item)" aria-label="zoom">
+                            <button type="button" class="btn btn-sm btn-solid theme-secondary btn-zoom" disabled="@GetDisabledString(item)" @onclick="() => OnClickZoom(item)" aria-label="zoom">
                                 <i class="@ZoomIcon"></i>
                             </button>
                         }
                         @if (ShowDownloadButton)
                         {
-                            <button type="button" class="btn btn-sm btn-secondary btn-download" disabled="@GetDisabledString(item)" @onclick="() => OnClickDownload(item)" aria-label="download">
+                            <button type="button" class="btn btn-sm btn-solid theme-secondary btn-download" disabled="@GetDisabledString(item)" @onclick="() => OnClickDownload(item)" aria-label="download">
                                 <i class="@DownloadIcon"></i>
                             </button>
                         }
                         @if (GetShowProgress(item))
                         {
-                            <button type="button" class="btn btn-sm btn-secondary btn-cancel" @onclick="() => OnClickCancel(item)" aria-label="cancel">
+                            <button type="button" class="btn btn-sm btn-solid theme-secondary btn-cancel" @onclick="() => OnClickCancel(item)" aria-label="cancel">
                                 <i class="@CancelIcon"></i>
                             </button>
                         }
@@ -69,7 +69,7 @@
                     {
                         @if (IsConfirmDelete)
                         {
-                            <PopConfirmButton Placement="Placement.Top" class="btn btn-sm btn-outline-danger"
+                            <PopConfirmButton Placement="Placement.Top" class="btn btn-sm btn-outline theme-danger"
                                               ConfirmIcon="@DeleteConfirmButtonIcon"
                                               ConfirmButtonColor="DeleteConfirmButtonColor"
                                               ConfirmButtonText="@DeleteConfirmButtonText"
@@ -82,7 +82,7 @@
                         }
                         else
                         {
-                            <button type="button" class="btn btn-sm btn-outline-danger"
+                            <button type="button" class="btn btn-sm btn-outline theme-danger"
                                     disabled="@GetDeleteButtonDisabledString(item)" aria-label="delete"
                                     @onclick="@(() => OnCardFileDelete(item))">
                                 <i class="@RemoveIcon"></i>

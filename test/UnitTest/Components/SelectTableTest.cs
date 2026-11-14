@@ -134,7 +134,7 @@ public class SelectTableTest : BootstrapBlazorTestBase
         cut.Contains("border-danger");
 
         var span = cut.Find(".clear-icon");
-        Assert.True(span.ClassList.Contains("text-danger"));
+        Assert.True(span.ClassList.Contains("fg-danger"));
     }
 
     [Fact]
@@ -371,7 +371,7 @@ public class SelectTableTest : BootstrapBlazorTestBase
         Assert.True(valid);
 
         var span = cut.Find(".clear-icon");
-        Assert.True(span.ClassList.Contains("text-success"));
+        Assert.True(span.ClassList.Contains("fg-success"));
 
         model.Foo = null;
         var table = cut.FindComponent<SelectTable<Foo>>();
@@ -384,7 +384,7 @@ public class SelectTableTest : BootstrapBlazorTestBase
         Assert.True(invalid);
 
         span = cut.Find(".clear-icon");
-        Assert.True(span.ClassList.Contains("text-danger"));
+        Assert.True(span.ClassList.Contains("fg-danger"));
     }
 
     [Fact]

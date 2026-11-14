@@ -25,7 +25,7 @@ export function init(id) {
         dialog.dialogHeight = 0;
         dialog.pt = { top: 0, left: 0 };
 
-        dialog.header = el.querySelector('.modal-header')
+        dialog.header = el.querySelector('.dialog-header')
         drag(dialog.header,
             e => {
                 if (e.target.closest('.modal-header-buttons')) {
@@ -34,7 +34,7 @@ export function init(id) {
                 dialog.originX = e.clientX || (e.touches != null && e.touches[0].clientX) || 0;
                 dialog.originY = e.clientY || (e.touches != null && e.touches[0].clientY) || 0;
 
-                const rect = el.querySelector('.modal-content').getBoundingClientRect()
+                const rect = el.getBoundingClientRect()
                 dialog.dialogWidth = rect.width
                 dialog.dialogHeight = rect.height
                 dialog.pt.top = rect.top
@@ -78,7 +78,7 @@ export function init(id) {
             dialog.resize = null
         }
 
-        const content = el.querySelector('.modal-content')
+        const content = el
         drag(resize,
             e => {
                 content.originX = e.clientX || (e.touches != null && e.touches[0].clientX) || 0;
@@ -111,7 +111,7 @@ export function init(id) {
                     content.style.maxWidth = `${newValX}px`
                     content.style.width = `${newValX}px`
                     content.style.height = `${newValY}px`
-                    el.style.setProperty('--bs-modal-width', `${newValX}px`)
+                    el.style.setProperty('--bs-dialog-width', `${newValX}px`)
                 }
             },
             () => {
@@ -153,6 +153,12 @@ export function dispose(id) {
     Data.remove(id)
 
     if (dialog) {
+        // close the native dialog and release the scroll lock if it is still open
+        const instance = bootstrap.Dialog.getInstance(dialog.el)
+        if (instance) {
+            instance.dispose()
+        }
+
         if (dialog.draggable) {
             dialog.disposeDrag()
         }

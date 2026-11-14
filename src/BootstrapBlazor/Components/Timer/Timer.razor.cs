@@ -23,8 +23,8 @@ public partial class Timer
         .Build();
 
     private string? PauseClassString => CssBuilder.Default("btn")
-        .AddClass("btn-warning", !IsPause)
-        .AddClass("btn-success", IsPause)
+        .AddClass("btn-solid theme-warning", !IsPause)
+        .AddClass("btn-solid theme-success", IsPause)
         .Build();
 
     private string? ValueString => $"{Math.Round(((1 - CurrentTimespan.TotalSeconds * 1.0 / Value.TotalSeconds) * CircleLength), 2)}";

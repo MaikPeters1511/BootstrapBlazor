@@ -25,28 +25,28 @@
            Introduction="@Localizer["InputNumbersUseInputEventIntro"]"
            Name="UseInputEvent">
     <div class="row g-2 form-inline">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <BootstrapInputNumber @bind-Value="@BindInputNullableValue" ShowLabel="true" DisplayText="int?" />
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Display Value="@BindInputNullableValue"></Display>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <BootstrapInputNumber @bind-Value="@BindInputValue" ShowLabel="true" DisplayText="int" />
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Display Value="@BindInputValue"></Display>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <BootstrapInputNumber @bind-Value="@InputNullableValue" UseInputEvent="true" ShowLabel="true" DisplayText="double?" />
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Display Value="@InputNullableValue"></Display>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <BootstrapInputNumber @bind-Value="@InputValue" UseInputEvent="true" ShowLabel="true" DisplayText="double" />
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Display Value="@InputValue"></Display>
         </div>
     </div>
@@ -118,42 +118,42 @@ private IOptions&lt;BootstrapBlazorOptions&gt;? BootstrapBlazorOptions { get; se
            Name="Color">
     <p>@Localizer["InputNumbersColorDescription1"]</p>
     <div class="row g-3">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <div class="demo-input-number">
                 <BootstrapInputNumber ShowButton="true" Value="10" Color="Color.None" />
             </div>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <div class="demo-input-number">
                 <BootstrapInputNumber ShowButton="true" Value="10" Color="Color.Primary" />
             </div>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <div class="demo-input-number">
                 <BootstrapInputNumber ShowButton="true" Value="10" Color="Color.Success" />
             </div>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <div class="demo-input-number">
                 <BootstrapInputNumber ShowButton="true" Value="10" Color="Color.Info" />
             </div>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <div class="demo-input-number">
                 <BootstrapInputNumber ShowButton="true" Value="10" Color="Color.Warning" />
             </div>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <div class="demo-input-number">
                 <BootstrapInputNumber ShowButton="true" Value="10" Color="Color.Danger" />
             </div>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <div class="demo-input-number">
                 <BootstrapInputNumber ShowButton="true" Value="10" Color="Color.Dark" />
             </div>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <div class="demo-input-number">
                 <BootstrapInputNumber ShowButton="true" Value="10" Color="Color.Secondary" />
             </div>
@@ -161,42 +161,42 @@ private IOptions&lt;BootstrapBlazorOptions&gt;? BootstrapBlazorOptions { get; se
     </div>
     <p class="mt-3">@Localizer["InputNumbersColorDescription2"]</p>
     <div class="row g-3">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <div class="demo-input-number">
                 <BootstrapInputNumber Value="10" Color="Color.None" />
             </div>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <div class="demo-input-number">
                 <BootstrapInputNumber Value="10" Color="Color.Primary" />
             </div>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <div class="demo-input-number">
                 <BootstrapInputNumber Value="10" Color="Color.Success" />
             </div>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <div class="demo-input-number">
                 <BootstrapInputNumber Value="10" Color="Color.Info" />
             </div>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <div class="demo-input-number">
                 <BootstrapInputNumber Value="10" Color="Color.Warning" />
             </div>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <div class="demo-input-number">
                 <BootstrapInputNumber Value="@BindFloatValue" Color="Color.Danger" FormatString="#.##" />
             </div>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <div class="demo-input-number">
                 <BootstrapInputNumber Value="@BindDoubleValue" Color="Color.Dark" FormatString="#.##" />
             </div>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <div class="demo-input-number">
                 <BootstrapInputNumber Value="@BindDecimalValue" Color="Color.Secondary" FormatString="#.##" />
             </div>
@@ -208,32 +208,32 @@ private IOptions&lt;BootstrapBlazorOptions&gt;? BootstrapBlazorOptions { get; se
            Introduction="@Localizer["InputNumbersDateTypeIntro"]"
            Name="DataType">
     <div class="row g-3">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <div class="demo-input-number">
                 <BootstrapInputNumber Value="@BindShortValue" DisplayText="Short" ShowLabel="true" ShowButton="true" />
             </div>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <div class="demo-input-number">
                 <BootstrapInputNumber Value="@BindValue" DisplayText="Int" ShowLabel="true" ShowButton="true" />
             </div>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <div class="demo-input-number">
                 <BootstrapInputNumber Value="@BindLongValue" DisplayText="Long" ShowLabel="true" ShowButton="true" />
             </div>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <div class="demo-input-number">
                 <BootstrapInputNumber Value="@BindFloatValue" DisplayText="Float" ShowLabel="true" ShowButton="true" FormatString="#.##" />
             </div>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <div class="demo-input-number">
                 <BootstrapInputNumber Value="@BindDoubleValue" DisplayText="Double" ShowLabel="true" ShowButton="true" FormatString="#.##" />
             </div>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <div class="demo-input-number">
                 <BootstrapInputNumber Value="@BindDecimalValue" DisplayText="Decimal" ShowLabel="true" ShowButton="true" FormatString="#.##" />
             </div>
@@ -245,10 +245,10 @@ private IOptions&lt;BootstrapBlazorOptions&gt;? BootstrapBlazorOptions { get; se
            Introduction="@Localizer["InputNumbersDisabledIntro"]"
            Name="IsDisabled">
     <div class="row g-3">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <BootstrapInputNumber Value="10" IsDisabled="true" />
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <BootstrapInputNumber Value="20" IsDisabled="true" ShowButton="true" />
         </div>
     </div>

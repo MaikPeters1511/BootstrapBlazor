@@ -1,4 +1,4 @@
-.dropdown-menu-popover {
+.menu-popover {
     --bb-table-columnlist-max-height: var(--bb-dropdown-max-height);
 }
 
@@ -328,10 +328,10 @@
     margin-block-end: .5rem;
 }
 
-.table-toolbar .dropdown-column .dropdown-menu,
-.dropdown-menu-popover {
+.table-toolbar .dropdown-column .menu,
+.menu-popover {
 
-    &:not(.dropdown-menu-controls) {
+    &:not(.menu-controls) {
         max-height: var(--bb-table-columnlist-max-height);
         overflow: auto;
     }
@@ -339,7 +339,7 @@
     .column-list-controls {
         display: flex;
         flex-wrap: nowrap;
-        padding: 0 var(--bs-dropdown-item-padding-x);
+        padding: 0 var(--bs-menu-item-padding-x);
         margin-block-end: .5rem;
     }
 
@@ -349,7 +349,7 @@
     }
 }
 
-.table-toolbar .dropdown-menu .dropdown-item span {
+.table-toolbar .menu .menu-item span {
     margin-left: .5rem;
 }
 
@@ -357,12 +357,12 @@
     display: flex;
 }
 
-.btn-gear .dropdown-menu {
+.btn-gear .menu {
     min-width: initial;
     padding: 0;
 }
 
-.btn-gear .dropdown-menu .dropdown-item {
+.btn-gear .menu .menu-item {
     padding: 6px 12px;
     display: table-cell;
 
@@ -375,47 +375,47 @@
     }
 }
 
-.table-toolbar-button .btn-gear .dropdown-menu .dropdown-item-btn-primary {
+.table-toolbar-button .btn-gear .menu .menu-item-btn-primary {
     background-color: var(--bs-primary);
     color: #fff;
 }
 
-.table-toolbar-button .btn-gear .dropdown-menu .dropdown-item-btn-secondary {
+.table-toolbar-button .btn-gear .menu .menu-item-btn-secondary {
     background-color: var(--bs-secondary);
     color: #fff;
 }
 
-.table-toolbar-button .btn-gear .dropdown-menu .dropdown-item-btn-success {
+.table-toolbar-button .btn-gear .menu .menu-item-btn-success {
     background-color: var(--bs-success);
     color: #fff;
 }
 
-.table-toolbar-button .btn-gear .dropdown-menu .dropdown-item-btn-danger {
+.table-toolbar-button .btn-gear .menu .menu-item-btn-danger {
     background-color: var(--bs-danger);
     color: #fff;
 }
 
-.table-toolbar-button .btn-gear .dropdown-menu .dropdown-item-btn-warning {
+.table-toolbar-button .btn-gear .menu .menu-item-btn-warning {
     background-color: var(--bs-warning);
     color: #fff;
 }
 
-.table-toolbar-button .btn-gear .dropdown-menu .dropdown-item-btn-info {
+.table-toolbar-button .btn-gear .menu .menu-item-btn-info {
     background-color: var(--bs-info);
     color: #fff;
 }
 
-.table-toolbar-button .btn-gear .dropdown-menu .dropdown-item-btn-dark {
+.table-toolbar-button .btn-gear .menu .menu-item-btn-dark {
     background-color: var(--bs-dark);
     color: #fff;
 }
 
-.table-toolbar-button .btn-gear .dropdown-menu .dropdown-item-btn-light {
+.table-toolbar-button .btn-gear .menu .menu-item-btn-light {
     background-color: var(--bs-light);
     color: #212529;
 }
 
-.btn-gear .dropdown-menu .dropdown-item:not(:first-child) {
+.btn-gear .menu .menu-item:not(:first-child) {
     border-inline-start: solid 1px #aeb2b7;
 }
 
@@ -927,7 +927,7 @@ form .table .table-cell > textarea {
     margin-block-start: .5rem;
 }
 
-.modal-body .form-footer {
+.dialog-body .form-footer {
     margin: 1rem -1rem -.5rem -1rem;
     padding: .5rem 1rem 0 1rem;
     border-top: 1px solid var(--bs-border-color);
@@ -936,16 +936,16 @@ form .table .table-cell > textarea {
     justify-content: flex-end;
 }
 
-.modal-body .form-footer button:not(:last-child) {
+.dialog-body .form-footer button:not(:last-child) {
     margin-inline-end: .25rem;
 }
 
-.modal-dialog-table.modal-dialog-scrollable .modal-body {
+.modal-dialog-table.dialog-scrollable .dialog-body {
     display: flex;
     flex-direction: column;
 }
 
-.modal-dialog-table.modal-dialog-scrollable .modal-body > form {
+.modal-dialog-table.dialog-scrollable .dialog-body > form {
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -953,14 +953,14 @@ form .table .table-cell > textarea {
     margin: -1rem;
 }
 
-.modal-dialog-table.modal-dialog-scrollable .modal-body .form-body {
+.modal-dialog-table.dialog-scrollable .dialog-body .form-body {
     overflow-y: auto;
     overflow-x: hidden;
     padding: 1rem;
     max-height: calc(100vh - 133px);
 }
 
-.modal-dialog-table.modal-dialog-scrollable .modal-body .form-footer {
+.modal-dialog-table.dialog-scrollable .dialog-body .form-footer {
     margin: 0;
     padding: 0.5rem 1rem;
 }

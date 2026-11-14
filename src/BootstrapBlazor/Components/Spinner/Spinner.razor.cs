@@ -17,7 +17,7 @@ public partial class Spinner
     /// </summary>
     protected string? ClassString => CssBuilder.Default("spinner")
         .AddClass($"spinner-{SpinnerType.ToDescriptionString()}")
-        .AddClass($"text-{Color.ToDescriptionString()}", Color != Color.None)
+        .AddClass($"fg-{Color.ToDescriptionString()}", Color != Color.None)
         .AddClass($"spinner-border-{Size.ToDescriptionString()}", Size != Size.None)
         .AddClassFromAttributes(AdditionalAttributes)
         .Build();

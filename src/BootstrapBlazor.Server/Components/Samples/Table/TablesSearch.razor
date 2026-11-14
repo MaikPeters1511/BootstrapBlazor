@@ -142,10 +142,10 @@
             <SearchTemplate>
                 <GroupBox Title="@Localizer["SearchTableGroupBoxText"]">
                     <div class="row g-3 form-inline">
-                        <div class="col-12 col-sm-6">
+                        <div class="col-12 sm:col-6">
                             <BootstrapInput @bind-Value="@context.Name" PlaceHolder="@Localizer["NamePlaceholder"]" maxlength="50" ShowLabel="true" DisplayText="@FooLocalizer[nameof(context.Name)]" />
                         </div>
-                        <div class="col-12 col-sm-6">
+                        <div class="col-12 sm:col-6">
                             <BootstrapInput @bind-Value="@context.Address" PlaceHolder="@Localizer["AddressPlaceholder"]" maxlength="500" ShowLabel="true" DisplayText="@FooLocalizer[nameof(context.Address)]" />
                         </div>
                     </div>
@@ -179,7 +179,7 @@
             <TableColumn @bind-Field="@context.DateTime" Width="180" Filterable="true" />
             <TableColumn @bind-Field="@context.Name" Searchable="true">
                 <SearchTemplate Context="model">
-                    <div class="col-12 col-sm-6">
+                    <div class="col-12 sm:col-6">
                         <Select Items="SearchItems" @bind-Value="@model!.Name" ShowLabel="true" DisplayText="姓名"></Select>
                     </div>
                 </SearchTemplate>

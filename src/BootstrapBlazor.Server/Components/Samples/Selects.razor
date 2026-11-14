@@ -12,28 +12,28 @@
            Name="Normal">
     <section ignore>@((MarkupString)Localizer["SelectsNormalDescription"].Value)</section>
     <div class="row g-3">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Select Items="Items" OnSelectedItemChanged="OnItemChanged" @bind-Value="Model.Name"></Select>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Select Color="Color.Primary" Items="Items" @bind-Value="Model.Name"></Select>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Select Color="Color.Success" Items="Items" @bind-Value="Model.Name"></Select>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Select Color="Color.Danger" Items="Items" @bind-Value="Model.Name"></Select>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Select Color="Color.Warning" Items="Items" @bind-Value="Model.Name"></Select>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Select Color="Color.Info" Items="Items" @bind-Value="Model.Name"></Select>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Select Color="Color.Secondary" Items="Items" @bind-Value="Model.Name"></Select>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Select Color="Color.Dark" Items="Items" @bind-Value="Model.Name"></Select>
         </div>
     </div>
@@ -44,31 +44,31 @@
            Introduction="@Localizer["SelectsDisableIntro"]"
            Name="Disable">
     <div class="row g-3">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Select TValue="string" Color="Color.Primary" Items="Items" IsDisabled="true"></Select>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Select TValue="string" Color="Color.Success" Items="Items" IsDisabled="true"></Select>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Select TValue="string" Color="Color.Danger" Items="Items" IsDisabled="true"></Select>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Select TValue="string" Color="Color.Warning" Items="Items" IsDisabled="true"></Select>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Select TValue="string" Color="Color.Info" Items="Items" IsDisabled="true"></Select>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Select TValue="string" Color="Color.Secondary" Items="Items" IsDisabled="true"></Select>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Select TValue="string" Color="Color.Dark" Items="Items" IsDisabled="true"></Select>
         </div>
     </div>
     <p class="mt-3">@((MarkupString)Localizer["SelectsDisableOption"].Value)</p>
     <div class="row">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Select TValue="string" Items="Items4" />
         </div>
     </div>
@@ -78,10 +78,10 @@
            Introduction="@Localizer["SelectsBindingIntro"]"
            Name="Binding">
     <div class="row g-3">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Select Color="Color.Primary" Items="Items" @bind-Value="BindingModel.Name"></Select>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <BootstrapInput readonly @bind-Value="BindingModel.Name" />
         </div>
     </div>
@@ -91,10 +91,10 @@
            Introduction="@Localizer["SelectsBindingSelectedItemIntro"]"
            Name="BindingSelectedItem">
     <div class="row g-3">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Select Color="Color.Primary" Items="Items" @bind-Value="Item"></Select>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Display Value="@ItemString"></Display>
         </div>
     </div>
@@ -104,10 +104,10 @@
            Introduction="@Localizer["SelectsCascadingIntro"]"
            Name="Cascading">
     <div class="row g-3">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Select TValue="string" Items="Items3" OnSelectedItemChanged="OnCascadeBindSelectClick" />
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Select TValue="string" Items="Items2" />
         </div>
         <div class="col-12">
@@ -121,7 +121,7 @@
            Name="ClientValidation">
     <ValidateForm Model="ValidateModel">
         <div class="row g-3">
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <Select @bind-Value="ValidateModel.Name">
                     <Options>
                         <SelectOption Text="@Localizer["SelectsOption1"]" Value="" />
@@ -131,7 +131,7 @@
                     </Options>
                 </Select>
             </div>
-            <div class="col-12 col-sm-6 align-self-end">
+            <div class="col-12 sm:col-6 align-self-end">
                 <Button ButtonType="ButtonType.Submit">@Localizer["SelectsClientValidationButtonText2"]</Button>
             </div>
         </div>
@@ -142,7 +142,7 @@
            Introduction="@Localizer["SelectsGroupIntro"]"
            Name="Group">
     <div class="row">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Select TValue="string" Color="Color.Primary" Items="GroupItems">
             </Select>
         </div>
@@ -153,10 +153,10 @@
            Introduction="@Localizer["SelectsGuidIntro"]"
            Name="Guid">
     <div class="row g-3">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Select Color="Color.Primary" Items="GuidItems" @bind-Value="CurrentGuid" />
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <div class="form-control">@CurrentGuid</div>
         </div>
     </div>
@@ -192,7 +192,7 @@
            Introduction="@Localizer["SelectsStaticIntro"]"
            Name="Static">
     <div class="row">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Select TValue="string">
                 <Options>
                     <SelectOption Text="@Localizer["SelectsOption1"]" Value="1" />
@@ -212,26 +212,26 @@
         <div>@((MarkupString)Localizer["SelectsEnumDescription2"].Value)</div>
     </section>
     <div class="row g-3">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Select @bind-Value="SelectedEnumItem1" PlaceHolder="@Localizer["SelectsPlaceHolder"]" ShowLabel="true" DisplayText="@Localizer["SelectsEnumSelectText1"]">
             </Select>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Select @bind-Value="SelectedEnumItem1" ShowLabel="true" DisplayText="@Localizer["SelectsEnumSelectText1"]">
             </Select>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Select @bind-Value="SelectedEnumItem" ShowLabel="true" DisplayText="@Localizer["SelectsEnumSelectText2"]">
             </Select>
         </div>
-        <div class="col-12 col-sm-6 align-self-end">
+        <div class="col-12 sm:col-6 align-self-end">
             <div class="form-control">@SelectedEnumItem</div>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Select @bind-Value="_enumValueDemo" Items="_enumValueDemoItems" ShowLabel="true" DisplayText="@Localizer["SelectsEnumSelectText3"]">
             </Select>
         </div>
-        <div class="col-12 col-sm-6 align-self-end">
+        <div class="col-12 sm:col-6 align-self-end">
             <div class="form-control">@_enumValueDemo</div>
         </div>
     </div>
@@ -242,11 +242,11 @@
            Name="Nullable">
     <section ignore>@((MarkupString)Localizer["SelectsNullableDescription"].Value)</section>
     <div class="row g-3">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Select Items="NullableIntItems" @bind-Value="NullableSelectedIntItem">
             </Select>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <div class="form-control">@GetSelectedIntItemString()</div>
         </div>
     </div>
@@ -260,11 +260,11 @@
         <div>@((MarkupString)Localizer["SelectsNullableBooleanDescription2"].Value)</div>
     </section>
     <div class="row g-3">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Select Items="NullableBoolItems" @bind-Value="SelectedBoolItem">
             </Select>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <div class="form-control">@GetSelectedBoolItemString()</div>
         </div>
     </div>
@@ -274,13 +274,13 @@
            Introduction="@Localizer["SelectsCustomTemplateIntro"]"
            Name="CustomTemplate">
     <div class="row">
-        <div class="col-12 col-sm-6 select-custom">
+        <div class="col-12 sm:col-6 select-custom">
             <Select @bind-Value="@_fooName" Items="VirtualItems">
                 <ItemTemplate>
                     @{
                         var foo = Foos.First(i => i.Name == context.Text);
                     }
-                    <div class="dropdown-item-demo">
+                    <div class="menu-item-demo">
                         <div class="select-custom-header">
                             <div class="id">@foo.Id</div>
                             <div class="name">@foo.Name</div>
@@ -306,7 +306,7 @@
                 </ItemTemplate>
             </Select>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Display TValue="string" Value="@_fooName" />
         </div>
     </div>
@@ -317,7 +317,7 @@
            Name="ShowSearch">
     <section ignore>
         <div class="row g-3">
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <BootstrapInputGroup>
                     <BootstrapInputGroupLabel DisplayText="IsClearable" />
                     <Checkbox @bind-Value="@_isShowSearchClearable" />
@@ -326,12 +326,12 @@
         </div>
     </section>
     <div class="row g-3">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Select TValue="string" Items="Items" ShowSearch="true"
                     IsClearable="_isShowSearchClearable">
             </Select>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Select TValue="string" Items="StringItems" ShowSearch="true"
                     IsClearable="_isShowSearchClearable">
             </Select>
@@ -346,16 +346,16 @@
         <p>@((MarkupString)Localizer["SelectsClearableDesc"].Value)</p>
     </section>
     <div class="row g-3">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Select IsClearable="true" Items="ClearableItems" Value="ClearableModel.NullableName" ShowLabel="true" DisplayText="string?"></Select>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Select IsClearable="true" Items="Items" Value="ClearableModel.Name" ShowLabel="true" DisplayText="string"></Select>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Select IsClearable="true" Items="IntItems" Value="ClearableModel.NullableCount" ShowLabel="true" DisplayText="int?"></Select>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Select IsClearable="true" Items="IntItems" Value="ClearableModel.Count" ShowLabel="true" DisplayText="int"></Select>
         </div>
     </div>
@@ -371,7 +371,7 @@
         </ul>
     </section>
     <div class="row">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Select TValue="string" Items="Items" ShowSwal="true"
                     SwalTitle="@Localizer["SwalTitle"]" SwalContent="@Localizer["SwalContent"]" SwalFooter="@Localizer["SwalFooter"]" />
         </div>
@@ -382,7 +382,7 @@
            Introduction="@Localizer["SelectsDisplayTemplateIntro"]"
            Name="DisplayTemplate">
     <div class="row">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Select TValue="string" Items="Items">
                 <DisplayTemplate>
                     <i class="fa-solid fa-flag"></i>
@@ -397,10 +397,10 @@
            Introduction="@Localizer["SelectsTimeZoneIntro"]"
            Name="TimeZone">
     <div class="row g-3">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Select TValue="string" Value="@TimeZoneId" Items="TimeZoneItems" OnValueChanged="OnTimeZoneValueChanged" />
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Display TValue="TimeSpan" Value="@TimeZoneValue" />
         </div>
     </div>
@@ -422,7 +422,7 @@
 <DemoBlock Title="@Localizer["SelectsIsEditableTitle"]" Introduction="@Localizer["SelectsIsEditableIntro"]" Name="IsEditable">
     <section ignore>@((MarkupString)Localizer["SelectsIsEditableDesc"].Value)</section>
     <div class="row">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Select TValue="string" Color="Color.Primary" Items="Items" IsEditable="true" OnInputChangedCallback="OnInputChangedCallback"></Select>
         </div>
     </div>
@@ -434,13 +434,13 @@
     <section ignore>
         <p>@((MarkupString)Localizer["SelectsVirtualizeDescription"].Value)</p>
         <div class="row g-3">
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <BootstrapInputGroup>
                     <BootstrapInputGroupLabel DisplayText="ShowSearch" />
                     <Checkbox @bind-Value="@_showSearch" />
                 </BootstrapInputGroup>
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <BootstrapInputGroup>
                     <BootstrapInputGroupLabel DisplayText="IsClearable" />
                     <Checkbox @bind-Value="@_isClearable" />

@@ -8,11 +8,11 @@ const initDrag = el => {
     let width = 0
     let height = 0;
     let isVertical = false;
-    const drawerBody = el.querySelector('.drawer-body');
+    const drawerBody = el.querySelector('.bb-drawer-body');
     if (drawerBody === null) {
         return;
     }
-    const bar = [...drawerBody.children].find(i => i.classList.contains('drawer-bar'));
+    const bar = [...drawerBody.children].find(i => i.classList.contains('bb-drawer-bar'));
     if (bar === null) {
         return;
     }
@@ -95,8 +95,8 @@ export function init(id, invoke, method) {
 export function execute(id, open) {
     const dw = Data.get(id)
     const { el, body } = dw
-    const drawerBody = el.querySelector('.drawer-body')
-    const drawerBackdrop = el.querySelector('.drawer-backdrop')
+    const drawerBody = el.querySelector('.bb-drawer-body')
+    const drawerBackdrop = el.querySelector('.bb-drawer-backdrop')
     const animationFrame = getComputedStyle(drawerBody).getPropertyValue('transition') !== 'none';
 
     let start = void 0
@@ -139,7 +139,7 @@ export function execute(id, open) {
 
         const scroll = el.getAttribute('data-bb-scroll') === "true";
         if (scroll === false) {
-            body.classList.add('drawer-overflow-hidden');
+            body.classList.add('bb-drawer-overflow-hidden');
         }
 
         if (animationFrame) {
@@ -154,7 +154,7 @@ export function execute(id, open) {
         if (drawerBackdrop) {
             drawerBackdrop.classList.remove('show');
         }
-        body.classList.remove('drawer-overflow-hidden');
+        body.classList.remove('bb-drawer-overflow-hidden');
         if (animationFrame) {
             requestAnimationFrame(hide)
         }
@@ -175,16 +175,16 @@ export function dispose(id) {
     if (el.classList.contains('show')) {
         el.classList.remove('show')
 
-        const drawerBody = el.querySelector('.drawer-body')
+        const drawerBody = el.querySelector('.bb-drawer-body')
         if (drawerBody) {
             drawerBody.classList.remove('show')
         }
         body.classList.remove('overflow-hidden')
     }
 
-    const drawerBody = el.querySelector('.drawer-body');
+    const drawerBody = el.querySelector('.bb-drawer-body');
     if (drawerBody !== null) {
-        const bar = [...drawerBody.children].find(i => i.classList.contains('drawer-bar'));
+        const bar = [...drawerBody.children].find(i => i.classList.contains('bb-drawer-bar'));
         if (bar) {
             Drag.dispose(bar)
         }

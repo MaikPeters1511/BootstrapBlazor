@@ -56,7 +56,7 @@ public partial class Message
     private static string? GetAutoHideString(MessageOption option) => option.IsAutoHide ? "true" : null;
 
     private static string? GetItemClassString(MessageOption option) => CssBuilder.Default("alert")
-        .AddClass($"alert-{option.Color.ToDescriptionString()}", option.Color != Color.None)
+        .AddClass($"theme-{option.Color.ToDescriptionString()}", option.Color != Color.None)
         .AddClass($"border-{option.Color.ToDescriptionString()}", option.ShowBorder)
         .AddClass("shadow", option.ShowShadow)
         .AddClass("alert-bar", option.ShowBar)

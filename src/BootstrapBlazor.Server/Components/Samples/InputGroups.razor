@@ -9,13 +9,13 @@
 
 <DemoBlock Title="@Localizer["InputGroupsNormalTitle"]" Introduction="@Localizer["InputGroupsNormalIntro"]" Name="Normal">
     <div class="row g-3">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <BootstrapInputGroup>
                 <BootstrapInputGroupLabel DisplayText="@Localizer["InputGroupsNormalUserName"]" />
                 <BootstrapInput @bind-Value="@BindValue" />
             </BootstrapInputGroup>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <BootstrapInputGroup>
                 <BootstrapInput @bind-Value="@BindValue" />
                 <Button Icon="fa-solid fa-magnifying-glass"></Button>
@@ -67,25 +67,25 @@
 
 <DemoBlock Title="@Localizer["InputGroupsSelectTitle"]" Introduction="@Localizer["InputGroupsSelectIntro"]" Name="Select">
     <div class="row g-3">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <BootstrapInputGroup>
                 <BootstrapInputGroupLabel DisplayText="Select" />
                 <Select TValue="string" Items="@Items"></Select>
             </BootstrapInputGroup>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <BootstrapInputGroup>
                 <BootstrapInputGroupLabel DisplayText="MultiSelect" />
                 <MultiSelect TValue="string" Items="@Items2" />
             </BootstrapInputGroup>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <BootstrapInputGroup>
                 <BootstrapInputGroupLabel DisplayText="AutoComplete" />
                 <AutoComplete Items="@StaticItems" IsLikeMatch="true" IgnoreCase="false" />
             </BootstrapInputGroup>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <BootstrapInputGroup>
                 <BootstrapInputGroupLabel DisplayText="AutoFill" />
                 <AutoFill Items="AufoFillItems" IsLikeMatch="true" OnGetDisplayText="@(foo => foo?.Name)">
@@ -112,14 +112,14 @@
     <FormInlineSwitch @bind-Value="@FormRowType" class="mb-3"></FormInlineSwitch>
     <ValidateForm Model="@Model">
         <div class="@GroupFormClassString">
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <BootstrapInputGroupLabel @bind-Value="@Model.Name" ShowRequiredMark="true" />
                 <BootstrapInputGroup>
                     <Display @bind-Value="@Model.Name"></Display>
                     <BootstrapInputGroupLabel @bind-Value="@Model.Name" />
                 </BootstrapInputGroup>
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <BootstrapInputGroupLabel @bind-Value="@Model.Address" ShowRequiredMark="true" />
                 <BootstrapInputGroup>
                     <Display @bind-Value="@Model.Address"></Display>
@@ -138,23 +138,23 @@
                 <Checkbox TValue="string" Color="Color.Danger" />
             </BootstrapInputGroup>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <BootstrapInputGroup>
                 <BootstrapInputGroupLabel DisplayText="Checkbox" />
                 <div class="row form-inline input-group-checkbox-list">
-                    <div class="col-12 col-sm-4">
+                    <div class="col-12 sm:col-4">
                         <Checkbox TValue="string" DisplayText="@Localizer["InputGroupsStatusText1"]" ShowAfterLabel="true" Color="Color.Info" />
                     </div>
-                    <div class="col-12 col-sm-4">
+                    <div class="col-12 sm:col-4">
                         <Checkbox TValue="string" DisplayText="@Localizer["InputGroupsStatusText1"]" ShowAfterLabel="true" Color="Color.Primary" />
                     </div>
-                    <div class="col-12 col-sm-4">
+                    <div class="col-12 sm:col-4">
                         <Checkbox TValue="string" DisplayText="@Localizer["InputGroupsStatusText1"]" ShowAfterLabel="true" Color="Color.Success" />
                     </div>
                 </div>
             </BootstrapInputGroup>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <BootstrapInputGroup>
                 <BootstrapInputGroupLabel DisplayText="CheckboxList" />
                 <CheckboxList TValue="string" Items="Foo.GenerateHobbies(FooLocalizer)" />
@@ -199,13 +199,13 @@
 
 <DemoBlock Title="@Localizer["InputGroupsDateTimePickerTitle"]" Introduction="@Localizer["InputGroupsDateTimePickerIntro"]" Name="DateTimePicker">
     <div class="row g-3">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <BootstrapInputGroup>
                 <BootstrapInputGroupLabel DisplayText="DateTimePicker" />
                 <DateTimePicker TValue="DateTime?" />
             </BootstrapInputGroup>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <BootstrapInputGroup>
                 <BootstrapInputGroupLabel DisplayText="DateTimeRange" />
                 <DateTimeRange />
@@ -216,7 +216,7 @@
 
 <DemoBlock Title="@Localizer["InputGroupsDropdownTitle"]" Introduction="@Localizer["InputGroupsDropdownIntro"]" Name="Dropdown">
     <div class="row">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <BootstrapInputGroup>
                 <BootstrapInputGroupLabel DisplayText="Dropdown" />
                 <Dropdown TValue="string" Items="Foo.GenerateHobbies(FooLocalizer)" Color="Color.Success" />
@@ -227,7 +227,7 @@
 
 <DemoBlock Title="@Localizer["InputGroupsSwitchTitle"]" Introduction="@Localizer["InputGroupsSwitchIntro"]" Name="Switch">
     <div class="row">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <BootstrapInputGroup>
                 <BootstrapInputGroupLabel DisplayText="Switch" />
                 <Switch Value="@SwitchValue" />

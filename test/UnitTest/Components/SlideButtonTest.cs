@@ -22,13 +22,13 @@ public class SlideButtonTest : BootstrapBlazorTestBase
     public void Color_Ok()
     {
         var cut = Context.Render<SlideButton>();
-        cut.Contains("btn btn-primary");
+        cut.Contains("btn btn-solid theme-primary");
 
         cut.Render(pb =>
         {
             pb.Add(i => i.Color, Color.Success);
         });
-        cut.Contains("btn btn-success");
+        cut.Contains("btn btn-solid theme-success");
     }
 
     [Fact]
@@ -68,13 +68,13 @@ public class SlideButtonTest : BootstrapBlazorTestBase
     public void Size_Ok()
     {
         var cut = Context.Render<SlideButton>();
-        cut.Contains("btn btn-primary");
+        cut.Contains("btn btn-solid theme-primary");
 
         cut.Render(pb =>
         {
             pb.Add(i => i.Size, Size.Small);
         });
-        cut.Contains("btn btn-primary btn-sm");
+        cut.Contains("btn btn-solid theme-primary btn-sm");
     }
 
     [Fact]

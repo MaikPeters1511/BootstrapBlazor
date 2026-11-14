@@ -20,6 +20,18 @@
 
 --- 
 
+## Unreleased
+
+### Features
+* feat(Bootstrap): upgrade to v6.0.0-alpha.1 by @MaikPeters1511 in https://github.com/MaikPeters1511/BootstrapBlazor/pull/1
+
+### Breaking changes
+* Bootstrap 6 renamed many classes; markup written for Bootstrap 5 has to be updated (`btn-primary` -> `btn-solid theme-primary`, `text-danger` -> `fg-danger`, `col-sm-6` -> `sm:col-6`, `dropdown-menu` -> `menu`, `modal-body` -> `dialog-body`). See the "Bootstrap version" section in `README.md`
+* `Modal` renders a native `<dialog>` element
+* `Menu` and `Drawer` use the classes `bb-menu` and `bb-drawer`
+* `InputUpload`: the defaults of `BrowserButtonClass` and `DeleteButtonClass` are now `btn-solid theme-primary` and `btn-solid theme-danger`
+* there is no separate Bootstrap RTL stylesheet any more
+
 ## Release 2023-10-16 V7.11.1
 
 ### Bugs

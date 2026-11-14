@@ -88,7 +88,7 @@ public class UploadCardTest : BootstrapBlazorTestBase
         Assert.True(clicked);
 
         // OnDelete
-        await cut.InvokeAsync(() => cut.Find(".btn-outline-danger").Click());
+        await cut.InvokeAsync(() => cut.Find(".btn-outline.theme-danger").Click());
         Assert.True(deleted);
 
         // CanPreviewCallback
@@ -218,7 +218,7 @@ public class UploadCardTest : BootstrapBlazorTestBase
             pb.Add(a => a.IsDisabled, false);
         });
 
-        var items = cut.FindAll(".btn-outline-danger");
+        var items = cut.FindAll(".btn-outline.theme-danger");
         Assert.Single(items);
         await cut.InvokeAsync(() => items[0].Click());
 
@@ -296,7 +296,7 @@ public class UploadCardTest : BootstrapBlazorTestBase
             new("test3.png", delay: TimeSpan.FromMilliseconds(300)),
         })));
 
-        var btn = cut.Find(".btn-outline-danger");
+        var btn = cut.Find(".btn-outline.theme-danger");
         btn.InnerHtml.Contains("disabled=\"disabled\"");
     }
 

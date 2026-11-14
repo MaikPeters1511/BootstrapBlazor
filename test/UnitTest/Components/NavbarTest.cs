@@ -47,7 +47,7 @@ public class NavbarTest : BootstrapBlazorTestBase
                         pb.Add(a => a.Text, "Dropdown");
                         pb.AddChildContent<NavbarDropdownItem>(pb =>
                         {
-                            pb.AddChildContent("<a class=\"dropdown-item\" href=\"#\">Action</a>");
+                            pb.AddChildContent("<a class=\"menu-item\" href=\"#\">Action</a>");
                         });
                         pb.AddChildContent<NavbarDropdownDivider>();
                         pb.AddChildContent<NavbarDropdownItem>(pb =>
@@ -96,5 +96,21 @@ public class NavbarTest : BootstrapBlazorTestBase
         Assert.NotNull(link);
 
         await cut.InvokeAsync(() => link.Click());
+    }
+
+    [Theory]
+    [InlineData(Size.None, "navbar-expand")]
+    [InlineData(Size.Small, "sm:navbar-expand")]
+    [InlineData(Size.Medium, "md:navbar-expand")]
+    [InlineData(Size.ExtraExtraLarge, "2xl:navbar-expand")]
+    public void BootstrapNavbarClass_Ok(Size size, string expected)
+    {
+        // Bootstrap 6: navbar-expand-md -> md:navbar-expand, bg-body-tertiary -> bg-2
+        var cut = Context.Render<Navbar>(pb => pb.Add(a => a.Size, size));
+        var classes = cut.Find(".navbar").ClassList;
+        Assert.Contains(expected, classes);
+        Assert.Contains("bg-2", classes);
+        Assert.DoesNotContain("bg-body-tertiary", classes);
+        Assert.DoesNotContain(classes, c => c.StartsWith("navbar-expand-"));
     }
 }

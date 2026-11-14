@@ -14,7 +14,7 @@
 
 body,
 .form-control,
-.dropdown-menu,
+.menu,
 .form-select,
 .input-group-text {
     font-size: var(--bb-font-size);
@@ -36,15 +36,23 @@ a, a:hover, a:focus {
     cursor: not-allowed !important;
 }
 
-.disabled .range-separator,
-:disabled {
+.disabled .range-separator {
     background-color: var(--bs-secondary-bg);
     opacity: 1;
 }
 
-:focus-visible,
-:focus {
-    outline: none;
+// Bootstrap 6 uses cascade layers and unlayered rules always win
+// keep this generic rule below Bootstrap components (e.g. .btn:disabled) as it was with Bootstrap 5
+@layer reboot {
+    :disabled {
+        background-color: var(--bs-secondary-bg);
+        opacity: 1;
+    }
+
+    :focus-visible,
+    :focus {
+        outline: none;
+    }
 }
 
 @mixin direction($var, $child) {
@@ -76,10 +84,6 @@ a, a:hover, a:focus {
     --bs-popover-header-padding-y: 0.5rem;
     --bs-popover-body-padding-x: 0.5rem;
     --bs-popover-body-padding-y: 0.5rem;
-}
-
-.modal-backdrop.show + .modal-backdrop.show {
-    display: none;
 }
 
 ::view-transition-old(root) {

@@ -7,13 +7,13 @@
 
 <DemoBlock Title="@Localizer["NormalTitle"]" Introduction="@Localizer["NormalIntro"]" Name="Normal">
     <div class="row g-3 form-inline">
-        <div class="col-12 col-sm-4">
+        <div class="col-12 sm:col-4">
             <Checkbox TValue="string" OnStateChanged="@OnStateChanged" DisplayText="@Localizer["StatusText1"]" ShowLabel="true" Color="Color.Danger" State="CheckboxState.Checked" />
         </div>
-        <div class="col-12 col-sm-4">
+        <div class="col-12 sm:col-4">
             <Checkbox TValue="string" OnStateChanged="@OnStateChanged" DisplayText="@Localizer["StatusText2"]" ShowLabel="true" Color="Color.Danger" State="CheckboxState.UnChecked" />
         </div>
-        <div class="col-12 col-sm-4">
+        <div class="col-12 sm:col-4">
             <Checkbox TValue="string" OnStateChanged="@OnStateChanged" DisplayText="@Localizer["StatusText3"]" ShowLabel="true" Color="Color.Danger" State="CheckboxState.Indeterminate" />
         </div>
     </div>
@@ -22,10 +22,10 @@
 
 <DemoBlock Title="@Localizer["DisabledTitle"]" Introduction="@Localizer["DisabledIntro"]" Name="Disabled">
     <div class="row g-3 form-inline">
-        <div class="col-12 col-sm-4">
+        <div class="col-12 sm:col-4">
             <Checkbox TValue="string" IsDisabled="true" DisplayText="@Localizer["StatusText1"]" ShowLabel="true" State="CheckboxState.Checked" />
         </div>
-        <div class="col-12 col-sm-4">
+        <div class="col-12 sm:col-4">
             <Checkbox TValue="string" IsDisabled="true" DisplayText="@Localizer["StatusText2"]" ShowLabel="true" State="CheckboxState.UnChecked" />
         </div>
     </div>
@@ -33,22 +33,22 @@
 
 <DemoBlock Title="@Localizer["ShowLabelTitle"]" Introduction="@Localizer["ShowLabelIntro"]" Name="ShowLabel">
     <div class="row g-3 form-inline">
-        <div class="col-12 col-md-4">
+        <div class="col-12 md:col-4">
             <Checkbox TValue="string" State="CheckboxState.Checked" DisplayText="@Localizer["StatusText1"]" ShowLabel="true" Color="@Color.Primary" />
         </div>
-        <div class="col-12 col-md-4">
+        <div class="col-12 md:col-4">
             <Checkbox TValue="string" State="CheckboxState.Checked" DisplayText="@Localizer["StatusText1"]" ShowLabel="true" Color="@Color.Success" />
         </div>
-        <div class="col-12 col-md-4">
+        <div class="col-12 md:col-4">
             <Checkbox TValue="string" State="CheckboxState.Checked" DisplayText="@Localizer["StatusText1"]" ShowLabel="true" Color="@Color.Danger" />
         </div>
-        <div class="col-12 col-md-4">
+        <div class="col-12 md:col-4">
             <Checkbox TValue="string" State="CheckboxState.Checked" DisplayText="@Localizer["StatusText1"]" ShowLabel="true" Color="@Color.Info" />
         </div>
-        <div class="col-12 col-md-4">
+        <div class="col-12 md:col-4">
             <Checkbox TValue="string" State="CheckboxState.Checked" DisplayText="@Localizer["StatusText1"]" ShowLabel="true" Color="@Color.Warning" />
         </div>
-        <div class="col-12 col-md-4">
+        <div class="col-12 md:col-4">
             <Checkbox TValue="string" State="CheckboxState.Checked" DisplayText="@Localizer["StatusText1"]" ShowLabel="true" Color="@Color.Dark" />
         </div>
     </div>
@@ -65,22 +65,22 @@
 
 <DemoBlock Title="@Localizer["DisplayTextTitle"]" Introduction="@Localizer["DisplayTextIntro"]" Name="DisplayText">
     <div class="row g-3 form-inline">
-        <div class="col-12 col-md-3">
+        <div class="col-12 md:col-3">
             <Checkbox TValue="string" State="CheckboxState.Checked" ShowLabel="true" DisplayText="Default" />
         </div>
-        <div class="col-12 col-md-3">
+        <div class="col-12 md:col-3">
             <Checkbox TValue="string" State="CheckboxState.Checked" ShowLabel="true" DisplayText="Small" Size="Size.Small" />
         </div>
-        <div class="col-12 col-md-3">
+        <div class="col-12 md:col-3">
             <Checkbox TValue="string" State="CheckboxState.Checked" ShowLabel="true" DisplayText="Medium" Size="Size.Medium" />
         </div>
-        <div class="col-12 col-md-3">
+        <div class="col-12 md:col-3">
             <Checkbox TValue="string" State="CheckboxState.Checked" ShowLabel="true" DisplayText="Large" Size="Size.Large" />
         </div>
-        <div class="col-12 col-md-3">
+        <div class="col-12 md:col-3">
             <Checkbox TValue="string" State="CheckboxState.Checked" ShowLabel="true" DisplayText="ExtraLarge" Size="Size.ExtraLarge" />
         </div>
-        <div class="col-12 col-md-3">
+        <div class="col-12 md:col-3">
             <Checkbox TValue="string" State="CheckboxState.Checked" ShowLabel="true" DisplayText="ExtraExtraLarge" Size="Size.ExtraExtraLarge" />
         </div>
     </div>
@@ -89,22 +89,22 @@
 <DemoBlock Title="@Localizer["ShowAfterLabelTitle"]" Introduction="@Localizer["ShowAfterLabelIntro"]" Name="ShowAfterLabel">
     <p>@((MarkupString)Localizer["ShowAfterLabelDescription"].Value)</p>
     <div class="row g-3 form-inline">
-        <div class="col-12 col-md-3">
+        <div class="col-12 md:col-3">
             <Checkbox TValue="string" State="CheckboxState.Checked" ShowAfterLabel="true" DisplayText="Default" ShowLabelTooltip="true" />
         </div>
-        <div class="col-12 col-md-3">
+        <div class="col-12 md:col-3">
             <Checkbox TValue="string" State="CheckboxState.Checked" ShowAfterLabel="true" DisplayText="Small" Size="Size.Small" ShowLabelTooltip="true" />
         </div>
-        <div class="col-12 col-md-3">
+        <div class="col-12 md:col-3">
             <Checkbox TValue="string" State="CheckboxState.Checked" ShowAfterLabel="true" DisplayText="Medium" Size="Size.Medium" />
         </div>
-        <div class="col-12 col-md-3">
+        <div class="col-12 md:col-3">
             <Checkbox TValue="string" State="CheckboxState.Checked" ShowAfterLabel="true" DisplayText="Large" Size="Size.Large" />
         </div>
-        <div class="col-12 col-md-3">
+        <div class="col-12 md:col-3">
             <Checkbox TValue="string" State="CheckboxState.Checked" ShowAfterLabel="true" DisplayText="ExtraLarge" Size="Size.ExtraLarge" />
         </div>
-        <div class="col-12 col-md-3">
+        <div class="col-12 md:col-3">
             <Checkbox TValue="string" State="CheckboxState.Checked" ShowAfterLabel="true" DisplayText="ExtraExtraLarge" Size="Size.ExtraExtraLarge" />
         </div>
     </div>
@@ -124,10 +124,10 @@
 
 <DemoBlock Title="@Localizer["OnBeforeStateChangedTitle"]" Introduction="@Localizer["OnBeforeStateChangedIntro"]" Name="OnBeforeStateChanged">
     <div class="row g-3 form-inline">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Checkbox TValue="bool" DisplayText="@Localizer["OnBeforeStateChangedText"]" ShowLabel="true" @bind-Value="SelectedValue" OnBeforeStateChanged="@OnBeforeStateChanged" />
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Display @bind-Value="@SelectedValue" />
         </div>
     </div>
@@ -149,10 +149,10 @@
     <p>@((MarkupString)Localizer["ValidateFormDescription"].Value)</p>
     <ValidateForm Model="@Model">
         <div class="row g-3 form-inline">
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <Checkbox @bind-Value="@Model.BindValue" ShowLabel="true" />
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <Checkbox @bind-Value="@Model.BindValue1" ShowLabel="true" DisplayText="@Localizer["Checkbox3Text"]" />
             </div>
         </div>

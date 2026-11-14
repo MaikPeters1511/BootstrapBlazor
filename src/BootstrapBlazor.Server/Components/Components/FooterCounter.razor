@@ -3,11 +3,11 @@
 @inherits WebSiteModuleComponentBase
 @attribute [JSModuleAutoLoader("Components/FooterCounter.razor.js")]
 
-<div id="@Id" class="d-none d-sm-block ms-2" style="width: 110px;">Run @Runtime</div>
+<div id="@Id" class="d-none sm:d-block ms-2" style="width: 110px;">Run @Runtime</div>
 @if (_options.Enable)
 {
     <div class="footer-online ms-2">
-        <i class="fa-solid fa-people-group text-success"></i>
+        <i class="fa-solid fa-people-group fg-success"></i>
         <a href="./online" target="_blank" style="color: #ddd;">@ConnectionService.Count</a>
     </div>
 }

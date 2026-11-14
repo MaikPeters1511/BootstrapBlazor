@@ -86,21 +86,21 @@ internal static class MenusLocalizerExtensions
         item = new DemoMenuItem()
         {
             Text = Localizer["SocketComponents"],
-            Icon = "fa-fw fa-solid fa-satellite-dish text-danger"
+            Icon = "fa-fw fa-solid fa-satellite-dish fg-danger"
         };
         AddSocket(item);
 
         item = new DemoMenuItem()
         {
             Text = Localizer["ModbusComponents"],
-            Icon = "fa-fw fa-solid fa-satellite-dish text-danger"
+            Icon = "fa-fw fa-solid fa-satellite-dish fg-danger"
         };
         AddModbus(item);
 
         item = new DemoMenuItem()
         {
             Text = Localizer["SerialPortComponents"],
-            Icon = "fa-fw fa-solid fa-satellite-dish text-danger"
+            Icon = "fa-fw fa-solid fa-satellite-dish fg-danger"
         };
         AddSerialPort(item);
 

@@ -9,55 +9,55 @@
 <DemoBlock Title="@Localizer["SlidersNormalTitle"]" Introduction="@Localizer["SlidersNormalIntro"]" Name="Normal">
     <section ignore>
         <div class="row g-3">
-            <div class="col-12 col-md-6 col-lg-4 xl-3">
+            <div class="col-12 md:col-6 lg:col-4 xl-3">
                 <BootstrapInputGroup>
                     <BootstrapInputGroupLabel DisplayText="CurrentValue"></BootstrapInputGroupLabel>
                     <BootstrapInput @bind-Value="@CurrentValue"></BootstrapInput>
                 </BootstrapInputGroup>
             </div>
-            <div class="col-12 col-md-6 col-lg-4 xl-3">
+            <div class="col-12 md:col-6 lg:col-4 xl-3">
                 <BootstrapInputGroup>
                     <BootstrapInputGroupLabel DisplayText="MinValue"></BootstrapInputGroupLabel>
                     <BootstrapInput @bind-Value="@MinValue"></BootstrapInput>
                 </BootstrapInputGroup>
             </div>
-            <div class="col-12 col-md-6 col-lg-4 xl-3">
+            <div class="col-12 md:col-6 lg:col-4 xl-3">
                 <BootstrapInputGroup>
                     <BootstrapInputGroupLabel DisplayText="MaxValue"></BootstrapInputGroupLabel>
                     <BootstrapInput @bind-Value="@MaxValue"></BootstrapInput>
                 </BootstrapInputGroup>
             </div>
-            <div class="col-12 col-md-6 col-lg-4 xl-3">
+            <div class="col-12 md:col-6 lg:col-4 xl-3">
                 <BootstrapInputGroup>
                     <BootstrapInputGroupLabel DisplayText="DisplayText"></BootstrapInputGroupLabel>
                     <BootstrapInput @bind-Value="@DisplayText"></BootstrapInput>
                 </BootstrapInputGroup>
             </div>
-            <div class="col-12 col-md-6 col-lg-4 xl-3">
+            <div class="col-12 md:col-6 lg:col-4 xl-3">
                 <BootstrapInputGroup>
                     <BootstrapInputGroupLabel DisplayText="Step"></BootstrapInputGroupLabel>
                     <BootstrapInput @bind-Value="@Step"></BootstrapInput>
                 </BootstrapInputGroup>
             </div>
-            <div class="col-12 col-md-6 col-lg-4 xl-3">
+            <div class="col-12 md:col-6 lg:col-4 xl-3">
                 <BootstrapInputGroup>
                     <BootstrapInputGroupLabel DisplayText="IsDisabled"></BootstrapInputGroupLabel>
                     <Checkbox @bind-Value="@IsDisabled"></Checkbox>
                 </BootstrapInputGroup>
             </div>
-            <div class="col-12 col-md-6 col-lg-4 xl-3">
+            <div class="col-12 md:col-6 lg:col-4 xl-3">
                 <BootstrapInputGroup>
                     <BootstrapInputGroupLabel DisplayText="UseInput"></BootstrapInputGroupLabel>
                     <Checkbox @bind-Value="@UseInput"></Checkbox>
                 </BootstrapInputGroup>
             </div>
-            <div class="col-12 col-md-6 col-lg-4 xl-3">
+            <div class="col-12 md:col-6 lg:col-4 xl-3">
                 <BootstrapInputGroup>
                     <BootstrapInputGroupLabel DisplayText="ShowLabel"></BootstrapInputGroupLabel>
                     <Checkbox @bind-Value="@ShowLabel"></Checkbox>
                 </BootstrapInputGroup>
             </div>
-            <div class="col-12 col-md-6 col-lg-4 xl-3">
+            <div class="col-12 md:col-6 lg:col-4 xl-3">
                 <BootstrapInputGroup>
                     <BootstrapInputGroupLabel DisplayText="UseGroup"></BootstrapInputGroupLabel>
                     <Checkbox @bind-Value="@UseGroup"></Checkbox>
@@ -85,10 +85,10 @@
 
 <DemoBlock Title="@Localizer["SlidersRangeTitle"]" Introduction="@Localizer["SlidersRangeIntro"]" Name="Range">
     <div class="row">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Slider @bind-Value="@RangeValue" Step="1" UseInputEvent="true"></Slider>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Display Value="@RangeValue"></Display>
         </div>
     </div>
@@ -96,7 +96,7 @@
 
 <DemoBlock Title="@Localizer["SlidersIsDisabledTitle"]" Introduction="@Localizer["SlidersIsDisabledIntro"]" Name="IsDisabled">
     <div class="row">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Slider TValue="double" Step="1" IsDisabled="true"></Slider>
         </div>
     </div>

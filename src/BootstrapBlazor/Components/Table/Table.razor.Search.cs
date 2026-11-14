@@ -13,8 +13,8 @@ public partial class Table<TItem>
     /// <para lang="zh">获得 高级搜索样式</para>
     /// <para lang="en">Get Advanced Search Class</para>
     /// </summary>
-    protected string? AdvanceSearchClass => CssBuilder.Default("btn btn-secondary")
-        .AddClass("btn-info", IsAdvanceSearch)
+    protected string? AdvanceSearchClass => CssBuilder.Default("btn btn-solid theme-secondary")
+        .AddClass("btn-solid theme-info", IsAdvanceSearch)
         .Build();
 
     /// <summary>

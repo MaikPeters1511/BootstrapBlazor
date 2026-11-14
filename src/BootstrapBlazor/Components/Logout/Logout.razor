@@ -2,7 +2,7 @@
 @inherits IdComponentBase
 
 <div @attributes="AdditionalAttributes" class="@LogoutClassString">
-    <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" id="@Id" aria-expanded="false">
+    <a class="dropdown-toggle" data-bs-toggle="menu" data-bs-placement="bottom-end" href="#" id="@Id" aria-expanded="false">
         @if (ChildContent == null)
         {
             <img class="logout-avatar" alt="avatar" src="@ImageUrl" />
@@ -16,8 +16,8 @@
             @ChildContent
         }
     </a>
-    <div class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="@Id">
-        <div class="dropdown-item dropdown-user">
+    <div class="menu shadow" aria-labelledby="@Id">
+        <div class="menu-item dropdown-user">
             @if (HeaderTemplate == null)
             {
                 <div class="d-flex flex-fill align-items-center">
@@ -35,7 +35,7 @@
         </div>
         @if (LinkTemplate != null)
         {
-            <div class="dropdown-item">
+            <div class="menu-item">
                 @LinkTemplate
             </div>
         }

@@ -57,10 +57,10 @@ public class TimelineTest : BootstrapBlazorTestBase
         var html = cut.Markup;
         Assert.Contains("first item", html);
         Assert.Contains("first description", html);
-        Assert.Contains("text-danger", html);
+        Assert.Contains("fg-danger", html);
         Assert.Contains("fa-solid fa-house", html);
         Assert.Contains("card-body", html);
-        Assert.Matches("bg-dark(.*?)text-danger", html.Replace("\r", "").Replace("\n", ""));
+        Assert.Matches("bg-dark(.*?)fg-danger", html.Replace("\r", "").Replace("\n", ""));
     }
 
     [Fact]

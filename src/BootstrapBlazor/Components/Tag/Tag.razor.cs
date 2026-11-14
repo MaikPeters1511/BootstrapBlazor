@@ -12,7 +12,7 @@ namespace BootstrapBlazor.Components;
 public partial class Tag
 {
     private string? ClassName => CssBuilder.Default("tag fade show")
-        .AddClass($"alert-{Color.ToDescriptionString()}", Color != Color.None)
+        .AddClass($"theme-{Color.ToDescriptionString()}", Color != Color.None)
         .AddClassFromAttributes(AdditionalAttributes)
         .Build();
 

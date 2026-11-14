@@ -38,7 +38,7 @@ public class SearchFormTest : BootstrapBlazorTestBase
             });
         });
 
-        cut.Contains("col-sm-6");
+        cut.Contains("sm:col-6");
         cut.Contains("form-inline-end");
 
         searchItem.Metadata = stringSearchMetadata;

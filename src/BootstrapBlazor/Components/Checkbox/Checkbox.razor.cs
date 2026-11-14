@@ -26,10 +26,17 @@ public partial class Checkbox<TValue> : ValidateBase<TValue>
     private bool IsShowAfterLabel => ShowAfterLabel && !string.IsNullOrEmpty(DisplayText);
 
     /// <summary>
+    /// <para lang="zh">Bootstrap 6 输入框样式 check 或者 radio</para>
+    /// <para lang="en">Bootstrap 6 input class, check or radio</para>
+    /// </summary>
+    protected virtual string InputTypeClass => "check";
+
+    /// <summary>
     /// <para lang="zh">Input 元素样式</para>
     /// <para lang="en">Input element CSS class</para>
     /// </summary>
     protected string? InputClassString => CssBuilder.Default("form-check-input")
+        .AddClass(InputTypeClass)
         .AddClass($"border-{Color.ToDescriptionString()}", Color != Color.None)
         .AddClass("disabled", IsDisabled)
         .Build();

@@ -14,6 +14,18 @@ public class DropdownWidgetTest : BootstrapBlazorTestBase
     }
 
     [Fact]
+    public void BootstrapMenuPlacement_Ok()
+    {
+        var cut = Context.Render<DropdownWidget>(builder =>
+        {
+            builder.Add(s => s.Items, GetItems());
+        });
+        var toggle = cut.Find("[data-bs-toggle=\"menu\"]");
+        Assert.Equal("bottom", toggle.GetAttribute("data-bs-placement"));
+        cut.Find(".menu .menu-header");
+    }
+
+    [Fact]
     public void ChildContent_OK()
     {
         var cut = Context.Render<DropdownWidget>(builder =>
@@ -77,7 +89,7 @@ public class DropdownWidgetTest : BootstrapBlazorTestBase
             }));
         });
 
-        var ele = cut.Find(".text-bg-success");
+        var ele = cut.Find(".theme-success");
         Assert.NotNull(ele);
     }
 

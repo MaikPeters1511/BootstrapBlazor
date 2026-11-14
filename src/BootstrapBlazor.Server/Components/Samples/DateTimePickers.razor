@@ -18,25 +18,25 @@
         </Tips>
         <GroupBox Title="@Localizer["Feature"]">
             <div class="row g-3 form-inline text-end">
-                <div class="col-12 col-sm-6 col-lg-3">
+                <div class="col-12 sm:col-6 lg:col-3">
                     <BootstrapInputGroup>
                         <BootstrapInputGroupLabel DisplayText="@Localizer["FeatureShowLunar"]"></BootstrapInputGroupLabel>
                         <Switch @bind-Value="_showLunar" />
                     </BootstrapInputGroup>
                 </div>
-                <div class="col-12 col-sm-6 col-lg-3">
+                <div class="col-12 sm:col-6 lg:col-3">
                     <BootstrapInputGroup>
                         <BootstrapInputGroupLabel DisplayText="@Localizer["FeatureShowSolarTerm"]"></BootstrapInputGroupLabel>
                         <Switch @bind-Value="_showSolarTerm" />
                     </BootstrapInputGroup>
                 </div>
-                <div class="col-12 col-sm-6 col-lg-3">
+                <div class="col-12 sm:col-6 lg:col-3">
                     <BootstrapInputGroup>
                         <BootstrapInputGroupLabel DisplayText="@Localizer["FeatureShowFestivals"]"></BootstrapInputGroupLabel>
                         <Switch @bind-Value="_showFestivals" />
                     </BootstrapInputGroup>
                 </div>
-                <div class="col-12 col-sm-6 col-lg-3">
+                <div class="col-12 sm:col-6 lg:col-3">
                     <BootstrapInputGroup>
                         <BootstrapInputGroupLabel DisplayText="@Localizer["FeatureShowHolidays"]"></BootstrapInputGroupLabel>
                         <Switch @bind-Value="_showHolidays" />
@@ -60,13 +60,13 @@
             <li>@((MarkupString)Localizer["DateTimePickerPickTimeModeIntro"].Value)</li>
         </ul>
         <div class="row g-3">
-		    <div class="col-12 col-sm-6">
+		    <div class="col-12 sm:col-6">
 			    <BootstrapInputGroup>
 				    <BootstrapInputGroupLabel DisplayText="@Localizer["DateTimePickerIsButtonLabel"]"></BootstrapInputGroupLabel>
 				    <Switch @bind-Value="_isButton"></Switch>
 			    </BootstrapInputGroup>
 		    </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <BootstrapInputGroup>
                     <BootstrapInputGroupLabel DisplayText="@Localizer["DateTimePickerPickTimeModeLabel"]"></BootstrapInputGroupLabel>
                     <Segmented @bind-Value="_pickTimeMode">
@@ -97,10 +97,10 @@
 <DemoBlock Title="@Localizer["ValidateFormTitle"]" Introduction="@Localizer["ValidateFormIntro"]" Name="ValidateForm">
 	<ValidateForm Model="this">
 		<div class="row g-3">
-			<div class="col-12 col-sm-auto">
+			<div class="col-12 sm:col-auto">
 				<DateTimePicker @bind-Value="@ValidateFormValue" />
 			</div>
-			<div class="col-12 col-sm-auto align-self-end">
+			<div class="col-12 sm:col-auto align-self-end">
 				<Button ButtonType="ButtonType.Submit" Text="@Localizer["SubmitText"]" Icon="fa-solid fa-floppy-disk"></Button>
 			</div>
 		</div>
@@ -117,10 +117,10 @@
 
 <DemoBlock Title="@Localizer["BindValueTitle"]" Introduction="@Localizer["BindValueIntro"]" Name="BindValue">
 	<div class="row g-3">
-		<div class="col-sm-6">
+		<div class="sm:col-6">
 			<DateTimePicker @bind-Value="@BindValue" IsEditable="true" DateFormat="dd/MM/yyyy" />
 		</div>
-		<div class="col-sm-6">
+		<div class="sm:col-6">
 			<input class="form-control" @bind="@BindValueString" />
 		</div>
 	</div>
@@ -132,7 +132,7 @@
 		<p>@((MarkupString)Localizer["IsEditableCallbackTip"].Value)</p>
 	</section>
 	<div class="row g-3">
-		<div class="col-sm-6">
+		<div class="sm:col-6">
 			<DateTimePicker @bind-Value="@BindValue" IsEditable="true" DateFormat="yyyy-MM-dd" ParseDateTimeCallback="ParseDateTime" />
 		</div>
 	</div>
@@ -141,16 +141,16 @@
 <DemoBlock Title="@Localizer["ViewModeTitle"]" Introduction="@Localizer["ViewModeIntro"]" Name="ViewMode">
 	<section ignore>@((MarkupString)Localizer["ViewModeTip"].Value)</section>
 	<div class="row g-3">
-		<div class="col-12 col-sm-6">
+		<div class="col-12 sm:col-6">
 			<DateTimePicker @bind-Value="YearValue" ShowLabel="true" DisplayText="Year" ViewMode="DatePickerViewMode.Year" DateFormat="yyyy" />
 		</div>
-		<div class="col-12 col-sm-6">
+		<div class="col-12 sm:col-6">
 			<DateTimePicker @bind-Value="MonthValue" ShowLabel="true" DisplayText="Month" ViewMode="DatePickerViewMode.Month" DateFormat="yyyy-MM" />
 		</div>
-		<div class="col-12 col-sm-6">
+		<div class="col-12 sm:col-6">
 			<DateTimePicker @bind-Value="DateValue" ShowLabel="true" DisplayText="Date" ViewMode="DatePickerViewMode.Date" DateFormat="yyyy-MM-dd" />
 		</div>
-		<div class="col-12 col-sm-6">
+		<div class="col-12 sm:col-6">
 			<DateTimePicker @bind-Value="DateTimeValue" ShowLabel="true" DisplayText="DateTime" ViewMode="DatePickerViewMode.DateTime" DateTimeFormat="yyyy-MM-dd HH:mm:ss" />
 		</div>
 	</div>
@@ -159,10 +159,10 @@
 <DemoBlock Title="@Localizer["NullValueTitle"]" Introduction="@Localizer["NullValueIntro"]" Name="NullValue">
 	<section ignore>@((MarkupString)Localizer["NullValueTip"].Value)</section>
 	<div class="row g-3">
-		<div class="col-12 col-sm-8">
+		<div class="col-12 sm:col-8">
 			<DateTimePicker @bind-Value="@BindNullValue" />
 		</div>
-		<div class="col-12 col-sm-4">
+		<div class="col-12 sm:col-4">
 			<Display TValue="string" Value="@GetNullValueString" />
 		</div>
 	</div>
@@ -177,10 +177,10 @@
 
 <DemoBlock Title="@Localizer["DisabledTitle"]" Introduction="@Localizer["DisabledIntro"]" Name="IsDisabled">
 	<div class="row g-3">
-		<div class="col-12 col-sm-6">
+		<div class="col-12 sm:col-6">
 			<DateTimePicker IsDisabled="IsDisabled" Value="DateTime.Today" />
 		</div>
-		<div class="col-12 col-sm-6">
+		<div class="col-12 sm:col-6">
 			<Switch @bind-Value="@IsDisabled" />
 		</div>
 	</div>
@@ -213,19 +213,19 @@
 
 <DemoBlock Title="@Localizer["BlockGroupTitle"]" Introduction="@Localizer["BlockGroupIntro"]" Name="Group">
 	<div class="row g-3">
-		<div class="col-12 col-sm-6">
+		<div class="col-12 sm:col-6">
 			<BootstrapInputGroup>
 				<BootstrapInputGroupLabel DisplayText="@Localizer["BlockGroupLabel"]" />
 				<DateTimePicker TValue="DateTime" ShowIcon="false" />
 			</BootstrapInputGroup>
 		</div>
-		<div class="col-12 col-sm-6">
+		<div class="col-12 sm:col-6">
 			<BootstrapInputGroup>
 				<DateTimePicker TValue="DateTime" />
 				<BootstrapInputGroupLabel DisplayText="@Localizer["BlockGroupSuffixLabel"]" />
 			</BootstrapInputGroup>
 		</div>
-		<div class="col-12 col-sm-6">
+		<div class="col-12 sm:col-6">
 			<BootstrapInputGroup>
 				<BootstrapInputGroupLabel DisplayText="@Localizer["BlockGroupLabel"]" />
 				<DateTimePicker TValue="DateTime" ShowIcon="false" />
@@ -253,23 +253,23 @@
 		</Tips>
 		<GroupBox Title="@Localizer["DisableOptions"]">
 			<div class="row g-3 form-inline text-end">
-				<div class="col-12 col-sm-6 col-md-auto">
+				<div class="col-12 sm:col-6 md:col-auto">
 					<Switch DisplayText="@Localizer["DisableWeekend"]" ShowLabel="true" @bind-Value="_disableWeekend" OnValueChanged="OnDisabledDaysChanged" />
 				</div>
-				<div class="col-12 col-sm-6 col-md-auto">
+				<div class="col-12 sm:col-6 md:col-auto">
 					<Switch DisplayText="@Localizer["DisableToday"]" ShowLabel="true" @bind-Value="_disableToday" OnValueChanged="OnDisabledDaysChanged" />
 				</div>
 			</div>
 		</GroupBox>
 	</section>
 	<div class="row form-inline g-3">
-		<div class="col-12 col-sm-6">
+		<div class="col-12 sm:col-6">
 			<DateTimePicker ViewMode="DatePickerViewMode.DateTime" DisplayText="@Localizer["DisableDayCallbackAllowNullDisplayText"]"
 							ShowLabel="true" @bind-Value="@_disabledNullValue" @ref="_picker1"
 							OnGetDisabledDaysCallback="OnGetDisabledDaysCallback" DisplayDisabledDayAsEmpty="true">
 			</DateTimePicker>
 		</div>
-		<div class="col-12 col-sm-6">
+		<div class="col-12 sm:col-6">
 			<DateTimePicker ViewMode="DatePickerViewMode.DateTime" DisplayText="@Localizer["DisableDayCallbackNotAllowNullDisplayText"]"
 							ShowLabel="true" @bind-Value="@_disabledValue" @ref="_picker2"
 							OnGetDisabledDaysCallback="OnGetDisabledDaysCallback">

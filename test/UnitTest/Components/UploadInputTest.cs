@@ -36,7 +36,7 @@ public class UploadInputTest : BootstrapBlazorTestBase
         })));
         Assert.Equal("UploadTestFile", uploadFile!.OriginFileName);
         cut.Contains("fa-regular fa-folder-open");
-        cut.Contains("btn-primary");
+        cut.Contains("btn-solid theme-primary");
         cut.Contains("TestPlaceHolder");
 
         // 参数
@@ -53,7 +53,7 @@ public class UploadInputTest : BootstrapBlazorTestBase
             pb.Add(a => a.DeleteButtonIcon, "fa-solid fa-trash");
         });
         cut.WaitForAssertion(() => cut.Contains("fa-solid fa-trash"));
-        cut.Contains("btn-danger");
+        cut.Contains("btn-solid theme-danger");
 
         // 删除逻辑
         var deleted = false;

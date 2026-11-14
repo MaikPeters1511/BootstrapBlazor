@@ -20,6 +20,18 @@
 
 --- 
 
+## Unreleased
+
+### Features
+* feat(Bootstrap): 更新 `bootstrap` 到 `v6.0.0-alpha.1` by @MaikPeters1511 in https://github.com/MaikPeters1511/BootstrapBlazor/pull/1
+
+### Breaking changes
+* Bootstrap 6 重命名了大量样式，按 Bootstrap 5 编写的代码需要调整（`btn-primary` -> `btn-solid theme-primary`，`text-danger` -> `fg-danger`，`col-sm-6` -> `sm:col-6`，`dropdown-menu` -> `menu`，`modal-body` -> `dialog-body`），详见 `README.zh-CN.md` 中的 “Bootstrap 版本” 章节
+* `Modal` 组件渲染为原生 `<dialog>` 元素
+* `Menu` 与 `Drawer` 组件样式改为 `bb-menu` 与 `bb-drawer`
+* `InputUpload`：`BrowserButtonClass` 与 `DeleteButtonClass` 默认值改为 `btn-solid theme-primary` 与 `btn-solid theme-danger`
+* 不再提供单独的 Bootstrap RTL 样式文件
+
 ## Release 2023-10-16 V7.11.1
 
 ### Bugs

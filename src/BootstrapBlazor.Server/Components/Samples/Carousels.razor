@@ -85,7 +85,7 @@
 <DemoBlock Title="@Localizer["CaptionClassTitle"]" Introduction="@Localizer["CaptionClassIntro"]" Name="CaptionClass">
     <p>@((MarkupString)Localizer["CaptionClassP1"].Value)</p>
     <Carousel Width="280" IsFade="true">
-        <CarouselItem CaptionClass="d-none d-md-block">
+        <CarouselItem CaptionClass="d-none md:d-block">
             <CaptionTemplate>
                 <h5>First slide label</h5>
                 <p>Pic0.jpg</p>
@@ -94,7 +94,7 @@
                 <img src="@WebsiteOption.Value.GetAssetUrl("images/Pic0.jpg")" alt="demo-image" />
             </ChildContent>
         </CarouselItem>
-        <CarouselItem CaptionClass="d-none d-md-block">
+        <CarouselItem CaptionClass="d-none md:d-block">
             <CaptionTemplate>
                 <h5>Second slide label</h5>
                 <p>Pic1.jpg</p>
@@ -103,7 +103,7 @@
                 <img src="@WebsiteOption.Value.GetAssetUrl("images/Pic1.jpg")" alt="demo-image" />
             </ChildContent>
         </CarouselItem>
-        <CarouselItem CaptionClass="d-none d-md-block">
+        <CarouselItem CaptionClass="d-none md:d-block">
             <CaptionTemplate>
                 <h5>Third slide label</h5>
                 <p>Pic2.jpg</p>

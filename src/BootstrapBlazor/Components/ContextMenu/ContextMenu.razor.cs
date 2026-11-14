@@ -38,7 +38,7 @@ public partial class ContextMenu
     [NotNull]
     private ContextMenuZone? ContextMenuZone { get; set; }
 
-    private string? ClassString => CssBuilder.Default("bb-cm dropdown-menu")
+    private string? ClassString => CssBuilder.Default("bb-cm menu")
         .AddClass("shadow", ShowShadow)
         .AddClassFromAttributes(AdditionalAttributes)
         .Build();
@@ -47,7 +47,7 @@ public partial class ContextMenu
 
     private readonly List<IContextMenuItem> _contextMenuItems = [];
 
-    private static string? GetItemClassString(bool disabled) => CssBuilder.Default("dropdown-item")
+    private static string? GetItemClassString(bool disabled) => CssBuilder.Default("menu-item")
         .AddClass("disabled", disabled)
         .Build();
 

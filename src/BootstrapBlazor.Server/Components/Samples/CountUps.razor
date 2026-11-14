@@ -9,19 +9,19 @@
     <section ignore>
         <p>更改配置后，改变 Value 值后生效</p>
         <div class="row mb-3">
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="col-12 sm:col-6 md:col-4 lg:col-3">
                 <BootstrapInputGroup>
                     <BootstrapInputGroupLabel DisplayText="Start value"></BootstrapInputGroupLabel>
                     <BootstrapInput @bind-Value="@_option.StartValue"></BootstrapInput>
                 </BootstrapInputGroup>
             </div>
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="col-12 sm:col-6 md:col-4 lg:col-3">
                 <BootstrapInputGroup>
                     <BootstrapInputGroupLabel DisplayText="Duration"></BootstrapInputGroupLabel>
                     <BootstrapInputNumber @bind-Value="@_option.Duration"></BootstrapInputNumber>
                 </BootstrapInputGroup>
             </div>
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="col-12 sm:col-6 md:col-4 lg:col-3">
                 <BootstrapInputGroup>
                     <BootstrapInputGroupLabel DisplayText="OnCompleted"></BootstrapInputGroupLabel>
                     <Checkbox @bind-Value="@_useOnCompleted"></Checkbox>
@@ -29,19 +29,19 @@
             </div>
         </div>
         <div class="row mb-3">
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="col-12 sm:col-6 md:col-4 lg:col-3">
                 <BootstrapInputGroup>
                     <BootstrapInputGroupLabel DisplayText="Use earing"></BootstrapInputGroupLabel>
                     <Checkbox @bind-Value="@_option.UseEasing"></Checkbox>
                 </BootstrapInputGroup>
             </div>
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="col-12 sm:col-6 md:col-4 lg:col-3">
                 <BootstrapInputGroup>
                     <BootstrapInputGroupLabel DisplayText="Decimal places"></BootstrapInputGroupLabel>
                     <BootstrapInputNumber @bind-Value="@_option.DecimalPlaces"></BootstrapInputNumber>
                 </BootstrapInputGroup>
             </div>
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="col-12 sm:col-6 md:col-4 lg:col-3">
                 <BootstrapInputGroup>
                     <BootstrapInputGroupLabel DisplayText="Decimal"></BootstrapInputGroupLabel>
                     <BootstrapInput @bind-Value="@_option.Decimal"></BootstrapInput>
@@ -49,19 +49,19 @@
             </div>
         </div>
         <div class="row mb-3">
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="col-12 sm:col-6 md:col-4 lg:col-3">
                 <BootstrapInputGroup>
                     <BootstrapInputGroupLabel DisplayText="Use grouping"></BootstrapInputGroupLabel>
                     <Checkbox @bind-Value="@_option.UseGrouping"></Checkbox>
                 </BootstrapInputGroup>
             </div>
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="col-12 sm:col-6 md:col-4 lg:col-3">
                 <BootstrapInputGroup>
                     <BootstrapInputGroupLabel DisplayText="Use separators"></BootstrapInputGroupLabel>
                     <Checkbox @bind-Value="@_option.UseIndianSeparators"></Checkbox>
                 </BootstrapInputGroup>
             </div>
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="col-12 sm:col-6 md:col-4 lg:col-3">
                 <BootstrapInputGroup>
                     <BootstrapInputGroupLabel DisplayText="Separator"></BootstrapInputGroupLabel>
                     <BootstrapInput @bind-Value="@_option.Separator"></BootstrapInput>
@@ -69,19 +69,19 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="col-12 sm:col-6 md:col-4 lg:col-3">
                 <BootstrapInputGroup>
                     <BootstrapInputGroupLabel DisplayText="Prefix"></BootstrapInputGroupLabel>
                     <BootstrapInput @bind-Value="@_option.Prefix"></BootstrapInput>
                 </BootstrapInputGroup>
             </div>
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="col-12 sm:col-6 md:col-4 lg:col-3">
                 <BootstrapInputGroup>
                     <BootstrapInputGroupLabel DisplayText="Suffix"></BootstrapInputGroupLabel>
                     <BootstrapInput @bind-Value="@_option.Suffix"></BootstrapInput>
                 </BootstrapInputGroup>
             </div>
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="col-12 sm:col-6 md:col-4 lg:col-3">
                 <BootstrapInputGroup>
                     <BootstrapInputGroupLabel DisplayText="Numerals"></BootstrapInputGroupLabel>
                     <Select Items="_items" TValue="string" OnSelectedItemChanged="OnSelectedItemChanged"></Select>
@@ -89,7 +89,7 @@
             </div>
         </div>
     </section>
-    <CountUp TValue="double" Value="@Value" Option="_option" OnCompleted="OnCompleted" class="fw-bold fs-1 mb-2 d-block"></CountUp>
+    <CountUp TValue="double" Value="@Value" Option="_option" OnCompleted="OnCompleted" class="fw-bold fs-3xl mb-2 d-block"></CountUp>
     <BootstrapInputGroup>
         <BootstrapInputGroupLabel DisplayText="Value"></BootstrapInputGroupLabel>
         <BootstrapInput @bind-Value="Value2"></BootstrapInput>

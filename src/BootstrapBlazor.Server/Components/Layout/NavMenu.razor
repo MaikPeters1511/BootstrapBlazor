@@ -1,14 +1,14 @@
 ﻿@inherits WebSiteModuleComponentBase
 @attribute [JSModuleAutoLoader("Layout/NavMenu.razor.js")]
 
-<nav class="navbar navbar-dark d-flex d-md-none px-3" id="@Id">
+<nav class="navbar d-flex md:d-none px-3" id="@Id">
     <a class="navbar-brand" href="">Bootstrap Blazor</a>
     <button class="navbar-toggler" aria-label="toggle">
         <span class="navbar-toggler-icon"></span>
     </button>
 </nav>
 
-<nav class="sidebar-content collapse d-md-block">
+<nav class="sidebar-content collapse md:d-block">
     <div class="sidebar-switch">
         <Switch @bind-Value="@IsAccordion" ShowLabel="true" DisplayText="@AccordionText" OnValueChanged="@OnValueChanged" />
         <div style="width:1rem;"></div>

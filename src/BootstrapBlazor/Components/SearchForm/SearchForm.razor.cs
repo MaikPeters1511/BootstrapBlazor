@@ -171,8 +171,8 @@ public partial class SearchForm : IShowLabel
         }
 
         return CssBuilder.Default("col-12")
-            .AddClass($"col-sm-{cols}", cols > 0)
-            .AddClass($"col-sm-6 col-md-{mdCols}", mdCols > 0 && cols == 0 && !Utility.IsCheckboxList(item.PropertyType))
+            .AddClass($"sm:col-{cols}", cols > 0)
+            .AddClass($"sm:col-6 md:col-{mdCols}", mdCols > 0 && cols == 0 && !Utility.IsCheckboxList(item.PropertyType))
             .Build();
     }
 }

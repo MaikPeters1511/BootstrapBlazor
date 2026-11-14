@@ -550,13 +550,13 @@ public class DateTimePickerTest : BootstrapBlazorTestBase
             pb.Add(a => a.ButtonColor, Color.Danger);
             pb.Add(a => a.PickerButtonText, "Pick DateTime");
         });
-        cut.Contains("btn dropdown-toggle btn-danger");
+        cut.Contains("btn dropdown-toggle btn-solid theme-danger");
 
         cut.Render(pb =>
         {
             pb.Add(a => a.IsButton, false);
         });
-        cut.DoesNotContain("btn dropdown-toggle btn-danger");
+        cut.DoesNotContain("btn dropdown-toggle btn-solid theme-danger");
         cut.Contains("dropdown-toggle form-control datetime-picker-input");
     }
     #endregion

@@ -68,7 +68,7 @@ private async Task OnClick()
 
 <DemoBlock Title="@Localizer["ApplyTitle"]" Introduction="@Localizer["ApplyIntro"]" Name="Apply">
     <div class="row g-3">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 sm:col-6">
             <Select @bind-Value="@ApplyDataPrimaryId" DisplayText="@Localizer["ApplyDisplayText"]" ShowLabel="true">
                 <Options>
                     <SelectOption Text="1" Value="1" />
@@ -84,7 +84,7 @@ private async Task OnClick()
                 </Options>
             </Select>
         </div>
-        <div class="col-12 col-sm-6 align-self-end">
+        <div class="col-12 sm:col-6 align-self-end">
             <Button OnClick="@OnClickShowDataById">@Localizer["ApplyOpenDialogButton"]</Button>
         </div>
     </div>

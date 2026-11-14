@@ -84,7 +84,7 @@ public class AlertTest : TestBase
     public void Color_Ok()
     {
         var cut = Context.Render<Alert>(builder => builder.Add(a => a.Color, Color.Primary));
-        Assert.Contains("alert-primary", cut.Markup);
+        Assert.Contains("theme-primary", cut.Markup);
     }
 
     [Fact]

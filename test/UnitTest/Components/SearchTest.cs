@@ -27,7 +27,7 @@ public class SearchTest : BootstrapBlazorTestBase
         await cut.InvokeAsync(() => cut.Instance.TriggerFilter("t"));
         await Task.Delay(20, CancellationToken.None);
 
-        var item = cut.Find(".dropdown-item");
+        var item = cut.Find(".menu-item");
         await cut.InvokeAsync(() => item.Click());
         Assert.NotNull(val);
         Assert.Equal("test1", val);
@@ -38,7 +38,7 @@ public class SearchTest : BootstrapBlazorTestBase
     {
         var cut = Context.Render<Search<string>>();
         Assert.Contains("<div class=\"search auto-complete\"", cut.Markup);
-        var menus = cut.FindAll(".dropdown-item");
+        var menus = cut.FindAll(".menu-item");
         Assert.Single(menus);
     }
 
@@ -115,14 +115,14 @@ public class SearchTest : BootstrapBlazorTestBase
                 return items;
             });
         });
-        var menus = cut.FindAll(".dropdown-item");
+        var menus = cut.FindAll(".menu-item");
         Assert.Single(menus);
 
         var button = cut.Find(".fa-magnifying-glass");
         await cut.InvokeAsync(() => button.Click());
         cut.WaitForState(() =>
         {
-            menus = cut.FindAll(".dropdown-item");
+            menus = cut.FindAll(".menu-item");
             return menus.Count == 2;
         });
     }
@@ -150,7 +150,7 @@ public class SearchTest : BootstrapBlazorTestBase
         cut.Contains("test-icon");
         cut.Contains("Clear");
 
-        var button = cut.Find(".btn-secondary");
+        var button = cut.Find(".btn-solid.theme-secondary");
         await cut.InvokeAsync(() => button.Click());
         await tcs.Task;
         Assert.True(ret);
@@ -174,7 +174,7 @@ public class SearchTest : BootstrapBlazorTestBase
         await cut.InvokeAsync(() => cut.Instance.TriggerFilter("t"));
         await Task.Delay(20, CancellationToken.None);
 
-        var item = cut.Find(".dropdown-item");
+        var item = cut.Find(".menu-item");
         await cut.InvokeAsync(() => item.Click());
         Assert.Null(selectedItem);
     }

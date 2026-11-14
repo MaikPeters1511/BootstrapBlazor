@@ -59,20 +59,20 @@ public partial class IntersectionObservers
     }
 
     private string? _videoStateString;
-    private string? _textColorString = "text-muted";
+    private string? _textColorString = "fg-3";
 
     private async Task OnVisibleChanged(IntersectionObserverEntry entry)
     {
         if (entry.IsIntersecting)
         {
             _videoStateString = Localizer["IntersectionObserverVisiblePlayLabel"];
-            _textColorString = "text-success";
+            _textColorString = "fg-success";
             await _video.Play();
         }
         else
         {
             _videoStateString = Localizer["IntersectionObserverVisiblePauseLabel"];
-            _textColorString = "text-danger";
+            _textColorString = "fg-danger";
             await _video.Pause();
         }
 

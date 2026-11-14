@@ -1,17 +1,88 @@
 ﻿@use "../../wwwroot/scss/variables" as *;
 
-[data-bs-theme='dark'] .dropdown-menu {
-    --bs-dropdown-bg: #{$bs-dropdown-bg-dark};
+[data-bs-theme='dark'] .menu {
+    --bs-menu-bg: #{$bs-dropdown-bg-dark};
 }
 
-.dropdown-item {
+.menu-item {
     > i + span {
         margin-inline-start: 0.25rem;
     }
 }
 
-.dropdown-menu {
+.menu {
     .divider {
         margin: 0.25rem 0;
     }
+}
+
+// Bootstrap 6 replaced the dropdown by the menu component and no longer ships
+// styles for the wrapper and toggle classes below. They are owned by BootstrapBlazor now.
+.dropup,
+.dropend,
+.dropdown,
+.dropstart,
+.dropup-center,
+.dropdown-center {
+    position: relative;
+}
+
+.dropdown-toggle {
+    white-space: nowrap;
+}
+
+.dropdown-toggle::after {
+    display: inline-block;
+    margin-inline-start: .255em;
+    vertical-align: .255em;
+    content: "";
+    border-top: .3em solid;
+    border-right: .3em solid transparent;
+    border-bottom: 0;
+    border-left: .3em solid transparent;
+}
+
+.dropdown-toggle:empty::after {
+    margin-inline-start: 0;
+}
+
+.dropup .dropdown-toggle::after {
+    border-top: 0;
+    border-bottom: .3em solid;
+}
+
+.dropend .dropdown-toggle::after {
+    vertical-align: 0;
+    border-top: .3em solid transparent;
+    border-right: 0;
+    border-bottom: .3em solid transparent;
+    border-left: .3em solid;
+}
+
+.dropstart .dropdown-toggle::after {
+    display: none;
+}
+
+.dropstart .dropdown-toggle::before {
+    display: inline-block;
+    margin-inline-end: .255em;
+    vertical-align: 0;
+    content: "";
+    border-top: .3em solid transparent;
+    border-right: .3em solid;
+    border-bottom: .3em solid transparent;
+}
+
+.dropdown-toggle-split {
+    padding-inline: .5625rem;
+}
+
+.dropdown-toggle-split::after,
+.dropup .dropdown-toggle-split::after,
+.dropend .dropdown-toggle-split::after {
+    margin-inline-start: 0;
+}
+
+.dropstart .dropdown-toggle-split::before {
+    margin-inline-end: 0;
 }

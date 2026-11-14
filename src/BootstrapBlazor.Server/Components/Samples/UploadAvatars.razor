@@ -16,31 +16,31 @@
            Name="Normal">
     <section ignore>
         <div class="row g-3" style="--bb-input-group-label-width: 186px;">
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <BootstrapInputGroup>
                     <BootstrapInputGroupLabel DisplayText="IsDisabled"></BootstrapInputGroupLabel>
                     <Switch @bind-Value="@_isDisabled"></Switch>
                 </BootstrapInputGroup>
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <BootstrapInputGroup>
                     <BootstrapInputGroupLabel DisplayText="IsMultiple"></BootstrapInputGroupLabel>
                     <Switch @bind-Value="@_isMultiple"></Switch>
                 </BootstrapInputGroup>
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <BootstrapInputGroup>
                     <BootstrapInputGroupLabel DisplayText="IsUploadButtonAtFirst"></BootstrapInputGroupLabel>
                     <Switch @bind-Value="@_isUploadButtonAtFirst"></Switch>
                 </BootstrapInputGroup>
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <BootstrapInputGroup>
                     <BootstrapInputGroupLabel DisplayText="IsCircle"></BootstrapInputGroupLabel>
                     <Switch @bind-Value="@_isCircle"></Switch>
                 </BootstrapInputGroup>
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <BootstrapInputGroup>
                     <BootstrapInputGroupLabel DisplayText="BorderRadius"></BootstrapInputGroupLabel>
                     <Slider @bind-Value="@_radius" Min="0" Max="49" UseInputEvent="true" IsDisabled="@(_isCircle == false)"></Slider>

@@ -34,16 +34,16 @@
         <div>@((MarkupString)Localizer["LabelsNormalGroupBox1Tips3"].Value)</div>
         <div>@((MarkupString)Localizer["LabelsNormalGroupBox1Tips4"].Value)</div>
         <div class="row g-3 mt-3">
-            <div class="col-sm-12 col-md-3">
+            <div class="sm:col-12 md:col-3">
                 <BootstrapInput TValue="string" />
             </div>
-            <div class="col-sm-12 col-md-3">
+            <div class="sm:col-12 md:col-3">
                 <BootstrapInput TValue="string" ShowLabel="true" DisplayText="" />
             </div>
-            <div class="col-sm-12 col-md-3">
+            <div class="sm:col-12 md:col-3">
                 <BootstrapInput TValue="string" ShowLabel="true" DisplayText="@FooLocalizer[nameof(Foo.Name)]" />
             </div>
-            <div class="col-sm-12 col-md-3">
+            <div class="sm:col-12 md:col-3">
                 <BootstrapInput TValue="string" ShowLabel="true" DisplayText="@null" />
             </div>
         </div>
@@ -56,16 +56,16 @@
         <div>@((MarkupString)Localizer["LabelsNormalGroupBox2Tips3"].Value)</div>
         <div>@((MarkupString)Localizer["LabelsNormalGroupBox2Tips4"].Value)</div>
         <div class="row g-3 mt-3">
-            <div class="col-sm-12 col-md-3">
+            <div class="sm:col-12 md:col-3">
                 <BootstrapInput @bind-Value="Dummy1.Name" />
             </div>
-            <div class="col-sm-12 col-md-3">
+            <div class="sm:col-12 md:col-3">
                 <BootstrapInput @bind-Value="Dummy1.Name" ShowLabel="true" DisplayText="@FooLocalizer[nameof(Foo.Address)]" />
             </div>
-            <div class="col-sm-12 col-md-3">
+            <div class="sm:col-12 md:col-3">
                 <BootstrapInput @bind-Value="Dummy1.Name" ShowLabel="true" DisplayText="" />
             </div>
-            <div class="col-sm-12 col-md-3">
+            <div class="sm:col-12 md:col-3">
                 <BootstrapInput @bind-Value="Dummy1.Name" ShowLabel="true" DisplayText="@null" />
             </div>
         </div>
@@ -145,10 +145,10 @@
     <section ignore>@((MarkupString)Localizer["LabelsValidateForm2Description1"].Value)</section>
     <ValidateForm Model="@Dummy4">
         <div class="row g-3">
-            <div class="col-sm-12 col-md-6">
+            <div class="sm:col-12 md:col-6">
                 <BootstrapInput @bind-Value="Dummy4.Name" />
             </div>
-            <div class="col-sm-12 col-md-6">
+            <div class="sm:col-12 md:col-6">
                 <BootstrapInput @bind-Value="Dummy4.Address" />
             </div>
         </div>
@@ -157,10 +157,10 @@
     <section ignore>@((MarkupString)Localizer["LabelsValidateForm2Description2"].Value)</section>
     <ValidateForm Model="@Dummy4" ShowLabel="false">
         <div class="row g-3">
-            <div class="col-sm-12 col-md-6">
+            <div class="sm:col-12 md:col-6">
                 <BootstrapInput @bind-Value="Dummy4.Name" />
             </div>
-            <div class="col-sm-12 col-md-6">
+            <div class="sm:col-12 md:col-6">
                 <BootstrapInput @bind-Value="Dummy4.Address" />
             </div>
         </div>
@@ -169,10 +169,10 @@
     <section ignore>@((MarkupString)Localizer["LabelsValidateForm2Description3"].Value)</section>
     <ValidateForm Model="@Dummy4">
         <div class="row g-3 form-inline">
-            <div class="col-sm-12 col-md-6">
+            <div class="sm:col-12 md:col-6">
                 <BootstrapInput @bind-Value="Dummy4.Name" />
             </div>
-            <div class="col-sm-12 col-md-6">
+            <div class="sm:col-12 md:col-6">
                 <BootstrapInput @bind-Value="Dummy4.Address" />
             </div>
         </div>
@@ -181,10 +181,10 @@
     <section ignore>@((MarkupString)Localizer["ValidateFormAlignRight"].Value)</section>
     <ValidateForm Model="@Dummy4">
         <div class="row g-3 form-inline form-inline-end">
-            <div class="col-sm-12 col-md-6">
+            <div class="sm:col-12 md:col-6">
                 <BootstrapInput @bind-Value="Dummy4.Name" />
             </div>
-            <div class="col-sm-12 col-md-6">
+            <div class="sm:col-12 md:col-6">
                 <BootstrapInput @bind-Value="Dummy4.Address" />
             </div>
         </div>
@@ -193,10 +193,10 @@
     <section>@((MarkupString)Localizer["ValidateFormAlignCenter"].Value)</section>
     <ValidateForm Model="@Dummy4">
         <div class="row g-3 form-inline form-inline-center">
-            <div class="col-sm-12 col-md-6">
+            <div class="sm:col-12 md:col-6">
                 <BootstrapInput @bind-Value="Dummy4.Name" />
             </div>
-            <div class="col-sm-12 col-md-6">
+            <div class="sm:col-12 md:col-6">
                 <BootstrapInput @bind-Value="Dummy4.Address" />
             </div>
         </div>
@@ -239,7 +239,7 @@
 
     &lt;BootstrapLabelSetting LabelWidth="220"&gt;
         &lt;div class="row form-inline g-3 mt-0"&gt;
-            &lt;div class="col-12 col-sm-6"&gt;
+            &lt;div class="col-12 sm:col-6"&gt;
                 &lt;BootstrapLabel LabelWidth="180" Value="@@LocalizerForm["LongDisplayText"]"&gt;&lt;/BootstrapLabel&gt;
                 &lt;BootstrapInput @@bind-Value="Dummy4.Name" ShowLabel="false" /&gt;
             &lt;/div&gt;
@@ -266,7 +266,7 @@
 
         <BootstrapLabelSetting LabelWidth="220">
             <div class="row form-inline g-3 mt-0">
-                <div class="col-12 col-sm-6">
+                <div class="col-12 sm:col-6">
                     <BootstrapLabel LabelWidth="180" Value="@FormLocalizer["LongDisplayText"]"></BootstrapLabel>
                     <BootstrapInput @bind-Value="Dummy4.Name" ShowLabel="false" />
                 </div>

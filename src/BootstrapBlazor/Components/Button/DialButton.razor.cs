@@ -131,7 +131,7 @@ public partial class DialButton
     /// <para lang="en">Gets the button style collection</para>
     /// </summary>
     private string? ButtonClassString => CssBuilder.Default("btn")
-        .AddClass($"btn-{Color.ToDescriptionString()}", Color != Color.None)
+        .AddClass(Color.ToButtonClass(), Color != Color.None)
         .AddClass($"btn-{Size.ToDescriptionString()}", Size != Size.None)
         .Build();
 

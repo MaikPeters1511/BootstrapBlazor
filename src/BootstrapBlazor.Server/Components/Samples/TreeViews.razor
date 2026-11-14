@@ -40,11 +40,11 @@
         <div>@((MarkupString)Localizer["TreeViewCheckboxTips2"].Value)</div>
         <div>@((MarkupString)Localizer["TreeViewCheckboxTips3"].Value)</div>
         <div class="row form-inline">
-            <div class="col-12 col-lg-auto">
+            <div class="col-12 lg:col-auto">
                 <Checkbox DisplayText="@Localizer["TreeViewCheckboxCheckBoxDisplayText1"]" ShowAfterLabel="true" @bind-Value="@AutoCheckChildren"></Checkbox>
                 <Checkbox DisplayText="@Localizer["TreeViewCheckboxCheckBoxDisplayText2"]" ShowAfterLabel="true" @bind-Value="@AutoCheckParent" class="ms-3"></Checkbox>
             </div>
-            <div class="col-12 col-lg-auto">
+            <div class="col-12 lg:col-auto">
                 <Button Text="@Localizer["TreeViewCheckboxButtonText"]" OnClick="@OnRefresh"></Button>
                 <Button Text="@Localizer["TreeViewCheckboxAddButtonText"]" OnClick="OnClickAddNode" class="ms-3"></Button>
             </div>
@@ -66,7 +66,7 @@
            Introduction="@Localizer["TreeViewTreeDisableIntro"]"
            Name="TreeDisable">
     <section ignore>@((MarkupString)Localizer["TreeViewTreeDisableDescription"].Value)</section>
-    <div class="col-12 col-lg-auto">
+    <div class="col-12 lg:col-auto">
         <Checkbox DisplayText="@Localizer["TreeViewsDisableWholeTreeView"]" ShowAfterLabel="true" @bind-Value="@IsDisabled"></Checkbox>
         <Checkbox DisplayText="@Localizer["TreeViewsWhetherToExpandWhenDisable"]" ShowAfterLabel="true" @bind-Value="@DisableCanExpand" class="ms-3"></Checkbox>
     </div>
@@ -148,7 +148,7 @@
            Introduction="@Localizer["TreeViewSetActiveIntro"]"
            Name="SetActive">
     <section ignore class="row form-inline">
-        <div class="col-12 col-lg-auto">
+        <div class="col-12 lg:col-auto">
             <Select TValue="string" Items="SelectedItems" OnSelectedItemChanged="SelectedItemOnChanged" ShowLabel="true" DisplayText="@Localizer["TreeViewSetActiveDisplayText"]"></Select>
         </div>
     </section>

@@ -57,12 +57,12 @@ public partial class TableToolbar<TItem> : ComponentBase
     public string? GearIcon { get; set; }
 
     private string? ToolbarClassString => CssBuilder.Default("btn-toolbar btn-group")
-        .AddClass("d-none d-sm-inline-flex", IsAutoCollapsedToolbarButton)
+        .AddClass("d-none sm:d-inline-flex", IsAutoCollapsedToolbarButton)
         .Build();
 
-    private string? GetItemClass(ButtonBase button) => CssBuilder.Default("dropdown-item")
+    private string? GetItemClass(ButtonBase button) => CssBuilder.Default("menu-item")
         .AddClass("disabled", GetDisabled(button))
-        .AddClass($"dropdown-item-btn-{button.Color.ToDescriptionString()}",
+        .AddClass($"menu-item-btn-{button.Color.ToDescriptionString()}",
             ShowColorWhenToolbarButtonsCollapsed &&
             !button.IsOutline &&
             button.Color != Color.None &&

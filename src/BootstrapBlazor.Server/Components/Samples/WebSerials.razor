@@ -21,22 +21,22 @@ private ISerialService? SerialService { get; set; }</Pre>
 <DemoBlock Title="@Localizer["WebSerialNormalTitle"]" Introduction="@Localizer["WebSerialNormalIntro"]" Name="WebSerialNormal">
     <GroupBox Title="串口设置">
         <div class="row form-inline g-3">
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <Select Items="_baudRateList" @bind-Value="@_serialOptions.BaudRate" ShowLabel="true" DisplayText="@Localizer["BaudRateText"]" />
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <Select Items="_dataBits" @bind-Value="@_serialOptions.DataBits" ShowLabel="true" DisplayText="@Localizer["DataBitsText"]" />
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <Select Items="_stopBits" @bind-Value="@_serialOptions.StopBits" ShowLabel="true" DisplayText="@Localizer["StopBitsText"]" />
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <Select @bind-Value="@_serialOptions.ParityType" ShowLabel="true" DisplayText="@Localizer["ParityTypeText"]" />
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <Select Items="_bufferSizes" @bind-Value="@_serialOptions.BufferSize" ShowLabel="true" DisplayText="@Localizer["BufferSizeText"]" />
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <Select @bind-Value="@_serialOptions.FlowControlType" ShowLabel="true" DisplayText="@Localizer["FlowControlTypeText"]" />
             </div>
             <div class="col-12">
@@ -53,11 +53,11 @@ private ISerialService? SerialService { get; set; }</Pre>
             <div class="col-12">
                 <Textarea IsDisabled="CheckClose" @bind-Value="@_sendData" rows="3"></Textarea>
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <Checkbox @bind-Value="_appendCRLF" ShowAfterLabel="true" DisplayText="@Localizer["CRLFText"]"></Checkbox>
                 <Checkbox @bind-Value="_isHEX" ShowAfterLabel="true" DisplayText="@Localizer["HEXText"]" class="ms-3"></Checkbox>
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <Checkbox @bind-Value="_isLoop" ShowAfterLabel="true" DisplayText="@Localizer["LoopSendText"]" class="me-3"></Checkbox>
                 <BootstrapInputGroup>
                     <BootstrapInputGroupLabel DisplayText="@Localizer["LoopIntervalText"]"></BootstrapInputGroupLabel>
@@ -67,21 +67,21 @@ private ISerialService? SerialService { get; set; }</Pre>
             <div class="col-12">
                 <Button IsDisabled="CheckClose" OnClick="Write" Text="@Localizer["WriteButtonText"]"></Button>
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <Checkbox Value="_ring" ShowAfterLabel="true" DisplayText="RING"></Checkbox>
                 <Checkbox Value="_dsr" ShowAfterLabel="true" DisplayText="DSR" class="ms-3"></Checkbox>
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <Checkbox Value="_cts" ShowAfterLabel="true" DisplayText="CTS"></Checkbox>
                 <Checkbox Value="_dcd" ShowAfterLabel="true" DisplayText="DCD" class="ms-3"></Checkbox>
             </div>
             <div class="col-12">
                 <Button IsDisabled="CheckClose" OnClick="GetSignals" Text="@Localizer["GetSignalsButtonText"]"></Button>
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <Display Value="@_usbInfo?.UsbVendorId" ShowLabel="true" DisplayText="VendorId"></Display>
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 sm:col-6">
                 <Display Value="@_usbInfo?.UsbProductId" ShowLabel="true" DisplayText="ProductId"></Display>
             </div>
             <div class="col-12">

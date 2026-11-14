@@ -57,7 +57,7 @@ public class TableDrawerTest : TableDialogTestBase
         await cut.InvokeAsync(() => table.Instance.EditAsync());
 
         // 获得关闭按钮直接关闭抽屉
-        var closeButton = cut.Find(".bb-editor-footer .btn-secondary");
+        var closeButton = cut.Find(".bb-editor-footer .btn-solid.theme-secondary");
         await cut.InvokeAsync(() => closeButton.Click());
 
         // 自定义数据服务取消回调测试
@@ -66,12 +66,12 @@ public class TableDrawerTest : TableDialogTestBase
             pb.Add(a => a.DataService, new MockEFCoreDataService(localizer));
         });
         await cut.InvokeAsync(() => table.Instance.EditAsync());
-        closeButton = cut.Find(".bb-editor-footer .btn-secondary");
+        closeButton = cut.Find(".bb-editor-footer .btn-solid.theme-secondary");
         await cut.InvokeAsync(() => closeButton.Click());
 
         // Add 弹窗
         await cut.InvokeAsync(() => table.Instance.AddAsync());
-        closeButton = cut.Find(".bb-editor-footer .btn-secondary");
+        closeButton = cut.Find(".bb-editor-footer .btn-solid.theme-secondary");
         await cut.InvokeAsync(() => closeButton.Click());
 
         // 自定义数据服务取消回调测试
@@ -80,7 +80,7 @@ public class TableDrawerTest : TableDialogTestBase
             pb.Add(a => a.EditDialogFullScreenSize, FullScreenSize.Always);
         });
         await cut.InvokeAsync(() => table.Instance.AddAsync());
-        closeButton = cut.Find(".bb-editor-footer .btn-secondary");
+        closeButton = cut.Find(".bb-editor-footer .btn-solid.theme-secondary");
         await cut.InvokeAsync(() => closeButton.Click());
 
         var closed = false;
@@ -94,7 +94,7 @@ public class TableDrawerTest : TableDialogTestBase
             });
         });
         await cut.InvokeAsync(() => table.Instance.AddAsync());
-        closeButton = cut.Find(".bb-editor-footer .btn-secondary");
+        closeButton = cut.Find(".bb-editor-footer .btn-solid.theme-secondary");
         await cut.InvokeAsync(() => closeButton.Click());
         Assert.True(closed);
 

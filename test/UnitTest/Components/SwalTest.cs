@@ -115,7 +115,7 @@ public class SwalTest : BootstrapBlazorTestBase
         }));
         cut.InvokeAsync(() =>
         {
-            var button = cut.Find(".btn-secondary");
+            var button = cut.Find(".btn-solid.theme-secondary");
             button.Click();
         });
         cut.InvokeAsync(() => modal.Instance.CloseCallback());
@@ -171,7 +171,7 @@ public class SwalTest : BootstrapBlazorTestBase
         // 触发确认按钮
         cut.InvokeAsync(() =>
         {
-            var button = cut.Find(".btn-danger");
+            var button = cut.Find(".btn-solid.theme-danger");
             button.Click();
             Assert.True(result);
             Assert.True(confirmed);
@@ -207,7 +207,7 @@ public class SwalTest : BootstrapBlazorTestBase
         // 触发关闭按钮
         cut.InvokeAsync(() =>
         {
-            var button = cut.Find(".btn-secondary");
+            var button = cut.Find(".btn-solid.theme-secondary");
             button.Click();
         });
         cut.InvokeAsync(() => modal.Instance.CloseCallback());
@@ -243,7 +243,7 @@ public class SwalTest : BootstrapBlazorTestBase
         }
         cut.InvokeAsync(() =>
         {
-            var button = cut.Find(".btn-danger");
+            var button = cut.Find(".btn-solid.theme-danger");
             button.Click();
         });
         cut.InvokeAsync(() => modal.Instance.CloseCallback());

@@ -555,7 +555,7 @@ public partial class Table<TItem> : ITable, IModelEqualityComparer<TItem> where 
     [Parameter]
     public bool IsTracking { get; set; }
 
-    private string ToggleDropdownString => IsPopoverToolbarDropdownButton ? "bb.dropdown" : "dropdown";
+    private string ToggleDropdownString => IsPopoverToolbarDropdownButton ? "bb.dropdown" : "menu";
 
     [Inject]
     [NotNull]
@@ -1007,9 +1007,9 @@ public partial class Table<TItem> : ITable, IModelEqualityComparer<TItem> where 
     /// </summary>
     protected CancellationTokenSource? AutoRefreshCancelTokenSource { get; set; }
 
-    private string? DropdownListClassString => CssBuilder.Default("dropdown-menu dropdown-menu-end shadow")
-        .AddClass("dropdown-menu-controls", ShowColumnListControls)
-        .AddClass("dropdown-menu-popover", IsPopoverToolbarDropdownButton)
+    private string? DropdownListClassString => CssBuilder.Default("menu shadow")
+        .AddClass("menu-controls", ShowColumnListControls)
+        .AddClass("menu-popover", IsPopoverToolbarDropdownButton)
         .Build();
 
     private bool _firstRender = true;

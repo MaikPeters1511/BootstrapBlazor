@@ -9,9 +9,9 @@ internal static class CalendarDemoDataHelper
 {
     public static List<Crew> Crews { get; } =
     [
-        new("张三", "text-success"),
-        new("李四", "text-primary"),
-        new("王五", "text-danger")
+        new("张三", "fg-success"),
+        new("李四", "fg-primary"),
+        new("王五", "fg-danger")
     ];
 
     private static Random Random { get; } = new Random();

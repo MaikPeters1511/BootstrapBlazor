@@ -30,7 +30,7 @@ public class TableEnumFilterTest : BootstrapBlazorTestBase
             pb.Add(a => a.IsHeaderRow, true);
         });
 
-        var items = cut.FindAll(".dropdown-item");
+        var items = cut.FindAll(".menu-item");
         await cut.InvokeAsync(() => { items[1].Click(); });
     }
 
