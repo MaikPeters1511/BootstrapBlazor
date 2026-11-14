@@ -11,7 +11,7 @@ Bootstrap-Version: `6.0.0-alpha.1`. Lokaler Teststand: 2811 von 2813 (Release), 
 | --- | --- | --- | --- |
 | A1 | ~~CI im Fork zum Laufen bringen~~ erledigt 2026-11-14 | P1 | S |
 | A2 | ~~Testsuite im Debug-Build ausführen~~ erledigt 2026-11-14 (in A1 mit CI) | P1 | S |
-| A3 | NuGet-Paket und JS-Konvertierung prüfen (Linux-Build erledigt, Paket offen) | P1 | M |
+| A3 | ~~NuGet-Paket und JS-Konvertierung prüfen~~ erledigt 2026-11-14 | P1 | M |
 | B1 | Layer-Konflikte systematisch suchen | P1 | L |
 | B2 | Farb-Utilities im Browser prüfen (Toast, Timeline, FileIcon, …) | P1 | M |
 | B3 | Theme `ant.css` migrieren | P2 | M |
@@ -53,8 +53,15 @@ Bootstrap-Version: `6.0.0-alpha.1`. Lokaler Teststand: 2811 von 2813 (Release), 
 - **Schritte:** `dotnet test test/UnitTest/UnitTest.csproj` ohne `-c Release`; Ergebnis mit dem Release-Lauf vergleichen.
 - **Fertig, wenn:** Alle Tests laufen durch, oder jeder Fehlschlag ist erklärt und ein Task angelegt.
 
-### A3 – NuGet-Paket und JS-Konvertierung prüfen
-- **Teilweise erledigt (2026-11-14):** Die Task `ConvertBootstrapJs` läuft auf Linux (CI-Build von `src/BootstrapBlazor` und den Tests ist grün). Offen: Paket mit `dotnet pack` erzeugen und den Inhalt prüfen.
+### A3 – NuGet-Paket und JS-Konvertierung prüfen – erledigt 2026-11-14
+- **Ergebnis:**
+  - `dotnet pack src/BootstrapBlazor -c Release` erzeugt `BootstrapBlazor.11.1.1-beta01.nupkg` (7,4 MB) mit allen sechs Zielframeworks (net6.0 bis net11.0).
+  - `staticwebassets/js/bootstrap.blazor.bundle.min.js` ist das klassische Script: Bootstrap-6.0.0-alpha.1-Banner, kein `export{`, endet mit `window.bootstrap={Alert,…,Tooltip}`.
+  - `staticwebassets/css/bootstrap.blazor.bundle.min.css` und `…rtl.min.css` (je 722 KB) sowie `motronic.min.css` sind enthalten.
+  - Eine Kopie der Starter-Vorlage, die das Paket aus einer lokalen Quelle statt des Projektverweises nutzt, baut und läuft: Bundle und CSS werden ausgeliefert, Dropdown, Dialog und Switch funktionieren.
+  - Der Lauf von `build.yml` auf `main` (Linux, mit `Bundle=True`, Tests, Codecov-Schritt) ist grün.
+- **Beobachtung:** `bootstrap.blazor.bundle.rtl.min.css` ist byte-gleich mit der LTR-Datei, weil Bootstrap 6 keine RTL-Datei mehr hat und beide Bundles dieselben Eingaben bekommen. Das ist gewollt, die Datei bleibt nur aus Kompatibilitätsgründen im Paket.
+- **Nicht geprüft:** der Veröffentlichungsweg (`pack.yml` mit NuGet-Login) und das Verhalten unter WebAssembly statt Blazor Server.
 
 (Ursprüngliche Beschreibung:)
 - **Warum:** `bootstrap.blazor.bundle.min.js` entsteht über die neue MSBuild-Task `ConvertBootstrapJs` (`Directory.Build.targets`). Der Paketinhalt wurde nie geprüft; die Task lief nur auf macOS.
