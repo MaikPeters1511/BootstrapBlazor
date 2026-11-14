@@ -26,7 +26,7 @@ Bootstrap-Version: `6.0.0-alpha.1`. Lokaler Teststand: 2811 von 2813 (Release), 
 | D4 | Tastaturbedienung prüfen | P2 | M |
 | D5 | Einzelne Komponenten prüfen | P2 | M |
 | D6 | Starter-Vorlage `Bs6Test` prüfen und ablegen | P3 | S |
-| E1 | Dialog: `OnClosingAsync` bei Escape und Hintergrundklick | P2 | M |
+| E1 | ~~Dialog: `OnClosingAsync` bei Escape und Hintergrundklick~~ erledigt 2026-11-14 | P2 | M |
 | E2 | Dialog: `dialog-instant` geht beim Re-Render verloren | P3 | S |
 | E3 | Carousel: `AutoPlayAfterManually` nach Hover | P3 | S |
 | F1 | Wechsel auf neue Bootstrap-6-Alphas und die stabile Version | P3 | M |
@@ -159,7 +159,12 @@ Voraussetzung für alle: Demo-App wie in der Memory-Notiz `desktop-write-protect
 
 ## E – Bekannte Verhaltensänderungen
 
-### E1 – Dialog: `OnClosingAsync` bei Escape und Hintergrundklick
+### E1 – Dialog: `OnClosingAsync` bei Escape und Hintergrundklick – erledigt 2026-11-14
+- **Ergebnis:** Escape und Klick auf den Hintergrund laufen jetzt über denselben Weg wie die Schaltfläche „Schliessen“ (`Modal.RequestCloseCallback` → `ModalDialog.RequestCloseAsync` → `OnClosingAsync`, bei Ergebnis-Dialogen `DialogResult.Close`). Gibt `OnClosingAsync` `false` zurück, bleibt der Dialog offen.
+- **Zur Einordnung:** Unter Bootstrap 5 rief nur der Fall mit gestapelten Dialogen `OnClosingAsync` bei Escape und Hintergrundklick auf; ein einzelner Dialog schloss sich direkt. Das Ergebnis eines `ShowModal`-Dialogs wurde in beiden Fällen nicht gesetzt. Jetzt gilt für alle Fälle dasselbe.
+- **Umsetzung:** `Modal.razor.js` fängt Escape selbst ab (`keydown` mit `preventDefault`, weil ein natives `<dialog>` sich sonst selbst schliesst und der Browser das zweite Escape nicht mehr abbrechen lässt) und fängt `hide.bs.dialog` für den Hintergrundklick ab; `forceHide` verhindert eine doppelte Rückfrage, wenn die Komponente selbst schliesst. Tests: `RequestCloseCallback_*` (ModalTest), `ShowModal_RequestClose_ResultClose` (DialogTest), `ModalScript_EscapeAndBackdrop_HandOverToComponent`.
+- **Im Browser geprüft** (Starter-App, Test-Seite mit `OnClosingAsync`): mehrfaches Escape bei verweigertem Schliessen, Escape bei erlaubtem Schliessen (Scroll-Sperre wird gelöst), Escape bei zwei gestapelten Dialogen (nur der oberste schliesst), Hintergrundklick verweigert und erlaubt.
+- **Offen:** Hat ein Dialog `IsKeyboard=false`, fängt das Skript Escape trotzdem ab und tut nichts (kein „Wackeln“ wie bei Bootstrap).
 - **Stand:** Das native `<dialog>` schliesst bei Escape oder Klick auf den Hintergrund selbst; `OnClosingAsync` wird dabei nicht aufgerufen. Bei gestapelten Dialogen ändert sich das Verhalten gegenüber Bootstrap 5.
 - **Schritte:** Test schreiben, der Escape und Hintergrundklick simuliert; in `Modal.razor.js` das `cancel`-Ereignis des Dialogs abfangen, `OnClosingAsync` aufrufen und bei Abbruch `preventDefault()`.
 - **Fertig, wenn:** `IsKeyboard`, `IsBackdrop` und `OnClosingAsync` verhalten sich wie vorher.

@@ -252,6 +252,20 @@ public class BootstrapAssetsTest
     }
 
     [Fact]
+    public void ModalScript_EscapeAndBackdrop_HandOverToComponent()
+    {
+        // a native dialog closes itself on Escape and the browser refuses to let a page cancel a second Escape,
+        // so the script takes the key itself (keydown, preventDefault) and hands Escape and the backdrop click
+        // (hide.bs.dialog) over to the component, which runs OnClosingAsync like the close button
+        var content = ReadSource("src", "BootstrapBlazor", "Components", "Modal", "Modal.razor.js");
+        Assert.Matches(@"EventHandler\.on\(document, 'keydown', modal\.handlerEscape\)", content);
+        Assert.Matches(@"e\.key !== 'Escape'", content);
+        Assert.Matches(@"EventHandler\.on\(el, 'hide\.bs\.dialog'", content);
+        Assert.Matches(@"invokeMethodAsync\('RequestCloseCallback'\)", content);
+        Assert.Matches(@"EventHandler\.off\(document, 'keydown', modal\.handlerEscape\)", content);
+    }
+
+    [Fact]
     public void RootScss_DisabledRule_InRebootLayer()
     {
         // Bootstrap 6 puts its css into cascade layers, unlayered rules always win

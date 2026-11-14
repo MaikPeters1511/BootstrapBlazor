@@ -227,6 +227,24 @@ public partial class Modal : IClosable
     }
 
     /// <summary>
+    /// <para lang="zh">用户按 Esc 键或点击背景时的回调方法，由 JSInvoke 调用，与点击关闭按钮一样先执行 <see cref="OnClosingAsync"/> 再决定是否关闭</para>
+    /// <para lang="en">Callback method when the user presses Escape or clicks the backdrop, called by JSInvoke. Like the close button it runs <see cref="OnClosingAsync"/> first and then decides whether to close</para>
+    /// </summary>
+    [JSInvokable]
+    public async Task RequestCloseCallback()
+    {
+        var dialog = Dialogs.LastOrDefault(d => d.IsShown);
+        if (dialog != null)
+        {
+            await dialog.RequestCloseAsync();
+        }
+        else
+        {
+            await Close();
+        }
+    }
+
+    /// <summary>
     /// <para lang="zh">切换弹出窗口状态的方法</para>
     /// <para lang="en">Method to toggle the popup state</para>
     /// </summary>
