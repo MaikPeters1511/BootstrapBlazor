@@ -1,6 +1,6 @@
 ﻿@use "../../wwwroot/scss/variables" as *;
 
-.switch {
+.bb-switch {
     --bb-switch-padding: #{$bb-switch-padding};
     --bb-switch-border-color: #{$bb-switch-border-color};
     --bb-switch-bg: #{$bb-switch-bg};
@@ -24,11 +24,11 @@
     padding: var(--bb-switch-padding);
 }
 
-    .switch.disabled {
+    .bb-switch.disabled {
         opacity: .5;
     }
 
-    .switch .switch-core {
+    .bb-switch .bb-switch-core {
         margin: 0;
         display: inline-block;
         position: relative;
@@ -42,7 +42,7 @@
         vertical-align: middle;
     }
 
-        .switch .switch-core:after {
+        .bb-switch .bb-switch-core:after {
             content: "";
             position: absolute;
             top: var(--bb-switch-bar-top);
@@ -53,7 +53,7 @@
             background-color: var(--bb-switch-bar-bg-color);
         }
 
-        .switch .switch-core:before {
+        .bb-switch .bb-switch-core:before {
             content: attr(data-inner-text);
             position: absolute;
             top: var(--bb-switch-bar-top);
@@ -63,20 +63,20 @@
             color: var(--bb-switch-inner-off-text-color);
         }
 
-    .switch.is-checked .switch-core:before {
+    .bb-switch.is-checked .bb-switch-core:before {
         left: var(--bb-switch-inner-on-text-left);
         color: var(--bb-switch-inner-on-text-color);
     }
 
-    .switch:not(.is-checked) .switch-core:after {
+    .bb-switch:not(.is-checked) .bb-switch-core:after {
         left: var(--bb-switch-bar-off);
     }
 
-    .switch.is-checked .switch-core:after {
+    .bb-switch.is-checked .bb-switch-core:after {
         right: var(--bb-switch-bar-on);
     }
 
-    .switch .switch-label {
+    .bb-switch .bb-switch-label {
         margin-left: var(--bb-switch-label-margin-left);
         cursor: pointer;
     }

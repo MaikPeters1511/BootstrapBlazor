@@ -1,3 +1,5 @@
+@use "sass:list";
+
 // Bootstrap 6 removed these Bootstrap 5 tokens
 // map them to the Bootstrap 6 tokens so the library and user stylesheets keep working
 :root {
@@ -60,33 +62,33 @@
     --bs-theme-contrast: var(--bs-white);
 }
 
-// Bootstrap 6 has no light / dark color utilities
-.fg-light {
-    --bs-fg: var(--bs-gray-100);
-    color: var(--bs-fg);
-}
+// Bootstrap 5 color utilities were !important, the Bootstrap 6 ones are layered and lose against component css
+// components set their colors with bg-{color} / border-{color} / fg-{color}, so these win again
+// light and dark have no Bootstrap 6 counterpart at all
+$compat-colors: (
+    "primary": (var(--bs-primary-bg), var(--bs-primary-fg)),
+    "secondary": (var(--bs-secondary-bg), var(--bs-secondary-fg)),
+    "success": (var(--bs-success-bg), var(--bs-success-fg)),
+    "danger": (var(--bs-danger-bg), var(--bs-danger-fg)),
+    "warning": (var(--bs-warning-bg), var(--bs-warning-fg)),
+    "info": (var(--bs-info-bg), var(--bs-info-fg)),
+    "light": (var(--bs-gray-100), var(--bs-gray-100)),
+    "dark": (var(--bs-gray-900), var(--bs-gray-900))
+);
 
-.fg-dark {
-    --bs-fg: var(--bs-gray-900);
-    color: var(--bs-fg);
-}
+@each $color, $values in $compat-colors {
+    $bg: list.nth($values, 1);
+    $fg: list.nth($values, 2);
 
-.bg-light {
-    --bs-bg: var(--bs-gray-100);
-    background-color: var(--bs-bg);
-}
+    .bg-#{$color} {
+        background-color: #{$bg} !important;
+    }
 
-.bg-dark {
-    --bs-bg: var(--bs-gray-900);
-    background-color: var(--bs-bg);
-}
+    .border-#{$color} {
+        border-color: #{$bg} !important;
+    }
 
-.border-light {
-    --bs-bc: var(--bs-gray-100);
-    border-color: var(--bs-bc);
-}
-
-.border-dark {
-    --bs-bc: var(--bs-gray-900);
-    border-color: var(--bs-bc);
+    .fg-#{$color} {
+        color: #{$fg} !important;
+    }
 }

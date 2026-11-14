@@ -9,7 +9,7 @@
         margin: 0 0.5rem 0 0;
     }
 
-    .sidebar-switch ::deep .switch {
+    .sidebar-switch ::deep .bb-switch {
         width: auto;
     }
 

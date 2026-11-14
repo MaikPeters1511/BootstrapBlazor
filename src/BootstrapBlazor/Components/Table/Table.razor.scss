@@ -66,7 +66,7 @@
     }
 }
 
-.table-container .table:not(.table-excel) .switch {
+.table-container .table:not(.table-excel) .bb-switch {
     --bb-switch-padding: 0;
 }
 
@@ -281,7 +281,7 @@
     text-align: center;
 }
 
-.table-cell.center > .switch {
+.table-cell.center > .bb-switch {
     justify-content: center;
 }
 
@@ -293,7 +293,7 @@
     text-align: right;
 }
 
-.table-cell.end > .switch {
+.table-cell.end > .bb-switch {
     justify-content: flex-end;
 }
 
@@ -727,7 +727,7 @@ tr.active:not(.is-edit):hover {
     margin: -7px -6px;
 }
 
-.table-cell.is-incell .switch {
+.table-cell.is-incell .bb-switch {
     padding: 7px 6px;
 }
 
@@ -747,7 +747,7 @@ tr.active:not(.is-edit):hover {
     height: calc(1.5em + .75rem - 3px);
 }
 
-.table-sm .table-cell.is-incell .switch {
+.table-sm .table-cell.is-incell .bb-switch {
     height: 30px;
     padding-left: 4px;
 }
@@ -866,7 +866,7 @@ form .table .table-cell > textarea {
 }
 
 .table-cell.text-center,
-.table-cell.text-center .switch {
+.table-cell.text-center .bb-switch {
     justify-content: center;
 }
 
@@ -875,7 +875,7 @@ form .table .table-cell > textarea {
 }
 
 .table-cell.text-end,
-.table-cell.text-end .switch {
+.table-cell.text-end .bb-switch {
     justify-content: end;
 }
 

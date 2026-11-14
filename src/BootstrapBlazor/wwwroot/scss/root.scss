@@ -58,7 +58,7 @@ a, a:hover, a:focus {
 @mixin direction($var, $child) {
     > .datetime-picker:not(:#{$child}-child) .form-control,
     > .select:not(:#{$child}-child) .form-control,
-    > .switch:not(:#{$child}-child),
+    > .bb-switch:not(:#{$child}-child),
     > .multi-select:not(:#{$child}-child) .dropdown-toggle,
     > [data-bs-toggle]:not(:#{$child}-child) > .form-control,
     > .auto-complete:not(:#{$child}-child) .form-control {

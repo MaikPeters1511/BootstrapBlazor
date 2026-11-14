@@ -199,7 +199,7 @@ public class SwitchTest : BootstrapBlazorTestBase
             builder.Add(a => a.Value, true);
         });
 
-        Assert.Equal("On", cut.Find(".switch-label").TextContent);
+        Assert.Equal("On", cut.Find(".bb-switch-label").TextContent);
     }
 
     [Fact]
@@ -211,6 +211,17 @@ public class SwitchTest : BootstrapBlazorTestBase
             builder.Add(a => a.Value, false);
         });
 
-        Assert.Equal("Off", cut.Find(".switch-label").TextContent);
+        Assert.Equal("Off", cut.Find(".bb-switch-label").TextContent);
+    }
+
+    [Fact]
+    public void BootstrapSwitchClass_Ok()
+    {
+        // Bootstrap 6 ships its own .switch (input styling), the classes of this component are prefixed with bb-
+        var cut = Context.Render<Switch>();
+        var root = cut.Find(".bb-switch");
+        Assert.DoesNotContain("switch", root.ClassList);
+        var core = cut.Find(".bb-switch > .bb-switch-core");
+        Assert.DoesNotContain("switch-core", core.ClassList);
     }
 }
