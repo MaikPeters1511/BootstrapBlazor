@@ -147,6 +147,8 @@ public class BootstrapAssetsTest
     [InlineData("navbar", @"navbar-expand-(sm|md|lg|xl|xxl|\{)|bg-body-(tertiary|secondary)")]
     // classes and data attributes without a Bootstrap 6 counterpart
     [InlineData("removed", @"(?<![\w-])(accordion-collapse|alert-dismissible|btn-close-white|modal-backdrop)(?![\w-])|data-bs-ride|data-bs-touch")]
+    // Bootstrap 6 ships its own .table-card
+    [InlineData("table-card", @"(?<![\w-])table-card(?![\w-])")]
     public void ComponentSources_NoBootstrap5Classes_Ok(string family, string pattern)
     {
         var regex = new Regex(pattern);
