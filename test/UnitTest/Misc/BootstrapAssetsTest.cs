@@ -240,6 +240,18 @@ public class BootstrapAssetsTest
     }
 
     [Fact]
+    public void CompatScss_ColorUtilities_SameOrderAsBootstrap5()
+    {
+        // components combine color classes, e.g. Avatar border border-info + border-danger and PopConfirm fg-info + fg-danger
+        // with equal specificity the later rule wins: in Bootstrap 5 info came before warning and danger, so danger won
+        var content = ReadSource("src", "BootstrapBlazor", "wwwroot", "scss", "compat.scss");
+        var map = Regex.Match(content, @"\$compat-colors:\s*\(([\s\S]*?)\);");
+        Assert.True(map.Success, "$compat-colors not found");
+        var order = Regex.Matches(map.Groups[1].Value, @"""(\w+)"":").Select(m => m.Groups[1].Value);
+        Assert.Equal(new[] { "primary", "secondary", "success", "info", "warning", "danger", "light", "dark" }, order);
+    }
+
+    [Fact]
     public void RootScss_DisabledRule_InRebootLayer()
     {
         // Bootstrap 6 puts its css into cascade layers, unlayered rules always win

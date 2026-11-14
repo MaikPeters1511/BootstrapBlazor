@@ -13,7 +13,7 @@ Bootstrap-Version: `6.0.0-alpha.1`. Lokaler Teststand: 2811 von 2813 (Release), 
 | A2 | ~~Testsuite im Debug-Build ausführen~~ erledigt 2026-11-14 (in A1 mit CI) | P1 | S |
 | A3 | ~~NuGet-Paket und JS-Konvertierung prüfen~~ erledigt 2026-11-14 | P1 | M |
 | B1 | ~~Layer-Konflikte systematisch suchen~~ erledigt 2026-11-14 | P1 | L |
-| B2 | Farb-Utilities im Browser prüfen (Toast, Timeline, FileIcon, …) | P1 | M |
+| B2 | ~~Farb-Utilities im Browser prüfen~~ erledigt 2026-11-14 | P1 | M |
 | B3 | Theme `ant.css` migrieren | P2 | M |
 | B4 | Themes `devui.css` und `blue.css` prüfen | P2 | S |
 | B5 | Motronic-Theme: Hover- und Active-Farben | P3 | S |
@@ -91,7 +91,11 @@ Hintergrund: Bootstrap 6 legt sein CSS in `@layer`. Ungelayertes BB-CSS gewinnt 
 - **Schritte:** Skript schreiben, Trefferliste nach Komponente gruppieren, jeden Treffer im Browser prüfen, echte Konflikte per TDD beheben (Test zuerst, wie bei `root.scss`).
 - **Fertig, wenn:** Die Liste abgearbeitet ist; verbleibende Treffer sind begründet als gewollt markiert.
 
-### B2 – Farb-Utilities im Browser prüfen
+### B2 – Farb-Utilities im Browser prüfen – erledigt 2026-11-14
+- **Vorgehen:** Ein Skript hat auf 262 Demo-Seiten (ohne die 23 schweren Seiten aus B1) im dunklen und im hellen Design jedes Element mit `bg-*`, `border-*` oder `fg-*` (primary bis dark) mit einem Prüfelement derselben Klasse verglichen. Zusätzlich habe ich Toast, Message und SweetAlert nach Klicks auf alle Schaltflächen geprüft (Erfolg, Fehler, Info, Warnung).
+- **Befund:** Nur ein Fehler, aber ein echter: Bootstrap 6 sortiert die Farben anders (danger vor warning und info). Komponenten, die zwei Farbklassen kombinieren, zeigten dadurch die falsche Farbe: der Rahmen eines fehlgeschlagenen Avatars (`border-info border-danger`) war blau statt rot, das Warn-Icon in `PopConfirmButton` (`fg-info fg-danger`) blau statt rot. `compat.scss` nutzt jetzt die Reihenfolge von Bootstrap 5 (success, info, warning, danger), abgesichert durch `CompatScss_ColorUtilities_SameOrderAsBootstrap5`.
+- **Kein Befund:** Switch, Progress, Collapse, Toast, Timeline, FileIcon, CheckboxList und RadioList als Buttons, Rahmenfarben von Input, Select, DateTimePicker und Cascader, Badge, Alert, Tag.
+- **Grenzen:** Nur Klassen im Format `bg|border|fg-<Farbe>`, statische Zustände und die geklickten Popups. `theme-*` (Alert, Badge, Buttons) habe ich nur per Augenschein geprüft, Hover- und Fokuszustände nicht.
 - **Warum:** Seit PR #2 setzen `bg-*`, `border-*`, `fg-*` wieder `!important`. Geprüft sind Switch, Progress, Collapse.
 - **Prüfen:** Toast, Timeline, FileIcon, CheckboxList und RadioList als Buttons, Rahmenfarben der Eingabefelder (`Color` auf Input, Select, DateTimePicker, Cascader), Badge, Alert, Tag.
 - **Fertig, wenn:** Alle genannten Komponenten zeigen im hellen und im dunklen Design die richtige `Color`.

@@ -65,13 +65,14 @@
 // Bootstrap 5 color utilities were !important, the Bootstrap 6 ones are layered and lose against component css
 // components set their colors with bg-{color} / border-{color} / fg-{color}, so these win again
 // light and dark have no Bootstrap 6 counterpart at all
+// keep the order of Bootstrap 5 (success, info, warning, danger): components combine color classes and the later one wins
 $compat-colors: (
     "primary": (var(--bs-primary-bg), var(--bs-primary-fg)),
     "secondary": (var(--bs-secondary-bg), var(--bs-secondary-fg)),
     "success": (var(--bs-success-bg), var(--bs-success-fg)),
-    "danger": (var(--bs-danger-bg), var(--bs-danger-fg)),
-    "warning": (var(--bs-warning-bg), var(--bs-warning-fg)),
     "info": (var(--bs-info-bg), var(--bs-info-fg)),
+    "warning": (var(--bs-warning-bg), var(--bs-warning-fg)),
+    "danger": (var(--bs-danger-bg), var(--bs-danger-fg)),
     "light": (var(--bs-gray-100), var(--bs-gray-100)),
     "dark": (var(--bs-gray-900), var(--bs-gray-900))
 );
