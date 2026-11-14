@@ -22,9 +22,15 @@ form {
     }
 }
 
-.form-control {
-    padding: var(--bb-form-control-padding);
+// the padding lives in the forms layer: an unlayered rule would win against
+// .form-floating > .form-control (floating labels overlap the text) and .input-group-sm > .form-control
+@layer forms {
+    .form-control {
+        padding: var(--bb-form-control-padding);
+    }
+}
 
+.form-control {
     &.is-display {
         overflow: hidden;
         text-overflow: ellipsis;

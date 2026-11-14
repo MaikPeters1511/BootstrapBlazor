@@ -57,8 +57,10 @@ html .search-dialog-mask {
     --bs-navbar-hover-color: rgb(255,255,255);
 }
 
-h3, h4, h5 {
-    margin-bottom: var(--bb-mb-3);
+@layer reboot {
+    h3, h4, h5 {
+        margin-bottom: var(--bb-mb-3);
+    }
 }
 
 #blazor-error-ui {

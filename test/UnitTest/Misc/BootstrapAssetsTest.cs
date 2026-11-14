@@ -191,6 +191,54 @@ public class BootstrapAssetsTest
         Assert.Matches($@"\.{utility}-#\{{\$color\}}\s*\{{\s*{property}:[^;]*!important;", content);
     }
 
+    private static string ReadSource(params string[] segments) => File.ReadAllText(Path.Combine(new[] { GetProjectRoot() }.Concat(segments).ToArray()));
+
+    [Fact]
+    public void LayerConflict_RootScss_ElementRules_InRebootLayer()
+    {
+        // generic element rules must not beat Bootstrap 6 component rules (.nav-link.disabled, .check:disabled ~ label, ...)
+        var content = ReadSource("src", "BootstrapBlazor", "wwwroot", "scss", "root.scss");
+        Assert.Matches(@"@layer reboot\s*\{[\s\S]*a,\s*\[for\]\s*\{\s*cursor: pointer;", content);
+        Assert.Matches(@"@layer reboot\s*\{[\s\S]*a:hover,\s*a:focus\s*\{\s*text-decoration: none;", content);
+        Assert.DoesNotMatch(@"(?m)^a,\s*\[for\]\s*\{", content);
+        Assert.DoesNotMatch(@"(?m)^a, a:hover, a:focus\s*\{", content);
+    }
+
+    [Fact]
+    public void LayerConflict_RootScss_InputGroupSizes_Ok()
+    {
+        // .form-control / .input-group-text get the BB font size, small and large input groups keep their Bootstrap 6 size
+        var content = ReadSource("src", "BootstrapBlazor", "wwwroot", "scss", "root.scss");
+        Assert.Matches(@"\.input-group-sm > \.form-control,\s*\.input-group-sm > \.input-group-text\s*\{\s*font-size: var\(--bs-btn-input-sm-font-size\);", content);
+        Assert.Matches(@"\.input-group-lg > \.form-control,\s*\.input-group-lg > \.input-group-text\s*\{\s*font-size: var\(--bs-btn-input-lg-font-size\);", content);
+    }
+
+    [Fact]
+    public void LayerConflict_FormControlPadding_InFormsLayer()
+    {
+        // an unlayered .form-control padding wins against .form-floating > .form-control (floating labels overlap the text)
+        // and against .input-group-sm > .form-control, so it lives in the forms layer like the Bootstrap 6 rule it replaces
+        var content = ReadSource("src", "BootstrapBlazor", "Components", "ValidateForm", "ValidateForm.razor.scss");
+        Assert.Matches(@"@layer forms\s*\{[\s\S]*\.form-control\s*\{\s*padding: var\(--bb-form-control-padding\);", content);
+        Assert.DoesNotMatch(@"(?m)^\.form-control\s*\{\s*padding:", content);
+    }
+
+    [Fact]
+    public void LayerConflict_LinkButton_DisabledBackground_Ok()
+    {
+        // .btn:disabled of Bootstrap 6 paints a grey background, a disabled link button stays transparent
+        var content = ReadSource("src", "BootstrapBlazor", "Components", "Button", "Button.razor.scss");
+        Assert.Matches(@"\.link-button\s*\{[^}]*--bs-btn-disabled-bg: transparent;", content);
+    }
+
+    [Fact]
+    public void LayerConflict_DemoHeadings_InRebootLayer()
+    {
+        // the demo heading margin must not beat .dialog-title and .popover-header
+        var content = ReadSource("src", "BootstrapBlazor.Server", "wwwroot", "css", "site.css");
+        Assert.Matches(@"@layer reboot\s*\{\s*h3, h4, h5 \{\s*margin-bottom: var\(--bb-mb-3\);", content);
+    }
+
     [Fact]
     public void RootScss_DisabledRule_InRebootLayer()
     {

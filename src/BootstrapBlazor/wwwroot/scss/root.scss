@@ -20,13 +20,31 @@ body,
     font-size: var(--bb-font-size);
 }
 
-a,
-[for] {
-    cursor: pointer;
+// the rule above would otherwise override the font size of small and large input groups
+.input-group-sm > .form-control,
+.input-group-sm > .input-group-text {
+    font-size: var(--bs-btn-input-sm-font-size);
 }
 
-a, a:hover, a:focus {
-    text-decoration: none;
+.input-group-lg > .form-control,
+.input-group-lg > .input-group-text {
+    font-size: var(--bs-btn-input-lg-font-size);
+}
+
+// Bootstrap 6 uses cascade layers and unlayered rules always win
+// generic element rules live in the reboot layer so Bootstrap 6 component rules
+// (.nav-link.disabled, .check:disabled ~ label, ...) can still override them
+@layer reboot {
+    a,
+    [for] {
+        cursor: pointer;
+    }
+
+    a,
+    a:hover,
+    a:focus {
+        text-decoration: none;
+    }
 }
 
 [disabled],
