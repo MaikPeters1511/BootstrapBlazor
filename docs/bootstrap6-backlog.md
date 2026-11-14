@@ -12,7 +12,7 @@ Bootstrap-Version: `6.0.0-alpha.1`. Lokaler Teststand: 2811 von 2813 (Release), 
 | A1 | ~~CI im Fork zum Laufen bringen~~ erledigt 2026-11-14 | P1 | S |
 | A2 | ~~Testsuite im Debug-Build ausführen~~ erledigt 2026-11-14 (in A1 mit CI) | P1 | S |
 | A3 | ~~NuGet-Paket und JS-Konvertierung prüfen~~ erledigt 2026-11-14 | P1 | M |
-| B1 | Layer-Konflikte systematisch suchen | P1 | L |
+| B1 | ~~Layer-Konflikte systematisch suchen~~ erledigt 2026-11-14 | P1 | L |
 | B2 | Farb-Utilities im Browser prüfen (Toast, Timeline, FileIcon, …) | P1 | M |
 | B3 | Theme `ant.css` migrieren | P2 | M |
 | B4 | Themes `devui.css` und `blue.css` prüfen | P2 | S |
@@ -77,7 +77,16 @@ Bootstrap-Version: `6.0.0-alpha.1`. Lokaler Teststand: 2811 von 2813 (Release), 
 
 Hintergrund: Bootstrap 6 legt sein CSS in `@layer`. Ungelayertes BB-CSS gewinnt immer. Behoben sind bisher `:disabled`, `:focus` (in `root.scss`) und die Farb-Utilities (in `compat.scss`). Namenskollisionen (`menu`, `drawer`, `switch`, `table-card`) sind per Klassenabgleich abgearbeitet.
 
-### B1 – Layer-Konflikte systematisch suchen
+### B1 – Layer-Konflikte systematisch suchen – erledigt 2026-11-14
+- **Vorgehen:** Ein Skript im Browser (Vergleich je Element und Eigenschaft: Bootstrap-6-Regel im Layer gegen BB-Regel ohne Layer; gemeldet wird, wenn die Bootstrap-Regel die höhere Spezifität hat und die Werte sich unterscheiden, also BB nur wegen der Layer gewinnt) hat 292 von 315 Demo-Seiten durchlaufen. 23 Seiten mit schweren Fremdbibliotheken (PDF, Office, Mermaid, Editoren, Kamera, Sprache, Diagramme, …) habe ich übersprungen, weil sie den Browser blockierten.
+- **Befunde und Fixes (PR in der Historie von `main`):**
+  - Floating-Label-Eingabefelder: Das Label überlagerte den Text, weil BBs `.form-control { padding }` Bootstrap 6 (`.form-floating > .form-control`) übersteuerte. Die Regel steht jetzt im Layer `forms` (`ValidateForm.razor.scss`).
+  - `a` und `[for]` (Cursor, Unterstreichung) im Layer `reboot` (`root.scss`): deaktivierte Nav-Links und Labels deaktivierter Checkboxen und Radios zeigten den falschen Cursor.
+  - Kleine und grosse Input-Groups behalten ihre Bootstrap-6-Schriftgrösse (`root.scss`).
+  - Deaktivierte `LinkButton`s sind wieder transparent statt grau (`Button.razor.scss`).
+  - Demo: `h3, h4, h5 { margin-bottom }` in `site.css` verschob die Titel in `.dialog-title` und `.popover-header`; die Regel steht jetzt im Layer `reboot`.
+- **Bewusst nicht geändert:** Übergangszeiten von `.alert` (BB `.fade`) und `.toast` (BB `.toast`) weichen von den Bootstrap-6-Werten ab, die Effekte sind gleichwertig.
+- **Grenzen der Methode:** Nur statische Zustände. Regeln für `:hover`, `:focus`, `:active`, `:checked` und Pseudo-Elemente trifft das Skript nicht; auch Container-Queries (z. B. Navbar) und nachträglich geöffnete Popups (Dialog, Dropdown, Toast, Popover) sind nicht abgedeckt. Dafür bleiben D1 und D5.
 - **Idee:** Ein Skript, das für jede BB-Komponente die Selektoren im Komponenten-SCSS mit denen von Bootstrap 6 vergleicht und Regeln meldet, die dieselben Elemente und Eigenschaften treffen (Kandidaten: allgemeine Selektoren wie `a`, `button`, `[disabled]`, `.btn`, `.form-control`, `.card`, `.table`, `.nav-link`).
 - **Schritte:** Skript schreiben, Trefferliste nach Komponente gruppieren, jeden Treffer im Browser prüfen, echte Konflikte per TDD beheben (Test zuerst, wie bei `root.scss`).
 - **Fertig, wenn:** Die Liste abgearbeitet ist; verbleibende Treffer sind begründet als gewollt markiert.
