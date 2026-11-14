@@ -9,9 +9,9 @@ Bootstrap-Version: `6.0.0-alpha.1`. Lokaler Teststand: 2811 von 2813 (Release), 
 
 | ID | Task | Prio | Aufwand |
 | --- | --- | --- | --- |
-| A1 | CI im Fork zum Laufen bringen | P1 | S |
-| A2 | Testsuite im Debug-Build ausführen | P1 | S |
-| A3 | NuGet-Paket und JS-Konvertierung prüfen | P1 | M |
+| A1 | ~~CI im Fork zum Laufen bringen~~ erledigt 2026-11-14 | P1 | S |
+| A2 | ~~Testsuite im Debug-Build ausführen~~ erledigt 2026-11-14 (in A1 mit CI) | P1 | S |
+| A3 | NuGet-Paket und JS-Konvertierung prüfen (Linux-Build erledigt, Paket offen) | P1 | M |
 | B1 | Layer-Konflikte systematisch suchen | P1 | L |
 | B2 | Farb-Utilities im Browser prüfen (Toast, Timeline, FileIcon, …) | P1 | M |
 | B3 | Theme `ant.css` migrieren | P2 | M |
@@ -35,17 +35,28 @@ Bootstrap-Version: `6.0.0-alpha.1`. Lokaler Teststand: 2811 von 2813 (Release), 
 
 ## A – Absicherung
 
-### A1 – CI im Fork zum Laufen bringen
+### A1 – CI im Fork zum Laufen bringen – erledigt 2026-11-14
+- **Ergebnis:** Actions waren in der API als aktiv gemeldet, es gab aber nie einen Lauf (auch nicht für PR #1 bis #3). Nach dem erneuten Setzen von `actions/permissions` (`enabled=true`, `allowed_actions=all`) starten die Workflows. Der Probe-PR #4 (inzwischen geschlossen) hat „Auto PR test(bot)“ ausgelöst: 2 Minuten, 2813 von 2813 Tests grün, auf Linux, im Debug-Build.
+- **Hinweis:** Ob das erneute Setzen oder etwas anderes den Lauf ausgelöst hat, ist nicht geklärt. Die Workflows `pack`, `docker` und `publish` laufen nur auf den Branches `pack`, `release`, `hotfix`, `docker` und `publish` und brauchen Secrets, die im Fork fehlen.
+- **Offen:** `auto-approve.yml` wird übersprungen (nur für den Autor `ArgoZhang`); `build.yml` (Push auf `main`, mit Codecov-Upload) ist noch nicht gelaufen.
+
+(Ursprüngliche Beschreibung:)
 - **Warum:** Die drei PRs wurden ohne Checks gemergt (`mergeStateStatus: CLEAN`, aber 0 Checks).
 - **Schritte:** Prüfen, warum `.github/workflows/build.yml` und `auto-pull-request-checks.yml` im Fork nicht laufen (Actions im Fork deaktiviert? Trigger nur für das Hauptrepo?). Actions aktivieren oder Trigger anpassen.
 - **Fertig, wenn:** Ein neuer PR im Fork startet Build und Tests, und das Ergebnis ist grün.
 
-### A2 – Testsuite im Debug-Build ausführen
+### A2 – Testsuite im Debug-Build ausführen – erledigt 2026-11-14
+- **Ergebnis:** Der CI-Lauf aus A1 nutzt `dotnet test` ohne Konfiguration, also Debug: alle 2813 Tests bestehen, auch die zwei `#if DEBUG`-Tests und die acht Tests, die lokal an der Schreibsperre scheitern.
+
+(Ursprüngliche Beschreibung:)
 - **Warum:** Zwei Tests hängen an `#if DEBUG`; im Release-Lauf sind sie nie gelaufen. Debug nutzt ausserdem den Sass-Compiler des Builds statt meines Skripts.
 - **Schritte:** `dotnet test test/UnitTest/UnitTest.csproj` ohne `-c Release`; Ergebnis mit dem Release-Lauf vergleichen.
 - **Fertig, wenn:** Alle Tests laufen durch, oder jeder Fehlschlag ist erklärt und ein Task angelegt.
 
 ### A3 – NuGet-Paket und JS-Konvertierung prüfen
+- **Teilweise erledigt (2026-11-14):** Die Task `ConvertBootstrapJs` läuft auf Linux (CI-Build von `src/BootstrapBlazor` und den Tests ist grün). Offen: Paket mit `dotnet pack` erzeugen und den Inhalt prüfen.
+
+(Ursprüngliche Beschreibung:)
 - **Warum:** `bootstrap.blazor.bundle.min.js` entsteht über die neue MSBuild-Task `ConvertBootstrapJs` (`Directory.Build.targets`). Der Paketinhalt wurde nie geprüft; die Task lief nur auf macOS.
 - **Schritte:**
   1. `dotnet pack src/BootstrapBlazor -c Release`, Paket entpacken, `staticwebassets/js/bootstrap.blazor.bundle.min.js` und `css/*.css` prüfen.
