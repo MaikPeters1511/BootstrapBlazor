@@ -10396,4 +10396,28 @@ public class TableTest : BootstrapBlazorTestBase
             return ret;
         }
     }
+
+    [Fact]
+    public void CardViewClass_BootstrapTableCard_Ok()
+    {
+        // Bootstrap 6 ships its own .table-card (border, radius, margin), the card view of this component uses bb-table-card
+        var localizer = Context.Services.GetRequiredService<IStringLocalizer<Foo>>();
+        var cut = Context.Render<BootstrapBlazorRoot>(pb =>
+        {
+            pb.AddChildContent<Table<Foo>>(pb =>
+            {
+                pb.Add(a => a.RenderMode, TableRenderMode.CardView);
+                pb.Add(a => a.Items, Foo.GenerateFoo(localizer));
+                pb.Add(a => a.TableColumns, foo => builder =>
+                {
+                    builder.OpenComponent<TableColumn<Foo, string>>(0);
+                    builder.AddAttribute(1, "Field", "Name");
+                    builder.AddAttribute(2, "FieldExpression", Utility.GenerateValueExpression(foo, "Name", typeof(string)));
+                    builder.CloseComponent();
+                });
+            });
+        });
+        Assert.NotNull(cut.Find(".bb-table-card"));
+        Assert.Empty(cut.FindAll(".table-card"));
+    }
 }

@@ -262,7 +262,7 @@ const setBodyHeight = table => {
     }
 
     const bodyHeight = paginationHeight + toolbarHeight + searchHeight;
-    const card = children.find(i => i.classList.contains('table-card'))
+    const card = children.find(i => i.classList.contains('bb-table-card'))
     if (card) {
         card.style.height = `calc(100% - ${bodyHeight}px)`
     }
