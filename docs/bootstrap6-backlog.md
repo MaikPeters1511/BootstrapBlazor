@@ -17,7 +17,7 @@ Bootstrap-Version: `6.0.0-alpha.1`. Lokaler Teststand: 2811 von 2813 (Release), 
 | B3 | Theme `ant.css` migrieren | P2 | M |
 | B4 | Themes `devui.css` und `blue.css` prüfen | P2 | S |
 | B5 | Motronic-Theme: Hover- und Active-Farben | P3 | S |
-| C1 | Doku und CHANGELOG nachziehen (`bb-switch`, `bb-table-card`, `!important`) | P2 | S |
+| C1 | ~~Doku und CHANGELOG nachziehen~~ erledigt 2026-11-15 | P2 | S |
 | C2 | Chinesische Texte gegenlesen | P3 | S |
 | C3 | CHANGELOG-Link und Upstream-Vorbereitung | P2 | S |
 | D1 | Sichtprüfung aller Demo-Seiten (automatisiert) | P2 | L |
@@ -116,7 +116,11 @@ Hintergrund: Bootstrap 6 legt sein CSS in `@layer`. Ungelayertes BB-CSS gewinnt 
 
 ## C – Doku und Formales
 
-### C1 – Doku und CHANGELOG nachziehen
+### C1 – Doku und CHANGELOG nachziehen – erledigt 2026-11-15
+- **Ergebnis:** Die drei READMEs (`README.md`, `README.zh-CN.md`, Paket-README) haben im Abschnitt „Bootstrap version“ jetzt eine Tabelle der umbenannten Komponentenklassen (`bb-menu`, `bb-drawer`, `bb-switch`, `bb-table-card`) und vier Hinweise für eigenes CSS: Kaskadenebenen (eigenes, ungelayertes CSS gewinnt immer), Farb-Utilities mit `!important`, `theme-light` / `theme-dark` für `Color.Light` und `Color.Dark`, `OnClosingAsync` bei Escape und Hintergrundklick. `CHANGELOG.md` und `CHANGELOG.zh-CN.md` führen diese Punkte unter „Breaking changes“ mit Links auf die PRs.
+- **Zur Einordnung:** Die PR-Links zeigen auf den Fork, siehe C3.
+
+(Ursprüngliche Beschreibung:)
 - **Inhalt:** `bb-switch`, `bb-switch-core`, `bb-switch-label` und `bb-table-card` in die Breaking-Changes-Liste von `CHANGELOG.md` und `CHANGELOG.zh-CN.md`; in der README-Tabelle „Bootstrap version“ den Hinweis ergänzen, dass `bg-*`/`border-*`/`fg-*` wieder `!important` sind und eigene Überschreibungen es ebenfalls brauchen.
 - **Fertig, wenn:** Alle vier Dateien (`README.md`, `README.zh-CN.md`, `CHANGELOG.md`, `CHANGELOG.zh-CN.md`) sind abgeglichen.
 
