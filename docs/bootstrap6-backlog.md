@@ -18,7 +18,7 @@ Bootstrap-Version: `6.0.0-alpha.1`. Lokaler Teststand: 2811 von 2813 (Release), 
 | B4 | ~~Themes `devui.css` und `blue.css` prüfen~~ erledigt 2026-11-15 | P2 | S |
 | B5 | ~~Motronic-Theme: Hover- und Active-Farben~~ erledigt 2026-11-15 | P3 | S |
 | C1 | ~~Doku und CHANGELOG nachziehen~~ erledigt 2026-11-15 | P2 | S |
-| C2 | Chinesische Texte gegenlesen | P3 | S |
+| C2 | Chinesische Texte gegenlesen (von mir, nicht von einem Muttersprachler; erledigt 2026-11-15) | P3 | S |
 | C3 | CHANGELOG-Link und Upstream-Vorbereitung | P2 | S |
 | D1 | Sichtprüfung aller Demo-Seiten (automatisierter Teil erledigt 2026-11-15, Bildvergleich offen) | P2 | L |
 | D2 | ~~Drucken von Dialogen prüfen~~ erledigt 2026-11-15 | P3 | S |
@@ -134,8 +134,10 @@ Hintergrund: Bootstrap 6 legt sein CSS in `@layer`. Ungelayertes BB-CSS gewinnt 
 - **Inhalt:** `bb-switch`, `bb-switch-core`, `bb-switch-label` und `bb-table-card` in die Breaking-Changes-Liste von `CHANGELOG.md` und `CHANGELOG.zh-CN.md`; in der README-Tabelle „Bootstrap version“ den Hinweis ergänzen, dass `bg-*`/`border-*`/`fg-*` wieder `!important` sind und eigene Überschreibungen es ebenfalls brauchen.
 - **Fertig, wenn:** Alle vier Dateien (`README.md`, `README.zh-CN.md`, `CHANGELOG.md`, `CHANGELOG.zh-CN.md`) sind abgeglichen.
 
-### C2 – Chinesische Texte gegenlesen
-- **Umfang:** Abschnitt „Bootstrap 版本“ in `README.zh-CN.md` und die Einträge in `CHANGELOG.zh-CN.md`; automatisch übersetzt, nicht von einem Muttersprachler geprüft.
+### C2 – Chinesische Texte gegenlesen – erledigt 2026-11-15
+- **Umfang:** Abschnitt „Bootstrap 版本“ in `README.zh-CN.md`, die Einträge in `CHANGELOG.zh-CN.md` und die geänderten Zeilen in `Locales/zh-CN.json`.
+- **Ergebnis:** Inhaltlich deckt sich die chinesische Fassung mit der englischen. In `zh-CN.json` wurden nur Klassennamen ersetzt (`text-danger` -> `fg-danger`, `modal-body` -> `dialog-body`, `d-md-block` -> `md:d-block`), der übrige Text ist unverändert. Geglättet habe ich vier Formulierungen: „重新带有 `!important`“ -> „仍带有 `!important`“ (README und CHANGELOG), den Satz zu den `bb-`-Klassen (README) und den Eintrag zu `Menu`/`Drawer`/`Switch`/`Table` (CHANGELOG).
+- **Grenze:** Die Prüfung stammt von mir, nicht von einem Muttersprachler. Wer das Projekt im Hauptrepo einreicht (C3), sollte die Texte von jemandem mit Chinesisch als Muttersprache gegenlesen lassen.
 
 ### C3 – CHANGELOG-Link und Upstream-Vorbereitung
 - **Warum:** Der Eintrag verlinkt auf `MaikPeters1511/BootstrapBlazor#1`; die CHANGELOG-Dateien sind seit V7.11.1 (2023-10) nicht mehr gepflegt.

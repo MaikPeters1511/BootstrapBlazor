@@ -119,9 +119,9 @@ builder.Services.AddBootstrapBlazor();
 | `modal-header`、`modal-body`、`modal-footer` | `dialog-header`、`dialog-body`、`dialog-footer` |
 | `navbar-expand-md` | `md:navbar-expand` |
 
-常用的 Bootstrap 5 CSS 变量（`--bs-primary`、`--bs-body-bg`、`--bs-border-radius` 等）仍然可用，并映射到 Bootstrap 6 的变量。Bootstrap 6 不再提供单独的 RTL 样式文件。
+常用的 Bootstrap 5 CSS 变量（`--bs-primary`、`--bs-body-bg`、`--bs-border-radius` 等）仍然可用，并映射到对应的 Bootstrap 6 变量。Bootstrap 6 不再提供单独的 RTL 样式文件。
 
-Bootstrap 6 新增了同名样式的组件，BootstrapBlazor 改用 `bb-` 前缀，自定义样式与脚本中选择旧名称的地方需要调整：
+Bootstrap 6 新增了与部分组件同名的样式，因此 BootstrapBlazor 的这些组件改用 `bb-` 前缀。自定义样式和脚本中引用旧类名的地方需要调整：
 
 | 组件 | 之前 | 现在 |
 | --- | --- | --- |
@@ -133,7 +133,7 @@ Bootstrap 6 新增了同名样式的组件，BootstrapBlazor 改用 `bb-` 前缀
 编写自定义样式时需要注意：
 
 - **级联层**：Bootstrap 6 的样式位于 `@layer` 中，未分层的样式总是优先于分层样式，所以自定义样式即使优先级较低也会覆盖 Bootstrap 的规则。BootstrapBlazor 的通用规则（`:disabled`、`:focus`、`a`、`[for]`、`.form-control` 的内边距）也因此放在 `reboot` 与 `forms` 层中。
-- **颜色工具类**：`primary`、`secondary`、`success`、`info`、`warning`、`danger`、`light`、`dark` 的 `bg-*`、`border-*`、`fg-*` 与 Bootstrap 5 一样重新带有 `!important`（组件会组合使用它们）。在自定义样式中覆盖它们同样需要 `!important`。
+- **颜色工具类**：`primary`、`secondary`、`success`、`info`、`warning`、`danger`、`light`、`dark` 的 `bg-*`、`border-*`、`fg-*` 与 Bootstrap 5 一样仍带有 `!important`（组件会组合使用它们），在自定义样式中覆盖它们同样需要 `!important`。
 - **`Color.Light` 与 `Color.Dark`**：Bootstrap 6 没有这两种主题，BootstrapBlazor 自行提供 `theme-light` 与 `theme-dark`。
 - **关闭弹窗**：按 Esc 键或点击背景关闭弹窗时现在也会调用 `OnClosingAsync`，返回 `false` 时弹窗保持打开。
 
