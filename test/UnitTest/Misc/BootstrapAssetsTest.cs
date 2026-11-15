@@ -314,6 +314,24 @@ public class BootstrapAssetsTest
     }
 
     [Fact]
+    public void SelectScss_ShownMenu_IsVisible()
+    {
+        // the .menu of Bootstrap 6 is closed with opacity: 0 and scale(.95) until it has .show itself
+        // content moved into a popover (column list of the Table, ...) only has a .show parent
+        var content = ReadSource("src", "BootstrapBlazor", "Components", "Select", "Select.razor.scss");
+        Assert.Matches(@"\.show > \.menu\s*\{[^}]*\bopacity: 1;[^}]*\btransform: none;", content);
+    }
+
+    [Fact]
+    public void MenuScss_NavLink_AlignsStart()
+    {
+        // .nav-link of Bootstrap 6 is a flex row with justify-content: center (Bootstrap 5: block, text at the start)
+        // entries of the drop-down lists of the top and bottom menu must keep their text at the start
+        var content = ReadSource("src", "BootstrapBlazor", "Components", "Menu", "Menu.razor.scss");
+        Assert.Matches(@"\.bb-menu \.nav \.menu \.nav-link[^{]*\{[^}]*\bjustify-content: flex-start;", content);
+    }
+
+    [Fact]
     public void AntCss_Bootstrap6_Ok()
     {
         // the Ant Design theme sets its own button height, but .btn of Bootstrap 6 has a min-height (2.375rem / 2rem / 2.75rem)

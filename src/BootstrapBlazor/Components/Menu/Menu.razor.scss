@@ -48,6 +48,11 @@
             color: var(--bb-menu-active-color);
         }
 
+    // .nav-link of Bootstrap 6 centers its content, entries of the drop-down lists keep their text at the start
+    .bb-menu .nav .menu .nav-link, .bb-menu .nav .sub-menu .nav-link {
+        justify-content: flex-start;
+    }
+
     .bb-menu .nav .menu, .cascade .menu {
         overflow: unset;
         max-height: unset;
