@@ -266,6 +266,15 @@ public class BootstrapAssetsTest
     }
 
     [Fact]
+    public void CompatScss_InputGroup_Wraps()
+    {
+        // Bootstrap 5 input groups wrapped (flex-wrap: wrap), Bootstrap 6 does not: buttons, segmented controls and
+        // addons that do not fit stick out of narrow containers (DateTimePicker, ImageCropper, AutoComplete demo pages)
+        var content = ReadSource("src", "BootstrapBlazor", "wwwroot", "scss", "compat.scss");
+        Assert.Matches(@"\.input-group\s*\{\s*flex-wrap: wrap;", content);
+    }
+
+    [Fact]
     public void RootScss_DisabledRule_InRebootLayer()
     {
         // Bootstrap 6 puts its css into cascade layers, unlayered rules always win

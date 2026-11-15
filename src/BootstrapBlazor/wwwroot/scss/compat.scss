@@ -93,3 +93,9 @@ $compat-colors: (
         color: #{$fg} !important;
     }
 }
+
+// Bootstrap 5 input groups wrapped, Bootstrap 6 ones do not: buttons, segmented controls and addons
+// that do not fit stuck out of narrow containers
+.input-group {
+    flex-wrap: wrap;
+}
