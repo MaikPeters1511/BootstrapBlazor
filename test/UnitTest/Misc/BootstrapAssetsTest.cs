@@ -313,6 +313,23 @@ public class BootstrapAssetsTest
         Assert.Matches(@"\.btn-close\s*\{[^}]*\bfloat: inline-end;", content);
     }
 
+    [Theory]
+    [InlineData("primary", "#0095e8", "#0589d3")]
+    [InlineData("secondary", "#B5B5C3", "#aeaebc")]
+    [InlineData("success", "#47be7d", "#3aab6d")]
+    [InlineData("info", "#5014d0", "#612ad6")]
+    [InlineData("warning", "#f1bc00", "#ddae08")]
+    [InlineData("danger", "#d9214e", "#c41540")]
+    [InlineData("dark", "#131628", "#212641")]
+    public void MotronicCss_ButtonStates_Ok(string color, string hover, string active)
+    {
+        // Bootstrap 6 derives hover / active colors from the base color (oklch): for the Motronic palette
+        // the result is too light (secondary) or too saturated (success, info, danger), so the theme sets them again
+        var content = ReadSource("src", "BootstrapBlazor", "wwwroot", "css", "motronic.min.css");
+        Assert.Matches($@"\.btn-solid\.theme-{color}:hover[^{{]*\{{[^}}]*--bs-btn-hover-bg: {hover};", content);
+        Assert.Matches($@"\.btn-solid\.theme-{color}:active[^{{]*\{{[^}}]*--bs-btn-active-bg: {active};", content);
+    }
+
     [Fact]
     public void SelectScss_ShownMenu_IsVisible()
     {
