@@ -459,6 +459,25 @@ public class BootstrapAssetsTest
     }
 
     [Fact]
+    public void CompatScss_BodyBgRgb_Ok()
+    {
+        // Bootstrap 5 stylesheets (the demo hero gradient, user code) build translucent colors with rgba(var(--bs-body-bg-rgb), x)
+        var content = ReadSource("src", "BootstrapBlazor", "wwwroot", "scss", "compat.scss");
+        Assert.Matches(@":root\s*\{[^}]*--bs-body-bg-rgb: 255, 255, 255;", content);
+        Assert.Matches(@"\[data-bs-theme='dark'\]\s*\{[^}]*--bs-body-bg-rgb: 33, 37, 41;", content);
+    }
+
+    [Fact]
+    public void DemoHeaderCss_Buttons_Transparent()
+    {
+        // a bare .btn of Bootstrap 6 has a light neutral background (Bootstrap 5: transparent), the buttons on the colored
+        // demo header set color and border only and were unreadable in the light theme
+        var content = ReadSource("src", "BootstrapBlazor.Server", "Components", "Components", "Header.razor.css");
+        Assert.Matches(@"\.btn-bd-download\s*\{[^}]*background-color: transparent;", content);
+        Assert.Matches(@"::deep \.bb-theme-mode \.dropdown-toggle\s*\{[^}]*background-color: transparent;", content);
+    }
+
+    [Fact]
     public void Bundler_InputFiles_Exist()
     {
         var root = Path.Combine(GetProjectRoot(), "src", "BootstrapBlazor");
