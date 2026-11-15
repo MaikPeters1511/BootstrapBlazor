@@ -99,3 +99,9 @@ $compat-colors: (
 .input-group {
     flex-wrap: wrap;
 }
+
+// .form-control is a flex row in Bootstrap 6, it did not need to wrap
+// containers that hold several checkboxes / radios do
+.form-control {
+    flex-wrap: wrap;
+}
