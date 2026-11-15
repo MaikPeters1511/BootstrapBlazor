@@ -26,6 +26,7 @@
 }
 
 .btn-bd-download {
+    background-color: transparent;
     font-weight: 600;
     color: var(--bb-bd-download-color);
     border-color: var(--bb-bd-download-border-color);
@@ -54,6 +55,7 @@
 }
 
 ::deep .bb-theme-mode .dropdown-toggle {
+    background-color: transparent;
     color: var(--bs-navbar-color);
 }
 
