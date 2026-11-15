@@ -25,7 +25,7 @@ Bootstrap-Version: `6.0.0-alpha.1`. Lokaler Teststand: 2811 von 2813 (Release), 
 | D3 | Schmale Breiten und Touch prüfen (Überlauf erledigt 2026-11-15, Touch offen) | P2 | M |
 | D4 | Tastaturbedienung prüfen (Dropdown, Select, Dialog erledigt 2026-11-15, Menu offen) | P2 | M |
 | D5 | ~~Einzelne Komponenten prüfen~~ erledigt 2026-11-15 | P2 | M |
-| D6 | Starter-Vorlage `Bs6Test` prüfen und ablegen | P3 | S |
+| D6 | ~~Starter-Vorlage `Bs6Test` prüfen und ablegen~~ erledigt 2026-11-15 (bleibt ausserhalb des Repos) | P3 | S |
 | E1 | ~~Dialog: `OnClosingAsync` bei Escape und Hintergrundklick~~ erledigt 2026-11-14 | P2 | M |
 | E2 | Dialog: `dialog-instant` geht beim Re-Render verloren | P3 | S |
 | E3 | Carousel: `AutoPlayAfterManually` nach Hover | P3 | S |
@@ -187,9 +187,10 @@ Voraussetzung für alle: Demo-App wie in der Memory-Notiz `desktop-write-protect
 - **Bekannt, aber kein Bootstrap-6-Fehler:** Die Liste des SlideButton hat im dunklen Design einen weissen Hintergrund (`$bb-slide-list-bg: #fff`) mit hellem Text, schlecht lesbar. Das war in der Bootstrap-5-Basis (`cfcc339e9`) genauso. Idee: `var(--bs-body-bg)` verwenden.
 - **Nicht geprüft:** Placement-Varianten von SlideButton und TopMenu im Einzelnen, Hell-Design.
 
-### D6 – Starter-Vorlage prüfen und ablegen
-- **Stand:** `~/Desktop/projekte/Bs6Test` baut; nach dem Wiedereinbau des Switch nicht mehr im Browser geöffnet. Sie liegt ausserhalb des Repos und nicht unter Versionsverwaltung.
-- **Schritte:** Im Browser prüfen; entscheiden, ob sie als `dotnet new`-Vorlage oder unter `docs/` oder `samples/` ins Repo kommt.
+### D6 – Starter-Vorlage prüfen – erledigt 2026-11-15
+- **Geprüft im Browser (`~/Desktop/projekte/Bs6Test`):** Startseite (Buttons, Dropdown, Select, Dialog, Toast, Checkbox, Switch, Texteingabe, Alert), Counter, Weather; keine Überläufe, keine neuen Konsolenfehler.
+- **Entscheidung:** Die Vorlage kommt nicht ins Repo und wird nicht als `dotnet new`-Vorlage abgelegt; sie bleibt ein lokales Prüfprojekt ausserhalb der Versionsverwaltung. Die nötigen Schritte (Einbindung von CSS und Skript, Klassennamen) stehen im README-Abschnitt „Bootstrap version“.
+- **Aufgeräumt:** Die temporäre Seite `Closing.razor` (Test für `OnClosingAsync`, E1) ist aus der Vorlage entfernt; das Verhalten ist durch Unit-Tests abgesichert.
 
 ---
 
