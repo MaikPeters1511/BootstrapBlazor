@@ -20,7 +20,7 @@ Bootstrap-Version: `6.0.0-alpha.1`. Lokaler Teststand: 2811 von 2813 (Release), 
 | C1 | ~~Doku und CHANGELOG nachziehen~~ erledigt 2026-11-15 | P2 | S |
 | C2 | Chinesische Texte gegenlesen | P3 | S |
 | C3 | CHANGELOG-Link und Upstream-Vorbereitung | P2 | S |
-| D1 | Sichtprüfung aller Demo-Seiten (automatisiert) | P2 | L |
+| D1 | Sichtprüfung aller Demo-Seiten (automatisierter Teil erledigt 2026-11-15, Bildvergleich offen) | P2 | L |
 | D2 | Drucken von Dialogen prüfen | P3 | S |
 | D3 | Schmale Breiten und Touch prüfen | P2 | M |
 | D4 | Tastaturbedienung prüfen | P2 | M |
@@ -138,7 +138,14 @@ Hintergrund: Bootstrap 6 legt sein CSS in `@layer`. Ungelayertes BB-CSS gewinnt 
 
 Voraussetzung für alle: Demo-App wie in der Memory-Notiz `desktop-write-protection-workarounds` starten (`ASPNETCORE_ENVIRONMENT=Development`, Release-Build, Ordner `wwwroot/llms` und `wwwroot/images/uploader` vorher anlegen).
 
-### D1 – Sichtprüfung aller Demo-Seiten
+### D1 – Sichtprüfung aller Demo-Seiten – automatisierter Teil erledigt 2026-11-15
+- **Vorgehen:** Ein Skript hat 262 Demo-Seiten (ohne die 53 schweren Seiten aus B1, dazu Kamera, Video und Audio) in iframes im dunklen und im hellen Design geladen und geprüft: waagerechter Überlauf der Seite, kaputte Bilder, und danach die Konsole nach JavaScript-Fehlern (`Uncaught`, `TypeError`, `ReferenceError`, `is not a function`, `bootstrap`).
+- **Befund und Fix:** Drei Seiten liefen über den rechten Rand hinaus (`/datetime-picker` 183 px, `/image-cropper` 259 px, `/auto-complete` 3 px). Ursache war dieselbe: Eine Bootstrap-5-`.input-group` brach um (`flex-wrap: wrap`), die von Bootstrap 6 nicht mehr; Schaltflächen, Segmented-Steuerelemente und Beschriftungen ragten aus schmalen Containern. `compat.scss` setzt `flex-wrap: wrap` wieder (`CompatScss_InputGroup_Wraps`). Danach läuft keine der Seiten mehr über.
+- **Keine JavaScript-Fehler** auf den geprüften Seiten. Die einzigen Konsolenmeldungen waren HTTP-500-Antworten der Demo-Seite „Waterfall“ (Bilder werden aus `bin/…/wwwroot/images/waterfall` gelesen, das ich in dieser Umgebung nicht hatte) und der absichtliche Fehler der Seite `/error-page`; beides hat mit Bootstrap nichts zu tun.
+- **Verworfen:** Ein Kontrast-Scan (Textfarbe gegen Hintergrund) liefert zu viele Fehlalarme (Verläufe, Übergänge, absichtlich helle Farben) und taugt nicht, um Regressionen von Designentscheidungen zu trennen.
+- **Offen:** Ein echter Bildvergleich gegen die Bootstrap-5-Fassung (Screenshots beider Stände je Seite, Unterschied pro Seite berechnen, die auffälligsten ansehen). Das findet Optikfehler, die kein Skript erkennt, braucht aber einen zweiten Stand der Demo und viele Bildschirmfotos. Nicht abgedeckt sind auch Hover-, Fokus- und Popup-Zustände.
+
+(Ursprüngliche Beschreibung:)
 - **Stand:** Rund 25 von etwa 235 Seiten angesehen.
 - **Idee:** Skript, das alle Routen aus dem Menü (`docs.json`/`MenusLocalizerExtensions`) im Browser öffnet, Konsolenfehler sammelt und je Seite einen Screenshot im hellen und dunklen Design ablegt; danach Auffälligkeiten durchsehen.
 - **Fertig, wenn:** Eine Liste „Seite → Befund“ liegt vor, echte Fehler sind als Tasks angelegt.
