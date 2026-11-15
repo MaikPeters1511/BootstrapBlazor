@@ -48,6 +48,25 @@ public class ModalTest : BootstrapBlazorTestBase
         Assert.Contains("modal fade backdrop", container.Markup);
     }
 
+    [Theory]
+    [InlineData(false, true)]
+    [InlineData(true, false)]
+    public async Task DialogInstant_Ok(bool isFade, bool instant)
+    {
+        // Bootstrap 6 animates every <dialog> unless it has dialog-instant: the class belongs into the markup,
+        // a class added by script is lost as soon as Blazor renders a changed class attribute
+        var container = Context.Render<BootstrapBlazorRootOutlet>();
+        var cut = Context.Render<Modal>(pb =>
+        {
+            pb.Add(m => m.IsFade, isFade);
+            pb.AddChildContent<ModalDialog>(dpb => dpb.Add(d => d.Size, Size.Large));
+        });
+
+        await cut.InvokeAsync(cut.Instance.Toggle);
+        var dialog = container.Find("dialog");
+        Assert.Equal(instant, dialog.ClassList.Contains("dialog-instant"));
+    }
+
     [Fact]
     public async Task Close_Ok()
     {

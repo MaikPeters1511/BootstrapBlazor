@@ -65,8 +65,6 @@ export function init(id, invoke, shownCallback, closeCallback) {
     modal.show = () => {
         const dialog = modal.getDialogs().pop()
         if (dialog && !dialog.open) {
-            dialog.classList.toggle('dialog-instant', !el.classList.contains('fade'))
-
             const instance = bootstrap.Dialog.getOrCreateInstance(dialog)
             instance._config.keyboard = el.getAttribute('data-bs-keyboard') === 'true'
             instance._config.backdrop = el.getAttribute('data-bs-backdrop') === 'static' ? 'static' : true

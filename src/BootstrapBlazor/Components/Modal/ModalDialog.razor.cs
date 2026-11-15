@@ -28,6 +28,7 @@ public partial class ModalDialog
         .AddClass("is-draggable", IsDraggable)
         .AddClass("is-draggable-center", IsCentered && IsDraggable && _firstRender)
         .AddClass("d-none", IsHidePreviousDialog && !IsShown)
+        .AddClass("dialog-instant", Modal is { UseFade: false })
         .AddClass(Class, !string.IsNullOrEmpty(Class))
         .AddClassFromAttributes(AdditionalAttributes)
         .Build();

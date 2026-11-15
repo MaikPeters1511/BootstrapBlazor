@@ -27,7 +27,7 @@ Bootstrap-Version: `6.0.0-alpha.1`. Lokaler Teststand: 2811 von 2813 (Release), 
 | D5 | ~~Einzelne Komponenten prüfen~~ erledigt 2026-11-15 | P2 | M |
 | D6 | ~~Starter-Vorlage `Bs6Test` prüfen und ablegen~~ erledigt 2026-11-15 (bleibt ausserhalb des Repos) | P3 | S |
 | E1 | ~~Dialog: `OnClosingAsync` bei Escape und Hintergrundklick~~ erledigt 2026-11-14 | P2 | M |
-| E2 | Dialog: `dialog-instant` geht beim Re-Render verloren | P3 | S |
+| E2 | ~~Dialog: `dialog-instant` geht beim Re-Render verloren~~ erledigt 2026-11-15 | P3 | S |
 | E3 | Carousel: `AutoPlayAfterManually` nach Hover | P3 | S |
 | F1 | Wechsel auf neue Bootstrap-6-Alphas und die stabile Version | P3 | M |
 
@@ -206,9 +206,10 @@ Voraussetzung für alle: Demo-App wie in der Memory-Notiz `desktop-write-protect
 - **Schritte:** Test schreiben, der Escape und Hintergrundklick simuliert; in `Modal.razor.js` das `cancel`-Ereignis des Dialogs abfangen, `OnClosingAsync` aufrufen und bei Abbruch `preventDefault()`.
 - **Fertig, wenn:** `IsKeyboard`, `IsBackdrop` und `OnClosingAsync` verhalten sich wie vorher.
 
-### E2 – Dialog: `dialog-instant` geht beim Re-Render verloren
-- **Stand:** Die Klasse wird von `Modal.razor.js` gesetzt, wenn der Container kein `fade` hat; ein Re-Render der Komponente kann sie entfernen.
-- **Schritte:** Test mit Re-Render nach dem Öffnen; die Klasse im Razor-Markup statt per Skript setzen.
+### E2 – Dialog: `dialog-instant` geht beim Re-Render verloren – erledigt 2026-11-15
+- **Ergebnis:** `ModalDialog` setzt `dialog-instant` jetzt im Markup (`ClassName`), wenn `Modal` ohne Fade läuft (`Modal.UseFade`, vorher `Options.GetIsFadeValue`). `Modal.razor.js` setzt die Klasse beim Öffnen nicht mehr; nur beim Aufräumen (`dispose`) bleibt sie, damit der Dialog ohne Animation schliesst. Abgesichert durch `DialogInstant_Ok` (mit und ohne Fade).
+- **Geprüft im Browser:** Mit `ModalSettings.IsFade = false` im lokalen Starter trägt das `<dialog>` die Klasse, nach einem Re-Render der Seite (Toast) bleibt sie, `animation-name` ist `none`.
+- **Nicht geprüft:** Ein Re-Render, das die Klassenliste selbst ändert (z. B. Maximieren), nur im Unit-Test über `Size`.
 
 ### E3 – Carousel: `AutoPlayAfterManually` nach Hover
 - **Stand:** Der Modus ist nachgebaut (`data-bb-autoplay="after-manually"`, `Carousel.razor.js`). Nach einem Hover läuft das Abspielen nicht von allein weiter.
