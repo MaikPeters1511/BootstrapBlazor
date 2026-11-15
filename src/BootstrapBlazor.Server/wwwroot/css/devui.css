@@ -45,6 +45,7 @@ pre code.hljs {
 
 .btn {
     font-size: var(--bb-font-size);
+    min-height: 0;
     --bs-btn-padding-x: 0.5rem;
     --bs-btn-padding-y: 0.1875rem;
     --bs-btn-xs-padding-x: 0.3125rem;
