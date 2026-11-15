@@ -15,6 +15,7 @@ export function init(id, invoke, shownCallback, closeCallback) {
     Data.set(id, modal)
 
     EventHandler.on(el, 'shown.bs.dialog', () => {
+        modal.focusDialog()
         invoke.invokeMethodAsync(shownCallback)
     })
     EventHandler.on(el, 'hidden.bs.dialog', e => {
@@ -50,6 +51,16 @@ export function init(id, invoke, shownCallback, closeCallback) {
     modal.getDialogs = () => [...el.children].filter(d => d.tagName === 'DIALOG')
 
     modal.getShownDialog = () => modal.getDialogs().filter(d => d.open).pop()
+
+    // the native dialog is still invisible while showModal() runs, the browser can not focus anything inside it
+    // and the focus stays on the body: take it into the dialog unless a component already did
+    modal.focusDialog = () => {
+        const dialog = modal.getShownDialog()
+        if (dialog && !dialog.contains(document.activeElement)) {
+            dialog.setAttribute('tabindex', '-1')
+            dialog.focus({ preventScroll: true })
+        }
+    }
 
     modal.show = () => {
         const dialog = modal.getDialogs().pop()

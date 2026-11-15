@@ -30,12 +30,7 @@ const initKeydownHandler = select => {
         const menu = popover.toggleMenu;
         const key = e.key;
         if (key === "Enter") {
-            if (popover.isPopover) {
-                popover.hide();
-            }
-            else {
-                menu.classList.remove('show');
-            }
+            popover.hide();
             const activeItem = menu.querySelector('.active');
             let index = indexOf(menu, activeItem)
             invoke.invokeMethodAsync(confirmMethodCallback, index)
