@@ -21,7 +21,7 @@ Bootstrap-Version: `6.0.0-alpha.1`. Lokaler Teststand: 2811 von 2813 (Release), 
 | C2 | Chinesische Texte gegenlesen | P3 | S |
 | C3 | CHANGELOG-Link und Upstream-Vorbereitung | P2 | S |
 | D1 | Sichtprüfung aller Demo-Seiten (automatisierter Teil erledigt 2026-11-15, Bildvergleich offen) | P2 | L |
-| D2 | Drucken von Dialogen prüfen | P3 | S |
+| D2 | ~~Drucken von Dialogen prüfen~~ erledigt 2026-11-15 | P3 | S |
 | D3 | Schmale Breiten und Touch prüfen (Überlauf erledigt 2026-11-15, Touch offen) | P2 | M |
 | D4 | Tastaturbedienung prüfen (Dropdown, Select, Dialog erledigt 2026-11-15, Menu offen) | P2 | M |
 | D5 | ~~Einzelne Komponenten prüfen~~ erledigt 2026-11-15 | P2 | M |
@@ -158,8 +158,10 @@ Voraussetzung für alle: Demo-App wie in der Memory-Notiz `desktop-write-protect
 - **Idee:** Skript, das alle Routen aus dem Menü (`docs.json`/`MenusLocalizerExtensions`) im Browser öffnet, Konsolenfehler sammelt und je Seite einen Screenshot im hellen und dunklen Design ablegt; danach Auffälligkeiten durchsehen.
 - **Fertig, wenn:** Eine Liste „Seite → Befund“ liegt vor, echte Fehler sind als Tasks angelegt.
 
-### D2 – Drucken von Dialogen
-- **Schritte:** In der Demo „PrintDialog“ öffnen und den Druckdialog des Systems auslösen; prüfen, dass `dialog.dialog` und `.dialog-body` im Druck erscheinen (`PrintButton.razor.js`).
+### D2 – Drucken von Dialogen – erledigt 2026-11-15
+- **Vorgehen:** In `/print` (Demo „PrintDialog“) den Dialog geöffnet, `window.print` abgefangen und im Moment des Druckens den Zustand gemessen.
+- **Befund:** Kein Fehler. `PrintButton.razor.js` findet `dialog.dialog` und `.dialog-body`; das native `<dialog>` ist beim Druck ausgeblendet (`d-none` wirkt, `display: none`), der Druckinhalt `.bb-printview` hängt direkt am `<body>` und enthält den Inhalt des Dialogs, `bb-printview-open` ist gesetzt. Nach dem Druck sind Klasse und Hilfselement wieder entfernt, der Dialog ist sichtbar.
+- **Nicht geprüft:** Der echte Druckdialog des Systems und die Seitenvorschau. Die `@media print`-Regeln (`.bb-printview-open > *:not(.bb-printview) { display: none !important }` in `Modal.razor.scss`) habe ich nur gelesen, nicht im Druck gesehen.
 
 ### D3 – Schmale Breiten und Touch
 - **Erledigt (375 px, Vergleich mit Bootstrap 5):** Alert war ein Flex-Block (`display: block` in `Alert.razor.scss`, `btn-close` rechts) – behob den Überlauf auf `/table`, `/table/column`, `/tree-view`, `/anchor-link`, `/tab`, `/datetime-picker`; `.form-control` bricht um (`compat.scss`) – behob `/slide-button`.
