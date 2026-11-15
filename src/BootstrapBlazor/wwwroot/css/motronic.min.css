@@ -116,6 +116,78 @@
 
 
 
+/* Bootstrap 6 derives hover / active colors of the buttons from the base color (oklch),
+   for the Motronic palette that is too light (secondary) or too saturated (success, info, danger) */
+.btn-solid.theme-primary:hover, .btn-outline.theme-primary:hover {
+    --bs-btn-hover-bg: #0095e8;
+    --bs-btn-hover-border-color: #0095e8;
+}
+
+.btn-solid.theme-primary:active, .btn-solid.theme-primary.active, .btn-solid.theme-primary.show, .btn-outline.theme-primary:active, .btn-outline.theme-primary.active, .btn-outline.theme-primary.show {
+    --bs-btn-active-bg: #0589d3;
+    --bs-btn-active-border-color: #0589d3;
+}
+
+.btn-solid.theme-secondary:hover, .btn-outline.theme-secondary:hover {
+    --bs-btn-hover-bg: #B5B5C3;
+    --bs-btn-hover-border-color: #B5B5C3;
+}
+
+.btn-solid.theme-secondary:active, .btn-solid.theme-secondary.active, .btn-solid.theme-secondary.show, .btn-outline.theme-secondary:active, .btn-outline.theme-secondary.active, .btn-outline.theme-secondary.show {
+    --bs-btn-active-bg: #aeaebc;
+    --bs-btn-active-border-color: #aeaebc;
+}
+
+.btn-solid.theme-success:hover, .btn-outline.theme-success:hover {
+    --bs-btn-hover-bg: #47be7d;
+    --bs-btn-hover-border-color: #47be7d;
+}
+
+.btn-solid.theme-success:active, .btn-solid.theme-success.active, .btn-solid.theme-success.show, .btn-outline.theme-success:active, .btn-outline.theme-success.active, .btn-outline.theme-success.show {
+    --bs-btn-active-bg: #3aab6d;
+    --bs-btn-active-border-color: #3aab6d;
+}
+
+.btn-solid.theme-info:hover, .btn-outline.theme-info:hover {
+    --bs-btn-hover-bg: #5014d0;
+    --bs-btn-hover-border-color: #5014d0;
+}
+
+.btn-solid.theme-info:active, .btn-solid.theme-info.active, .btn-solid.theme-info.show, .btn-outline.theme-info:active, .btn-outline.theme-info.active, .btn-outline.theme-info.show {
+    --bs-btn-active-bg: #612ad6;
+    --bs-btn-active-border-color: #612ad6;
+}
+
+.btn-solid.theme-warning:hover, .btn-outline.theme-warning:hover {
+    --bs-btn-hover-bg: #f1bc00;
+    --bs-btn-hover-border-color: #f1bc00;
+}
+
+.btn-solid.theme-warning:active, .btn-solid.theme-warning.active, .btn-solid.theme-warning.show, .btn-outline.theme-warning:active, .btn-outline.theme-warning.active, .btn-outline.theme-warning.show {
+    --bs-btn-active-bg: #ddae08;
+    --bs-btn-active-border-color: #ddae08;
+}
+
+.btn-solid.theme-danger:hover, .btn-outline.theme-danger:hover {
+    --bs-btn-hover-bg: #d9214e;
+    --bs-btn-hover-border-color: #d9214e;
+}
+
+.btn-solid.theme-danger:active, .btn-solid.theme-danger.active, .btn-solid.theme-danger.show, .btn-outline.theme-danger:active, .btn-outline.theme-danger.active, .btn-outline.theme-danger.show {
+    --bs-btn-active-bg: #c41540;
+    --bs-btn-active-border-color: #c41540;
+}
+
+.btn-solid.theme-dark:hover, .btn-outline.theme-dark:hover {
+    --bs-btn-hover-bg: #131628;
+    --bs-btn-hover-border-color: #131628;
+}
+
+.btn-solid.theme-dark:active, .btn-solid.theme-dark.active, .btn-solid.theme-dark.show, .btn-outline.theme-dark:active, .btn-outline.theme-dark.active, .btn-outline.theme-dark.show {
+    --bs-btn-active-bg: #212641;
+    --bs-btn-active-border-color: #212641;
+}
+
 .btn-link {
     text-decoration: none;
     --bs-btn-color: var(--bs-primary);

@@ -16,7 +16,7 @@ Bootstrap-Version: `6.0.0-alpha.1`. Lokaler Teststand: 2811 von 2813 (Release), 
 | B2 | ~~Farb-Utilities im Browser prüfen~~ erledigt 2026-11-14 | P1 | M |
 | B3 | ~~Theme `ant.css` migrieren~~ erledigt 2026-11-15 | P2 | M |
 | B4 | ~~Themes `devui.css` und `blue.css` prüfen~~ erledigt 2026-11-15 | P2 | S |
-| B5 | Motronic-Theme: Hover- und Active-Farben | P3 | S |
+| B5 | ~~Motronic-Theme: Hover- und Active-Farben~~ erledigt 2026-11-15 | P3 | S |
 | C1 | ~~Doku und CHANGELOG nachziehen~~ erledigt 2026-11-15 | P2 | S |
 | C2 | Chinesische Texte gegenlesen | P3 | S |
 | C3 | CHANGELOG-Link und Upstream-Vorbereitung | P2 | S |
@@ -116,9 +116,11 @@ Hintergrund: Bootstrap 6 legt sein CSS in `@layer`. Ungelayertes BB-CSS gewinnt 
 (Ursprüngliche Beschreibung:)
 - **Schritte:** Gleiches Vorgehen wie B3. `devui.css` enthält `bb-switch`-Selektoren (PR #2), die übrigen Regeln sind ungeprüft.
 
-### B5 – Motronic-Theme: Hover- und Active-Farben
-- **Stand:** Die von Hand gesetzten Hover-/Active-Farben der Buttons sind entfallen; Bootstrap 6 leitet sie aus der Grundfarbe ab.
-- **Schritte:** Entscheiden, ob die Ableitung reicht; falls nicht, `--bs-btn-hover-bg` usw. je Farbe über `.theme-*` im Theme setzen.
+### B5 – Motronic-Theme: Hover- und Active-Farben – erledigt 2026-11-15
+- **Vergleich:** Bootstrap 6 leitet Hover mit `oklch(l*.95, c*1.1)` und Active mit `oklch(l*.9, c*1.15)` aus der Grundfarbe ab. Gegen die alten Motronic-Werte: Primary, Dark und Warning liegen nah dran; Secondary ist beim Hover viel heller (213 statt 181 im Rotkanal), Success, Info und Danger werden im Active-Zustand deutlich greller (z. B. Success `0,184,107` statt `58,171,109`).
+- **Entscheidung:** Die Ableitung reicht nicht. `motronic.min.css` setzt Hover- und Active-Farben (Hintergrund und Rahmen) für `.btn-solid` und `.btn-outline` je Farbe wieder auf die alten Werte, ungelayert und mit höherer Spezifität (`.btn-solid.theme-<Farbe>:hover` usw.). Abgesichert durch `MotronicCss_ButtonStates_Ok` (sieben Farben).
+- **Geprüft:** Die ausgelieferte CSS liefert für alle sieben Farben, solid und outline, die erwarteten Werte in `--bs-btn-hover-bg` und `--bs-btn-active-bg`.
+- **Nicht geprüft:** Den echten Hover mit der Maus; das Browser-Fenster löst `:hover` nicht aus. Dunkles Design, `theme-light`, Subtle und Text-Buttons.
 
 ---
 
