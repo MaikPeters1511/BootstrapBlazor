@@ -11,7 +11,9 @@
         width: 100%;
         overflow: hidden;
 
-        &:not(.collapsed) {
+        // .collapsed sits on the .accordion-button, the header itself never has it (Bootstrap 6 uses details[open])
+        &:has(> .accordion-button:not(.collapsed)) {
+            color: var(--bs-accordion-active-color);
             background-color: var(--bs-accordion-active-bg);
         }
 

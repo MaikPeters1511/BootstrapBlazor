@@ -349,6 +349,25 @@ public class BootstrapAssetsTest
     }
 
     [Fact]
+    public void CardScss_Header_IsRow()
+    {
+        // .card-header of Bootstrap 6 is a flex column, Console, Captcha, Card, ... place title and tools in one row
+        // (the pixel comparison with the Bootstrap 5 build showed the title centered with the light or icon below it)
+        var content = ReadSource("src", "BootstrapBlazor", "Components", "Card", "Card.razor.scss");
+        Assert.Matches(@"(?m)^\.card-header \{[^}]*\bflex-direction: row;", content);
+    }
+
+    [Fact]
+    public void CollapseScss_OpenHeader_IsHighlighted()
+    {
+        // Bootstrap 6 marks the open item with details[open], this component keeps div elements and puts .collapsed on the
+        // .accordion-button: the header never has .collapsed itself, so `.accordion-header:not(.collapsed)` matched every header
+        var content = ReadSource("src", "BootstrapBlazor", "Components", "Collapse", "Collapse.razor.scss");
+        Assert.Matches(@"&:has\(> \.accordion-button:not\(\.collapsed\)\)\s*\{[^}]*background-color: var\(--bs-accordion-active-bg\)", content);
+        Assert.DoesNotMatch(@"&:not\(\.collapsed\)\s*\{\s*background-color: var\(--bs-accordion-active-bg\)", content);
+    }
+
+    [Fact]
     public void CarouselJs_AfterManually_ResumesAfterHover()
     {
         // Bootstrap 6 keeps _playing false when data-bs-autoplay is false, so its own mouseleave handler never
