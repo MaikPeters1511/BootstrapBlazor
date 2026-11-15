@@ -18,11 +18,17 @@ public partial class Modal : IClosable
     private IOptionsMonitor<BootstrapBlazorOptions>? Options { get; set; }
 
     /// <summary>
+    /// <para lang="zh">获得 是否使用淡入淡出动画</para>
+    /// <para lang="en">Gets whether the fade in and out animation is used</para>
+    /// </summary>
+    internal bool UseFade => Options.CurrentValue.GetIsFadeValue(IsFade);
+
+    /// <summary>
     /// <para lang="zh">获得样式字符串</para>
     /// <para lang="en">Gets the style string</para>
     /// </summary>
     private string? ClassString => CssBuilder.Default("modal")
-        .AddClass("fade", Options.CurrentValue.GetIsFadeValue(IsFade))
+        .AddClass("fade", UseFade)
         .AddClassFromAttributes(AdditionalAttributes)
         .Build();
 
