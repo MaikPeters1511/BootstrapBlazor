@@ -284,6 +284,26 @@ public class BootstrapAssetsTest
     }
 
     [Fact]
+    public void BaseSelectScript_Enter_HidesMenu()
+    {
+        // Enter confirms the highlighted item of a Select / Dropdown; the Bootstrap 6 menu is closed by its own instance,
+        // removing the 'show' class from the menu element left the menu open (the toggle keeps 'show')
+        var content = ReadSource("src", "BootstrapBlazor", "wwwroot", "modules", "base-select.js");
+        Assert.DoesNotContain("menu.classList.remove('show')", content);
+        Assert.Matches(@"key === ""Enter""\)\s*\{\s*popover\.hide\(\);", content);
+    }
+
+    [Fact]
+    public void ModalScript_Shown_FocusesDialog()
+    {
+        // the native dialog is still invisible while showModal() runs, so the browser cannot focus anything inside
+        // and the focus stays on the body: take it into the dialog as soon as it is shown
+        var content = ReadSource("src", "BootstrapBlazor", "Components", "Modal", "Modal.razor.js");
+        Assert.Matches(@"shown\.bs\.dialog'[^}]*modal\.focusDialog\(\)", content);
+        Assert.Matches(@"modal\.focusDialog = \(\) => \{[^}]*\.focus\(", content);
+    }
+
+    [Fact]
     public void AlertScss_Block_Ok()
     {
         // Bootstrap 6 alerts are flex rows (icon + text), the BootstrapBlazor Alert holds headings, paragraphs and lists
