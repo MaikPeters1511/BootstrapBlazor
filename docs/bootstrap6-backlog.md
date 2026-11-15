@@ -23,7 +23,7 @@ Bootstrap-Version: `6.0.0-alpha.1`. Lokaler Teststand: 2811 von 2813 (Release), 
 | D1 | Sichtprüfung aller Demo-Seiten (automatisierter Teil erledigt 2026-11-15, Bildvergleich offen) | P2 | L |
 | D2 | ~~Drucken von Dialogen prüfen~~ erledigt 2026-11-15 | P3 | S |
 | D3 | Schmale Breiten und Touch prüfen (Überlauf, Navbar, Tabellen-Beschriftungen, `carousel-no-touch` erledigt 2026-11-15; echtes Wischen und EditorForm/SearchForm-Raster offen) | P2 | M |
-| D4 | Tastaturbedienung prüfen (Dropdown, Select, Dialog erledigt 2026-11-15, Menu offen) | P2 | M |
+| D4 | ~~Tastaturbedienung prüfen~~ erledigt 2026-11-15 (Dropdown, Select, Dialog, Seitenmenü, gestapelte Dialoge) | P2 | M |
 | D5 | ~~Einzelne Komponenten prüfen~~ erledigt 2026-11-15 | P2 | M |
 | D6 | ~~Starter-Vorlage `Bs6Test` prüfen und ablegen~~ erledigt 2026-11-15 (bleibt ausserhalb des Repos) | P3 | S |
 | E1 | ~~Dialog: `OnClosingAsync` bei Escape und Hintergrundklick~~ erledigt 2026-11-14 | P2 | M |
@@ -177,7 +177,8 @@ Voraussetzung für alle: Demo-App wie in der Memory-Notiz `desktop-write-protect
 ### D4 – Tastaturbedienung
 - **Erledigt:** Select: Enter bestätigte den Eintrag, schloss das Menü aber nicht mehr (`base-select.js` ruft jetzt `popover.hide()`); Dialog: der Fokus blieb beim Öffnen auf `body` (`Modal.razor.js` fokussiert den Dialog bei `shown.bs.dialog`). Ohne Befund: Dropdown öffnen mit Enter, Escape (Fokus zurück auf den Auslöser), Select Escape und Pfeiltasten, Dialog Tab-Falle und Fokus-Rückgabe.
 - **Unverändert gegenüber Bootstrap 5:** Dropdown-Einträge sind `<div class="menu-item">` ohne `tabindex`, die Pfeiltasten des Bootstrap-6-Menus fokussieren sie nicht und Enter wählt nichts aus; Select und Dropdown lassen sich nicht per Tastatur öffnen (Bootstrap ignoriert Pfeiltasten in Eingabefeldern). Verbesserung möglich: Einträge als `<button class="menu-item">` rendern.
-- **Noch nicht geprüft:** Seitenmenü (`bootstrap.Menu`), Escape bei gestapelten Dialogen per Tastatur.
+- **Geprüft 2026-11-15, ohne Befund (echte Tastendrücke im Browser-Pane):** Seitenmenü (`/menu`): es nutzt `bootstrap.Collapse` und `NavLink`, nicht `bootstrap.Menu`; Einträge haben `href` und `tabindex` 0, Enter klappt ein Untermenü auf (`aria-expanded=true`) und wieder zu, Tab überspringt die Kinder eines geschlossenen Untermenüs. Escape bei gestapelten Dialogen (`/dialog`, „MultipleDialog“): der erste Escape schliesst nur den obersten Dialog, der Fokus bleibt im unteren, der zweite schliesst auch diesen.
+- **Beobachtung:** Nach dem Schliessen des letzten per `DialogService` geöffneten Dialogs steht der Fokus auf `body`, nicht auf der Schaltfläche, die ihn geöffnet hat. Nicht mit Bootstrap 5 verglichen, daher keine Änderung.
 - **Prüfen:** Dropdown und Select (Pfeiltasten, Enter, Escape, Tab), Menu (Bootstrap 6 `bootstrap.Menu` hat eine eigene Tastaturlogik), Dialog (Fokus beim Öffnen und Schliessen, Escape bei gestapelten Dialogen).
 
 ### D5 – Einzelne Komponenten – erledigt 2026-11-15
