@@ -83,6 +83,13 @@
     display: block;
 }
 
+// the .menu of Bootstrap 6 is closed with opacity: 0 and scale(.95) until it has .show itself
+// content moved into a popover (column list of the Table, ...) only has a .show parent
+.show > .menu {
+    opacity: 1;
+    transform: none;
+}
+
 .form-select:focus {
     box-shadow: var(--bb-select-focus-shadow);
     border-color: var(--bb-border-focus-color);

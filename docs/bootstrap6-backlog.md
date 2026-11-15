@@ -24,7 +24,7 @@ Bootstrap-Version: `6.0.0-alpha.1`. Lokaler Teststand: 2811 von 2813 (Release), 
 | D2 | Drucken von Dialogen prüfen | P3 | S |
 | D3 | Schmale Breiten und Touch prüfen (Überlauf erledigt 2026-11-15, Touch offen) | P2 | M |
 | D4 | Tastaturbedienung prüfen (Dropdown, Select, Dialog erledigt 2026-11-15, Menu offen) | P2 | M |
-| D5 | Einzelne Komponenten prüfen | P2 | M |
+| D5 | ~~Einzelne Komponenten prüfen~~ erledigt 2026-11-15 | P2 | M |
 | D6 | Starter-Vorlage `Bs6Test` prüfen und ablegen | P3 | S |
 | E1 | ~~Dialog: `OnClosingAsync` bei Escape und Hintergrundklick~~ erledigt 2026-11-14 | P2 | M |
 | E2 | Dialog: `dialog-instant` geht beim Re-Render verloren | P3 | S |
@@ -173,8 +173,13 @@ Voraussetzung für alle: Demo-App wie in der Memory-Notiz `desktop-write-protect
 - **Noch nicht geprüft:** Seitenmenü (`bootstrap.Menu`), Escape bei gestapelten Dialogen per Tastatur.
 - **Prüfen:** Dropdown und Select (Pfeiltasten, Enter, Escape, Tab), Menu (Bootstrap 6 `bootstrap.Menu` hat eine eigene Tastaturlogik), Dialog (Fokus beim Öffnen und Schliessen, Escape bei gestapelten Dialogen).
 
-### D5 – Einzelne Komponenten
-- **Prüfen:** TopMenu (`IsBottom`, Placement), Logout, Spaltenliste der Tabelle, SlideButton, Schliessen des Drawers per Klick auf den Hintergrund (bisher nur Unit-Test), Tab-Kontextmenü, ContextMenu, DropdownWidget.
+### D5 – Einzelne Komponenten – erledigt 2026-11-15
+- **Geprüft im Browser (dunkles Design):** ContextMenu, DropdownWidget, SlideButton, Logout, Drawer (Klick auf den Hintergrund bei `IsBackdrop="true"`), Tab-Kontextmenü, TopMenu (oben und mit `IsBottom`), Spaltenliste der Tabelle.
+- **Fehler 1 (Tabelle, Spaltenliste):** Das Popover öffnete sich, der Inhalt blieb unsichtbar. Bootstrap 6 schliesst `.menu` mit `opacity: 0` und `scale(.95)`, bis das Menü selbst `.show` trägt; im Popover trägt nur das Elternelement `.show`. `Select.razor.scss` setzt jetzt für `.show > .menu` auch `opacity: 1` und `transform: none` (`SelectScss_ShownMenu_IsVisible`). Betrifft jedes Popover-Menü ohne eigenes `.show`.
+- **Fehler 2 (TopMenu):** `.nav-link` ist in Bootstrap 6 eine Flexbox mit `justify-content: center`; Einträge mit Pfeil (`SubMenu1`, `SubMenu2`) standen mittig bis rechts statt links. `Menu.razor.scss` setzt `justify-content: flex-start` in den Aufklapplisten (`MenuScss_NavLink_AlignsStart`).
+- **Kein Befund:** ContextMenu, DropdownWidget, Logout, Drawer, Tab-Kontextmenü, `IsBottom` (Liste öffnet nach oben).
+- **Bekannt, aber kein Bootstrap-6-Fehler:** Die Liste des SlideButton hat im dunklen Design einen weissen Hintergrund (`$bb-slide-list-bg: #fff`) mit hellem Text, schlecht lesbar. Das war in der Bootstrap-5-Basis (`cfcc339e9`) genauso. Idee: `var(--bs-body-bg)` verwenden.
+- **Nicht geprüft:** Placement-Varianten von SlideButton und TopMenu im Einzelnen, Hell-Design.
 
 ### D6 – Starter-Vorlage prüfen und ablegen
 - **Stand:** `~/Desktop/projekte/Bs6Test` baut; nach dem Wiedereinbau des Switch nicht mehr im Browser geöffnet. Sie liegt ausserhalb des Repos und nicht unter Versionsverwaltung.
