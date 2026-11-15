@@ -29,7 +29,7 @@ Bootstrap-Version: `6.0.0-alpha.1`. Lokaler Teststand: 2811 von 2813 (Release), 
 | E1 | ~~Dialog: `OnClosingAsync` bei Escape und Hintergrundklick~~ erledigt 2026-11-14 | P2 | M |
 | E2 | ~~Dialog: `dialog-instant` geht beim Re-Render verloren~~ erledigt 2026-11-15 | P3 | S |
 | E3 | ~~Carousel: `AutoPlayAfterManually` nach Hover~~ erledigt 2026-11-15 | P3 | S |
-| F1 | Wechsel auf neue Bootstrap-6-Alphas und die stabile Version | P3 | M |
+| F1 | Wechsel auf neue Bootstrap-6-Alphas und die stabile Version (am 2026-11-15 geprüft: noch keine neuere Version) | P3 | M |
 
 ---
 
@@ -224,5 +224,6 @@ Voraussetzung für alle: Demo-App wie in der Memory-Notiz `desktop-write-protect
 ## F – Pflege
 
 ### F1 – Wechsel auf neue Bootstrap-6-Alphas und die stabile Version
+- **Stand 2026-11-15:** Auf npm gibt es nur `6.0.0-alpha.1` (veröffentlicht 2026-10-08); der Tag `next` zeigt darauf, `latest` ist `5.3.9`. Es gibt nichts zu aktualisieren. Punkt bleibt offen, bis eine neue Version erscheint (dann mit `npm view bootstrap dist-tags` prüfen).
 - **Warum:** Klassennamen und Schnittstellen können sich bis zur stabilen Version ändern.
 - **Schritte:** Beim Update `BootstrapAssetsTest` zuerst anpassen (`ExpectedVersion`), neue Assets aus dem npm-Paket (`bootstrap@next`) in `wwwroot/core/bootstrap` ersetzen, den Klassenabgleich (siehe PR #3) und die Wächter-Tests erneut laufen lassen, B1 und D1 wiederholen.
