@@ -275,6 +275,24 @@ public class BootstrapAssetsTest
     }
 
     [Fact]
+    public void AntCss_Bootstrap6_Ok()
+    {
+        // the Ant Design theme sets its own button height, but .btn of Bootstrap 6 has a min-height (2.375rem / 2rem / 2.75rem)
+        // that wins against height, so the theme resets it
+        var content = ReadSource("src", "BootstrapBlazor.Server", "wwwroot", "css", "ant.css");
+        Assert.Matches(@"(?m)^\.btn \{[^}]*\bmin-height: 0;", content);
+        Assert.DoesNotMatch(@"\.btn-(outline-)?(primary|secondary|success|danger|warning|info|light|dark)\b", content);
+    }
+
+    [Fact]
+    public void DevuiCss_ButtonMinHeight_Ok()
+    {
+        // the DevUI theme makes buttons compact with smaller padding, the min-height of .btn in Bootstrap 6 keeps them tall
+        var content = ReadSource("src", "BootstrapBlazor.Server", "wwwroot", "css", "devui.css");
+        Assert.Matches(@"(?m)^\.btn \{[^}]*\bmin-height: 0;", content);
+    }
+
+    [Fact]
     public void RootScss_DisabledRule_InRebootLayer()
     {
         // Bootstrap 6 puts its css into cascade layers, unlayered rules always win

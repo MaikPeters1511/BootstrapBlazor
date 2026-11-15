@@ -14,8 +14,8 @@ Bootstrap-Version: `6.0.0-alpha.1`. Lokaler Teststand: 2811 von 2813 (Release), 
 | A3 | ~~NuGet-Paket und JS-Konvertierung prüfen~~ erledigt 2026-11-14 | P1 | M |
 | B1 | ~~Layer-Konflikte systematisch suchen~~ erledigt 2026-11-14 | P1 | L |
 | B2 | ~~Farb-Utilities im Browser prüfen~~ erledigt 2026-11-14 | P1 | M |
-| B3 | Theme `ant.css` migrieren | P2 | M |
-| B4 | Themes `devui.css` und `blue.css` prüfen | P2 | S |
+| B3 | ~~Theme `ant.css` migrieren~~ erledigt 2026-11-15 | P2 | M |
+| B4 | ~~Themes `devui.css` und `blue.css` prüfen~~ erledigt 2026-11-15 | P2 | S |
 | B5 | Motronic-Theme: Hover- und Active-Farben | P3 | S |
 | C1 | ~~Doku und CHANGELOG nachziehen~~ erledigt 2026-11-15 | P2 | S |
 | C2 | Chinesische Texte gegenlesen | P3 | S |
@@ -100,12 +100,20 @@ Hintergrund: Bootstrap 6 legt sein CSS in `@layer`. Ungelayertes BB-CSS gewinnt 
 - **Prüfen:** Toast, Timeline, FileIcon, CheckboxList und RadioList als Buttons, Rahmenfarben der Eingabefelder (`Color` auf Input, Select, DateTimePicker, Cascader), Badge, Alert, Tag.
 - **Fertig, wenn:** Alle genannten Komponenten zeigen im hellen und im dunklen Design die richtige `Color`.
 
-### B3 – Theme `ant.css` migrieren
+### B3 – Theme `ant.css` migrieren – erledigt 2026-11-15
+- **Ergebnis:** `ant.css` war nach dem mechanischen Umbenennen fast richtig: Primary und Danger (`.btn-solid.theme-primary`, `.btn-solid.theme-danger`) werden blau und rot, alle anderen Farben bleiben wie bei Bootstrap 5 weiss mit grauem Rand (das Theme kennt nur diese beiden). Einen Fehler gab es: `.btn` von Bootstrap 6 hat `min-height` (2,375 rem; klein 2 rem, gross 2,75 rem), das gegen die `height` des Themes gewinnt. Die Schaltflächen waren 38 px statt 32 px hoch (klein 32 statt 24, gross 44 statt 40). Die `.btn`-Regel setzt jetzt `min-height: 0`; gemessen: normal 32 px, klein 24 px, gross 40 px, in der Tabellen-Werkzeugleiste durchgehend 32 px. Test: `AntCss_Bootstrap6_Ok` (prüft auch, dass keine Bootstrap-5-Farbklassen mehr vorkommen).
+- **Nicht geprüft:** Das Theme ist laut Name „in Arbeit“ und enthält nur Schaltflächen. Eingabefelder, Tabellen und Dialoge sehen darin wie das Standard-Design aus.
+
+(Ursprüngliche Beschreibung:)
 - **Stand:** Nur mechanisch umbenannt (`dropdown-*` → `menu-*`), nie angesehen. Das Theme setzt Bootstrap-5-Klassen (`.btn-primary`, `.btn-danger`, `.btn-background-ghost`) und Variablen.
 - **Schritte:** Theme in der Demo aktivieren; Buttons auf `btn-solid theme-*` umschreiben oder durch Bootstrap-6-Tokens ersetzen (siehe `motronic.min.css` als Vorlage); Test nach dem Muster `MotronicCss_Bootstrap6Tokens_Ok` ergänzen.
 - **Fertig, wenn:** Buttons, Eingabefelder und Menüs sehen im Theme richtig aus; der Test verhindert die alten Klassen.
 
-### B4 – Themes `devui.css` und `blue.css` prüfen
+### B4 – Themes `devui.css` und `blue.css` prüfen – erledigt 2026-11-15
+- **Ergebnis:** `devui.css` hatte denselben Fehler wie `ant.css`: Das Theme macht Schaltflächen kompakt (Innenabstand 3 px 8 px), das `min-height` von Bootstrap 6 hielt sie bei 38 px. Mit `min-height: 0` in der `.btn`-Regel sind sie wieder 26 px hoch (Test: `DevuiCss_ButtonMinHeight_Ok`). `blue.css` setzt nur zwei Variablen (`--bb-primary-color`, …) und braucht nichts, `layui.css` ist leer, `fluent.css` der Demo setzt nur Variablen der Seitenleiste.
+- **Nicht in diesem Repo:** Das Fluent-Theme der Demo (`_content/BootstrapBlazor.Theme.Fluent/fluent.css`) kommt aus einem NuGet-Paket und zielt auf Bootstrap 5. Ob es mit dem Bootstrap-6-Stand funktioniert, ist ungeprüft; es müsste im eigenen Repo des Pakets angepasst werden.
+
+(Ursprüngliche Beschreibung:)
 - **Schritte:** Gleiches Vorgehen wie B3. `devui.css` enthält `bb-switch`-Selektoren (PR #2), die übrigen Regeln sind ungeprüft.
 
 ### B5 – Motronic-Theme: Hover- und Active-Farben
