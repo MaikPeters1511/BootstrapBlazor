@@ -22,7 +22,7 @@ Bootstrap-Version: `6.0.0-alpha.1`. Lokaler Teststand: 2811 von 2813 (Release), 
 | C3 | CHANGELOG-Link und Upstream-Vorbereitung | P2 | S |
 | D1 | Sichtprüfung aller Demo-Seiten (automatisierter Teil erledigt 2026-11-15, Bildvergleich offen) | P2 | L |
 | D2 | Drucken von Dialogen prüfen | P3 | S |
-| D3 | Schmale Breiten und Touch prüfen | P2 | M |
+| D3 | Schmale Breiten und Touch prüfen (Überlauf erledigt 2026-11-15, Touch offen) | P2 | M |
 | D4 | Tastaturbedienung prüfen | P2 | M |
 | D5 | Einzelne Komponenten prüfen | P2 | M |
 | D6 | Starter-Vorlage `Bs6Test` prüfen und ablegen | P3 | S |
@@ -162,6 +162,9 @@ Voraussetzung für alle: Demo-App wie in der Memory-Notiz `desktop-write-protect
 - **Schritte:** In der Demo „PrintDialog“ öffnen und den Druckdialog des Systems auslösen; prüfen, dass `dialog.dialog` und `.dialog-body` im Druck erscheinen (`PrintButton.razor.js`).
 
 ### D3 – Schmale Breiten und Touch
+- **Erledigt (375 px, Vergleich mit Bootstrap 5):** Alert war ein Flex-Block (`display: block` in `Alert.razor.scss`, `btn-close` rechts) – behob den Überlauf auf `/table`, `/table/column`, `/tree-view`, `/anchor-link`, `/tab`, `/datetime-picker`; `.form-control` bricht um (`compat.scss`) – behob `/slide-button`.
+- **Bleibt:** `/select-city` (Paket `BootstrapBlazor.Region` nutzt noch `dropdown-menu`, nicht in diesem Repo), `/circle` und `/query-builder` (4–6 px), schmalere Schaltflächen in `/button`, `/sweet-alert` (Demo-Raster, ähnlich wie in Bootstrap 5).
+- **Noch nicht geprüft:** Navbar-Toggler, Tabellen-Beschriftungen, Touch/`DisableTouchSwiping` auf einem Touch-Gerät.
 - **Prüfen:** Navbar eingeklappt (Toggler öffnet und schliesst `navbar-collapse`), Tabelle mit `d-none sm:d-inline-block`-Beschriftungen, `sm:`-/`md:`-Raster in EditorForm und SearchForm, `DisableTouchSwiping` beim Carousel (`carousel-no-touch`) auf einem Touch-Gerät oder im Emulator.
 
 ### D4 – Tastaturbedienung

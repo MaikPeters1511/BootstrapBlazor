@@ -275,6 +275,25 @@ public class BootstrapAssetsTest
     }
 
     [Fact]
+    public void CompatScss_FormControl_Wraps()
+    {
+        // .form-control of Bootstrap 6 is a flex row without wrapping, containers that hold checkboxes or radios
+        // (SlideButton demo) stuck out of narrow screens, in Bootstrap 5 their content wrapped
+        var content = ReadSource("src", "BootstrapBlazor", "wwwroot", "scss", "compat.scss");
+        Assert.Matches(@"\.form-control\s*\{\s*flex-wrap: wrap;", content);
+    }
+
+    [Fact]
+    public void AlertScss_Block_Ok()
+    {
+        // Bootstrap 6 alerts are flex rows (icon + text), the BootstrapBlazor Alert holds headings, paragraphs and lists
+        // directly: they are laid out side by side and stick out of narrow containers, so the Alert stays a block
+        var content = ReadSource("src", "BootstrapBlazor", "Components", "Alert", "Alert.razor.scss");
+        Assert.Matches(@"\.alert\s*\{[^}]*\bdisplay: block;", content);
+        Assert.Matches(@"\.btn-close\s*\{[^}]*\bfloat: inline-end;", content);
+    }
+
+    [Fact]
     public void AntCss_Bootstrap6_Ok()
     {
         // the Ant Design theme sets its own button height, but .btn of Bootstrap 6 has a min-height (2.375rem / 2rem / 2.75rem)
