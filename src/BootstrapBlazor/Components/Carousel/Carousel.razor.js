@@ -29,11 +29,20 @@ export function init(id, options) {
             carousel.leaveHandler = null
             el.classList.remove('hover')
         }, delay)
+
+        // Bootstrap 6 only resumes after a hover while it is playing (autoplay is false here),
+        // so a carousel started by the first manual slide has to be resumed by hand
+        if (carousel.started && el.getAttribute('data-bs-pause') === 'hover') {
+            carousel.carousel.cycle()
+        }
     })
 
     // Bootstrap 6 has no "start cycling after the first manual slide" mode
     if (el.getAttribute('data-bb-autoplay') === 'after-manually') {
-        EventHandler.one(el, 'slid.bs.carousel', () => carousel.carousel.cycle())
+        EventHandler.one(el, 'slid.bs.carousel', () => {
+            carousel.started = true
+            carousel.carousel.cycle()
+        })
     }
 
     if (method) {

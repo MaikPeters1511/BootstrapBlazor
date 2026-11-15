@@ -349,6 +349,15 @@ public class BootstrapAssetsTest
     }
 
     [Fact]
+    public void CarouselJs_AfterManually_ResumesAfterHover()
+    {
+        // Bootstrap 6 keeps _playing false when data-bs-autoplay is false, so its own mouseleave handler never
+        // restarts the cycle once the carousel was started by the first manual slide
+        var content = ReadSource("src", "BootstrapBlazor", "Components", "Carousel", "Carousel.razor.js");
+        Assert.Matches(@"EventHandler\.on\(el, 'mouseleave'[\s\S]*?carousel\.started[\s\S]*?\.cycle\(\)", content);
+    }
+
+    [Fact]
     public void AntCss_Bootstrap6_Ok()
     {
         // the Ant Design theme sets its own button height, but .btn of Bootstrap 6 has a min-height (2.375rem / 2rem / 2.75rem)

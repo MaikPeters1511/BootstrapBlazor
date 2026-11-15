@@ -28,7 +28,7 @@ Bootstrap-Version: `6.0.0-alpha.1`. Lokaler Teststand: 2811 von 2813 (Release), 
 | D6 | ~~Starter-Vorlage `Bs6Test` prüfen und ablegen~~ erledigt 2026-11-15 (bleibt ausserhalb des Repos) | P3 | S |
 | E1 | ~~Dialog: `OnClosingAsync` bei Escape und Hintergrundklick~~ erledigt 2026-11-14 | P2 | M |
 | E2 | ~~Dialog: `dialog-instant` geht beim Re-Render verloren~~ erledigt 2026-11-15 | P3 | S |
-| E3 | Carousel: `AutoPlayAfterManually` nach Hover | P3 | S |
+| E3 | ~~Carousel: `AutoPlayAfterManually` nach Hover~~ erledigt 2026-11-15 | P3 | S |
 | F1 | Wechsel auf neue Bootstrap-6-Alphas und die stabile Version | P3 | M |
 
 ---
@@ -211,8 +211,10 @@ Voraussetzung für alle: Demo-App wie in der Memory-Notiz `desktop-write-protect
 - **Geprüft im Browser:** Mit `ModalSettings.IsFade = false` im lokalen Starter trägt das `<dialog>` die Klasse, nach einem Re-Render der Seite (Toast) bleibt sie, `animation-name` ist `none`.
 - **Nicht geprüft:** Ein Re-Render, das die Klassenliste selbst ändert (z. B. Maximieren), nur im Unit-Test über `Size`.
 
-### E3 – Carousel: `AutoPlayAfterManually` nach Hover
-- **Stand:** Der Modus ist nachgebaut (`data-bb-autoplay="after-manually"`, `Carousel.razor.js`). Nach einem Hover läuft das Abspielen nicht von allein weiter.
+### E3 – Carousel: `AutoPlayAfterManually` nach Hover – erledigt 2026-11-15
+- **Ergebnis:** Bootstrap 6 setzt `_playing` bei `data-bs-autoplay="false"` auf `false`; sein `mouseleave`-Handler (`_maybeEnableCycle`) startet deshalb nie neu. `Carousel.razor.js` merkt sich jetzt, dass der erste manuelle Wechsel das Abspielen gestartet hat (`carousel.started`), und ruft bei `mouseleave` selbst `cycle()` auf (nur bei `HoverPause`). Wächter-Test `CarouselJs_AfterManually_ResumesAfterHover` (war rot). Im Browser (Demo mit `PlayMode=AutoPlayAfterManually`, Hover per `mouseover`/`mouseout`): während Hover 7 s Stillstand, nach dem Verlassen Wechsel nach ca. 5 s.
+- **Nicht geprüft:** echter Mauszeiger; Touch-Wischen (siehe D3).
+- **Ursprünglicher Stand:** Der Modus ist nachgebaut (`data-bb-autoplay="after-manually"`, `Carousel.razor.js`). Nach einem Hover läuft das Abspielen nicht von allein weiter.
 - **Schritte:** Verhalten in Bootstrap 6 (`_pauseFromInteraction`) lesen; entscheiden, ob `mouseleave` den Lauf wieder starten soll; Test ergänzen.
 
 ---
