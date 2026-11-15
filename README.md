@@ -78,6 +78,22 @@ The components are built on **Bootstrap 6** (currently `6.0.0-alpha.1`). Bootstr
 
 The Bootstrap 5 CSS variables used most often (`--bs-primary`, `--bs-body-bg`, `--bs-border-radius`, ...) are still available and map to the Bootstrap 6 tokens. Bootstrap 6 no longer ships a separate RTL stylesheet.
 
+BootstrapBlazor components that Bootstrap 6 now ships a class of the same name for use the prefix `bb-`. Update custom css and scripts that select the old names:
+
+| Component | Before | Now |
+| --- | --- | --- |
+| `Menu` | `menu`, `submenu`, `menu-text` | `bb-menu`, `bb-submenu`, `bb-menu-text` |
+| `Drawer` | `drawer`, `drawer-body`, `drawer-backdrop`, ... | `bb-drawer`, `bb-drawer-body`, `bb-drawer-backdrop`, ... |
+| `Switch`, `NullSwitch` | `switch`, `switch-core`, `switch-label` | `bb-switch`, `bb-switch-core`, `bb-switch-label` |
+| `Table` (card view) | `table-card` | `bb-table-card` |
+
+Things to know when you write your own css:
+
+- **Cascade layers**: Bootstrap 6 puts its css into `@layer`, and unlayered css always wins against layered css. Your own rules therefore override Bootstrap rules even with a lower specificity. The generic rules of BootstrapBlazor (`:disabled`, `:focus`, `a`, `[for]`, the padding of `.form-control`) live in the layers `reboot` and `forms` for the same reason.
+- **Color utilities**: `bg-*`, `border-*` and `fg-*` for `primary`, `secondary`, `success`, `info`, `warning`, `danger`, `light` and `dark` are `!important` again, like the Bootstrap 5 utilities (components combine them). Overriding one of them in your own css needs `!important` as well.
+- **`Color.Light` and `Color.Dark`**: Bootstrap 6 has no such theme, BootstrapBlazor provides `theme-light` and `theme-dark`.
+- **Closing a dialog**: `OnClosingAsync` is now also called when a dialog is closed with Escape or a click on the backdrop, and returning `false` keeps the dialog open.
+
 ## Usage
 ```razor
 <Display Value="@_text"></Display>
