@@ -91,6 +91,7 @@ Things to know when you write your own css:
 
 - **Cascade layers**: Bootstrap 6 puts its css into `@layer`, and unlayered css always wins against layered css. Your own rules therefore override Bootstrap rules even with a lower specificity. The generic rules of BootstrapBlazor (`:disabled`, `:focus`, `a`, `[for]`, the padding of `.form-control`) live in the layers `reboot` and `forms` for the same reason.
 - **Color utilities**: `bg-*`, `border-*` and `fg-*` for `primary`, `secondary`, `success`, `info`, `warning`, `danger`, `light` and `dark` are `!important` again, like the Bootstrap 5 utilities (components combine them). Overriding one of them in your own css needs `!important` as well.
+- **Spacing, display and visibility utilities**: `m*-*`, `p*-*`, `d-*`, `visible` and `invisible` (all breakpoints) are `!important` again as well, so `class="ms-3"`, `d-none` or `d-flex` on a BootstrapBlazor component keeps working even where the component sets the same property. The rules are generated from the Bootstrap css by `scripts/gen-important-utilities.py`. Overriding one of them in your own css needs `!important`.
 - **`Color.Light` and `Color.Dark`**: Bootstrap 6 has no such theme, BootstrapBlazor provides `theme-light` and `theme-dark`.
 - **Closing a dialog**: `OnClosingAsync` is now also called when a dialog is closed with Escape or a click on the backdrop, and returning `false` keeps the dialog open.
 
