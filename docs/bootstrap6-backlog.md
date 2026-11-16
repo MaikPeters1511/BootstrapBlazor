@@ -32,7 +32,7 @@ Bootstrap-Version: `6.0.0-alpha.1`. Lokaler Teststand: 2811 von 2813 (Release), 
 | F1 | Wechsel auf neue Bootstrap-6-Alphas und die stabile Version (am 2026-11-15 geprüft: noch keine neuere Version) | P3 | M |
 | G1 | ~~Breadcrumb ohne Trenner~~ erledigt 2026-11-16 | P1 | S |
 | G2 | ~~Menü „alle aufklappen“ (`IsExpandAll`) wirkungslos~~ erledigt 2026-11-16 | P1 | S |
-| G3 | Browser-Mindestversionen von Bootstrap 6 in README und CHANGELOG nennen | P1 | S |
+| G3 | ~~Browser-Mindestversionen von Bootstrap 6 in README und CHANGELOG nennen~~ erledigt 2026-11-16 | P1 | S |
 | G4 | Breakpoints in `root.scss`, `Responsive` und Demo auf die Werte von Bootstrap 6 anpassen | P2 | S |
 | G5 | Spacer-Skala: `ms-3` & Co. haben in Bootstrap 6 andere Werte (Entscheidung) | P2 | M |
 | G6 | Komponentenabgleich BB-Markup gegen die Bootstrap-6-Doku (Breadcrumb zeigt: der Bildvergleich übersieht Dekoration) | P2 | M |
@@ -278,9 +278,9 @@ Quelle: <https://getbootstrap.com/docs/6.0/>, gelesen am 2026-11-16: der Migrati
 - **Soll:** Laut Leitfaden `new bootstrap.Collapse(el).show()` statt `toggle: true`; zusätzlich ist `.collapsed` am Auslöser kein Zustandssignal mehr (`aria-expanded` verwenden).
 - **Ergebnis:** `Menu.razor.js` öffnet ohne vorhandene Instanz jetzt mit `new bootstrap.Collapse(target).show()`; die private Methode `_isShown()` ist durch die Klasse `.show` am Ziel ersetzt (`update()` und `disposeCollapse()`). Wächter-Test `MenuJs_ExpandAll_ShowsCollapse` (war rot). Im Browser mit echten Klicks: Schalter an -> 18 von 18 Untermenüs offen (vorher 1), aus -> 0, wieder an -> 18; im Akkordeon-Modus bleibt nach dem Öffnen dreier Einträge nur einer offen, „Expand all“ ist dann deaktiviert.
 
-### G3 – Browser-Mindestversionen nennen – bestätigt (Lücke in der Doku)
+### G3 – Browser-Mindestversionen nennen – erledigt 2026-11-16
 - **Befund:** README, Paket-README und CHANGELOG sagen nichts zu Browsern. Bootstrap 6 setzt Chrome und Edge ab 130, Firefox ab 132, Safari und iOS ab 18 voraus, ohne Fallbacks, Präfixe oder Polyfills (`light-dark()`, `oklch()`, `color-mix()`, `:has()`, Container Queries, natives `<dialog>`, `content-visibility`); in älteren Browsern werden Farben nicht aufgelöst. Dazu: Collapse und Menü-Untermenüs animieren die Grösse mit `interpolate-size`, Browser ohne diese Funktion (Firefox ist genannt) öffnen und schliessen sofort.
-- **Schritte:** Abschnitt „Browser support“ in `README.md`, `README.zh-CN.md`, Paket-README; Eintrag unter „Breaking changes“ in beiden CHANGELOGs; Hinweis in der Demo-Startseite prüfen.
+- **Ergebnis:** `README.md`, `src/BootstrapBlazor/readme.md` (Paket-README) und `README.zh-CN.md` haben einen Abschnitt „Browser support“ am Ende von „Bootstrap version“ (Tabelle Chrome/Edge 130, Firefox 132, Safari 18, keine Fallbacks, Hinweis auf `interpolate-size` und Firefox); `CHANGELOG.md` und `CHANGELOG.zh-CN.md` nennen es als erste Zeile unter „Breaking changes“. Offen und bewusst nicht gemacht: ein Hinweis auf der Demo-Startseite oder eine Laufzeit-Warnung für ältere Browser.
 
 **Anpassungen und Entscheidungen**
 

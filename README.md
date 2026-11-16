@@ -95,6 +95,18 @@ Things to know when you write your own css:
 - **`Color.Light` and `Color.Dark`**: Bootstrap 6 has no such theme, BootstrapBlazor provides `theme-light` and `theme-dark`.
 - **Closing a dialog**: `OnClosingAsync` is now also called when a dialog is closed with Escape or a click on the backdrop, and returning `false` keeps the dialog open.
 
+### Browser support
+
+Bootstrap 6 raises the minimum browser versions sharply and ships no fallbacks, prefixes or polyfills. It builds on `light-dark()`, `oklch()`, `color-mix()`, `:has()`, container queries and the native `<dialog>` element:
+
+| Browser | Minimum version |
+| --- | --- |
+| Chrome, Edge | 130 |
+| Firefox | 132 |
+| Safari (macOS, iOS, iPadOS) | 18 |
+
+In older browsers colors do not resolve and the pages render incorrectly. Collapse and the sub menus animate their size with `interpolate-size`; a browser without it (Firefox is the one to watch) opens and closes them at once. Check the browsers of your own users before you upgrade.
+
 ## Usage
 ```razor
 <Display Value="@_text"></Display>
