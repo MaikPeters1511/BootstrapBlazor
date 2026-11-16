@@ -33,7 +33,7 @@ Bootstrap-Version: `6.0.0-alpha.1`. Lokaler Teststand: 2811 von 2813 (Release), 
 | G1 | ~~Breadcrumb ohne Trenner~~ erledigt 2026-11-16 | P1 | S |
 | G2 | ~~Menü „alle aufklappen“ (`IsExpandAll`) wirkungslos~~ erledigt 2026-11-16 | P1 | S |
 | G3 | ~~Browser-Mindestversionen von Bootstrap 6 in README und CHANGELOG nennen~~ erledigt 2026-11-16 | P1 | S |
-| G4 | Breakpoints in `root.scss`, `Responsive` und Demo auf die Werte von Bootstrap 6 anpassen | P2 | S |
+| G4 | ~~Breakpoints in `root.scss`, `Responsive` und Demo auf die Werte von Bootstrap 6 anpassen~~ erledigt 2026-11-16 | P2 | S |
 | G5 | Spacer-Skala: `ms-3` & Co. haben in Bootstrap 6 andere Werte (Entscheidung) | P2 | M |
 | G6 | Komponentenabgleich BB-Markup gegen die Bootstrap-6-Doku (Breadcrumb zeigt: der Bildvergleich übersieht Dekoration) | P2 | M |
 | G7 | Split-Dropdown (`dropdown-toggle-split`) prüfen | P3 | S |
@@ -284,9 +284,10 @@ Quelle: <https://getbootstrap.com/docs/6.0/>, gelesen am 2026-11-16: der Migrati
 
 **Anpassungen und Entscheidungen**
 
-### G4 – Breakpoints angleichen
+### G4 – Breakpoints angleichen – erledigt 2026-11-16
 - **Befund:** `wwwroot/scss/root.scss` (Zeilen 192–206) meldet BB per `body:before` die Schwellen 768/992/1200/1400 px (`medium`, `large`, `extraLarge`, `extraExtraLarge`); die Komponente `Responsive` (`OnBreakPointChanged`, Enum `BreakPoint`) liest sie. Bootstrap 6 hat `lg` auf 1024, `xl` auf 1280 und `2xl` (vorher `xxl`) auf 1536 px angehoben (`md` 768 und `sm` 576 unverändert; Container 960/1200/1440). Zwischen 992 und 1023 px meldet BB „large“, die Klassen `lg:*` greifen noch nicht. Die Demo-Seite `/breakpoint` nennt 992/1200/1400 und `xxl`.
-- **Schritte:** Werte in `root.scss` anpassen (am besten mit Bereichssyntax, `@media (width >= 1024px)`), Doku-Kommentare und Demo-Seite (Tabelle, `xxl` -> `2xl`), Eintrag unter „Breaking changes“ (die Schwellen der `Responsive`-Komponente ändern sich), Wächter-Test auf `root.scss`.
+- **Ergebnis:** `root.scss` meldet jetzt `large` ab 1024 px, `extraLarge` ab 1280 px und `extraExtraLarge` ab 1536 px (`small` 576, `medium` 768 und `extraSmall` 375 unverändert). Doku-Kommentare von `BreakPoint`, `Size` und `FullScreenSize` angepasst (dort hiess es `xxl`, jetzt `2xl`), die Demo-Seite `/breakpoint` zeigt 1024/1280/1536 und `2xl`, die Spaltenüberschrift „Klassen-Suffix“ heisst „Klassen-Präfix“. Wächter-Tests `RootScss_Breakpoints_FollowBootstrap6` und `BreakpointsDemo_ShowsBootstrap6Thresholds` (beide waren rot); Eintrag unter „Breaking changes“ in beiden CHANGELOGs. Im Browser bei 1000, 1030, 1270, 1290, 1530 und 1540 px: `medium`, `large`, `large`, `extraLarge`, `extraLarge`, `extraExtraLarge`, jeweils passend zu `lg:`, `xl:` und `2xl:`.
+- **Bewusst nicht geändert:** Die Breiten der eigenen Dialoggrösse `dialog-xxl` in `Modal.razor.scss` (Stufen bei 992, 1200, 1400 und 1600 px mit 800/1140/1280/1440 px). Das sind eigene Werte von BB, keine Bootstrap-Breakpoints; bei Bedarf als eigener Punkt prüfen.
 
 ### G5 – Spacer-Skala (Entscheidung nötig)
 - **Befund:** Die Abstandsklassen haben in Bootstrap 6 andere Werte: `3` ist `0.5rem` (vorher `1rem`), `4` `0.75rem` (vorher `1.5rem`), `5` `1rem` (vorher `3rem`), `2` `0.375rem` (vorher `0.5rem`); neu sind die Stufen 6 bis 12. Die offizielle Abbildung für dieselbe Optik: `2` -> `3`, `3` -> `5`, `4` -> `7`, `5` -> `12` (`1` bleibt). Das gilt gleichermassen für `m*`, `p*`, `gap-*`, `g-*`. Unser Markup behält die Bootstrap-5-Zahlen und rendert dadurch deutlich engere Abstände: Bibliothek 22 Stellen in 17 Dateien, Demo etwa 996 Stellen in 269 Dateien (zusätzlich `rounded-2` in drei Demo-Dateien; die Rundungsskala `rounded-1`..`rounded-5` wurde ebenfalls neu gemappt).

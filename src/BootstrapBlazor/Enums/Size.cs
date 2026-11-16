@@ -41,22 +41,22 @@ public enum Size
     Medium,
 
     /// <summary>
-    /// <para lang="zh">大尺寸；作为断点时适用于宽度大于等于 992px 的视口</para>
-    /// <para lang="en">Large size; as a breakpoint, applies to viewports 992px wide and above.</para>
+    /// <para lang="zh">大尺寸；作为断点时适用于宽度大于等于 1024px 的视口</para>
+    /// <para lang="en">Large size; as a breakpoint, applies to viewports 1024px wide and above.</para>
     /// </summary>
     [Description("lg")]
     Large,
 
     /// <summary>
-    /// <para lang="zh">超大尺寸；作为断点时适用于宽度大于等于 1200px 的视口</para>
-    /// <para lang="en">Extra-large size; as a breakpoint, applies to viewports 1200px wide and above.</para>
+    /// <para lang="zh">超大尺寸；作为断点时适用于宽度大于等于 1280px 的视口</para>
+    /// <para lang="en">Extra-large size; as a breakpoint, applies to viewports 1280px wide and above.</para>
     /// </summary>
     [Description("xl")]
     ExtraLarge,
 
     /// <summary>
-    /// <para lang="zh">超超大尺寸；作为断点时适用于宽度大于等于 1400px 的视口</para>
-    /// <para lang="en">Extra-extra-large size; as a breakpoint, applies to viewports 1400px wide and above.</para>
+    /// <para lang="zh">超超大尺寸；作为断点时适用于宽度大于等于 1536px 的视口</para>
+    /// <para lang="en">Extra-extra-large size; as a breakpoint, applies to viewports 1536px wide and above.</para>
     /// </summary>
     [Description("xxl")]
     ExtraExtraLarge

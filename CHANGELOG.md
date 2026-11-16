@@ -26,6 +26,7 @@
 * feat(Bootstrap): upgrade to v6.0.0-alpha.1 by @MaikPeters1511 in https://github.com/MaikPeters1511/BootstrapBlazor/pull/1
 
 ### Breaking changes
+* The thresholds of `BreakPoint` and of the `Responsive` component follow Bootstrap 6: `Large` from 1024px (was 992px), `ExtraLarge` from 1280px (was 1200px) and `ExtraExtraLarge` from 1536px (was 1400px); the widths of `dialog-xxl` are unchanged
 * Bootstrap 6 needs Chrome and Edge 130, Firefox 132 and Safari 18 or newer (macOS, iOS and iPadOS) and ships no fallbacks, prefixes or polyfills; older browsers do not resolve the colors and render the pages incorrectly
 * Bootstrap 6 renamed many classes; markup written for Bootstrap 5 has to be updated (`btn-primary` -> `btn-solid theme-primary`, `text-danger` -> `fg-danger`, `col-sm-6` -> `sm:col-6`, `dropdown-menu` -> `menu`, `modal-body` -> `dialog-body`). See the "Bootstrap version" section in `README.md`
 * `Modal` renders a native `<dialog>` element
