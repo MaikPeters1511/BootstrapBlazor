@@ -31,7 +31,7 @@
 * `Menu`、`Drawer`、`Switch` / `NullSwitch` 以及 `Table` 的卡片视图的样式类名改为 `bb-menu`、`bb-drawer`、`bb-switch`（`bb-switch-core`、`bb-switch-label`）与 `bb-table-card`，因为 Bootstrap 6 自带了与旧类名同名的样式（[#1](https://github.com/MaikPeters1511/BootstrapBlazor/pull/1)、[#2](https://github.com/MaikPeters1511/BootstrapBlazor/pull/2)、[#3](https://github.com/MaikPeters1511/BootstrapBlazor/pull/3)）
 * `InputUpload`：`BrowserButtonClass` 与 `DeleteButtonClass` 默认值改为 `btn-solid theme-primary` 与 `btn-solid theme-danger`
 * 不再提供单独的 Bootstrap RTL 样式文件
-* Bootstrap 6 使用级联层，未分层的样式总是优先；颜色工具类 `bg-*`、`border-*`、`fg-*` 与 Bootstrap 5 一样仍带有 `!important`，在自定义样式中覆盖它们同样需要 `!important`（[#2](https://github.com/MaikPeters1511/BootstrapBlazor/pull/2)、[#5](https://github.com/MaikPeters1511/BootstrapBlazor/pull/5)、[#6](https://github.com/MaikPeters1511/BootstrapBlazor/pull/6)）
+* Bootstrap 6 使用级联层，未分层的样式总是优先；颜色工具类 `bg-*`、`border-*`、`fg-*` 以及间距、显示和可见性工具类（`m*-*`、`p*-*`、`d-*`、`visible`、`invisible`）与 Bootstrap 5 一样仍带有 `!important`，在自定义样式中覆盖它们同样需要 `!important`（[#2](https://github.com/MaikPeters1511/BootstrapBlazor/pull/2)、[#5](https://github.com/MaikPeters1511/BootstrapBlazor/pull/5)、[#6](https://github.com/MaikPeters1511/BootstrapBlazor/pull/6)）
 * 按 Esc 键或点击背景关闭弹窗时现在也会调用 `OnClosingAsync`，返回 `false` 时弹窗保持打开（[#7](https://github.com/MaikPeters1511/BootstrapBlazor/pull/7)）
 
 ## Release 2023-10-16 V7.11.1

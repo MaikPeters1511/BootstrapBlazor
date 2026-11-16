@@ -495,6 +495,38 @@ public class BootstrapAssetsTest
     }
 
     [Fact]
+    public void UtilitiesImportant_CoverBootstrapUtilities()
+    {
+        // Bootstrap 5 utilities were !important, the ones of Bootstrap 6 are layered and lose against every unlayered rule
+        // (components and user css): spacing, display and visibility utilities are generated again with !important
+        // (scripts/gen-important-utilities.py), when this fails after an update of Bootstrap run the script again
+        var bootstrap = ReadSource("src", "BootstrapBlazor", "wwwroot", "core", "bootstrap", "css", "bootstrap.css");
+        var start = bootstrap.IndexOf("@layer helpers {", StringComparison.Ordinal);
+        Assert.True(start > 0);
+        var utilities = bootstrap[start..];
+        var names = Regex.Matches(utilities, @"(?m)^\s*\.((?:(?:sm|md|lg|xl|\\32 xl)\\:)?(?:m[trblxyse]?|p[trblxyse]?|ms|me|ps|pe|d)-[A-Za-z0-9._\\-]*|visible|invisible)\s*\{")
+            .Select(m => m.Groups[1].Value)
+            .Distinct()
+            .ToList();
+        Assert.True(names.Count > 900, $"only {names.Count} utilities found in Bootstrap");
+
+        var content = ReadSource("src", "BootstrapBlazor", "wwwroot", "scss", "_utilities-important.scss");
+        var missing = names.Where(n => !Regex.IsMatch(content, @"(?m)^\s*\." + Regex.Escape(n) + @" \{[^}]*!important;")).ToList();
+        Assert.True(missing.Count == 0, $"{missing.Count} utilities without !important twin, e.g. {string.Join(", ", missing.Take(8))}");
+    }
+
+    [Fact]
+    public void UtilitiesImportant_UsedByComponents()
+    {
+        var components = ReadSource("src", "BootstrapBlazor", "wwwroot", "scss", "components.scss");
+        Assert.Contains("@use \"utilities-important.scss\";", components);
+
+        // unlayered, otherwise they would lose against unlayered component rules again
+        var content = ReadSource("src", "BootstrapBlazor", "wwwroot", "scss", "_utilities-important.scss");
+        Assert.DoesNotContain("@layer", content);
+    }
+
+    [Fact]
     public void CompatScss_BodyBgRgb_Ok()
     {
         // Bootstrap 5 stylesheets (the demo hero gradient, user code) build translucent colors with rgba(var(--bs-body-bg-rgb), x)

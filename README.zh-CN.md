@@ -134,6 +134,7 @@ Bootstrap 6 新增了与部分组件同名的样式，因此 BootstrapBlazor 的
 
 - **级联层**：Bootstrap 6 的样式位于 `@layer` 中，未分层的样式总是优先于分层样式，所以自定义样式即使优先级较低也会覆盖 Bootstrap 的规则。BootstrapBlazor 的通用规则（`:disabled`、`:focus`、`a`、`[for]`、`.form-control` 的内边距）也因此放在 `reboot` 与 `forms` 层中。
 - **颜色工具类**：`primary`、`secondary`、`success`、`info`、`warning`、`danger`、`light`、`dark` 的 `bg-*`、`border-*`、`fg-*` 与 Bootstrap 5 一样仍带有 `!important`（组件会组合使用它们），在自定义样式中覆盖它们同样需要 `!important`。
+- **间距、显示与可见性工具类**：`m*-*`、`p*-*`、`d-*`、`visible`、`invisible`（所有断点）同样仍带有 `!important`，因此即使组件自身设置了相同属性，`class="ms-3"`、`d-none`、`d-flex` 等也能在 BootstrapBlazor 组件上生效。这些规则由 `scripts/gen-important-utilities.py` 根据 Bootstrap 样式生成，在自定义样式中覆盖它们同样需要 `!important`。
 - **`Color.Light` 与 `Color.Dark`**：Bootstrap 6 没有这两种主题，BootstrapBlazor 自行提供 `theme-light` 与 `theme-dark`。
 - **关闭弹窗**：按 Esc 键或点击背景关闭弹窗时现在也会调用 `OnClosingAsync`，返回 `false` 时弹窗保持打开。
 
