@@ -129,13 +129,13 @@
 }
 
 .btn-solid.theme-secondary:hover, .btn-outline.theme-secondary:hover {
-    --bs-btn-hover-bg: #B5B5C3;
-    --bs-btn-hover-border-color: #B5B5C3;
+    --bs-btn-hover-bg: light-dark(#B5B5C3, oklch(from var(--bs-theme-bg) calc(l * .95) calc(c * 1.1) h));
+    --bs-btn-hover-border-color: light-dark(#B5B5C3, oklch(from var(--bs-theme-bg) calc(l * .95) calc(c * 1.1) h));
 }
 
 .btn-solid.theme-secondary:active, .btn-solid.theme-secondary.active, .btn-solid.theme-secondary.show, .btn-outline.theme-secondary:active, .btn-outline.theme-secondary.active, .btn-outline.theme-secondary.show {
-    --bs-btn-active-bg: #aeaebc;
-    --bs-btn-active-border-color: #aeaebc;
+    --bs-btn-active-bg: light-dark(#aeaebc, oklch(from var(--bs-theme-bg) calc(l * .9) calc(c * 1.15) h));
+    --bs-btn-active-border-color: light-dark(#aeaebc, oklch(from var(--bs-theme-bg) calc(l * .9) calc(c * 1.15) h));
 }
 
 .btn-solid.theme-success:hover, .btn-outline.theme-success:hover {
