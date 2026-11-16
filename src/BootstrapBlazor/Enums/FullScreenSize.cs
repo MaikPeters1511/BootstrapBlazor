@@ -41,22 +41,22 @@ public enum FullScreenSize
     Medium,
 
     /// <summary>
-    /// <para lang="zh">lg 大设置小于 992px</para>
-    /// <para lang="en">lg 大Sets小于 992px</para>
+    /// <para lang="zh">lg 大设置小于 1024px</para>
+    /// <para lang="en">lg 大Sets小于 1024px</para>
     /// </summary>
     [Description("fullscreen-lg-down")]
     Large,
 
     /// <summary>
-    /// <para lang="zh">xl 超大设置小于 1200px</para>
-    /// <para lang="en">xl 超大Sets小于 1200px</para>
+    /// <para lang="zh">xl 超大设置小于 1280px</para>
+    /// <para lang="en">xl 超大Sets小于 1280px</para>
     /// </summary>
     [Description("fullscreen-xl-down")]
     ExtraLarge,
 
     /// <summary>
-    /// <para lang="zh">xxl 超大设置小于 1400px</para>
-    /// <para lang="en">xxl 超大Sets小于 1400px</para>
+    /// <para lang="zh">2xl 超大设置小于 1536px</para>
+    /// <para lang="en">2xl 超大Sets小于 1536px</para>
     /// </summary>
     [Description("fullscreen-xxl-down")]
     ExtraExtraLarge

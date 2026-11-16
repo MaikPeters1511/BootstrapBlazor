@@ -495,6 +495,32 @@ public class BootstrapAssetsTest
     }
 
     [Fact]
+    public void RootScss_Breakpoints_FollowBootstrap6()
+    {
+        // the Responsive component reads the current breakpoint from body:before, it has to switch where the lg:, xl: and 2xl:
+        // classes switch: Bootstrap 6 raised lg from 992px to 1024px, xl from 1200px to 1280px and xxl (now 2xl) from 1400px to 1536px
+        var content = ReadSource("src", "BootstrapBlazor", "wwwroot", "scss", "root.scss");
+        foreach (var (width, name) in new[] { (576, "small"), (768, "medium"), (1024, "large"), (1280, "extraLarge"), (1536, "extraExtraLarge") })
+        {
+            Assert.Matches($@"@media \(min-width: {width}px\)\s*\{{\s*body:before\s*\{{\s*content: ""{name}"";", content);
+        }
+        Assert.DoesNotContain("min-width: 992px", content);
+        Assert.DoesNotContain("min-width: 1200px", content);
+        Assert.DoesNotContain("min-width: 1400px", content);
+    }
+
+    [Fact]
+    public void BreakpointsDemo_ShowsBootstrap6Thresholds()
+    {
+        var content = ReadSource("src", "BootstrapBlazor.Server", "Components", "Pages", "Breakpoints.razor");
+        Assert.Contains("&gt;= 1024 @Localizer", content);
+        Assert.Contains("&gt;= 1280 @Localizer", content);
+        Assert.Contains("&gt;= 1536 @Localizer", content);
+        Assert.Contains("<code>2xl</code>", content);
+        Assert.DoesNotContain("xxl</code>", content.Replace("dialog-xxl</code>", ""));
+    }
+
+    [Fact]
     public void MenuJs_ExpandAll_ShowsCollapse()
     {
         // Bootstrap 6 removed the toggle option of Collapse: the constructor keeps the state of the markup and opens nothing,

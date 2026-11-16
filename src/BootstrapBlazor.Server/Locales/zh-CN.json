@@ -508,7 +508,7 @@
     "Paragraph1": "可用断点",
     "Paragraph2": "Bootstrap 包括六个默认断点，有时称为网格层，用于响应式构建",
     "TableHeading1": "断点名称",
-    "TableHeading2": "类后缀",
+    "TableHeading2": "类前缀",
     "TableHeading3": "阈值"
   },
   "BootstrapBlazor.Server.Components.Pages.CacheList": {

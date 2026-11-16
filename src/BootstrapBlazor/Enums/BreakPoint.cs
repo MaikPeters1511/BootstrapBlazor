@@ -43,20 +43,20 @@ public enum BreakPoint
     Medium,
 
     /// <summary>
-    /// <para lang="zh">大屏幕 大于等于 992px</para>
-    /// <para lang="en">Large screen &gt;= 992px</para>
+    /// <para lang="zh">大屏幕 大于等于 1024px</para>
+    /// <para lang="en">Large screen &gt;= 1024px</para>
     /// </summary>
     Large,
 
     /// <summary>
-    /// <para lang="zh">超大屏幕 大于等于 1200px</para>
-    /// <para lang="en">Extra large screen &gt;= 1200px</para>
+    /// <para lang="zh">超大屏幕 大于等于 1280px</para>
+    /// <para lang="en">Extra large screen &gt;= 1280px</para>
     /// </summary>
     ExtraLarge,
 
     /// <summary>
-    /// <para lang="zh">超大屏幕 大于等于 1400px</para>
-    /// <para lang="en">Extra extra large screen &gt;= 1400px</para>
+    /// <para lang="zh">超大屏幕 大于等于 1536px</para>
+    /// <para lang="en">Extra extra large screen &gt;= 1536px</para>
     /// </summary>
     ExtraExtraLarge
 }

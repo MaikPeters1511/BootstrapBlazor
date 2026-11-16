@@ -189,19 +189,20 @@ body:before {
     }
 }
 
-@media (min-width: 992px) {
+// Bootstrap 6 breakpoints: lg 1024px, xl 1280px, 2xl 1536px (Bootstrap 5: 992px, 1200px, 1400px)
+@media (min-width: 1024px) {
     body:before {
         content: "large";
     }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1280px) {
     body:before {
         content: "extraLarge";
     }
 }
 
-@media (min-width: 1400px) {
+@media (min-width: 1536px) {
     body:before {
         content: "extraExtraLarge";
     }

@@ -508,7 +508,7 @@
     "Paragraph1": "Available breakpoints",
     "Paragraph2": "Bootstrap includes six default breakpoints, sometimes called grid layers, for responsive builds",
     "TableHeading1": "Breakpoint name",
-    "TableHeading2": "Class suffix",
+    "TableHeading2": "Class prefix",
     "TableHeading3": "Threshold"
   },
   "BootstrapBlazor.Server.Components.Pages.CacheList": {
