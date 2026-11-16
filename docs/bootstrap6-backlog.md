@@ -39,7 +39,7 @@ Bootstrap-Version: `6.0.0-alpha.1`. Lokaler Teststand: 2811 von 2813 (Release), 
 | G7 | ~~Split-Dropdown (`dropdown-toggle-split`) prüfen~~ geprüft, kein Fehler 2026-11-16 | P3 | S |
 | G8 | ~~Tote Selektoren aus Bootstrap 5 aufräumen (`.was-validated`, `.has-validation`)~~ erledigt 2026-11-16 | P3 | S |
 | G9 | `rgba(var(--bs-*-rgb))` durch `color-mix()` ersetzen, Compat-Variablen entfernen | P3 | M |
-| G10 | Reste von Bootstrap 5 in der Demo (`lead`, `text-body-secondary`, `--bs-border-radius-lg`, `xxl`) | P3 | S |
+| G10 | ~~Reste von Bootstrap 5 in der Demo (`lead`, `text-body-secondary`, `--bs-border-radius-lg`, `xxl`)~~ erledigt 2026-11-16 | P3 | S |
 | G11 | Fokusringe über die Tokens `--bs-focus-ring*` vereinheitlichen | P3 | M |
 | G12 | Kontrast der Motronic-Farben (weisse Schrift auf `primary`, `success`, `warning`) | P3 | M |
 | G13 | `iframe` und `color-scheme` (Reboot setzt `color-scheme: light dark`) prüfen | P3 | S |
@@ -314,8 +314,9 @@ Quelle: <https://getbootstrap.com/docs/6.0/>, gelesen am 2026-11-16: der Migrati
 ### G9 – `rgba(var(--bs-*-rgb))`
 - Bootstrap 6 hat alle `--bs-*-rgb`-Variablen entfernt und empfiehlt `color-mix(in oklab, var(--bs-primary), transparent 50%)`. Wir stützen uns auf `compat.scss` (`--bs-body-color-rgb`, `--bs-emphasis-color-rgb`, `--bs-primary-rgb`, `--bs-body-bg-rgb`): Bibliothek 26 Stellen in 8 Dateien, `variables.scss` 26 Stellen, Demo 12. Funktioniert, ist aber ein Zwischenzustand; Umstellung in einem Schritt, danach die Compat-Variablen und den Wächter-Test streichen.
 
-### G10 – Reste von Bootstrap 5 in der Demo
+### G10 – Reste von Bootstrap 5 in der Demo – erledigt 2026-11-16
 - `Index.razor.css`: `.lead`, `.text-body-secondary` (beide entfallen), `--bs-border-radius-lg` (nicht definiert, Ersatz `--bs-radius-5`); `Breakpoints.razor` (siehe G4); `rounded-2` in `TwoFactor*.razor` (neue Skala, G5).
+- **Ergebnis:** `Index.razor.css`: `--bs-border-radius-lg` durch `--bs-radius-5` ersetzt (Button-Radius 8 px wie vorher), die ungenutzten Regeln für `.text-body-secondary` entfernt. `Index.razor`: die Hinweis-Pille nutzte `rounded-5` (Bootstrap 5: 2rem, also rund), jetzt `rounded-pill`. `TwoFactor.razor` und `TwoFactorApp.razor`: `rounded-2` (Bootstrap 5: .375rem) -> `rounded-4`. `.lead` bleibt: die Klasse hat in Bootstrap 6 keinen eigenen Stil mehr, die Seite definiert sie selbst (`.bd-masthead .lead`). `xxl` war bereits in G4 erledigt. Wächter-Tests `IndexDemo_NoBootstrap5Leftovers` und `TwoFactorDemo_UsesBootstrap6RoundedScale` (3 Fälle, alle waren rot). **Beobachtung:** der Untertitel `.lead` rendert 23 px gross, obwohl die Regel `font-size: 1rem` setzt; nicht untersucht, hat mit diesem Punkt nichts zu tun.
 
 ### G11 – Fokusringe
 - Bootstrap 6 vereinheitlicht den Fokus über `--focus-ring`, `--focus-ring-width`, `--focus-ring-offset`, `--focus-ring-color` (Mixin `focus-ring`). BB setzt eigene Fokus-Schatten (`$bb-select-focus-shadow` und andere). Tastaturfokus ist an Button, Eingabe, Checkbox und Select sichtbar (D1); eine Vereinheitlichung wäre optisch und für Anpassungen sauberer, ist aber kein Fehler.

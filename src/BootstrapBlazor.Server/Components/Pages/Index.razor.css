@@ -21,14 +21,6 @@
         color: var(--bs-secondary-color);
     }
 
-    .bd-masthead .text-body-secondary {
-        font-size: 1rem;
-    }
-
-        .bd-masthead .text-body-secondary a {
-            text-decoration: underline;
-        }
-
     .bd-masthead .bb-logo {
         --bb-btn-space: 4px;
         width: 200px;
@@ -115,7 +107,7 @@
     --bs-btn-padding-y: 0.5rem;
     --bs-btn-padding-x: 1rem;
     --bs-btn-font-size: 1rem;
-    --bs-btn-border-radius: var(--bs-border-radius-lg);
+    --bs-btn-border-radius: var(--bs-radius-5);
 }
 
 .donate {
