@@ -23,7 +23,7 @@ public partial class Breadcrumbs
         {
             new BreadcrumbItem("Home", "#"),
             new BreadcrumbItem("Library", "#"),
-            new BreadcrumbItem("Data")
+            new BreadcrumbItem("Data", null, "active")
         };
     }
 }
