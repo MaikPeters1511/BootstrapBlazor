@@ -1,5 +1,13 @@
 ﻿@use "../../wwwroot/scss/variables" as *;
 
+// Bootstrap 6 utilities are layered and not !important: margin utilities on a Checkbox (class="ms-3") only win against this reset
+// when it is layered as well
+@layer components {
+    .form-check {
+        margin: 0;
+    }
+}
+
 .form-check {
     --bb-checkbox-label-padding-y: #{$bb-checkbox-label-padding-y};
     --bb-checkbox-height: #{$bb-checkbox-height};
@@ -14,7 +22,6 @@
     --bb-checkbox-item-padding-lg: #{$bb-checkbox-item-padding-lg};
     --bb-checkbox-item-padding-xl: #{$bb-checkbox-item-padding-xl};
     padding: 0;
-    margin: 0;
     min-height: 1rem;
 
     .form-check-input {
