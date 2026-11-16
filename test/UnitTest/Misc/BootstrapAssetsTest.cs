@@ -315,7 +315,6 @@ public class BootstrapAssetsTest
 
     [Theory]
     [InlineData("primary", "#0095e8", "#0589d3")]
-    [InlineData("secondary", "#B5B5C3", "#aeaebc")]
     [InlineData("success", "#47be7d", "#3aab6d")]
     [InlineData("info", "#5014d0", "#612ad6")]
     [InlineData("warning", "#f1bc00", "#ddae08")]
@@ -328,6 +327,16 @@ public class BootstrapAssetsTest
         var content = ReadSource("src", "BootstrapBlazor", "wwwroot", "css", "motronic.min.css");
         Assert.Matches($@"\.btn-solid\.theme-{color}:hover[^{{]*\{{[^}}]*--bs-btn-hover-bg: {hover};", content);
         Assert.Matches($@"\.btn-solid\.theme-{color}:active[^{{]*\{{[^}}]*--bs-btn-active-bg: {active};", content);
+    }
+
+    [Fact]
+    public void MotronicCss_SecondaryStates_DarkAware()
+    {
+        // the secondary color is light-dark(#E4E6EF, #7E8299): the fixed light values (#B5B5C3, #aeaebc) are lighter than the
+        // dark base and left the label (white) unreadable on an open dropdown button, so the dark theme keeps the derived colors
+        var content = ReadSource("src", "BootstrapBlazor", "wwwroot", "css", "motronic.min.css");
+        Assert.Matches(@"\.btn-solid\.theme-secondary:hover[^{]*\{[^}]*--bs-btn-hover-bg: light-dark\(#B5B5C3, oklch\(from var\(--bs-theme-bg\)", content);
+        Assert.Matches(@"\.btn-solid\.theme-secondary:active[^{]*\{[^}]*--bs-btn-active-bg: light-dark\(#aeaebc, oklch\(from var\(--bs-theme-bg\)", content);
     }
 
     [Fact]
@@ -355,6 +364,15 @@ public class BootstrapAssetsTest
         // (the pixel comparison with the Bootstrap 5 build showed the title centered with the light or icon below it)
         var content = ReadSource("src", "BootstrapBlazor", "Components", "Card", "Card.razor.scss");
         Assert.Matches(@"(?m)^\.card-header \{[^}]*\bflex-direction: row;", content);
+    }
+
+    [Fact]
+    public void TreeViewScss_NodeIcon_VisibleOverrides()
+    {
+        // .node-icon is visibility: hidden, nodes with children get .visible: in Bootstrap 5 that utility was !important,
+        // in Bootstrap 6 it is not and loses against the unlayered component rule (no expand arrow in the tree)
+        var content = ReadSource("src", "BootstrapBlazor", "Components", "TreeView", "TreeView.razor.scss");
+        Assert.Matches(@"&\.visible\s*\{\s*visibility: visible;", content);
     }
 
     [Fact]
