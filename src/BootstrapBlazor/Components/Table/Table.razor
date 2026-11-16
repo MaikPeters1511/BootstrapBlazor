@@ -605,7 +605,7 @@
                                             </Button>
                                         }
                                         <Button Color="Color.Primary" ButtonType="ButtonType.Submit"
-                                                Icon="@SaveButtonIcon" Text="@SaveButtonText" class="ms-2">
+                                                Icon="@SaveButtonIcon" Text="@SaveButtonText" class="ms-3">
                                         </Button>
                                     </div>
                                 </Buttons>
@@ -827,7 +827,7 @@
 
     RenderFragment RenderPageInfo =>
         @<div class="table-page-info">
-            <div class="me-2">@PageInfoLabelString</div>
+            <div class="me-3">@PageInfoLabelString</div>
             <Select Items="@GetPageItemsSource()" IsPopover="true"
                     Value="_pageItems" OnValueChanged="@OnPageItemsValueChanged"></Select>
             @if (PageInfoBodyTemplate != null)
@@ -955,7 +955,7 @@
                                     <Button Text="@Localizer["ColumnListSelectAllText"]" Size="Size.ExtraSmall"
                                             OnClick="TriggerSelectAllColumnList"></Button>
                                     <Button Text="@Localizer["ColumnListSelectInvertText"]" Size="Size.ExtraSmall"
-                                            OnClick="TriggerSelectInvertColumnList" class="ms-2"></Button>
+                                            OnClick="TriggerSelectInvertColumnList" class="ms-3"></Button>
                                 </div>
                                 <Divider />
                                 <div class="column-list-items">

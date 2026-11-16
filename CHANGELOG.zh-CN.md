@@ -27,6 +27,7 @@
 
 ### Breaking changes
 * `BreakPoint` 枚举和 `Responsive` 组件的断点阈值与 Bootstrap 6 保持一致：`Large` 从 1024px 开始（原为 992px），`ExtraLarge` 从 1280px 开始（原为 1200px），`ExtraExtraLarge` 从 1536px 开始（原为 1400px）；`dialog-xxl` 的宽度不变
+* 组件内部使用的间距类已按 Bootstrap 6 的 12 级间距刻度调整（`ms-3` 现为 0.5rem，原为 1rem），映射关系：`2` -> `3`、`3` -> `5`、`4` -> `7`、`5` -> `12`（`1` 不变），组件外观保持不变；您自己标记中的 `m*`、`p*`、`gap-*`、`g-*` 需要按同样方式调整
 * Bootstrap 6 需要 Chrome 和 Edge 130、Firefox 132、Safari 18 及以上版本（macOS、iOS、iPadOS），不再提供回退、前缀或 polyfill；更旧的浏览器无法解析颜色，页面显示不正确
 * Bootstrap 6 重命名了大量样式，按 Bootstrap 5 编写的代码需要调整（`btn-primary` -> `btn-solid theme-primary`，`text-danger` -> `fg-danger`，`col-sm-6` -> `sm:col-6`，`dropdown-menu` -> `menu`，`modal-body` -> `dialog-body`），详见 `README.zh-CN.md` 中的 “Bootstrap 版本” 章节
 * `Modal` 组件渲染为原生 `<dialog>` 元素

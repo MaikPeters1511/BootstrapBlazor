@@ -34,7 +34,7 @@ Bootstrap-Version: `6.0.0-alpha.1`. Lokaler Teststand: 2811 von 2813 (Release), 
 | G2 | ~~Menü „alle aufklappen“ (`IsExpandAll`) wirkungslos~~ erledigt 2026-11-16 | P1 | S |
 | G3 | ~~Browser-Mindestversionen von Bootstrap 6 in README und CHANGELOG nennen~~ erledigt 2026-11-16 | P1 | S |
 | G4 | ~~Breakpoints in `root.scss`, `Responsive` und Demo auf die Werte von Bootstrap 6 anpassen~~ erledigt 2026-11-16 | P2 | S |
-| G5 | Spacer-Skala: `ms-3` & Co. haben in Bootstrap 6 andere Werte (Entscheidung) | P2 | M |
+| G5 | ~~Spacer-Skala: `ms-3` & Co. haben in Bootstrap 6 andere Werte~~ Variante B (Bibliothek) erledigt 2026-11-16 | P2 | M |
 | G6 | Komponentenabgleich BB-Markup gegen die Bootstrap-6-Doku (Breadcrumb zeigt: der Bildvergleich übersieht Dekoration) | P2 | M |
 | G7 | Split-Dropdown (`dropdown-toggle-split`) prüfen | P3 | S |
 | G8 | Tote Selektoren aus Bootstrap 5 aufräumen (`.was-validated`, `.has-validation`) | P3 | S |
@@ -289,10 +289,11 @@ Quelle: <https://getbootstrap.com/docs/6.0/>, gelesen am 2026-11-16: der Migrati
 - **Ergebnis:** `root.scss` meldet jetzt `large` ab 1024 px, `extraLarge` ab 1280 px und `extraExtraLarge` ab 1536 px (`small` 576, `medium` 768 und `extraSmall` 375 unverändert). Doku-Kommentare von `BreakPoint`, `Size` und `FullScreenSize` angepasst (dort hiess es `xxl`, jetzt `2xl`), die Demo-Seite `/breakpoint` zeigt 1024/1280/1536 und `2xl`, die Spaltenüberschrift „Klassen-Suffix“ heisst „Klassen-Präfix“. Wächter-Tests `RootScss_Breakpoints_FollowBootstrap6` und `BreakpointsDemo_ShowsBootstrap6Thresholds` (beide waren rot); Eintrag unter „Breaking changes“ in beiden CHANGELOGs. Im Browser bei 1000, 1030, 1270, 1290, 1530 und 1540 px: `medium`, `large`, `large`, `extraLarge`, `extraLarge`, `extraExtraLarge`, jeweils passend zu `lg:`, `xl:` und `2xl:`.
 - **Bewusst nicht geändert:** Die Breiten der eigenen Dialoggrösse `dialog-xxl` in `Modal.razor.scss` (Stufen bei 992, 1200, 1400 und 1600 px mit 800/1140/1280/1440 px). Das sind eigene Werte von BB, keine Bootstrap-Breakpoints; bei Bedarf als eigener Punkt prüfen.
 
-### G5 – Spacer-Skala (Entscheidung nötig)
+### G5 – Spacer-Skala – Variante B erledigt 2026-11-16
 - **Befund:** Die Abstandsklassen haben in Bootstrap 6 andere Werte: `3` ist `0.5rem` (vorher `1rem`), `4` `0.75rem` (vorher `1.5rem`), `5` `1rem` (vorher `3rem`), `2` `0.375rem` (vorher `0.5rem`); neu sind die Stufen 6 bis 12. Die offizielle Abbildung für dieselbe Optik: `2` -> `3`, `3` -> `5`, `4` -> `7`, `5` -> `12` (`1` bleibt). Das gilt gleichermassen für `m*`, `p*`, `gap-*`, `g-*`. Unser Markup behält die Bootstrap-5-Zahlen und rendert dadurch deutlich engere Abstände: Bibliothek 22 Stellen in 17 Dateien, Demo etwa 996 Stellen in 269 Dateien (zusätzlich `rounded-2` in drei Demo-Dateien; die Rundungsskala `rounded-1`..`rounded-5` wurde ebenfalls neu gemappt).
 - **Optionen:** (A) lassen, engere Optik akzeptieren; (B) nur die Bibliothek umstellen, damit Komponenten ihre bisherige Optik behalten (22 Stellen, überschaubar); (C) Bibliothek und Demo per Skript umstellen (grosser, rein mechanischer Diff). Anwendungscode von Nutzern bleibt in jedem Fall ihre Sache (in CHANGELOG/README als Breaking Change nennen, mit der offiziellen Abbildung).
 - **Empfehlung:** B, die Demo dann bereichsweise bei Bedarf; vorher mit einem Vergleich der Bibliotheks-Seiten (vor/nach) prüfen, ob die Abstände stören.
+- **Ergebnis (B):** Entschieden: nur die Bibliothek. 15 Dateien umgestellt (`DateTimeRange`, `QueryBuilder`, `ThemeProvider`, `EditorForm`, `SearchForm`, `SkeletonTable`, `SkeletonEditor`, `ClockPicker`, `Toast`, `IconDialog`, `Row.razor.js`, `ExportPdfButton`, `Table`, `SelectTable.razor.scss` (Selektor `.g-5`), `SweetAlertBody`) mit der offiziellen Abbildung 2->3, 3->5, 4->7, 5->12; Wächter-Test `Components_UseBootstrap6SpacerScale` (16 Fälle, alle waren rot), Eintrag unter „Breaking changes“ in beiden CHANGELOGs. Die Demo bleibt bewusst auf den alten Zahlen (G10 für `rounded-2`); bei Bedarf bereichsweise.
 
 ### G6 – Komponentenabgleich BB-Markup gegen Bootstrap-6-Markup
 - **Anlass:** Der Breadcrumb (G1) zeigt, dass weder der Klassenabgleich (Klassen ohne jede CSS-Regel: nur drei harmlose Treffer) noch die Bildvergleiche aus D1 Fälle finden, in denen Bootstrap 6 Dekoration (Trenner, Icons, Pseudo-Elemente) auf neues Markup umgestellt hat, das BB nicht rendert.

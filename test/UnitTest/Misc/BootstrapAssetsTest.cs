@@ -520,6 +520,31 @@ public class BootstrapAssetsTest
         Assert.DoesNotContain("xxl</code>", content.Replace("dialog-xxl</code>", ""));
     }
 
+    [Theory]
+    [InlineData("DateTimeRange/DateTimeRange.razor", "flex-fill me-5")]
+    [InlineData("QueryBuilder/QueryBuilder.razor", "btn-group me-5")]
+    [InlineData("ThemeProvider/ThemeProvider.razor", "class=\"mx-3\"")]
+    [InlineData("EditorForm/EditorForm.razor.cs", "\"row g-5\"")]
+    [InlineData("SearchForm/SearchForm.razor.cs", "\"row g-5\"")]
+    [InlineData("Skeleton/SkeletonTable.razor", "ms-12 me-3")]
+    [InlineData("Skeleton/SkeletonEditor.razor", "row g-5")]
+    [InlineData("ClockPicker/ClockPicker.razor", "bb-time-text me-12")]
+    [InlineData("Toast/Toast.razor.cs", "toast-bar me-3")]
+    [InlineData("Dialog/IconDialog.razor", "row g-5")]
+    [InlineData("Row/Row.razor.js", "\"g-5\"")]
+    [InlineData("Button/ExportPdfButton.cs", "class=\"p-5\"")]
+    [InlineData("Table/Table.razor", "class=\"ms-3\"")]
+    [InlineData("Table/Table.razor", "class=\"me-3\"")]
+    [InlineData("Select/SelectTable.razor.scss", ".g-5 {")]
+    [InlineData("SweetAlert/SweetAlertBody.razor", "class=\"ms-5\"")]
+    public void Components_UseBootstrap6SpacerScale(string file, string expected)
+    {
+        // The spacer scale of Bootstrap 6 has 12 steps (1 = .25rem, 5 = 1rem, 12 = 3rem): ms-3 is .5rem now (Bootstrap 5: 1rem).
+        // Same look as before: 2 -> 3, 3 -> 5, 4 -> 7, 5 -> 12 (1 stays). Applies to m*, p*, gap-* and g-*
+        var content = ReadSource(new[] { "src", "BootstrapBlazor", "Components" }.Concat(file.Split('/')).ToArray());
+        Assert.Contains(expected, content);
+    }
+
     [Fact]
     public void MenuJs_ExpandAll_ShowsCollapse()
     {

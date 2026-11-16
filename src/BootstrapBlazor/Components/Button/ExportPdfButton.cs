@@ -120,7 +120,7 @@ public class ExportPdfButton : Button
                 <head>
                     <meta charset="utf-8" />
                 </head>
-                <body class="p-3">
+                <body class="p-5">
                     {html}
                 </body>
                 </html>

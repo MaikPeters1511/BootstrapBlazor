@@ -232,7 +232,7 @@ public class EditorFormTest : BootstrapBlazorTestBase
             pb.Add(a => a.LabelAlign, Alignment.Right);
             pb.Add(a => a.LabelWidth, 80);
         });
-        cut.Contains("row g-3 form-inline form-inline-end");
+        cut.Contains("row g-5 form-inline form-inline-end");
         cut.Contains("col-12");
         cut.Contains("--bb-row-label-width: 80px;");
 
@@ -240,7 +240,7 @@ public class EditorFormTest : BootstrapBlazorTestBase
         {
             pb.Add(a => a.LabelAlign, Alignment.Center);
         });
-        cut.Contains("row g-3 form-inline form-inline-center");
+        cut.Contains("row g-5 form-inline form-inline-center");
     }
 
     [Fact]
