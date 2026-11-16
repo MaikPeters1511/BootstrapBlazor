@@ -87,6 +87,20 @@ public class CascaderTest : BootstrapBlazorTestBase
     }
 
     [Fact]
+    public void RootElement_IsNotMenu()
+    {
+        // .menu is the pop-up menu of Bootstrap 6 (display: none until it has .show): the root element of the component must not carry it,
+        // otherwise the whole Cascader disappears. The pop-up list inside is the .menu
+        var cut = Context.Render<Cascader<string>>(pb =>
+        {
+            pb.Add(a => a.Items, new List<CascaderItem> { new() { Text = "Test1", Value = "test1" } });
+        });
+        var root = cut.Find(".cascade");
+        Assert.False(root.ClassList.Contains("menu"));
+        Assert.NotNull(root.QuerySelector(":scope > .menu"));
+    }
+
+    [Fact]
     public async Task Items_Ok()
     {
         var value = "";
