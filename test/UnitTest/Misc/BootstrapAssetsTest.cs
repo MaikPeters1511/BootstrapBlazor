@@ -495,6 +495,17 @@ public class BootstrapAssetsTest
     }
 
     [Fact]
+    public void MenuJs_ExpandAll_ShowsCollapse()
+    {
+        // Bootstrap 6 removed the toggle option of Collapse: the constructor keeps the state of the markup and opens nothing,
+        // so expanding all sub menus (IsExpandAll) needs an explicit show(). _isShown() is private API, the state is in .show
+        var content = ReadSource("src", "BootstrapBlazor", "Components", "Menu", "Menu.razor.js");
+        Assert.DoesNotMatch(@"toggle:\s*(true|false)", content);
+        Assert.Matches(@"new bootstrap\.Collapse\(target\)\.show\(\)", content);
+        Assert.DoesNotContain("_isShown", content);
+    }
+
+    [Fact]
     public void UtilitiesImportant_CoverBootstrapUtilities()
     {
         // Bootstrap 5 utilities were !important, the ones of Bootstrap 6 are layered and lose against every unlayered rule
