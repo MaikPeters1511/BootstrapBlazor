@@ -367,6 +367,24 @@ public class BootstrapAssetsTest
     }
 
     [Fact]
+    public void TooltipScss_WrapperDisplay_InComponentsLayer()
+    {
+        // utilities of Bootstrap 6 are in a layer and not !important: a display rule of the tooltip wrapper outside of a layer
+        // wins against d-flex / d-none on a button with a tooltip (the wrapper span carries the classes of the button)
+        var content = ReadSource("src", "BootstrapBlazor", "Components", "Tooltip", "Tooltip.razor.scss");
+        Assert.Matches(@"@layer components\s*\{\s*:not\(\.is-tips\) > span\[data-bs-toggle=""tooltip""\]\s*\{\s*display: inline-block;", content);
+    }
+
+    [Fact]
+    public void CheckboxScss_Margin_InComponentsLayer()
+    {
+        // `class=""ms-3""` on a Checkbox worked in Bootstrap 5 (!important utilities), the unlayered `margin: 0` reset ignores it now
+        var content = ReadSource("src", "BootstrapBlazor", "Components", "Checkbox", "Checkbox.razor.scss");
+        Assert.Matches(@"@layer components\s*\{\s*\.form-check\s*\{\s*margin: 0;", content);
+        Assert.DoesNotMatch(@"(?m)^    margin: 0;\s*$", content);
+    }
+
+    [Fact]
     public void TreeViewScss_NodeIcon_VisibleOverrides()
     {
         // .node-icon is visibility: hidden, nodes with children get .visible: in Bootstrap 5 that utility was !important,

@@ -1,10 +1,14 @@
-:not(.is-tips) > span[data-bs-toggle="tooltip"] {
-    display: inline-block;
-}
+// utilities of Bootstrap 6 are layered and not !important, the display of the wrapper has to stay below them
+// (the span carries the classes of the button, so d-flex / d-none on a button with a tooltip keep working)
+@layer components {
+    :not(.is-tips) > span[data-bs-toggle="tooltip"] {
+        display: inline-block;
+    }
 
-.menu-item > span[data-bs-toggle="tooltip"] {
-    display: flex;
-    align-items: center;
+    .menu-item > span[data-bs-toggle="tooltip"] {
+        display: flex;
+        align-items: center;
+    }
 }
 
 .tooltip.is-invalid {
