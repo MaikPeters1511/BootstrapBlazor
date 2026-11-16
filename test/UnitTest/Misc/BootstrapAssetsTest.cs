@@ -558,6 +558,30 @@ public class BootstrapAssetsTest
     }
 
     [Fact]
+    public void IndexDemo_NoBootstrap5Leftovers()
+    {
+        // --bs-border-radius-lg and .text-body-secondary are gone in Bootstrap 6 (radius scale --bs-radius-*, the masthead does not use the class anyway)
+        var css = ReadSource("src", "BootstrapBlazor.Server", "Components", "Pages", "Index.razor.css");
+        Assert.DoesNotContain("--bs-border-radius-lg", css);
+        Assert.DoesNotContain("text-body-secondary", css);
+        Assert.Contains("--bs-btn-border-radius: var(--bs-radius-5)", css);
+
+        // rounded-N has a new scale: Bootstrap 5 rounded-5 (2rem, a pill here) is rounded-pill, rounded-2 (.375rem) is rounded-4
+        var index = ReadSource("src", "BootstrapBlazor.Server", "Components", "Pages", "Index.razor");
+        Assert.Contains("rounded-pill masthead-notice", index);
+    }
+
+    [Theory]
+    [InlineData("TwoFactor.razor")]
+    [InlineData("TwoFactorApp.razor")]
+    public void TwoFactorDemo_UsesBootstrap6RoundedScale(string file)
+    {
+        var content = ReadSource("src", "BootstrapBlazor.Server", "Components", "Samples", "Tutorials", "MFA", file);
+        Assert.Contains("class=\"rounded-4\"", content);
+        Assert.DoesNotContain("rounded-2", content);
+    }
+
+    [Fact]
     public void MenuJs_ExpandAll_ShowsCollapse()
     {
         // Bootstrap 6 removed the toggle option of Collapse: the constructor keeps the state of the markup and opens nothing,
