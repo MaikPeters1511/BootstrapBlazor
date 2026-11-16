@@ -31,11 +31,12 @@ export function init(id) {
                 activeLink = menu
             }
         },
-        disposeCollapse: (collapse, target) => {
-            if (collapse._isShown()) {
+        disposeCollapse: (collapse, trigger) => {
+            // the state of a collapse is its .show class, the state method of the plugin is private
+            if (getTargetElement(trigger).classList.contains('show')) {
                 collapse.hide()
 
-                const duration = getTransitionDelayDurationFromElement(target);
+                const duration = getTransitionDelayDurationFromElement(trigger);
                 const handler = setTimeout(() => {
                     clearTimeout(handler)
                     collapse.dispose()
@@ -59,7 +60,7 @@ export function update(id) {
         const collapse = bootstrap.Collapse.getInstance(target);
         if (collapse !== null) {
             if (expandAll) {
-                if (!collapse._isShown()) {
+                if (!target.classList.contains('show')) {
                     collapse.show()
                 }
             }
@@ -68,9 +69,8 @@ export function update(id) {
             }
         }
         else if (expandAll) {
-            new bootstrap.Collapse(target, {
-                toggle: true
-            });
+            // Bootstrap 6 removed the toggle option, the constructor keeps the state of the markup: open it explicitly
+            new bootstrap.Collapse(target).show()
         }
     });
 

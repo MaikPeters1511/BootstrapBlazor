@@ -31,7 +31,7 @@ Bootstrap-Version: `6.0.0-alpha.1`. Lokaler Teststand: 2811 von 2813 (Release), 
 | E3 | ~~Carousel: `AutoPlayAfterManually` nach Hover~~ erledigt 2026-11-15 | P3 | S |
 | F1 | Wechsel auf neue Bootstrap-6-Alphas und die stabile Version (am 2026-11-15 geprüft: noch keine neuere Version) | P3 | M |
 | G1 | ~~Breadcrumb ohne Trenner~~ erledigt 2026-11-16 | P1 | S |
-| G2 | Menü „alle aufklappen“ (`IsExpandAll`) wirkungslos (bestätigt, Collapse-Option `toggle` entfernt) | P1 | S |
+| G2 | ~~Menü „alle aufklappen“ (`IsExpandAll`) wirkungslos~~ erledigt 2026-11-16 | P1 | S |
 | G3 | Browser-Mindestversionen von Bootstrap 6 in README und CHANGELOG nennen | P1 | S |
 | G4 | Breakpoints in `root.scss`, `Responsive` und Demo auf die Werte von Bootstrap 6 anpassen | P2 | S |
 | G5 | Spacer-Skala: `ms-3` & Co. haben in Bootstrap 6 andere Werte (Entscheidung) | P2 | M |
@@ -273,10 +273,10 @@ Quelle: <https://getbootstrap.com/docs/6.0/>, gelesen am 2026-11-16: der Migrati
 - **Soll (laut Migrationsleitfaden):** Links bekommen `.breadcrumb-link` (der aktive Eintrag zusätzlich `.active`), zwischen den Einträgen steht ein leeres `<li class="breadcrumb-divider"></li>` (Chevron per CSS-Maske); der Standardabstand nach unten (`$spacer`) entfällt.
 - **Ergebnis:** `Breadcrumb.razor` rendert zwischen den Einträgen `<li class="breadcrumb-divider">`, Links und Texte tragen `.breadcrumb-link` (Eintrag ohne `Url` als `<span>`), ein Eintrag mit `CssClass="active"` bekommt `aria-current="page"` am `li` und `.active` am Link. Die Demo markiert den letzten Eintrag jetzt als aktiv. Neue Tests in `BreadcrumbTest` (Trenner, Link-Klassen, einzelner Eintrag, leere Liste; zwei davon waren vorher rot). Im Browser hell und dunkel: „Home › Library › Data“ mit Chevrons, der aktuelle Eintrag kräftiger. Der Standardabstand nach unten entfällt wie in Bootstrap 6, die Demo braucht ihn nicht.
 
-### G2 – Menü „alle aufklappen“ wirkungslos – bestätigt
+### G2 – Menü „alle aufklappen“ wirkungslos – erledigt 2026-11-16
 - **Befund:** Der Schalter „Expand all“ der Demo-Seitenleiste (`IsExpandAll` am `Menu`) setzt `data-bb-expand="true"`, aber nur 1 von 18 Untermenüs öffnet sich. Ursache in `Menu.razor.js` (`update()`): Ohne vorhandene Collapse-Instanz wird `new bootstrap.Collapse(target, { toggle: true })` aufgerufen. Bootstrap 6 hat die Option `toggle` entfernt, der Konstruktor behält den im Markup deklarierten Zustand und öffnet nichts. Beim Ausschalten werden die Instanzen entsorgt, beim erneuten Einschalten passiert dasselbe. Gegenprobe: Ein manueller Aufruf von `update(id)` bei vorhandenen Instanzen (`collapse.show()`) öffnet alle 18.
 - **Soll:** Laut Leitfaden `new bootstrap.Collapse(el).show()` statt `toggle: true`; zusätzlich ist `.collapsed` am Auslöser kein Zustandssignal mehr (`aria-expanded` verwenden).
-- **Schritte:** `update()` auf `new bootstrap.Collapse(target).show()` ändern (und `_isShown()`, eine private Methode, durch `aria-expanded` oder `classList.contains('show')` ersetzen), Wächter-Test auf `Menu.razor.js` (kein `toggle: true`), im Browser prüfen: Schalter an, alle 18 offen; aus, alle zu; Akkordeon-Modus unverändert.
+- **Ergebnis:** `Menu.razor.js` öffnet ohne vorhandene Instanz jetzt mit `new bootstrap.Collapse(target).show()`; die private Methode `_isShown()` ist durch die Klasse `.show` am Ziel ersetzt (`update()` und `disposeCollapse()`). Wächter-Test `MenuJs_ExpandAll_ShowsCollapse` (war rot). Im Browser mit echten Klicks: Schalter an -> 18 von 18 Untermenüs offen (vorher 1), aus -> 0, wieder an -> 18; im Akkordeon-Modus bleibt nach dem Öffnen dreier Einträge nur einer offen, „Expand all“ ist dann deaktiviert.
 
 ### G3 – Browser-Mindestversionen nennen – bestätigt (Lücke in der Doku)
 - **Befund:** README, Paket-README und CHANGELOG sagen nichts zu Browsern. Bootstrap 6 setzt Chrome und Edge ab 130, Firefox ab 132, Safari und iOS ab 18 voraus, ohne Fallbacks, Präfixe oder Polyfills (`light-dark()`, `oklch()`, `color-mix()`, `:has()`, Container Queries, natives `<dialog>`, `content-visibility`); in älteren Browsern werden Farben nicht aufgelöst. Dazu: Collapse und Menü-Untermenüs animieren die Grösse mit `interpolate-size`, Browser ohne diese Funktion (Firefox ist genannt) öffnen und schliessen sofort.
