@@ -36,7 +36,7 @@ Bootstrap-Version: `6.0.0-alpha.1`. Lokaler Teststand: 2811 von 2813 (Release), 
 | G4 | ~~Breakpoints in `root.scss`, `Responsive` und Demo auf die Werte von Bootstrap 6 anpassen~~ erledigt 2026-11-16 | P2 | S |
 | G5 | ~~Spacer-Skala: `ms-3` & Co. haben in Bootstrap 6 andere Werte~~ Variante B (Bibliothek) erledigt 2026-11-16 | P2 | M |
 | G6 | Komponentenabgleich BB-Markup gegen die Bootstrap-6-Doku (Breadcrumb zeigt: der Bildvergleich übersieht Dekoration) | P2 | M |
-| G7 | Split-Dropdown (`dropdown-toggle-split`) prüfen | P3 | S |
+| G7 | ~~Split-Dropdown (`dropdown-toggle-split`) prüfen~~ geprüft, kein Fehler 2026-11-16 | P3 | S |
 | G8 | Tote Selektoren aus Bootstrap 5 aufräumen (`.was-validated`, `.has-validation`) | P3 | S |
 | G9 | `rgba(var(--bs-*-rgb))` durch `color-mix()` ersetzen, Compat-Variablen entfernen | P3 | M |
 | G10 | Reste von Bootstrap 5 in der Demo (`lead`, `text-body-secondary`, `--bs-border-radius-lg`, `xxl`) | P3 | S |
@@ -303,8 +303,9 @@ Quelle: <https://getbootstrap.com/docs/6.0/>, gelesen am 2026-11-16: der Migrati
 
 **Aufräumen und Pflege**
 
-### G7 – Split-Dropdown
+### G7 – Split-Dropdown – geprüft, kein Fehler 2026-11-16
 - `Dropdown.razor.cs` setzt `dropdown-toggle-split` und `Dropdown.razor.scss` (Zeilen 76–81) stylt es selbst; Bootstrap 6 hat die Klasse entfernt und behandelt den Rundungsrand von Split-Menüs über `:has(+ .menu)`. Prüfen, ob Radius, Rand und Pfeil doppelt oder gar nicht greifen (Demo `/dropdown`, Abschnitt „Outline style“ mit Split).
+- **Ergebnis:** Im Browser (Demo `/dropdown`, Outline und gefüllte Varianten) greifen die Regeln von Bootstrap 6 richtig: Der Hauptknopf hat rechts Radius 0 (`.btn-group > [class*=btn-]:not(:last-child, :has(+ .menu))`), der Pfeilknopf behält seinen Rundungsrand rechts (`:has(+ .menu)`, direkt darauf folgt `.menu shadow`), beide überlappen um 1 px Rand. Die BB-Regeln (`padding-inline: .5625rem`, `margin-inline-start: 0` am Pfeil) sind harmlos: der Pfeil ist 8x4 px ohne Aussenabstand, der Pfeilknopf 28 px breit. Klick auf den Pfeil öffnet das Menü. Keine Codeänderung nötig; die Klasse `dropdown-toggle-split` ist nur noch BB-eigen.
 
 ### G8 – Tote Selektoren aus Bootstrap 5
 - `Select.razor.scss` und `ValidateForm.razor.scss` enthalten Regeln für `.was-validated` und `.has-validation` (10 Stellen); Bootstrap 6 kennt beides nicht mehr (Validierung per `data-bs-validate` und `:user-invalid`, serverseitig `.is-invalid`/`.is-valid`). Prüfen, ob BB die Klassen noch selbst setzt; sonst entfernen.
