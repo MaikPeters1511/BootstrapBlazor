@@ -545,6 +545,18 @@ public class BootstrapAssetsTest
         Assert.Contains(expected, content);
     }
 
+    [Theory]
+    [InlineData("Select", "Select.razor.scss")]
+    [InlineData("ValidateForm", "ValidateForm.razor.scss")]
+    public void ComponentsScss_NoBootstrap5ValidationClasses(string folder, string file)
+    {
+        // Bootstrap 6 has no .was-validated and no .has-validation (validation per data-bs-validate and :user-invalid, on the server .is-valid/.is-invalid),
+        // BootstrapBlazor never sets them: selectors with them are dead
+        var content = ReadSource("src", "BootstrapBlazor", "Components", folder, file);
+        Assert.DoesNotContain("was-validated", content);
+        Assert.DoesNotContain("has-validation", content);
+    }
+
     [Fact]
     public void MenuJs_ExpandAll_ShowsCollapse()
     {

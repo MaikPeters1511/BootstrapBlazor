@@ -37,7 +37,7 @@ Bootstrap-Version: `6.0.0-alpha.1`. Lokaler Teststand: 2811 von 2813 (Release), 
 | G5 | ~~Spacer-Skala: `ms-3` & Co. haben in Bootstrap 6 andere Werte~~ Variante B (Bibliothek) erledigt 2026-11-16 | P2 | M |
 | G6 | Komponentenabgleich BB-Markup gegen die Bootstrap-6-Doku (Breadcrumb zeigt: der Bildvergleich übersieht Dekoration) | P2 | M |
 | G7 | ~~Split-Dropdown (`dropdown-toggle-split`) prüfen~~ geprüft, kein Fehler 2026-11-16 | P3 | S |
-| G8 | Tote Selektoren aus Bootstrap 5 aufräumen (`.was-validated`, `.has-validation`) | P3 | S |
+| G8 | ~~Tote Selektoren aus Bootstrap 5 aufräumen (`.was-validated`, `.has-validation`)~~ erledigt 2026-11-16 | P3 | S |
 | G9 | `rgba(var(--bs-*-rgb))` durch `color-mix()` ersetzen, Compat-Variablen entfernen | P3 | M |
 | G10 | Reste von Bootstrap 5 in der Demo (`lead`, `text-body-secondary`, `--bs-border-radius-lg`, `xxl`) | P3 | S |
 | G11 | Fokusringe über die Tokens `--bs-focus-ring*` vereinheitlichen | P3 | M |
@@ -307,8 +307,9 @@ Quelle: <https://getbootstrap.com/docs/6.0/>, gelesen am 2026-11-16: der Migrati
 - `Dropdown.razor.cs` setzt `dropdown-toggle-split` und `Dropdown.razor.scss` (Zeilen 76–81) stylt es selbst; Bootstrap 6 hat die Klasse entfernt und behandelt den Rundungsrand von Split-Menüs über `:has(+ .menu)`. Prüfen, ob Radius, Rand und Pfeil doppelt oder gar nicht greifen (Demo `/dropdown`, Abschnitt „Outline style“ mit Split).
 - **Ergebnis:** Im Browser (Demo `/dropdown`, Outline und gefüllte Varianten) greifen die Regeln von Bootstrap 6 richtig: Der Hauptknopf hat rechts Radius 0 (`.btn-group > [class*=btn-]:not(:last-child, :has(+ .menu))`), der Pfeilknopf behält seinen Rundungsrand rechts (`:has(+ .menu)`, direkt darauf folgt `.menu shadow`), beide überlappen um 1 px Rand. Die BB-Regeln (`padding-inline: .5625rem`, `margin-inline-start: 0` am Pfeil) sind harmlos: der Pfeil ist 8x4 px ohne Aussenabstand, der Pfeilknopf 28 px breit. Klick auf den Pfeil öffnet das Menü. Keine Codeänderung nötig; die Klasse `dropdown-toggle-split` ist nur noch BB-eigen.
 
-### G8 – Tote Selektoren aus Bootstrap 5
+### G8 – Tote Selektoren aus Bootstrap 5 – erledigt 2026-11-16
 - `Select.razor.scss` und `ValidateForm.razor.scss` enthalten Regeln für `.was-validated` und `.has-validation` (10 Stellen); Bootstrap 6 kennt beides nicht mehr (Validierung per `data-bs-validate` und `:user-invalid`, serverseitig `.is-invalid`/`.is-valid`). Prüfen, ob BB die Klassen noch selbst setzt; sonst entfernen.
+- **Ergebnis:** BB setzt `.was-validated` nirgends (weder C#, JS noch Razor), `.has-validation` kommt in der Bibliothek nicht mehr vor. Die 10 toten Selektoren sind aus `Select.razor.scss` und `ValidateForm.razor.scss` entfernt; die `.is-valid`/`.is-invalid`-Regeln bleiben. Wächter-Test `ComponentsScss_NoBootstrap5ValidationClasses` (2 Fälle, beide waren rot). Im Browser (`/validate-form`, ungültiges Feld im Fokus): Rand `--bs-danger`, Schatten `none`, wie vorher. Nicht angefasst: `.custom-select` (Bootstrap-4-Klasse) in `ValidateForm.razor.scss`, ebenfalls tot, aber ein eigener Aufräumpunkt.
 
 ### G9 – `rgba(var(--bs-*-rgb))`
 - Bootstrap 6 hat alle `--bs-*-rgb`-Variablen entfernt und empfiehlt `color-mix(in oklab, var(--bs-primary), transparent 50%)`. Wir stützen uns auf `compat.scss` (`--bs-body-color-rgb`, `--bs-emphasis-color-rgb`, `--bs-primary-rgb`, `--bs-body-bg-rgb`): Bibliothek 26 Stellen in 8 Dateien, `variables.scss` 26 Stellen, Demo 12. Funktioniert, ist aber ein Zwischenzustand; Umstellung in einem Schritt, danach die Compat-Variablen und den Wächter-Test streichen.
