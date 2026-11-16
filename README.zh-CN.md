@@ -138,6 +138,18 @@ Bootstrap 6 新增了与部分组件同名的样式，因此 BootstrapBlazor 的
 - **`Color.Light` 与 `Color.Dark`**：Bootstrap 6 没有这两种主题，BootstrapBlazor 自行提供 `theme-light` 与 `theme-dark`。
 - **关闭弹窗**：按 Esc 键或点击背景关闭弹窗时现在也会调用 `OnClosingAsync`，返回 `false` 时弹窗保持打开。
 
+### 浏览器支持
+
+Bootstrap 6 大幅提高了最低浏览器版本，并且不再提供回退、前缀或 polyfill。它依赖 `light-dark()`、`oklch()`、`color-mix()`、`:has()`、容器查询和原生 `<dialog>` 元素：
+
+| 浏览器 | 最低版本 |
+| --- | --- |
+| Chrome、Edge | 130 |
+| Firefox | 132 |
+| Safari（macOS、iOS、iPadOS） | 18 |
+
+更旧的浏览器无法解析颜色，页面显示不正确。Collapse 和子菜单使用 `interpolate-size` 为高度添加动画，不支持该特性的浏览器（主要是 Firefox）会立即展开或收起。升级前请先查看自己用户使用的浏览器。
+
 ## 用法示例
 ```razor
 <Display Value="@_text"></Display>

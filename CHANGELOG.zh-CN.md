@@ -26,6 +26,7 @@
 * feat(Bootstrap): 更新 `bootstrap` 到 `v6.0.0-alpha.1` by @MaikPeters1511 in https://github.com/MaikPeters1511/BootstrapBlazor/pull/1
 
 ### Breaking changes
+* Bootstrap 6 需要 Chrome 和 Edge 130、Firefox 132、Safari 18 及以上版本（macOS、iOS、iPadOS），不再提供回退、前缀或 polyfill；更旧的浏览器无法解析颜色，页面显示不正确
 * Bootstrap 6 重命名了大量样式，按 Bootstrap 5 编写的代码需要调整（`btn-primary` -> `btn-solid theme-primary`，`text-danger` -> `fg-danger`，`col-sm-6` -> `sm:col-6`，`dropdown-menu` -> `menu`，`modal-body` -> `dialog-body`），详见 `README.zh-CN.md` 中的 “Bootstrap 版本” 章节
 * `Modal` 组件渲染为原生 `<dialog>` 元素
 * `Menu`、`Drawer`、`Switch` / `NullSwitch` 以及 `Table` 的卡片视图的样式类名改为 `bb-menu`、`bb-drawer`、`bb-switch`（`bb-switch-core`、`bb-switch-label`）与 `bb-table-card`，因为 Bootstrap 6 自带了与旧类名同名的样式（[#1](https://github.com/MaikPeters1511/BootstrapBlazor/pull/1)、[#2](https://github.com/MaikPeters1511/BootstrapBlazor/pull/2)、[#3](https://github.com/MaikPeters1511/BootstrapBlazor/pull/3)）

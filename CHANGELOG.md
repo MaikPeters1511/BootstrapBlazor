@@ -26,6 +26,7 @@
 * feat(Bootstrap): upgrade to v6.0.0-alpha.1 by @MaikPeters1511 in https://github.com/MaikPeters1511/BootstrapBlazor/pull/1
 
 ### Breaking changes
+* Bootstrap 6 needs Chrome and Edge 130, Firefox 132 and Safari 18 or newer (macOS, iOS and iPadOS) and ships no fallbacks, prefixes or polyfills; older browsers do not resolve the colors and render the pages incorrectly
 * Bootstrap 6 renamed many classes; markup written for Bootstrap 5 has to be updated (`btn-primary` -> `btn-solid theme-primary`, `text-danger` -> `fg-danger`, `col-sm-6` -> `sm:col-6`, `dropdown-menu` -> `menu`, `modal-body` -> `dialog-body`). See the "Bootstrap version" section in `README.md`
 * `Modal` renders a native `<dialog>` element
 * `Menu`, `Drawer`, `Switch` / `NullSwitch` and the card view of `Table` use the classes `bb-menu`, `bb-drawer`, `bb-switch` (`bb-switch-core`, `bb-switch-label`) and `bb-table-card`, because Bootstrap 6 ships its own classes with the old names ([#1](https://github.com/MaikPeters1511/BootstrapBlazor/pull/1), [#2](https://github.com/MaikPeters1511/BootstrapBlazor/pull/2), [#3](https://github.com/MaikPeters1511/BootstrapBlazor/pull/3))
