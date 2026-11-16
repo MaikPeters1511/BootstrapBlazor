@@ -30,7 +30,7 @@ Bootstrap-Version: `6.0.0-alpha.1`. Lokaler Teststand: 2811 von 2813 (Release), 
 | E2 | ~~Dialog: `dialog-instant` geht beim Re-Render verloren~~ erledigt 2026-11-15 | P3 | S |
 | E3 | ~~Carousel: `AutoPlayAfterManually` nach Hover~~ erledigt 2026-11-15 | P3 | S |
 | F1 | Wechsel auf neue Bootstrap-6-Alphas und die stabile Version (am 2026-11-15 geprüft: noch keine neuere Version) | P3 | M |
-| G1 | Breadcrumb ohne Trenner (bestätigt, BS6-Markup fehlt) | P1 | S |
+| G1 | ~~Breadcrumb ohne Trenner~~ erledigt 2026-11-16 | P1 | S |
 | G2 | Menü „alle aufklappen“ (`IsExpandAll`) wirkungslos (bestätigt, Collapse-Option `toggle` entfernt) | P1 | S |
 | G3 | Browser-Mindestversionen von Bootstrap 6 in README und CHANGELOG nennen | P1 | S |
 | G4 | Breakpoints in `root.scss`, `Responsive` und Demo auf die Werte von Bootstrap 6 anpassen | P2 | S |
@@ -268,10 +268,10 @@ Quelle: <https://getbootstrap.com/docs/6.0/>, gelesen am 2026-11-16: der Migrati
 
 **Bestätigte Fehler**
 
-### G1 – Breadcrumb ohne Trenner – bestätigt
+### G1 – Breadcrumb ohne Trenner – erledigt 2026-11-16
 - **Befund:** `/breadcrumb` zeigt „HomeLibraryData“ ohne Trenner und Abstand. `Breadcrumb.razor` rendert das Markup von Bootstrap 5 (`li.breadcrumb-item` mit blossem `<a>`), Bootstrap 6 zeichnet den Trenner nicht mehr per `::before` am Eintrag (`::before` ist `none`), sondern über ein eigenes Element. Der Klassen-Abgleich (G6) und der Bildvergleich (D1) haben das nicht gefunden, weil `.breadcrumb-item` in BB-CSS vorkommt.
 - **Soll (laut Migrationsleitfaden):** Links bekommen `.breadcrumb-link` (der aktive Eintrag zusätzlich `.active`), zwischen den Einträgen steht ein leeres `<li class="breadcrumb-divider"></li>` (Chevron per CSS-Maske); der Standardabstand nach unten (`$spacer`) entfällt.
-- **Schritte:** `Breadcrumb.razor` und `Breadcrumb.razor.cs` anpassen (`GetItemClassString`, `item.CssClass` für „active“ beachten), bUnit-Test (Trenner zwischen allen Einträgen, `breadcrumb-link` an Links), im Browser hell und dunkel prüfen; Abstand nach unten per `mb-*` nur setzen, wenn die Demo ihn braucht.
+- **Ergebnis:** `Breadcrumb.razor` rendert zwischen den Einträgen `<li class="breadcrumb-divider">`, Links und Texte tragen `.breadcrumb-link` (Eintrag ohne `Url` als `<span>`), ein Eintrag mit `CssClass="active"` bekommt `aria-current="page"` am `li` und `.active` am Link. Die Demo markiert den letzten Eintrag jetzt als aktiv. Neue Tests in `BreadcrumbTest` (Trenner, Link-Klassen, einzelner Eintrag, leere Liste; zwei davon waren vorher rot). Im Browser hell und dunkel: „Home › Library › Data“ mit Chevrons, der aktuelle Eintrag kräftiger. Der Standardabstand nach unten entfällt wie in Bootstrap 6, die Demo braucht ihn nicht.
 
 ### G2 – Menü „alle aufklappen“ wirkungslos – bestätigt
 - **Befund:** Der Schalter „Expand all“ der Demo-Seitenleiste (`IsExpandAll` am `Menu`) setzt `data-bb-expand="true"`, aber nur 1 von 18 Untermenüs öffnet sich. Ursache in `Menu.razor.js` (`update()`): Ohne vorhandene Collapse-Instanz wird `new bootstrap.Collapse(target, { toggle: true })` aufgerufen. Bootstrap 6 hat die Option `toggle` entfernt, der Konstruktor behält den im Markup deklarierten Zustand und öffnet nichts. Beim Ausschalten werden die Instanzen entsorgt, beim erneuten Einschalten passiert dasselbe. Gegenprobe: Ein manueller Aufruf von `update(id)` bei vorhandenen Instanzen (`collapse.show()`) öffnet alle 18.

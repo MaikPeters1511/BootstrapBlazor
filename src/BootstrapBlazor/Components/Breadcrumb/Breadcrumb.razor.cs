@@ -23,6 +23,15 @@ public sealed partial class Breadcrumb
         .AddClass(item.CssClass)
         .Build();
 
+    // Bootstrap 6 marks the current page on the link (.breadcrumb-link.active) and on the item (aria-current)
+    private static bool IsActive(BreadcrumbItem item) => item.CssClass?.Split(' ', StringSplitOptions.RemoveEmptyEntries).Contains("active") ?? false;
+
+    private static string? GetAriaCurrent(BreadcrumbItem item) => IsActive(item) ? "page" : null;
+
+    private static string? GetLinkClassString(BreadcrumbItem item) => CssBuilder.Default("breadcrumb-link")
+        .AddClass("active", IsActive(item))
+        .Build();
+
     /// <summary>
     /// <inheritdoc/>
     /// </summary>

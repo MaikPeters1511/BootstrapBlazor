@@ -4,8 +4,12 @@
 <nav @attributes="@AdditionalAttributes" aria-label="breadcrumb">
     <ol class="breadcrumb">
         <CascadingValue Value="this" IsFixed="true">
-            @foreach (var item in Value)
+            @foreach (var (item, index) in Value.Select((v, i) => (v, i)))
             {
+                @if (index > 0)
+                {
+                    <li class="breadcrumb-divider"></li>
+                }
                 @RenderItem(item)
             }
         </CascadingValue>
@@ -14,14 +18,14 @@
 
 @code {
     RenderFragment<BreadcrumbItem> RenderItem => item =>
-    @<li class="@GetItemClassString(item)">
+    @<li class="@GetItemClassString(item)" aria-current="@GetAriaCurrent(item)">
         @if (!string.IsNullOrEmpty(item.Url))
         {
-            <a href="@item.Url">@item.Text</a>
+            <a class="@GetLinkClassString(item)" href="@item.Url">@item.Text</a>
         }
         else
         {
-            @item.Text
+            <span class="@GetLinkClassString(item)">@item.Text</span>
         }
     </li>;
 }
