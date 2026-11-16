@@ -108,7 +108,7 @@ public partial class SearchForm : IShowLabel
         .AddClassFromAttributes(AdditionalAttributes)
         .Build();
 
-    private string? FormClassString => CssBuilder.Default("row g-3")
+    private string? FormClassString => CssBuilder.Default("row g-5")
         .AddClass("form-inline", RowType == RowType.Inline)
         .AddClass("form-inline-end", RowType == RowType.Inline && LabelAlign == Alignment.Right)
         .AddClass("form-inline-center", RowType == RowType.Inline && LabelAlign == Alignment.Center)

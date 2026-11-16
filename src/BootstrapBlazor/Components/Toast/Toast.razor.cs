@@ -29,7 +29,7 @@ public partial class Toast
         .AddClass(Options.WarningIcon, Options.Category == ToastCategory.Warning)
         .Build();
 
-    private string? IconBarString => CssBuilder.Default("toast-bar me-2")
+    private string? IconBarString => CssBuilder.Default("toast-bar me-3")
         .AddClass("fg-success", Options.Category == ToastCategory.Success)
         .AddClass("fg-info", Options.Category == ToastCategory.Information)
         .AddClass("fg-danger", Options.Category == ToastCategory.Error)

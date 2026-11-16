@@ -27,6 +27,7 @@
 
 ### Breaking changes
 * The thresholds of `BreakPoint` and of the `Responsive` component follow Bootstrap 6: `Large` from 1024px (was 992px), `ExtraLarge` from 1280px (was 1200px) and `ExtraExtraLarge` from 1536px (was 1400px); the widths of `dialog-xxl` are unchanged
+* The spacing classes of the components follow the new 12-step spacer scale of Bootstrap 6 (`ms-3` is 0.5rem now, was 1rem); the library maps its own usages with the official table `2` -> `3`, `3` -> `5`, `4` -> `7`, `5` -> `12` (`1` stays), so the components look as before. Your own markup with `m*`, `p*`, `gap-*` and `g-*` has to be mapped the same way
 * Bootstrap 6 needs Chrome and Edge 130, Firefox 132 and Safari 18 or newer (macOS, iOS and iPadOS) and ships no fallbacks, prefixes or polyfills; older browsers do not resolve the colors and render the pages incorrectly
 * Bootstrap 6 renamed many classes; markup written for Bootstrap 5 has to be updated (`btn-primary` -> `btn-solid theme-primary`, `text-danger` -> `fg-danger`, `col-sm-6` -> `sm:col-6`, `dropdown-menu` -> `menu`, `modal-body` -> `dialog-body`). See the "Bootstrap version" section in `README.md`
 * `Modal` renders a native `<dialog>` element

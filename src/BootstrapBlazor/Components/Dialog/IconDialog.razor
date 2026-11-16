@@ -2,7 +2,7 @@
 @inherits BootstrapModuleComponentBase
 @attribute [BootstrapModuleAutoLoader("Dialog/IconDialog.razor.js")]
 
-<div class="row g-3" id="@Id" data-bb-title="@CopiedTooltipText">
+<div class="row g-5" id="@Id" data-bb-title="@CopiedTooltipText">
     <div class="col-12">
         <RadioList Items="@Items" @bind-Value="@IconStyle" OnValueChanged="OnValueChanged"></RadioList>
     </div>

@@ -3,7 +3,7 @@
     let groupCell = null
     const div = document.createElement('div')
     div.classList.add("row")
-    div.classList.add("g-3")
+    div.classList.add("g-5")
     if (rowType === "inline") {
         div.classList.add('form-inline')
     }
