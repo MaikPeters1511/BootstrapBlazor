@@ -30,6 +30,21 @@ Bootstrap-Version: `6.0.0-alpha.1`. Lokaler Teststand: 2811 von 2813 (Release), 
 | E2 | ~~Dialog: `dialog-instant` geht beim Re-Render verloren~~ erledigt 2026-11-15 | P3 | S |
 | E3 | ~~Carousel: `AutoPlayAfterManually` nach Hover~~ erledigt 2026-11-15 | P3 | S |
 | F1 | Wechsel auf neue Bootstrap-6-Alphas und die stabile Version (am 2026-11-15 geprüft: noch keine neuere Version) | P3 | M |
+| G1 | Breadcrumb ohne Trenner (bestätigt, BS6-Markup fehlt) | P1 | S |
+| G2 | Menü „alle aufklappen“ (`IsExpandAll`) wirkungslos (bestätigt, Collapse-Option `toggle` entfernt) | P1 | S |
+| G3 | Browser-Mindestversionen von Bootstrap 6 in README und CHANGELOG nennen | P1 | S |
+| G4 | Breakpoints in `root.scss`, `Responsive` und Demo auf die Werte von Bootstrap 6 anpassen | P2 | S |
+| G5 | Spacer-Skala: `ms-3` & Co. haben in Bootstrap 6 andere Werte (Entscheidung) | P2 | M |
+| G6 | Komponentenabgleich BB-Markup gegen die Bootstrap-6-Doku (Breadcrumb zeigt: der Bildvergleich übersieht Dekoration) | P2 | M |
+| G7 | Split-Dropdown (`dropdown-toggle-split`) prüfen | P3 | S |
+| G8 | Tote Selektoren aus Bootstrap 5 aufräumen (`.was-validated`, `.has-validation`) | P3 | S |
+| G9 | `rgba(var(--bs-*-rgb))` durch `color-mix()` ersetzen, Compat-Variablen entfernen | P3 | M |
+| G10 | Reste von Bootstrap 5 in der Demo (`lead`, `text-body-secondary`, `--bs-border-radius-lg`, `xxl`) | P3 | S |
+| G11 | Fokusringe über die Tokens `--bs-focus-ring*` vereinheitlichen | P3 | M |
+| G12 | Kontrast der Motronic-Farben (weisse Schrift auf `primary`, `success`, `warning`) | P3 | M |
+| G13 | `iframe` und `color-scheme` (Reboot setzt `color-scheme: light dark`) prüfen | P3 | S |
+| G14 | Abhängigkeit vom Global `window.bootstrap` (34 Stellen in 17 Dateien) | P3 | M |
+| G15 | Neue Bootstrap-6-Bausteine als Chance bewerten (Combobox, Datepicker, Stepper, Avatar, …) | P3 | M |
 
 ---
 
@@ -243,3 +258,81 @@ Voraussetzung für alle: Demo-App wie in der Memory-Notiz `desktop-write-protect
 - **Stand 2026-11-15:** Auf npm gibt es nur `6.0.0-alpha.1` (veröffentlicht 2026-10-08); der Tag `next` zeigt darauf, `latest` ist `5.3.9`. Es gibt nichts zu aktualisieren. Punkt bleibt offen, bis eine neue Version erscheint (dann mit `npm view bootstrap dist-tags` prüfen).
 - **Warum:** Klassennamen und Schnittstellen können sich bis zur stabilen Version ändern.
 - **Schritte:** Beim Update `BootstrapAssetsTest` zuerst anpassen (`ExpectedVersion`), neue Assets aus dem npm-Paket (`bootstrap@next`) in `wwwroot/core/bootstrap` ersetzen, den Klassenabgleich (siehe PR #3) und die Wächter-Tests erneut laufen lassen, B1 und D1 wiederholen.
+
+
+---
+
+## G – Offene Punkte aus der Bootstrap-6-Dokumentation
+
+Quelle: <https://getbootstrap.com/docs/6.0/>, gelesen am 2026-11-16: der Migrationsleitfaden (`guides/migration`), der Migrations-Leitfaden für Agenten (`skills/bootstrap-v5-v6-migration/SKILL.md` im Bootstrap-Repository), „Browsers & devices“, „JavaScript“, „Transitions“, „Accessibility“, „Color modes“ und die Gliederung aller rund 200 Seiten der Version 6.0 (Sitemap). Die Seiten werden serverseitig geliefert, mit `curl` abrufbar. Jeder Punkt wurde gegen unseren Code geprüft; was im Browser oder am Quelltext bestätigt ist, steht als „bestätigt“.
+
+**Bestätigte Fehler**
+
+### G1 – Breadcrumb ohne Trenner – bestätigt
+- **Befund:** `/breadcrumb` zeigt „HomeLibraryData“ ohne Trenner und Abstand. `Breadcrumb.razor` rendert das Markup von Bootstrap 5 (`li.breadcrumb-item` mit blossem `<a>`), Bootstrap 6 zeichnet den Trenner nicht mehr per `::before` am Eintrag (`::before` ist `none`), sondern über ein eigenes Element. Der Klassen-Abgleich (G6) und der Bildvergleich (D1) haben das nicht gefunden, weil `.breadcrumb-item` in BB-CSS vorkommt.
+- **Soll (laut Migrationsleitfaden):** Links bekommen `.breadcrumb-link` (der aktive Eintrag zusätzlich `.active`), zwischen den Einträgen steht ein leeres `<li class="breadcrumb-divider"></li>` (Chevron per CSS-Maske); der Standardabstand nach unten (`$spacer`) entfällt.
+- **Schritte:** `Breadcrumb.razor` und `Breadcrumb.razor.cs` anpassen (`GetItemClassString`, `item.CssClass` für „active“ beachten), bUnit-Test (Trenner zwischen allen Einträgen, `breadcrumb-link` an Links), im Browser hell und dunkel prüfen; Abstand nach unten per `mb-*` nur setzen, wenn die Demo ihn braucht.
+
+### G2 – Menü „alle aufklappen“ wirkungslos – bestätigt
+- **Befund:** Der Schalter „Expand all“ der Demo-Seitenleiste (`IsExpandAll` am `Menu`) setzt `data-bb-expand="true"`, aber nur 1 von 18 Untermenüs öffnet sich. Ursache in `Menu.razor.js` (`update()`): Ohne vorhandene Collapse-Instanz wird `new bootstrap.Collapse(target, { toggle: true })` aufgerufen. Bootstrap 6 hat die Option `toggle` entfernt, der Konstruktor behält den im Markup deklarierten Zustand und öffnet nichts. Beim Ausschalten werden die Instanzen entsorgt, beim erneuten Einschalten passiert dasselbe. Gegenprobe: Ein manueller Aufruf von `update(id)` bei vorhandenen Instanzen (`collapse.show()`) öffnet alle 18.
+- **Soll:** Laut Leitfaden `new bootstrap.Collapse(el).show()` statt `toggle: true`; zusätzlich ist `.collapsed` am Auslöser kein Zustandssignal mehr (`aria-expanded` verwenden).
+- **Schritte:** `update()` auf `new bootstrap.Collapse(target).show()` ändern (und `_isShown()`, eine private Methode, durch `aria-expanded` oder `classList.contains('show')` ersetzen), Wächter-Test auf `Menu.razor.js` (kein `toggle: true`), im Browser prüfen: Schalter an, alle 18 offen; aus, alle zu; Akkordeon-Modus unverändert.
+
+### G3 – Browser-Mindestversionen nennen – bestätigt (Lücke in der Doku)
+- **Befund:** README, Paket-README und CHANGELOG sagen nichts zu Browsern. Bootstrap 6 setzt Chrome und Edge ab 130, Firefox ab 132, Safari und iOS ab 18 voraus, ohne Fallbacks, Präfixe oder Polyfills (`light-dark()`, `oklch()`, `color-mix()`, `:has()`, Container Queries, natives `<dialog>`, `content-visibility`); in älteren Browsern werden Farben nicht aufgelöst. Dazu: Collapse und Menü-Untermenüs animieren die Grösse mit `interpolate-size`, Browser ohne diese Funktion (Firefox ist genannt) öffnen und schliessen sofort.
+- **Schritte:** Abschnitt „Browser support“ in `README.md`, `README.zh-CN.md`, Paket-README; Eintrag unter „Breaking changes“ in beiden CHANGELOGs; Hinweis in der Demo-Startseite prüfen.
+
+**Anpassungen und Entscheidungen**
+
+### G4 – Breakpoints angleichen
+- **Befund:** `wwwroot/scss/root.scss` (Zeilen 192–206) meldet BB per `body:before` die Schwellen 768/992/1200/1400 px (`medium`, `large`, `extraLarge`, `extraExtraLarge`); die Komponente `Responsive` (`OnBreakPointChanged`, Enum `BreakPoint`) liest sie. Bootstrap 6 hat `lg` auf 1024, `xl` auf 1280 und `2xl` (vorher `xxl`) auf 1536 px angehoben (`md` 768 und `sm` 576 unverändert; Container 960/1200/1440). Zwischen 992 und 1023 px meldet BB „large“, die Klassen `lg:*` greifen noch nicht. Die Demo-Seite `/breakpoint` nennt 992/1200/1400 und `xxl`.
+- **Schritte:** Werte in `root.scss` anpassen (am besten mit Bereichssyntax, `@media (width >= 1024px)`), Doku-Kommentare und Demo-Seite (Tabelle, `xxl` -> `2xl`), Eintrag unter „Breaking changes“ (die Schwellen der `Responsive`-Komponente ändern sich), Wächter-Test auf `root.scss`.
+
+### G5 – Spacer-Skala (Entscheidung nötig)
+- **Befund:** Die Abstandsklassen haben in Bootstrap 6 andere Werte: `3` ist `0.5rem` (vorher `1rem`), `4` `0.75rem` (vorher `1.5rem`), `5` `1rem` (vorher `3rem`), `2` `0.375rem` (vorher `0.5rem`); neu sind die Stufen 6 bis 12. Die offizielle Abbildung für dieselbe Optik: `2` -> `3`, `3` -> `5`, `4` -> `7`, `5` -> `12` (`1` bleibt). Das gilt gleichermassen für `m*`, `p*`, `gap-*`, `g-*`. Unser Markup behält die Bootstrap-5-Zahlen und rendert dadurch deutlich engere Abstände: Bibliothek 22 Stellen in 17 Dateien, Demo etwa 996 Stellen in 269 Dateien (zusätzlich `rounded-2` in drei Demo-Dateien; die Rundungsskala `rounded-1`..`rounded-5` wurde ebenfalls neu gemappt).
+- **Optionen:** (A) lassen, engere Optik akzeptieren; (B) nur die Bibliothek umstellen, damit Komponenten ihre bisherige Optik behalten (22 Stellen, überschaubar); (C) Bibliothek und Demo per Skript umstellen (grosser, rein mechanischer Diff). Anwendungscode von Nutzern bleibt in jedem Fall ihre Sache (in CHANGELOG/README als Breaking Change nennen, mit der offiziellen Abbildung).
+- **Empfehlung:** B, die Demo dann bereichsweise bei Bedarf; vorher mit einem Vergleich der Bibliotheks-Seiten (vor/nach) prüfen, ob die Abstände stören.
+
+### G6 – Komponentenabgleich BB-Markup gegen Bootstrap-6-Markup
+- **Anlass:** Der Breadcrumb (G1) zeigt, dass weder der Klassenabgleich (Klassen ohne jede CSS-Regel: nur drei harmlose Treffer) noch die Bildvergleiche aus D1 Fälle finden, in denen Bootstrap 6 Dekoration (Trenner, Icons, Pseudo-Elemente) auf neues Markup umgestellt hat, das BB nicht rendert.
+- **Geprüft, ohne Befund:** Badge, Progress, Pagination, Alert, Card, Carousel, Collapse (nach D1), Slider (`.form-range` direkt am `<input>`; Bootstrap 6 erwartet einen Wrapper, die Darstellung ist aber in Ordnung), Dropdown-Richtungen (`dropup`, `dropstart`, `dropend`, Center; BB setzt `data-bs-placement`).
+- **Zu prüfen (Markup in Bootstrap 6 umgebaut):** Spinner, Tag, Nav/Tab/RibbonTab, ListGroup, Skeleton (Placeholder `glow` -> `wave`/`pulse`), ButtonGroup und Split-Dropdown (G7), Table-Varianten (`table-*` -> `theme-*`), FloatingLabel, InputGroup, Toast (Klassen `showing`/`hide` entfallen), Tooltip und Popover (Pfeil-Klassen, `.fade` wird nicht mehr gesetzt), Close-Button (kein Kind-`<svg>`, kein `btn-close-white`), Toggle-Button (Bootstrap setzt `aria-pressed` nur beim Laden der Seite, `ToggleButton.razor` rendert es nicht).
+- **Vorgehen:** Je Komponente die Seite der Bootstrap-6-Doku neben die BB-Demo legen (Markup und Bild), Befunde als eigene Punkte anlegen.
+
+**Aufräumen und Pflege**
+
+### G7 – Split-Dropdown
+- `Dropdown.razor.cs` setzt `dropdown-toggle-split` und `Dropdown.razor.scss` (Zeilen 76–81) stylt es selbst; Bootstrap 6 hat die Klasse entfernt und behandelt den Rundungsrand von Split-Menüs über `:has(+ .menu)`. Prüfen, ob Radius, Rand und Pfeil doppelt oder gar nicht greifen (Demo `/dropdown`, Abschnitt „Outline style“ mit Split).
+
+### G8 – Tote Selektoren aus Bootstrap 5
+- `Select.razor.scss` und `ValidateForm.razor.scss` enthalten Regeln für `.was-validated` und `.has-validation` (10 Stellen); Bootstrap 6 kennt beides nicht mehr (Validierung per `data-bs-validate` und `:user-invalid`, serverseitig `.is-invalid`/`.is-valid`). Prüfen, ob BB die Klassen noch selbst setzt; sonst entfernen.
+
+### G9 – `rgba(var(--bs-*-rgb))`
+- Bootstrap 6 hat alle `--bs-*-rgb`-Variablen entfernt und empfiehlt `color-mix(in oklab, var(--bs-primary), transparent 50%)`. Wir stützen uns auf `compat.scss` (`--bs-body-color-rgb`, `--bs-emphasis-color-rgb`, `--bs-primary-rgb`, `--bs-body-bg-rgb`): Bibliothek 26 Stellen in 8 Dateien, `variables.scss` 26 Stellen, Demo 12. Funktioniert, ist aber ein Zwischenzustand; Umstellung in einem Schritt, danach die Compat-Variablen und den Wächter-Test streichen.
+
+### G10 – Reste von Bootstrap 5 in der Demo
+- `Index.razor.css`: `.lead`, `.text-body-secondary` (beide entfallen), `--bs-border-radius-lg` (nicht definiert, Ersatz `--bs-radius-5`); `Breakpoints.razor` (siehe G4); `rounded-2` in `TwoFactor*.razor` (neue Skala, G5).
+
+### G11 – Fokusringe
+- Bootstrap 6 vereinheitlicht den Fokus über `--focus-ring`, `--focus-ring-width`, `--focus-ring-offset`, `--focus-ring-color` (Mixin `focus-ring`). BB setzt eigene Fokus-Schatten (`$bb-select-focus-shadow` und andere). Tastaturfokus ist an Button, Eingabe, Checkbox und Select sichtbar (D1); eine Vereinheitlichung wäre optisch und für Anpassungen sauberer, ist aber kein Fehler.
+
+### G12 – Kontrast der Motronic-Farben
+- Die Doku weist auf WCAG 2.2 hin (4,5:1 für Text, 3:1 für Nicht-Text). Gemessen im Hover-Lauf: weisse Schrift auf `primary` 2,9, `success` 2,0, `warning` 1,6 (Metronic-Palette, in der Bootstrap-5-Fassung gleich). Bootstrap 6 bringt je Farbe ein `--bs-*-contrast`-Token mit; mit dunkler Schrift auf `success`/`warning` wären die Werte lesbar. Gestaltungsentscheidung, keine Regression.
+
+### G13 – `iframe` und `color-scheme`
+- Reboot setzt `color-scheme: light dark` auf jedes `iframe`, damit eingebettete Seiten bei erzwungenem Thema durchsichtig bleiben; für Einbettungen ohne dunkles Design gibt es `.color-scheme-light`. BB hat die Komponente `IFrame` und Demo-Seiten mit eingebetteten Fremdseiten (`/iframe`, `/meet`, `/office-viewer`, `/pdf-viewer`). Im dunklen und im hellen Design prüfen, ob der Hintergrund stimmt.
+
+### G14 – Abhängigkeit vom Global `window.bootstrap`
+- Bootstrap 6 liefert nur ES-Module und kein Global; unser Bundle stellt `window.bootstrap` selbst bereit (`BootstrapAssetsTest` sichert das). 34 Stellen in 17 Dateien der Bibliothek nutzen `bootstrap.*`. Kein Fehler, aber bei einem Update des Bundles (F1) die erste Stelle, die brechen kann; langfristig `import` aus einem Modul.
+
+### G15 – Neue Bausteine von Bootstrap 6
+- **Neu in Bootstrap 6:** Combobox, Datepicker (Peer-Abhängigkeit `vanilla-calendar-pro`), Stepper, Avatar, Chip und Chip-Input, OTP-Input, Password-Strength, Range (JavaScript), Toggler, Nav-Overflow, Submenü im Menü, Form-Adorn, `.form-field`, Prose, Drawer mit Wisch-Geste, `.btn-icon`/`.btn-text`/`.btn-subtle`/`.btn-styled`, `.card-translucent`/`.card-subtle`, `.accordion-gap`, `.pagination.theme-*`, `hover-lift`, Motion-Hilfsklassen, Container-Query- und `dvh`-Hilfsklassen, `color-scheme`-Hilfsklassen, geschichtete Schatten.
+- **Einordnung:** BB hat eigene Komponenten für die meisten (Select/AutoComplete/MultiSelect, DateTimePicker, Step, Avatar, Tag/TagsInput, OtpInput, Slider, Drawer, Tab-Überlauf). Keine Pflicht, sie zu ersetzen; Chancen sind Password-Strength (fehlt in BB), Nav-Overflow für Tabs und Menüs und die Wisch-Geste für Drawer. Bei einer Entscheidung pro Baustein einen eigenen Punkt anlegen.
+
+**Geprüft ohne Handlungsbedarf (zur Nachvollziehbarkeit)**
+- `bootstrap.Tab` löst bei fehlendem Tab-Panel jetzt einen Fehler aus: BB nutzt das Plugin nicht (0 Stellen). ScrollSpy: nicht genutzt.
+- Entfernte oder umbenannte Klassen und Optionen (`text-muted`, `text-bg-*`, `bg-light`/`bg-dark`, `link-*`, `d-print-*`, `lead`, `display-*`, `mh-*`/`mw-*`, `fs-1`..`fs-6`, `lh-base`, `carousel-dark`, `btn-close-white`, `navbar-light`/`navbar-dark`, `alert-dismissible`, `offcanvas`, Infix-Breakpoints wie `d-md-*`, Ereignisnamen `.bs.dropdown`/`.bs.modal`, `popperConfig`): in der Bibliothek keine Treffer; in der Demo nur die unter G10 genannten.
+- `.form-select` und `.form-check`: BB nutzt sie als eigene Klassen mit eigenem CSS, kein natives `<select>` in der Bibliothek. `.collapsed` wird nur in `Collapse.razor.scss` ausgewertet (BB setzt die Klasse selbst).
+- Die Navbar nutzt weiter Collapse statt Drawer (Bootstrap 6 empfiehlt Drawer); der Umschalter funktioniert (D3).
+- Sass-Umbauten (`@use`, `$breakpoints`, entfernte Variablen, PostCSS-Präfix): BB kompiliert nur eigenes SCSS, nicht das Sass von Bootstrap; das mitgelieferte CSS ist fertig.
+- `show()`/`hide()` liefern jetzt ein Promise: optional lassen sich die Zeitüberbrückungen (`getTransitionDelayDurationFromElement` in `Menu.razor.js`) damit ersetzen; kein Fehler.
