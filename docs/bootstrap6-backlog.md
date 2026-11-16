@@ -22,7 +22,7 @@ Bootstrap-Version: `6.0.0-alpha.1`. Lokaler Teststand: 2811 von 2813 (Release), 
 | C3 | CHANGELOG-Link und Upstream-Vorbereitung | P2 | S |
 | D1 | Sichtprüfung aller Demo-Seiten (automatisierter Teil und Bildvergleich im dunklen und hellen Design erledigt 2026-11-15; Hover/Fokus/Popups offen) | P2 | L |
 | D2 | ~~Drucken von Dialogen prüfen~~ erledigt 2026-11-15 | P3 | S |
-| D3 | Schmale Breiten und Touch prüfen (Überlauf, Navbar, Tabellen-Beschriftungen, `carousel-no-touch` erledigt 2026-11-15; echtes Wischen und EditorForm/SearchForm-Raster offen) | P2 | M |
+| D3 | Schmale Breiten und Touch prüfen (Überlauf, Navbar, Tabellen-Beschriftungen, `carousel-no-touch`, EditorForm/SearchForm-Raster erledigt 2026-11-15/16; echtes Wischen auf einem Touch-Gerät offen) | P2 | M |
 | D4 | ~~Tastaturbedienung prüfen~~ erledigt 2026-11-15 (Dropdown, Select, Dialog, Seitenmenü, gestapelte Dialoge) | P2 | M |
 | D5 | ~~Einzelne Komponenten prüfen~~ erledigt 2026-11-15 | P2 | M |
 | D6 | ~~Starter-Vorlage `Bs6Test` prüfen und ablegen~~ erledigt 2026-11-15 (bleibt ausserhalb des Repos) | P3 | S |
@@ -176,7 +176,8 @@ Voraussetzung für alle: Demo-App wie in der Memory-Notiz `desktop-write-protect
 - **Erledigt (375 px, Vergleich mit Bootstrap 5):** Alert war ein Flex-Block (`display: block` in `Alert.razor.scss`, `btn-close` rechts) – behob den Überlauf auf `/table`, `/table/column`, `/tree-view`, `/anchor-link`, `/tab`, `/datetime-picker`; `.form-control` bricht um (`compat.scss`) – behob `/slide-button`.
 - **Bleibt:** `/select-city` (Paket `BootstrapBlazor.Region` nutzt noch `dropdown-menu`, nicht in diesem Repo), `/circle` und `/query-builder` (4–6 px), schmalere Schaltflächen in `/button`, `/sweet-alert` (Demo-Raster, ähnlich wie in Bootstrap 5).
 - **Geprüft 2026-11-15, ohne Befund (Browser-Pane, 375 px und 800 px):** Navbar-Toggler (`/navbar`: öffnet auf 245 px Höhe, schliesst mit `display: none`); Tabellen-Toolbar (`/table/toolbar`: bei 375 px alle `d-none sm:d-inline-block`-Beschriftungen weg, Zahnrad `sm:d-none` sichtbar und sein Menü geht auf, kein Überlauf; bei 800 px Beschriftungen sichtbar, Zahnrad weg); `carousel-no-touch` (per Skript gesetzt: `overflow-x: hidden`, `touch-action: pan-y`, die Pfeile schalten weiter). Die `sm:`-Klassen von Bootstrap 6 haben denselben Breakpoint (576 px) wie die der alten Klassen.
-- **Noch nicht geprüft:** echtes Wischen auf einem Touch-Gerät (der Emulator liefert nur Mausklicks); `sm:`-/`md:`-Raster in EditorForm und SearchForm.
+- **Geprüft 2026-11-16, ohne Befund (Browser-Pane, 375/800/1280 px):** `sm:`-/`md:`-Raster in EditorForm (`/editor-form`) und SearchForm (`/table/search`). Die Klassen `sm:col-N` und `md:col-N` gibt es in Bootstrap 6 (Media-Query ab 576 px bzw. 768 px, wie in Bootstrap 5). Bei 375 px steht jedes Element in voller Breite (kein Überlauf), ab 576 px zu 50 %, `ItemsPerRow="3"` ergibt bei 1280 px 33 %. Beachten: Die Breakpoints richten sich nach dem Viewport, nicht nach der Breite des Formulars, daher sind die Felder bei 800 px neben dem Seitenmenü der Demo (Formular ca. 350 px) schmal, genau wie in Bootstrap 5.
+- **Noch nicht geprüft:** echtes Wischen auf einem Touch-Gerät (der Emulator liefert nur Mausklicks).
 - **Prüfen:** Navbar eingeklappt (Toggler öffnet und schliesst `navbar-collapse`), Tabelle mit `d-none sm:d-inline-block`-Beschriftungen, `sm:`-/`md:`-Raster in EditorForm und SearchForm, `DisableTouchSwiping` beim Carousel (`carousel-no-touch`) auf einem Touch-Gerät oder im Emulator.
 
 ### D4 – Tastaturbedienung
