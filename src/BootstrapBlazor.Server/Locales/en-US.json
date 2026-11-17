@@ -3673,6 +3673,8 @@
     "NavsFillAndAlignTitle": "Fill and align",
     "NavsNormalIntro": "In this example, by setting the <code>Items</code> property, the navigation component is assigned through the program api and the <code>NavLink</code> component is written directly to the <code>ChildContext</code> of the navigation component",
     "NavsNormalTitle": "Basic navigation style.",
+    "NavsOverflowIntro": "When the items do not fit, they move into a \"More\" menu: set <code>IsOverflow</code> (based on the <code>NavOverflow</code> of Bootstrap 6). Change the width of the window to see it; the text of the button is <code>OverflowText</code>. The items should not change after the first render.",
+    "NavsOverflowTitle": "Overflow",
     "NavsPillsIntro": "Control the background color of the navigation menu by setting the <code>IsPills</code> property",
     "NavsPillsTitle": "Capsule",
     "NavsTitle": "Nav",

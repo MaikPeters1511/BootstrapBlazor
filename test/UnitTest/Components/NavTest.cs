@@ -71,6 +71,53 @@ public class NavTest : BootstrapBlazorTestBase
     }
 
     [Fact]
+    public void IsOverflow_Default_NoWrapper()
+    {
+        var cut = Context.Render<Nav>(builder =>
+        {
+            builder.Add(s => s.Items, GetItems());
+        });
+
+        Assert.Empty(cut.FindAll(".nav-overflow"));
+        Assert.Empty(cut.FindAll("div.nav-item"));
+        Assert.Equal("nav", cut.Find("nav").ClassName);
+    }
+
+    [Fact]
+    public void IsOverflow_Wrapper_Ok()
+    {
+        // Bootstrap 6 nav overflow needs a wrapper around the .nav and a .nav-item around every .nav-link
+        var cut = Context.Render<Nav>(builder =>
+        {
+            builder.Add(s => s.Items, GetItems());
+            builder.Add(s => s.IsOverflow, true);
+            builder.Add(s => s.IsPills, true);
+        });
+
+        var wrapper = cut.Find("div.nav-overflow");
+        var nav = wrapper.QuerySelector("nav.nav.nav-pills");
+        Assert.NotNull(nav);
+        var item = nav.QuerySelector("div.nav-item > a");
+        Assert.NotNull(item);
+        Assert.Contains("href=\"/Admin/Index\"", item.OuterHtml);
+        Assert.False(string.IsNullOrEmpty(wrapper.Id));
+    }
+
+    [Fact]
+    public void IsOverflow_AdditionalAttributes_StayOnNav()
+    {
+        var cut = Context.Render<Nav>(builder =>
+        {
+            builder.Add(s => s.Items, GetItems());
+            builder.Add(s => s.IsOverflow, true);
+            builder.Add(s => s.AdditionalAttributes, new Dictionary<string, object> { ["class"] = "my-nav" });
+        });
+
+        Assert.Contains("my-nav", cut.Find("nav").ClassName);
+        Assert.DoesNotContain("my-nav", cut.Find("div.nav-overflow").ClassName);
+    }
+
+    [Fact]
     public void IsPills_OK()
     {
         var cut = Context.Render<Nav>(builder =>

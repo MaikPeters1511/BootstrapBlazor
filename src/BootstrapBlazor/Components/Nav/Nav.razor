@@ -1,13 +1,31 @@
 ﻿@namespace BootstrapBlazor.Components
-@inherits BootstrapComponentBase
+@inherits BootstrapModuleComponentBase
+@attribute [BootstrapModuleAutoLoader(JSObjectReference = true)]
 
-<nav @attributes="@AdditionalAttributes" class="@ClassString">
-    @foreach (var item in Items)
-    {
-        @Render(item)
-    }
-    @ChildContent
-</nav>
+@if (IsOverflow)
+{
+    <div id="@Id" class="nav-overflow">
+        <nav @attributes="@AdditionalAttributes" class="@ClassString">
+            @foreach (var item in Items)
+            {
+                <div @key="item" class="nav-item">
+                    @Render(item)
+                </div>
+            }
+            @ChildContent
+        </nav>
+    </div>
+}
+else
+{
+    <nav @attributes="@AdditionalAttributes" class="@ClassString">
+        @foreach (var item in Items)
+        {
+            @Render(item)
+        }
+        @ChildContent
+    </nav>
+}
 
 @code {
     RenderFragment<NavLink> Render => item =>
