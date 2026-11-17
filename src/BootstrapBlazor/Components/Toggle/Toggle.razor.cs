@@ -19,7 +19,7 @@ public partial class Toggle
         .Build();
 
     private string? ToggleOnClassString => CssBuilder.Default("toggle on")
-        .AddClass($"bg-{Color.ToDescriptionString()}", Color != Color.None)
+        .AddClass($"theme-{Color.ToDescriptionString()}", Color != Color.None)
         .Build();
 
     private string? WrapperClassString => CssBuilder.Default("toggle")

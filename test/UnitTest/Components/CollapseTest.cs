@@ -91,7 +91,8 @@ public class CollapseTest : BootstrapBlazorTestBase
                 builder.CloseComponent();
             }));
         });
-        cut.Contains("bg-secondary");
+        cut.Contains("theme-secondary");
+        Assert.DoesNotContain("bg-secondary", cut.Markup);
     }
 
     [Fact]

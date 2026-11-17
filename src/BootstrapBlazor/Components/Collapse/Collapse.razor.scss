@@ -17,6 +17,13 @@
             background-color: var(--bs-accordion-active-bg);
         }
 
+        // theme-{color} (TitleColor): background and matching text color come from one token pair
+        &[class*="theme-"],
+        &[class*="theme-"] > .accordion-button {
+            color: var(--bs-theme-contrast);
+            background-color: var(--bs-theme-bg);
+        }
+
         .accordion-button {
             --bs-accordion-inner-border-radius: 0;
             flex: 1 1 auto;

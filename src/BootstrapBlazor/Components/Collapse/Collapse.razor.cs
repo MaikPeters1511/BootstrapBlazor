@@ -13,7 +13,7 @@ public partial class Collapse
 {
     private static string? GetHeaderButtonClassString(CollapseItem item) => CssBuilder.Default("accordion-button")
         .AddClass("collapsed", item.IsCollapsed)
-        .AddClass($"bg-{item.TitleColor.ToDescriptionString()}", item.TitleColor != Color.None)
+        .AddClass($"theme-{item.TitleColor.ToDescriptionString()}", item.TitleColor != Color.None)
         .Build();
 
     private static string? GetItemIconString(CollapseItem item) => CssBuilder.Default("accordion-item-icon")
@@ -21,7 +21,7 @@ public partial class Collapse
         .Build();
 
     private static string? GetHeaderClassString(CollapseItem item) => CssBuilder.Default("accordion-header")
-        .AddClass($"bg-{item.TitleColor.ToDescriptionString()}", item.TitleColor != Color.None)
+        .AddClass($"theme-{item.TitleColor.ToDescriptionString()}", item.TitleColor != Color.None)
         .AddClass(item.HeaderClass)
         .Build();
 

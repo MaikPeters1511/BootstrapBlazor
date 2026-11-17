@@ -14,7 +14,7 @@ public class FileIconTest : TestBase
         {
             pb.Add(a => a.Extension, ".xlsx");
         });
-        cut.Contains("badge bg-primary");
+        cut.Contains("badge theme-primary");
         cut.Contains(".xlsx");
     }
 
@@ -26,7 +26,7 @@ public class FileIconTest : TestBase
             pb.Add(a => a.Extension, ".xlsx");
             pb.Add(a => a.IconColor, Color.Danger);
         });
-        cut.Contains("badge bg-danger");
+        cut.Contains("badge theme-danger");
     }
 
     [Fact]
