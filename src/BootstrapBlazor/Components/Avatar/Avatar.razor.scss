@@ -12,6 +12,9 @@
     height: var(--bb-avatar-height);
     background-color: var(--bb-avatar-bg);
     color: var(--bb-avatar-color);
+    // Bootstrap 6 .avatar writes the text in capitals and medium weight, BB avatars keep it as written
+    text-transform: none;
+    font-weight: inherit;
     overflow: hidden;
     display: inline-flex;
     justify-content: center;

@@ -699,6 +699,17 @@ public class BootstrapAssetsTest
     }
 
     [Fact]
+    public void AvatarScss_ResetsBootstrap6TextStyle()
+    {
+        // Bootstrap 6 has its own .avatar (uppercase, medium weight): BB avatars keep the text as written
+        var content = ReadSource("src", "BootstrapBlazor", "Components", "Avatar", "Avatar.razor.scss");
+        var block = content[content.IndexOf(".avatar {", StringComparison.Ordinal)..];
+        block = block[..block.IndexOf("}\n\n", StringComparison.Ordinal)];
+        Assert.Contains("text-transform: none", block);
+        Assert.Contains("font-weight: inherit", block);
+    }
+
+    [Fact]
     public void DemoHeaderCss_Buttons_Transparent()
     {
         // a bare .btn of Bootstrap 6 has a light neutral background (Bootstrap 5: transparent), the buttons on the colored

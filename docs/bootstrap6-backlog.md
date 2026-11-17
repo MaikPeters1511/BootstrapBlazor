@@ -45,7 +45,9 @@ Bootstrap-Version: `6.0.0-alpha.1`. Lokaler Teststand: 2811 von 2813 (Release), 
 | G12b | ~~Komponenten mit `bg-success`/`bg-warning` und Text darauf: Collapse, FileIcon, Toggle (Kontrast 1,2 bis 2,0)~~ erledigt 2026-11-17 | P3 | M |
 | G13 | ~~`iframe` und `color-scheme` (Reboot setzt `color-scheme: light dark`) prüfen~~ geprüft, kein Fehler 2026-11-17 | P3 | S |
 | G14 | ~~Abhängigkeit vom Global `window.bootstrap` (34 Stellen in 17 Dateien)~~ erledigt 2026-11-17 | P3 | M |
-| G15 | Neue Bootstrap-6-Bausteine als Chance bewerten (Combobox, Datepicker, Stepper, Avatar, …) | P3 | M |
+| G15 | ~~Neue Bootstrap-6-Bausteine als Chance bewerten (Combobox, Datepicker, Stepper, Avatar, …)~~ bewertet 2026-11-17, Avatar-Fehler behoben | P3 | M |
+| G15a | Neue Komponente `PasswordStrength` auf Basis von `bootstrap.Strength` (BB hat keine) | P3 | M |
+| G15b | `NavOverflow` für `Nav` und Tabs prüfen (Überlauf mit „Mehr“-Menü) | P3 | M |
 
 ---
 
@@ -360,7 +362,28 @@ Quelle: <https://getbootstrap.com/docs/6.0/>, gelesen am 2026-11-16: der Migrati
 - Ursprüngliche Beschreibung:
 - Bootstrap 6 liefert nur ES-Module und kein Global; unser Bundle stellt `window.bootstrap` selbst bereit (`BootstrapAssetsTest` sichert das). 34 Stellen in 17 Dateien der Bibliothek nutzen `bootstrap.*`. Kein Fehler, aber bei einem Update des Bundles (F1) die erste Stelle, die brechen kann; langfristig `import` aus einem Modul.
 
-### G15 – Neue Bausteine von Bootstrap 6
+### G15 – Neue Bausteine von Bootstrap 6 – bewertet 2026-11-17
+- **Vorgehen:** Das mitgelieferte Bundle (`6.0.0-alpha.1`) enthält die Klassen `Combobox`, `Datepicker`, `Chips`, `OtpInput`, `Strength`, `NavOverflow`, `Range`, `Toggler`. Mit dem Markup der offiziellen Dokumentation habe ich sie in die geladene Demo-Seite eingesetzt (mit allen BB-Stilen, dunkles Design) und bedient: Tippen, Klicken, Tastatur, `show()`. Danach das CSS auf Namenskollisionen mit BB-Klassen durchsucht.
+- **Ergebnis je Baustein:**
+
+| Baustein | Befund im Browser | Vergleich mit BB | Entscheidung |
+|---|---|---|---|
+| `Strength` (Passwortstärke) | Vier Segmente und Text („Good“) reagieren beim Tippen; Optionen `minLength`, `messages`, `scorer`, Ereignis `strengthChange.bs.strength` | BB hat nichts Vergleichbares | Chance: G15a |
+| `OtpInput` | Schlitze, Fokusring, Zeichen rücken weiter; Ereignis `complete.bs.otpInput` | BB hat `OtpInput` (Blazor-gebunden, eigene Validierung) | BB behalten |
+| `Stepper` | Waagerecht mit `theme-success`/aktiv, sieht stimmig aus | BB hat `Step` | BB behalten; optional später angleichen |
+| `Combobox` | Öffnet, wählt (`change.bs.combobox`), Menü passt zum BB-Stil | BB `Select`/`AutoComplete`/`MultiSelect` binden an Blazor, validieren, virtualisieren | BB behalten (Combobox ist reines JavaScript mit verstecktem Eingabefeld) |
+| `Datepicker` | Mit `locale: 'de-DE'` Wochentage „Mo, Di, Mi …“, Monat korrekt, öffnet über `show()` (über Daten-API nur mit `data-bs-toggle="datepicker"`); bringt `vanilla-calendar-pro` 3.4.0 mit | BB `DateTimePicker`/`DateTimeRange` können Zeit, Bereiche, Wochen/Monate/Jahre | BB behalten (nur Datum) |
+| `NavOverflow` | Überzählige Einträge wandern hinter „Mehr“ (`moreText` einstellbar), 4 von 6 sichtbar bei 360 px | `Nav` und `Tab` haben keinen eigenen Überlauf mit Menü | Chance: G15b |
+| `Chips` | Chip mit Schließen-Knopf und `theme-*` | BB `Tag`/`TagsInput` | BB behalten |
+| `Avatar` (CSS) | Das `.avatar` von Bootstrap 6 und das von BB teilen den Klassennamen und die Größenstufen `xs`..`xl` | BB `Avatar` | **Fehler gefunden und behoben**, siehe unten |
+| Drawer-Wischgeste | Nicht im Browser prüfbar (kein Touch) | BB `Drawer` | in D3 |
+| `Form-adorn`, `.form-field` | Mein Markup nach Vermutung brach das Layout; Dokumentation nicht gelesen | – | nicht bewertet |
+
+- **Namenskollisionen:** Von den neuen Klassen (`stepper*`, `avatar*`, `chip*`, `combobox*`, `otp*`, `strength*`, `nav-overflow*`, `form-adorn*`, `form-field*`, `drawer*`) nutzt BB nur `.avatar` und `.avatar-xs/-sm/-lg/-xl`. Alle anderen Namen sind frei.
+- **Fehler (behoben):** Weil BB-CSS nicht in einer Ebene liegt, gewinnen Breite, Höhe, Rundung und Farben von BB; das `.avatar` von Bootstrap 6 lieferte aber weiter `text-transform: uppercase` und `font-weight: 500`. Der Text-Avatar „User“ der Demo erschien als „USER“ (in Bootstrap 5: „User“). `Avatar.razor.scss` setzt jetzt `text-transform: none` und `font-weight: inherit` (`AvatarScss_ResetsBootstrap6TextStyle`, war rot; im Browser: „User“, Gewicht 400). Das `.avatar` von Bootstrap 6 bringt außerdem `position: relative` und `font-size` aus `--bs-avatar-size`; beides verändert die BB-Darstellung nicht.
+- **Eigene Punkte:** G15a (PasswordStrength), G15b (NavOverflow). Datepicker, Combobox und Chips sind bewusst kein Ersatz.
+
+(Ursprüngliche Beschreibung:)
 - **Neu in Bootstrap 6:** Combobox, Datepicker (Peer-Abhängigkeit `vanilla-calendar-pro`), Stepper, Avatar, Chip und Chip-Input, OTP-Input, Password-Strength, Range (JavaScript), Toggler, Nav-Overflow, Submenü im Menü, Form-Adorn, `.form-field`, Prose, Drawer mit Wisch-Geste, `.btn-icon`/`.btn-text`/`.btn-subtle`/`.btn-styled`, `.card-translucent`/`.card-subtle`, `.accordion-gap`, `.pagination.theme-*`, `hover-lift`, Motion-Hilfsklassen, Container-Query- und `dvh`-Hilfsklassen, `color-scheme`-Hilfsklassen, geschichtete Schatten.
 - **Einordnung:** BB hat eigene Komponenten für die meisten (Select/AutoComplete/MultiSelect, DateTimePicker, Step, Avatar, Tag/TagsInput, OtpInput, Slider, Drawer, Tab-Überlauf). Keine Pflicht, sie zu ersetzen; Chancen sind Password-Strength (fehlt in BB), Nav-Overflow für Tabs und Menüs und die Wisch-Geste für Drawer. Bei einer Entscheidung pro Baustein einen eigenen Punkt anlegen.
 
