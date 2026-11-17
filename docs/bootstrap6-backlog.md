@@ -42,7 +42,7 @@ Bootstrap-Version: `6.0.0-alpha.1`. Lokaler Teststand: 2811 von 2813 (Release), 
 | G10 | ~~Reste von Bootstrap 5 in der Demo (`lead`, `text-body-secondary`, `--bs-border-radius-lg`, `xxl`)~~ erledigt 2026-11-16 | P3 | S |
 | G11 | Fokusringe über die Tokens `--bs-focus-ring*` vereinheitlichen | P3 | M |
 | G12 | Kontrast der Motronic-Farben (weisse Schrift auf `primary`, `success`, `warning`) | P3 | M |
-| G13 | `iframe` und `color-scheme` (Reboot setzt `color-scheme: light dark`) prüfen | P3 | S |
+| G13 | ~~`iframe` und `color-scheme` (Reboot setzt `color-scheme: light dark`) prüfen~~ geprüft, kein Fehler 2026-11-17 | P3 | S |
 | G14 | Abhängigkeit vom Global `window.bootstrap` (34 Stellen in 17 Dateien) | P3 | M |
 | G15 | Neue Bootstrap-6-Bausteine als Chance bewerten (Combobox, Datepicker, Stepper, Avatar, …) | P3 | M |
 
@@ -333,8 +333,10 @@ Quelle: <https://getbootstrap.com/docs/6.0/>, gelesen am 2026-11-16: der Migrati
 ### G12 – Kontrast der Motronic-Farben
 - Die Doku weist auf WCAG 2.2 hin (4,5:1 für Text, 3:1 für Nicht-Text). Gemessen im Hover-Lauf: weisse Schrift auf `primary` 2,9, `success` 2,0, `warning` 1,6 (Metronic-Palette, in der Bootstrap-5-Fassung gleich). Bootstrap 6 bringt je Farbe ein `--bs-*-contrast`-Token mit; mit dunkler Schrift auf `success`/`warning` wären die Werte lesbar. Gestaltungsentscheidung, keine Regression.
 
-### G13 – `iframe` und `color-scheme`
+### G13 – `iframe` und `color-scheme` – geprüft, kein Fehler 2026-11-17
 - Reboot setzt `color-scheme: light dark` auf jedes `iframe`, damit eingebettete Seiten bei erzwungenem Thema durchsichtig bleiben; für Einbettungen ohne dunkles Design gibt es `.color-scheme-light`. BB hat die Komponente `IFrame` und Demo-Seiten mit eingebetteten Fremdseiten (`/iframe`, `/meet`, `/office-viewer`, `/pdf-viewer`). Im dunklen und im hellen Design prüfen, ob der Hintergrund stimmt.
+- **Ergebnis:** Die Demo-Seiten betten Fremdseiten ein, die offline nicht laden; deshalb mit lokalen `srcdoc`-Iframes im Demo-Browser geprüft. Dunkles Design: eine Seite ohne eigenes Farbschema bekommt eine weisse Fläche (Text bleibt lesbar), Seiten mit `color-scheme: dark` oder `light dark` bleiben durchsichtig und passen sich an; mit `.color-scheme-light` bleibt auch die Seite ohne Schema durchsichtig, ihr schwarzer Text läge dann auf dem dunklen Hintergrund. Helles Design: weisse Fläche, lesbar. Das entspricht dem Verhalten von Bootstrap 5, keine Codeänderung. Hinweis für Nutzer: `.color-scheme-light` ist nur für Seiten gedacht, die selbst einen hellen Hintergrund malen.
+
 
 ### G14 – Abhängigkeit vom Global `window.bootstrap`
 - Bootstrap 6 liefert nur ES-Module und kein Global; unser Bundle stellt `window.bootstrap` selbst bereit (`BootstrapAssetsTest` sichert das). 34 Stellen in 17 Dateien der Bibliothek nutzen `bootstrap.*`. Kein Fehler, aber bei einem Update des Bundles (F1) die erste Stelle, die brechen kann; langfristig `import` aus einem Modul.
