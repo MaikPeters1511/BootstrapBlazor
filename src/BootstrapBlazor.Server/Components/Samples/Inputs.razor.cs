@@ -12,6 +12,12 @@ public partial class Inputs
 {
     private string? PlaceHolderText { get; set; }
 
+    private string? _adornUser;
+
+    private string? _adornMail;
+
+    private string? _adornSite;
+
     [NotNull]
     private Foo? Model { get; set; }
 

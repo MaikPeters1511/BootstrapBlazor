@@ -251,4 +251,23 @@
     </div>
 </DemoBlock>
 
+<DemoBlock Title="@Localizer["InputsAdornTitle"]"
+           Introduction="@Localizer["InputsAdornIntro"]"
+           Name="Adorn">
+    <div class="row g-3">
+        <div class="col-12 sm:col-6">
+            <BootstrapInput @bind-Value="_adornUser" PrefixIcon="fa-solid fa-user" PlaceHolder="User name" ShowLabel="true" DisplayText="PrefixIcon" />
+        </div>
+        <div class="col-12 sm:col-6">
+            <BootstrapInput @bind-Value="_adornMail" SuffixText="@@example.com" PlaceHolder="name" ShowLabel="true" DisplayText="SuffixText" />
+        </div>
+        <div class="col-12 sm:col-6">
+            <BootstrapInput @bind-Value="_adornSite" PrefixText="https://" SuffixIcon="fa-solid fa-globe" PlaceHolder="example.com" IsClearable="true" ShowLabel="true" DisplayText="PrefixText SuffixIcon IsClearable" />
+        </div>
+        <div class="col-12 sm:col-6">
+            <BootstrapInput @bind-Value="_adornUser" PrefixIcon="fa-solid fa-user" Color="Color.Danger" ShowLabel="true" DisplayText="Color" />
+        </div>
+    </div>
+</DemoBlock>
+
 <AttributeTable Type="typeof(BootstrapInput<>)" />

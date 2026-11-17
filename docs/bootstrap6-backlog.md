@@ -51,7 +51,7 @@ Bootstrap-Version: `6.0.0-alpha.1`. Lokaler Teststand: 2811 von 2813 (Release), 
 | G15b | ~~`NavOverflow` für `Nav` und Tabs prüfen (Überlauf mit „Mehr“-Menü)~~ erledigt 2026-11-17 (`Nav` ja, `Tab` bewusst nein) | P3 | M |
 | H1 | ~~Neue Komponente `ScrollSpy` (BB hat nur `Anchor`, das beim Klick scrollt)~~ erledigt 2026-11-17 | P3 | M |
 | H2 | `.form-field` und `.form-group` (Raster für Beschriftung, Eingabe, Hilfetext) für `ValidateForm`/`BootstrapInput` bewerten | P3 | L |
-| H3 | `.form-adorn` (Symbol oder Text im Eingabefeld) mit den Präfix-/Suffix-Möglichkeiten von `BootstrapInput` vergleichen | P3 | M |
+| H3 | ~~`.form-adorn` (Symbol oder Text im Eingabefeld) mit den Präfix-/Suffix-Möglichkeiten von `BootstrapInput` vergleichen~~ erledigt 2026-11-17 | P3 | M |
 | H4 | `bootstrap.Range` (Füllung, Wertblase, Teilstriche) mit `Slider` vergleichen | P3 | M |
 | H5 | `.prose` für das HTML der Markdown-Komponenten (`Markdown`, `CherryMarkdown`) prüfen | P3 | S |
 | H6 | `Avatar`: `avatar-status`, `avatar-stack`, `avatar-subtle` aus Bootstrap 6 übernehmen oder als Parameter anbieten | P3 | M |
@@ -448,7 +448,11 @@ Quelle: `https://getbootstrap.com/docs/6.0/getting-started/install/` und die Sei
 - **BB:** `ValidateForm` und die Eingabekomponenten bringen eigene Beschriftung (`BootstrapLabel`, `ShowLabel`), Hilfetext und Prüfmeldungen mit; ein Umbau auf `.form-field` würde das Markup aller Eingabekomponenten ändern.
 - **Vorgehen:** Erst bewerten, ob nur `CheckboxList`, `RadioList` und `Switch` das Raster für Beschriftung plus Hilfetext übernehmen sollen; ein Umbau von `ValidateForm` lohnt sich nur bei einem klaren Gewinn.
 
-### H3 – `.form-adorn`
+### H3 – `.form-adorn` – erledigt 2026-11-17
+- **Ergebnis:** `BootstrapInput<TValue>` (und damit `BootstrapPassword` und die übrigen Unterklassen) hat die Parameter `PrefixIcon`, `PrefixText`, `SuffixIcon` und `SuffixText`. Ist einer gesetzt, rendert die Komponente `label.form-control.form-adorn` mit `div.form-adorn-icon` (Symbol, `aria-hidden`) und/oder `span.form-adorn-text` vor und hinter dem Eingabefeld; das `input` trägt dann `form-ghost` statt `form-control` (Gültigkeitsklassen `is-valid`/`is-invalid` bleiben am `input`, Bootstrap färbt den Rand über `:has()`). Rand, Fokusring und `Color` (`border-{Farbe}`) gehören zum ganzen Steuerelement. Die Reihenfolge im DOM ist die sichtbare (Präfix, Eingabe, Suffix), deshalb braucht BB `form-adorn-end` nicht. `IsClearable` funktioniert weiter: Das Lösch-Symbol liegt dann im `label` (`BootstrapInput.razor.scss`) und erscheint bei Hover und Fokus. Ohne Zierde bleibt das Markup unverändert. Demo `/input` (Block „Adornments“), Changelogs.
+- **Prüfung:** 8 neue Tests in `InputAdornTest` (kein Wrapper ohne Zierde, Symbol vor dem `input`, Text dahinter, beide Seiten, `Color` am `label`, `IsClearable` im `label`, kein Lösch-Symbol bei `IsDisabled`, `BootstrapPassword`); 2918 von 2920 Tests grün (nur die 2 bekannten `#if DEBUG`-Fehler). Im Browser (dunkles Design): Symbol, Text und beide Seiten zusammen stimmen, Höhe 38 px wie ein normales Feld, Fokusring (3 px) um das ganze Steuerelement, Wert wird übernommen, Lösch-Symbol erscheint im Fokus, `Color.Danger` färbt den Rand rot.
+- **Grenzen:** Wie in Bootstrap 6 gehören keine Schaltflächen in den Wrapper (er ist ein `label`); dafür bleibt `BootstrapInputGroup`. Die Größen `form-control-sm`/`-lg` am Wrapper und das helle Design habe ich nicht eigens geprüft. Andere Eingaben (`BootstrapInputNumber`, `BootstrapInputCurrency`, `Textarea`) haben die Parameter nicht.
+- Ursprüngliche Beschreibung:
 - **Bootstrap 6:** `label.form-control.form-adorn` mit `.form-adorn-icon` oder `.form-adorn-text` und `input.form-ghost`; `.form-adorn-end` setzt die Zierde ans Ende, `form-control-sm`/`-lg` skalieren; keine Schaltflächen im Wrapper.
 - **BB:** `BootstrapInput` hat keine Präfix-/Suffix-Parameter; dafür gibt es `BootstrapInputGroup` mit `BootstrapInputGroupIcon`/`Label`.
 - **Vorgehen:** Prüfen, ob ein Parameter wie `PrefixIcon`/`SuffixText` an `BootstrapInput` nötig ist oder ob `BootstrapInputGroup` genügt.
