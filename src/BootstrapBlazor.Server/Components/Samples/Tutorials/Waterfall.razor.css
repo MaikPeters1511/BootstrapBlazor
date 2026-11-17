@@ -19,5 +19,5 @@
     right: 0;
     padding: .5rem 1rem;
     text-align: center;
-    background-color: rgba(var(--bs-body-bg-rgb), 0.8);
+    background-color: color-mix(in oklab, var(--bs-bg-body) 80%, transparent);
 }

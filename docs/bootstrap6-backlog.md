@@ -38,7 +38,7 @@ Bootstrap-Version: `6.0.0-alpha.1`. Lokaler Teststand: 2811 von 2813 (Release), 
 | G6 | ~~Komponentenabgleich BB-Markup gegen die Bootstrap-6-Doku~~ erledigt 2026-11-17 (FloatingLabel, ToggleButton, Nav behoben) | P2 | M |
 | G7 | ~~Split-Dropdown (`dropdown-toggle-split`) prüfen~~ geprüft, kein Fehler 2026-11-16 | P3 | S |
 | G8 | ~~Tote Selektoren aus Bootstrap 5 aufräumen (`.was-validated`, `.has-validation`)~~ erledigt 2026-11-16 | P3 | S |
-| G9 | `rgba(var(--bs-*-rgb))` durch `color-mix()` ersetzen, Compat-Variablen entfernen | P3 | M |
+| G9 | ~~`rgba(var(--bs-*-rgb))` durch `color-mix()` ersetzen, Compat-Variablen entfernen~~ erledigt 2026-11-17 | P3 | M |
 | G10 | ~~Reste von Bootstrap 5 in der Demo (`lead`, `text-body-secondary`, `--bs-border-radius-lg`, `xxl`)~~ erledigt 2026-11-16 | P3 | S |
 | G11 | Fokusringe über die Tokens `--bs-focus-ring*` vereinheitlichen | P3 | M |
 | G12 | ~~Kontrast der Motronic-Farben (weisse Schrift auf `primary`, `success`, `warning`)~~ success/warning erledigt 2026-11-17 | P3 | M |
@@ -321,7 +321,9 @@ Quelle: <https://getbootstrap.com/docs/6.0/>, gelesen am 2026-11-16: der Migrati
 - `Select.razor.scss` und `ValidateForm.razor.scss` enthalten Regeln für `.was-validated` und `.has-validation` (10 Stellen); Bootstrap 6 kennt beides nicht mehr (Validierung per `data-bs-validate` und `:user-invalid`, serverseitig `.is-invalid`/`.is-valid`). Prüfen, ob BB die Klassen noch selbst setzt; sonst entfernen.
 - **Ergebnis:** BB setzt `.was-validated` nirgends (weder C#, JS noch Razor), `.has-validation` kommt in der Bibliothek nicht mehr vor. Die 10 toten Selektoren sind aus `Select.razor.scss` und `ValidateForm.razor.scss` entfernt; die `.is-valid`/`.is-invalid`-Regeln bleiben. Wächter-Test `ComponentsScss_NoBootstrap5ValidationClasses` (2 Fälle, beide waren rot). Im Browser (`/validate-form`, ungültiges Feld im Fokus): Rand `--bs-danger`, Schatten `none`, wie vorher. Nicht angefasst: `.custom-select` (Bootstrap-4-Klasse) in `ValidateForm.razor.scss`, ebenfalls tot, aber ein eigener Aufräumpunkt.
 
-### G9 – `rgba(var(--bs-*-rgb))`
+### G9 – `rgba(var(--bs-*-rgb))` – erledigt 2026-11-17
+- **Ergebnis:** 64 Stellen in 16 Dateien (Bibliothek: `variables.scss` 26 und 7 Komponenten-SCSS; Demo: 7 Dateien) auf `color-mix(in oklab, <Farbe> N%, transparent)` umgestellt: `body-color` -> `var(--bs-fg-body)`, `body-bg` -> `var(--bs-bg-body)`, `emphasis-color` -> `light-dark(var(--bs-black), var(--bs-white))`, `primary` -> `var(--bs-primary-bg)`. In `compat.scss` entfallen `--bs-body-bg-rgb`, `--bs-body-color-rgb`, `--bs-emphasis-color-rgb`, `--bs-primary-rgb` samt dem Dunkel-Block; in `Index.razor.css` die ungenutzten `--bs-primary-rgb`/`--bs-secondary-rgb`. Der Wächter `CompatScss_BodyBgRgb_Ok` ist durch `Styles_NoRgbTokens` ersetzt (sucht in allen SCSS/CSS der Bibliothek und der Demo). Im Browser geprüft: `--bb-segmented-bg` 6 % der Textfarbe, folgt dem Thema (hell `#181C32`, dunkel `#dee2e6`); Tabelle: Hover 10 %, Loader 20 %.
+- **Hinweis:** Der Verlauf der Startseite nutzt jetzt die Primärfarbe des Themes statt des festen Blaus `#0d6efd`. Die eigenen `--bd-*-rgb` der Startseite bleiben. Anwendungscode mit `rgba(var(--bs-body-color-rgb), x)` verliert den Wert (wie in Bootstrap 6 selbst).
 - Bootstrap 6 hat alle `--bs-*-rgb`-Variablen entfernt und empfiehlt `color-mix(in oklab, var(--bs-primary), transparent 50%)`. Wir stützen uns auf `compat.scss` (`--bs-body-color-rgb`, `--bs-emphasis-color-rgb`, `--bs-primary-rgb`, `--bs-body-bg-rgb`): Bibliothek 26 Stellen in 8 Dateien, `variables.scss` 26 Stellen, Demo 12. Funktioniert, ist aber ein Zwischenzustand; Umstellung in einem Schritt, danach die Compat-Variablen und den Wächter-Test streichen.
 
 ### G10 – Reste von Bootstrap 5 in der Demo – erledigt 2026-11-16

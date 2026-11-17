@@ -3,7 +3,7 @@
 }
 
     .carousel-item-demo2 .demo-item {
-        background-color: rgba(var(--bs-body-color-rgb),.08);
+        background-color: color-mix(in oklab, var(--bs-fg-body) 8%, transparent);
         border-radius: var(--bs-border-radius);
         padding: 1rem 2rem;
     }

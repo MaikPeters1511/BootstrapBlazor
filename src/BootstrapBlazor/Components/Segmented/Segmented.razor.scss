@@ -66,7 +66,7 @@
 
         &.mask {
             background-color: var(--bb-segmented-item-selected-bg);
-            box-shadow: 0 1px 2px 0 rgba(var(--bs-body-color-rgb),.03), 0 1px 6px -1px rgba(var(--bs-body-color-rgb),.02), 0 2px 4px 0 rgba(var(--bs-body-color-rgb),.02);
+            box-shadow: 0 1px 2px 0 color-mix(in oklab, var(--bs-fg-body) 3%, transparent), 0 1px 6px -1px color-mix(in oklab, var(--bs-fg-body) 2%, transparent), 0 2px 4px 0 color-mix(in oklab, var(--bs-fg-body) 2%, transparent);
             pointer-events: none;
             position: absolute;
             left: 0;
@@ -76,11 +76,11 @@
 
         &.selected {
             background-color: var(--bb-segmented-item-selected-bg);
-            box-shadow: 0 1px 2px 0 rgba(var(--bs-body-color-rgb),.03), 0 1px 6px -1px rgba(var(--bs-body-color-rgb),.02), 0 2px 4px 0 rgba(var(--bs-body-color-rgb),.02);
+            box-shadow: 0 1px 2px 0 color-mix(in oklab, var(--bs-fg-body) 3%, transparent), 0 1px 6px -1px color-mix(in oklab, var(--bs-fg-body) 2%, transparent), 0 2px 4px 0 color-mix(in oklab, var(--bs-fg-body) 2%, transparent);
         }
 
         &.disabled {
-            color: rgba(var(--bs-body-color-rgb),.25);
+            color: color-mix(in oklab, var(--bs-fg-body) 25%, transparent);
             cursor: not-allowed;
         }
 
@@ -115,5 +115,5 @@
 }
 
 [data-bs-theme='dark'] .segmented {
-    --bb-segmented-item-selected-bg: rgba(var(--bs-body-color-rgb),.12);
+    --bb-segmented-item-selected-bg: color-mix(in oklab, var(--bs-fg-body) 12%, transparent);
 }

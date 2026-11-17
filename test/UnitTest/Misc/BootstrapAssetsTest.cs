@@ -640,12 +640,24 @@ public class BootstrapAssetsTest
     }
 
     [Fact]
-    public void CompatScss_BodyBgRgb_Ok()
+    public void Styles_NoRgbTokens()
     {
-        // Bootstrap 5 stylesheets (the demo hero gradient, user code) build translucent colors with rgba(var(--bs-body-bg-rgb), x)
-        var content = ReadSource("src", "BootstrapBlazor", "wwwroot", "scss", "compat.scss");
-        Assert.Matches(@":root\s*\{[^}]*--bs-body-bg-rgb: 255, 255, 255;", content);
-        Assert.Matches(@"\[data-bs-theme='dark'\]\s*\{[^}]*--bs-body-bg-rgb: 33, 37, 41;", content);
+        // Bootstrap 6 removed every --bs-*-rgb token: translucent colors use color-mix(), no stylesheet may rely on rgba(var(--bs-*-rgb))
+        var files = new List<string>();
+        foreach (var dir in new[] { new[] { "src", "BootstrapBlazor" }, new[] { "src", "BootstrapBlazor.Server" } })
+        {
+            var folder = Path.GetFullPath(Path.Combine(new[] { GetProjectRoot() }.Concat(dir).ToArray()));
+            files.AddRange(Directory.EnumerateFiles(folder, "*.*", SearchOption.AllDirectories)
+                .Where(p => (p.EndsWith(".scss") || p.EndsWith(".razor.css") || p.EndsWith("site.css"))
+                    && !p.Contains($"{Path.DirectorySeparatorChar}core{Path.DirectorySeparatorChar}")
+                    && !p.Contains($"{Path.DirectorySeparatorChar}bin{Path.DirectorySeparatorChar}")
+                    && !p.Contains($"{Path.DirectorySeparatorChar}obj{Path.DirectorySeparatorChar}")));
+        }
+        var offenders = files.Where(p => Regex.IsMatch(File.ReadAllText(p), @"rgba?\(\s*var\(--bs-(body-color|body-bg|emphasis-color|primary)-rgb\)")).ToList();
+        Assert.Empty(offenders);
+
+        var compat = ReadSource("src", "BootstrapBlazor", "wwwroot", "scss", "compat.scss");
+        Assert.DoesNotMatch(@"--bs-(body-color|body-bg|emphasis-color|primary)-rgb\s*:", compat);
     }
 
     [Fact]

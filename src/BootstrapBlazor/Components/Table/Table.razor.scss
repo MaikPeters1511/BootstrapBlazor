@@ -19,16 +19,16 @@
     --bs-table-hover-bg: rgba(0, 0, 0, .075);
     --bb-table-search-body-margin: 1rem;
     --bb-table-copy-column-margin-right: .5rem;
-    --bb-table-column-fixed-border-color: rgba(var(--bs-body-color-rgb), .18);
-    --bb-loader-bg: rgba(var(--bs-body-color-rgb), .2);
+    --bb-table-column-fixed-border-color: color-mix(in oklab, var(--bs-fg-body) 18%, transparent);
+    --bb-loader-bg: color-mix(in oklab, var(--bs-fg-body) 20%, transparent);
     --bb-table-column-resizer-color: #ddd;
     --bb-table-column-resizer-hover-color: #ddd;
-    --bb-table-row-active-bg: rgba(var(--bs-body-color-rgb), .08);
-    --bb-table-row-hover-bg: rgba(var(--bs-body-color-rgb), .1);
+    --bb-table-row-active-bg: color-mix(in oklab, var(--bs-fg-body) 8%, transparent);
+    --bb-table-row-hover-bg: color-mix(in oklab, var(--bs-fg-body) 10%, transparent);
     --bb-table-pagination-color: var(--bs-body-color);
     --bb-table-pagination-active-color: var(--bs-body-color);
-    --bb-table-pagination-active-bg: rgba(var(--bs-body-color-rgb), .1);
-    --bb-table-pagination-active-border-color: rgba(var(--bs-body-color-rgb), .15);
+    --bb-table-pagination-active-bg: color-mix(in oklab, var(--bs-fg-body) 10%, transparent);
+    --bb-table-pagination-active-border-color: color-mix(in oklab, var(--bs-fg-body) 15%, transparent);
     position: relative;
     height: 100%;
     display: flex;
@@ -754,7 +754,7 @@ tr.active:not(.is-edit):hover {
 
 .table-bordered thead tr:last-child > th {
     border-bottom-width: 2px;
-    border-bottom-color: rgba(var(--bs-body-color-rgb), 0.125);
+    border-bottom-color: color-mix(in oklab, var(--bs-fg-body) 12.5%, transparent);
 }
 
 .table-striped > tbody > tr.is-master:nth-of-type(4n+1) {

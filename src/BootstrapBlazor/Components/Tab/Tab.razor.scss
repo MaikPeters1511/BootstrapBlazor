@@ -505,11 +505,11 @@
     --bb-tabs-header-bg-color: var(--bs-border-color);
     --bb-tabs-item-body-border-radius: 14.5px;
     --bb-tabs-item-body-padding: 4px 10px;
-    --bb-tabs-item-hover-bg-color: rgba(var(--bs-body-color-rgb), 0.1);
+    --bb-tabs-item-hover-bg-color: color-mix(in oklab, var(--bs-fg-body) 10%, transparent);
     --bb-tabs-item-active-bg-color: var(--bs-body-bg);
     --bb-tabs-item-active-color: var(--bs-body-color);
     --bb-tabs-item-hover-color: var(--bs-body-color);
-    --bb-tabs-item-bg-color: rgba(var(--bs-body-color-rgb), 0.08);
+    --bb-tabs-item-bg-color: color-mix(in oklab, var(--bs-fg-body) 8%, transparent);
     --bb-tabs-item-text-padding: 0 .5rem;
     background-color: var(--bb-tabs-header-bg-color);
 
@@ -629,7 +629,7 @@
                     &:before {
                         content: '';
                         width: 2px;
-                        background-color: rgba(var(--bs-emphasis-color-rgb), .2);
+                        background-color: color-mix(in oklab, light-dark(var(--bs-black), var(--bs-white)) 20%, transparent);
                         position: absolute;
                         left: 0;
                         top: 8px;

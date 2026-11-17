@@ -45,7 +45,7 @@
     .chat-footer .chat-info {
         margin-bottom: .25rem;
         font-size: 80%;
-        color: rgba(var(--bs-body-color-rgb), 0.6);
+        color: color-mix(in oklab, var(--bs-fg-body) 60%, transparent);
     }
 
 ::deep .chat-footer-tx {

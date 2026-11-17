@@ -223,7 +223,7 @@ code {
 }
 
 [data-bs-theme='dark'] code {
-    background-color: rgba(var(--bs-emphasis-color-rgb),.1);
+    background-color: color-mix(in oklab, light-dark(var(--bs-black), var(--bs-white)) 10%, transparent);
 }
 
 .code-label + img,
@@ -270,7 +270,7 @@ code {
 }
 
 [data-bs-theme='dark'] .console-logger {
-    background-color: rgba(var(--bs-emphasis-color-rgb),.1);
+    background-color: color-mix(in oklab, light-dark(var(--bs-black), var(--bs-white)) 10%, transparent);
 }
 
 .icon-theme .icon-dark {
