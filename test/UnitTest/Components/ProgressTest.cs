@@ -20,6 +20,21 @@ public class ProgressTest : TestBase
     }
 
     [Fact]
+    public void Color_UsesTheme()
+    {
+        // Bootstrap 6 colors the bar with theme-*: background and the matching text color (bg-* only sets the background, the white text stays)
+        var cut = Context.Render<Progress>(pb =>
+        {
+            pb.Add(a => a.Color, Color.Success);
+            pb.Add(a => a.IsShowValue, true);
+            pb.Add(a => a.Value, 25);
+        });
+        var bar = cut.Find(".progress-bar");
+        Assert.True(bar.ClassList.Contains("theme-success"));
+        Assert.False(bar.ClassList.Contains("bg-success"));
+    }
+
+    [Fact]
     public void IsStriped_Ok()
     {
         var cut = Context.Render<Progress>(pb =>

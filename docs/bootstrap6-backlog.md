@@ -41,7 +41,8 @@ Bootstrap-Version: `6.0.0-alpha.1`. Lokaler Teststand: 2811 von 2813 (Release), 
 | G9 | `rgba(var(--bs-*-rgb))` durch `color-mix()` ersetzen, Compat-Variablen entfernen | P3 | M |
 | G10 | ~~Reste von Bootstrap 5 in der Demo (`lead`, `text-body-secondary`, `--bs-border-radius-lg`, `xxl`)~~ erledigt 2026-11-16 | P3 | S |
 | G11 | Fokusringe über die Tokens `--bs-focus-ring*` vereinheitlichen | P3 | M |
-| G12 | Kontrast der Motronic-Farben (weisse Schrift auf `primary`, `success`, `warning`) | P3 | M |
+| G12 | ~~Kontrast der Motronic-Farben (weisse Schrift auf `primary`, `success`, `warning`)~~ success/warning erledigt 2026-11-17 | P3 | M |
+| G12b | Komponenten mit `bg-success`/`bg-warning` und Text darauf: Collapse, FileIcon, Toggle (Kontrast 1,2 bis 2,0) | P3 | M |
 | G13 | ~~`iframe` und `color-scheme` (Reboot setzt `color-scheme: light dark`) prüfen~~ geprüft, kein Fehler 2026-11-17 | P3 | S |
 | G14 | Abhängigkeit vom Global `window.bootstrap` (34 Stellen in 17 Dateien) | P3 | M |
 | G15 | Neue Bootstrap-6-Bausteine als Chance bewerten (Combobox, Datepicker, Stepper, Avatar, …) | P3 | M |
@@ -330,8 +331,15 @@ Quelle: <https://getbootstrap.com/docs/6.0/>, gelesen am 2026-11-16: der Migrati
 ### G11 – Fokusringe
 - Bootstrap 6 vereinheitlicht den Fokus über `--focus-ring`, `--focus-ring-width`, `--focus-ring-offset`, `--focus-ring-color` (Mixin `focus-ring`). BB setzt eigene Fokus-Schatten (`$bb-select-focus-shadow` und andere). Tastaturfokus ist an Button, Eingabe, Checkbox und Select sichtbar (D1); eine Vereinheitlichung wäre optisch und für Anpassungen sauberer, ist aber kein Fehler.
 
-### G12 – Kontrast der Motronic-Farben
+### G12 – Kontrast der Motronic-Farben – success und warning erledigt 2026-11-17
 - Die Doku weist auf WCAG 2.2 hin (4,5:1 für Text, 3:1 für Nicht-Text). Gemessen im Hover-Lauf: weisse Schrift auf `primary` 2,9, `success` 2,0, `warning` 1,6 (Metronic-Palette, in der Bootstrap-5-Fassung gleich). Bootstrap 6 bringt je Farbe ein `--bs-*-contrast`-Token mit; mit dunkler Schrift auf `success`/`warning` wären die Werte lesbar. Gestaltungsentscheidung, keine Regression.
+- **Entscheidung (2026-11-17):** Dunkle Schrift auf `success` und `warning`; `primary` (2,9), `danger` (3,7) und `info` (6,0) bleiben weiss, das Metronic-Blau bleibt wie gewohnt. Gemessen (WCAG, weiss gegen dunkel): `success` 2,0 -> 7,7, `warning` 1,6 -> 9,9.
+- **Ergebnis:** `motronic.min.css`: `--bs-success-contrast` neu und `--bs-warning-contrast` auf `var(--bs-gray-900)` (Motronic: `#181C32`). Alle gefüllten Buttons, Badges und Alerts mit `theme-success`/`theme-warning` bekommen so dunkle Schrift (Buttons im Browser: 8,3 und 10,7). `Progress` setzt jetzt `theme-{Farbe}` statt `bg-{Farbe}` (wie in der Bootstrap-6-Doku; `bg-*` setzt nur den Hintergrund, die weisse Schrift blieb). Wächter-Tests `Motronic_LightColorsHaveDarkText` (2 Fälle) und `Color_UsesTheme`, alle waren rot.
+
+### G12b – Komponenten mit `bg-success`/`bg-warning` und Text
+- **Befund:** Diese Komponenten färben ein Element mit `bg-{Farbe}` und legen Text darauf, die Schrift bleibt weiss (gemessen im Browser, Motronic): `Collapse` (Kopfzeile mit `TitleColor`, 1,6 auf success, 1,3 auf warning), `FileIcon` (Badge, 1,6 und 1,2), `Toggle` (Zustand „an“, 2,0 und 1,6). `Switch` und `NullSwitch` setzen ebenfalls `bg-{Farbe}`; dort steht kein Text auf der Farbe (Seite ohne Treffer). `Toast` (`toast-progress`) und `SelectTable` (Zähler) tragen keinen oder keinen auffälligen Text.
+- **Vorgehen:** Je Komponente auf `theme-{Farbe}` umstellen (Hintergrund und passende Schriftfarbe aus einem Token), wo die Komponente Bootstrap-Stile nutzt (`badge`, `accordion-button`); bei `Toggle` die eigene Schriftfarbe in `Toggle.razor.scss` auf `--bs-theme-contrast` legen. Bestehende Tests prüfen die Klassen (`FileIconTest` `badge bg-primary`, `ToggleTest` `bg-success`, `CollapseTest` `bg-secondary`, `SelectTableTest`, `RadioListGenericTest`, `CheckboxListGenericTest`): mitziehen, die `bg-*`-Utilities bleiben für Anwendungscode erhalten.
+
 
 ### G13 – `iframe` und `color-scheme` – geprüft, kein Fehler 2026-11-17
 - Reboot setzt `color-scheme: light dark` auf jedes `iframe`, damit eingebettete Seiten bei erzwungenem Thema durchsichtig bleiben; für Einbettungen ohne dunkles Design gibt es `.color-scheme-light`. BB hat die Komponente `IFrame` und Demo-Seiten mit eingebetteten Fremdseiten (`/iframe`, `/meet`, `/office-viewer`, `/pdf-viewer`). Im dunklen und im hellen Design prüfen, ob der Hintergrund stimmt.
