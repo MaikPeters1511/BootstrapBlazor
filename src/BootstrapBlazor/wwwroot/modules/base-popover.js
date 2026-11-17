@@ -1,5 +1,6 @@
 import { getDescribedElement, getDescribedOwner, hackTooltip, hackPopover, isDisabled, registerBootstrapBlazorModule } from "./utility.js"
 import EventHandler from "./event-handler.js"
+import bootstrap from "./bootstrap.js"
 
 const Popover = {
     init(el, config) {

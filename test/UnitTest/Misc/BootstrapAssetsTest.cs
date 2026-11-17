@@ -103,6 +103,30 @@ public class BootstrapAssetsTest
     }
 
     [Fact]
+    public void ComponentScripts_BootstrapGlobal_OnlyInModule()
+    {
+        // window.bootstrap is read in one place (modules/bootstrap.js); every script that uses bootstrap.Xxx imports it from there
+        var module = Path.Combine(GetProjectRoot(), "src", "BootstrapBlazor", "wwwroot", "modules", "bootstrap.js");
+        Assert.True(File.Exists(module), "modules/bootstrap.js missing");
+        Assert.Contains("window.bootstrap", File.ReadAllText(module));
+
+        var violations = new List<string>();
+        foreach (var file in GetComponentScripts().Where(f => !string.Equals(f, module, StringComparison.OrdinalIgnoreCase)))
+        {
+            var content = File.ReadAllText(file);
+            if (content.Contains("window.bootstrap"))
+            {
+                violations.Add($"{Path.GetFileName(file)}: reads window.bootstrap");
+            }
+            if (Regex.IsMatch(content, @"\bbootstrap\.[A-Z]\w*") && !Regex.IsMatch(content, @"import\s+bootstrap\s+from\s+[""'][./]+(modules/)?bootstrap\.js[""']"))
+            {
+                violations.Add($"{Path.GetFileName(file)}: uses bootstrap.Xxx without importing modules/bootstrap.js");
+            }
+        }
+        Assert.True(violations.Count == 0, string.Join(Environment.NewLine, violations));
+    }
+
+    [Fact]
     public void ComponentScripts_BootstrapEvents_Ok()
     {
         // every xxx.bs.<component> event used by component scripts must belong to a component of the vendored bundle

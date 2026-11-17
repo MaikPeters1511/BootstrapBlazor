@@ -1,6 +1,7 @@
 ﻿import { copy } from "../../modules/utility.js"
 import Data from "../../modules/data.js"
 import EventHandler from "../../modules/event-handler.js"
+import bootstrap from "../../modules/bootstrap.js"
 
 export function init(id) {
     const el = document.getElementById(id)

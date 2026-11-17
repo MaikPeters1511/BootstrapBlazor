@@ -3,6 +3,7 @@ import { registerSelect, unregisterSelect } from "../../modules/base-select.js"
 import Data from "../../modules/data.js"
 import Popover from "../../modules/base-popover.js"
 import EventHandler from "../../modules/event-handler.js"
+import bootstrap from "../../modules/bootstrap.js"
 
 export function init(id, invoke, options) {
     const el = document.getElementById(id)

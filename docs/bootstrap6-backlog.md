@@ -44,7 +44,7 @@ Bootstrap-Version: `6.0.0-alpha.1`. Lokaler Teststand: 2811 von 2813 (Release), 
 | G12 | ~~Kontrast der Motronic-Farben (weisse Schrift auf `primary`, `success`, `warning`)~~ success/warning erledigt 2026-11-17 | P3 | M |
 | G12b | ~~Komponenten mit `bg-success`/`bg-warning` und Text darauf: Collapse, FileIcon, Toggle (Kontrast 1,2 bis 2,0)~~ erledigt 2026-11-17 | P3 | M |
 | G13 | ~~`iframe` und `color-scheme` (Reboot setzt `color-scheme: light dark`) prüfen~~ geprüft, kein Fehler 2026-11-17 | P3 | S |
-| G14 | Abhängigkeit vom Global `window.bootstrap` (34 Stellen in 17 Dateien) | P3 | M |
+| G14 | ~~Abhängigkeit vom Global `window.bootstrap` (34 Stellen in 17 Dateien)~~ erledigt 2026-11-17 | P3 | M |
 | G15 | Neue Bootstrap-6-Bausteine als Chance bewerten (Combobox, Datepicker, Stepper, Avatar, …) | P3 | M |
 
 ---
@@ -353,7 +353,11 @@ Quelle: <https://getbootstrap.com/docs/6.0/>, gelesen am 2026-11-16: der Migrati
 - **Ergebnis:** Die Demo-Seiten betten Fremdseiten ein, die offline nicht laden; deshalb mit lokalen `srcdoc`-Iframes im Demo-Browser geprüft. Dunkles Design: eine Seite ohne eigenes Farbschema bekommt eine weisse Fläche (Text bleibt lesbar), Seiten mit `color-scheme: dark` oder `light dark` bleiben durchsichtig und passen sich an; mit `.color-scheme-light` bleibt auch die Seite ohne Schema durchsichtig, ihr schwarzer Text läge dann auf dem dunklen Hintergrund. Helles Design: weisse Fläche, lesbar. Das entspricht dem Verhalten von Bootstrap 5, keine Codeänderung. Hinweis für Nutzer: `.color-scheme-light` ist nur für Seiten gedacht, die selbst einen hellen Hintergrund malen.
 
 
-### G14 – Abhängigkeit vom Global `window.bootstrap`
+### G14 – Abhängigkeit vom Global `window.bootstrap` – erledigt 2026-11-17
+- **Ergebnis:** Neues Modul `wwwroot/modules/bootstrap.js` ist die einzige Stelle, die `window.bootstrap` liest (Proxy, der erst beim Zugriff auflöst, nicht beim Laden). Die 20 Skripte der Bibliothek (17 Komponenten, `base-popover.js`, `utility.js`, `validate.js`) importieren `bootstrap` von dort; ihre Aufrufe (`bootstrap.Tooltip` usw.) bleiben unverändert. Beim Bundle-Update (F1) oder bei einem späteren Wechsel auf einen echten Import ist nur diese Datei betroffen. Wächter `ComponentScripts_BootstrapGlobal_OnlyInModule` (war rot), `ComponentScripts_BootstrapApi_Ok` prüft weiter die Namen gegen die Exporte des Bundles.
+- **Bewusst kein `import` des ES-Moduls:** Das Bundle läuft als klassisches Skript mit `window.bootstrap` (Data-API und Komponenten teilen sich eine Kopie). Ein zweiter `import` des ES-Moduls hätte eine zweite Kopie mit eigener Instanzen-Map; `getInstance` fände die Instanzen der anderen nicht.
+- **Im Browser geprüft:** Tooltip (Hover), Popover (Hover), Dialog (öffnen, Escape schließt; Instanz vorhanden), Tabelle mit Tooltips, keine JavaScript-Fehler.
+- Ursprüngliche Beschreibung:
 - Bootstrap 6 liefert nur ES-Module und kein Global; unser Bundle stellt `window.bootstrap` selbst bereit (`BootstrapAssetsTest` sichert das). 34 Stellen in 17 Dateien der Bibliothek nutzen `bootstrap.*`. Kein Fehler, aber bei einem Update des Bundles (F1) die erste Stelle, die brechen kann; langfristig `import` aus einem Modul.
 
 ### G15 – Neue Bausteine von Bootstrap 6

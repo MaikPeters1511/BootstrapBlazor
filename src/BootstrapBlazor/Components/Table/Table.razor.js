@@ -4,6 +4,7 @@ import browser from '../../modules/browser.min.mjs'
 import Data from '../../modules/data.js'
 import EventHandler from '../../modules/event-handler.js'
 import Popover from "../../modules/base-popover.js"
+import bootstrap from "../../modules/bootstrap.js"
 
 export async function init(id, invoke, options) {
     const el = document.getElementById(id)
