@@ -164,6 +164,7 @@
     "Alert": "警告框 Alert",
     "Anchor": "锚点 Anchor",
     "AnchorLink": "锚点链接 AnchorLink",
+    "ScrollSpy": "滚动监听 ScrollSpy",
     "AntDesignIcon": "蚂蚁图标 AntDesignIcon",
     "AudioDevice": "音频设备服务 IAudioDevice",
     "AutoComplete": "自动完成 AutoComplete",
@@ -4160,6 +4161,17 @@
     "RowSpanTips6": "行显示一个组件",
     "RowSpanTitle": "跨列功能",
     "RowsTitle": "Row 布局组件"
+  },
+  "BootstrapBlazor.Server.Components.Samples.ScrollSpies": {
+    "ScrollSpiesActive": "当前链接",
+    "ScrollSpiesDescription": "内容滚动时高亮导航中对应的链接，基于 Bootstrap 6 的 <code>ScrollSpy</code>。",
+    "ScrollSpiesFirst": "第一节",
+    "ScrollSpiesNormalIntro": "将 <code>Target</code> 设置为导航的选择器，导航链接的 <code>href</code> 指向内容中元素的 Id。<code>IsSmoothScroll</code> 点击时平滑滚动，<code>OnActivate</code> 返回当前激活的链接，<code>TopMargin</code> 和 <code>RootMargin</code> 调整激活线位置。",
+    "ScrollSpiesNormalTitle": "基础用法",
+    "ScrollSpiesSecond": "第二节",
+    "ScrollSpiesText": "滚动此区域：位于顶部的小节在上方导航中对应的链接会被高亮。",
+    "ScrollSpiesThird": "第三节",
+    "ScrollSpiesTitle": "ScrollSpy 滚动监听"
   },
   "BootstrapBlazor.Server.Components.Samples.Scrolls": {
     "ScrollDescription": "给高度或者宽度超标的组件增加滚动条",

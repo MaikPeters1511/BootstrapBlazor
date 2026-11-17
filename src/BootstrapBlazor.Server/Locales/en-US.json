@@ -164,6 +164,7 @@
     "Alert": "Alert",
     "Anchor": "Anchor",
     "AnchorLink": "AnchorLink",
+    "ScrollSpy": "ScrollSpy",
     "AntDesignIcon": "AntDesign Icon",
     "AudioDevice": "IAudioDevice",
     "AutoComplete": "AutoComplete",
@@ -4160,6 +4161,17 @@
     "RowSpanTips6": "A component in a row",
     "RowSpanTitle": "Cross-column",
     "RowsTitle": "Row"
+  },
+  "BootstrapBlazor.Server.Components.Samples.ScrollSpies": {
+    "ScrollSpiesActive": "Active link",
+    "ScrollSpiesDescription": "Highlights the matching link of a navigation while the content scrolls, based on the <code>ScrollSpy</code> of Bootstrap 6.",
+    "ScrollSpiesFirst": "First",
+    "ScrollSpiesNormalIntro": "Set <code>Target</code> to the selector of the navigation; the <code>href</code> of its links points to the ids in the content. <code>IsSmoothScroll</code> scrolls smoothly on a click, <code>OnActivate</code> reports the active link, <code>TopMargin</code> and <code>RootMargin</code> move the activation line.",
+    "ScrollSpiesNormalTitle": "Basic usage",
+    "ScrollSpiesSecond": "Second",
+    "ScrollSpiesText": "Scroll this area: the link of the section that is at the top is highlighted in the navigation above.",
+    "ScrollSpiesThird": "Third",
+    "ScrollSpiesTitle": "ScrollSpy"
   },
   "BootstrapBlazor.Server.Components.Samples.Scrolls": {
     "ScrollDescription": "Add scroll bars to components whose height or width exceeds the standard",

@@ -1454,6 +1454,11 @@ internal static class MenusLocalizerExtensions
                 },
                 new()
                 {
+                    Text = Localizer["ScrollSpy"],
+                    Url = "scroll-spy"
+                },
+                new()
+                {
                     Text = Localizer["AutoRedirect"],
                     Url = "auto-redirect"
                 },
