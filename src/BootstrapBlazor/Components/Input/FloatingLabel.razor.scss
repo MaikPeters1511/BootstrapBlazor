@@ -10,15 +10,16 @@
             color: var(--bs-secondary-color);
         }
 
-        > .form-control-plaintext ~ label,
-        > .form-control:focus ~ label,
-        > .form-control:not(:placeholder-shown) ~ label,
-        > .form-select ~ label {
+        // Bootstrap 6: the label comes before the input
+        > label:has(~ .form-control-plaintext),
+        > label:has(~ .form-control:focus),
+        > label:has(~ .form-control:not(:placeholder-shown)),
+        > label:has(~ .form-select) {
             transform: scale(.85) translateY(-50%) translateX(0.15rem);
         }
     }
 
-    > .form-control:disabled ~ label::after {
+    > label:has(~ .form-control:disabled)::after {
         background-color: var(--bs-secondary-bg);
         opacity: 1;
     }
