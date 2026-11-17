@@ -349,6 +349,7 @@
     "OtherComponents": "其他组件",
     "OtpInput": "验证码输入框 OtpInput",
     "Pagination": "分页 Pagination",
+    "PasswordStrength": "密码强度 PasswordStrength",
     "PdfReader": "PDF阅读器 PDF Reader",
     "PdfViewer": "PDF阅读器 PDF Viewer",
     "Player": "播放器 Player",
@@ -3821,6 +3822,16 @@
     "PaginationsPageInfoTextIntro": "通过设置 <code>ShowInfo</code> 参数控制是否显示分页信息",
     "PaginationsPageInfoTextTitle": "分页信息",
     "PaginationsTitle": "Pagination 分页"
+  },
+  "BootstrapBlazor.Server.Components.Samples.PasswordStrengths": {
+    "PasswordStrengthsDescription": "基于 Bootstrap 6 <code>Strength</code> 的密码强度指示器：四段条和文字显示输入框中密码的强度。",
+    "PasswordStrengthsLevel": "等级",
+    "PasswordStrengthsNormalIntro": "将 <code>InputId</code> 设置为密码输入框的 Id，组件在浏览器内随输入实时评估；<code>OnStrengthChanged</code> 回调返回等级（<code>Weak</code>、<code>Fair</code>、<code>Good</code>、<code>Strong</code>）。",
+    "PasswordStrengthsNormalTitle": "基础用法",
+    "PasswordStrengthsOptionsIntro": "<code>MinLength</code> 设置得第一分所需的长度（默认 8），<code>ShowText</code> 隐藏文字仅保留分段条。",
+    "PasswordStrengthsOptionsTitle": "最小长度与文字",
+    "PasswordStrengthsPassword": "密码",
+    "PasswordStrengthsTitle": "PasswordStrength 密码强度"
   },
   "BootstrapBlazor.Server.Components.Samples.PdfReaders": {
     "PdfDescription": "在网页中直接嵌入和显示 PDF 文档，无需依赖用户本地安装的 PDF 阅读器，难易度：中等",

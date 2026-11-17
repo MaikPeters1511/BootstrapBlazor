@@ -349,6 +349,7 @@
     "OtherComponents": "Others",
     "OtpInput": "OtpInput",
     "Pagination": "Pagination",
+    "PasswordStrength": "PasswordStrength",
     "PdfReader": "PDF Reader",
     "PdfViewer": "PDF Viewer",
     "Player": "Player",
@@ -3821,6 +3822,16 @@
     "PaginationsPageInfoTextIntro": "Set <code>ShowInfo</code> show/hide the pager info",
     "PaginationsPageInfoTextTitle": "Pager info",
     "PaginationsTitle": "Pagination"
+  },
+  "BootstrapBlazor.Server.Components.Samples.PasswordStrengths": {
+    "PasswordStrengthsDescription": "A password strength indicator based on the <code>Strength</code> of Bootstrap 6: four segments and a text show how strong the password in a field is.",
+    "PasswordStrengthsLevel": "Level",
+    "PasswordStrengthsNormalIntro": "Set <code>InputId</code> to the id of the password field. The component evaluates the value in the browser while typing; <code>OnStrengthChanged</code> reports the level (<code>Weak</code>, <code>Fair</code>, <code>Good</code>, <code>Strong</code>).",
+    "PasswordStrengthsNormalTitle": "Basic usage",
+    "PasswordStrengthsOptionsIntro": "<code>MinLength</code> sets the length that earns the first point (default 8), <code>ShowText</code> hides the text and keeps only the segments.",
+    "PasswordStrengthsOptionsTitle": "Minimum length and text",
+    "PasswordStrengthsPassword": "Password",
+    "PasswordStrengthsTitle": "PasswordStrength"
   },
   "BootstrapBlazor.Server.Components.Samples.PdfReaders": {
     "PdfDescription": "Embed and display PDF documents directly in web pages without relying on a PDF reader installed locally by the user.",

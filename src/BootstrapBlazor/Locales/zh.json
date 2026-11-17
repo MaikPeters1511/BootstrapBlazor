@@ -132,6 +132,12 @@
   "BootstrapBlazor.Components.Pagination": {
     "GotoNavigatorLabelText": "导航到"
   },
+  "BootstrapBlazor.Components.PasswordStrength": {
+    "Weak": "弱",
+    "Fair": "一般",
+    "Good": "良好",
+    "Strong": "强"
+  },
   "BootstrapBlazor.Components.PopConfirmButton": {
     "CloseButtonText": "取消",
     "ConfirmButtonText": "确定",

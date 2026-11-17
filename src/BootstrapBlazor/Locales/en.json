@@ -132,6 +132,12 @@
   "BootstrapBlazor.Components.Pagination": {
     "GotoNavigatorLabelText": "Goto"
   },
+  "BootstrapBlazor.Components.PasswordStrength": {
+    "Weak": "Weak",
+    "Fair": "Fair",
+    "Good": "Good",
+    "Strong": "Strong"
+  },
   "BootstrapBlazor.Components.PopConfirmButton": {
     "CloseButtonText": "Cancel",
     "ConfirmButtonText": "Ok",
