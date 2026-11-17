@@ -498,6 +498,23 @@ public class ButtonTest : BootstrapBlazorTestBase
     }
 
     [Fact]
+    public void ToggleButton_AriaPressed()
+    {
+        // Bootstrap 6 sets aria-pressed only once while it initializes the button, so the component renders the state itself
+        var cut = Context.Render<ToggleButton>(pb =>
+        {
+            pb.Add(a => a.IsActive, false);
+        });
+        Assert.Equal("false", cut.Find("button").GetAttribute("aria-pressed"));
+
+        cut.Render(pb =>
+        {
+            pb.Add(a => a.IsActive, true);
+        });
+        Assert.Equal("true", cut.Find("button").GetAttribute("aria-pressed"));
+    }
+
+    [Fact]
     public async Task ToggleButton_IsAsync()
     {
         var active = false;

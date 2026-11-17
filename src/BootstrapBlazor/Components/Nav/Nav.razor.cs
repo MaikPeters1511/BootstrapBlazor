@@ -22,6 +22,7 @@ public partial class Nav
         .AddClass("justify-content-end", Alignment == Alignment.Right && !IsVertical)
         .AddClass("flex-column", IsVertical)
         .AddClass("nav-pills", IsPills)
+        .AddClass("nav-pills-vertical", IsPills && IsVertical)
         .AddClass("nav-fill", IsFill)
         .AddClass("nav-justified", IsJustified)
         .AddClass("text-end", Alignment == Alignment.Right && IsVertical)
