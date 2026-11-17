@@ -1,6 +1,7 @@
 ﻿import Data from "../../modules/data.js"
 import EventHandler from "../../modules/event-handler.js"
 import Popover from "../../modules/base-popover.js"
+import bootstrap from "../../modules/bootstrap.js"
 
 export function init(id) {
     const el = document.getElementById(id)

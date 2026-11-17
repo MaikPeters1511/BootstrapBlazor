@@ -1,4 +1,5 @@
 import Data from "./data.js"
+import bootstrap from "./bootstrap.js"
 
 export function execute(id, title) {
     const el = document.getElementById(id);

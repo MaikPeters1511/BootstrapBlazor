@@ -1,6 +1,7 @@
 import { getDescribedElement, getDescribedOwner, hackTooltip, hackPopover, isDisabled, registerBootstrapBlazorModule } from "../../modules/utility.js"
 import Data from "../../modules/data.js"
 import EventHandler from "../../modules/event-handler.js"
+import bootstrap from "../../modules/bootstrap.js"
 export { showTooltip, removeTooltip } from "./Button.razor.js"
 
 const config = {

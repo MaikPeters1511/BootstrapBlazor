@@ -1,4 +1,5 @@
 import EventHandler from "./event-handler.js"
+import bootstrap from "./bootstrap.js"
 
 const vibrate = () => {
     if ('vibrate' in window.navigator) {

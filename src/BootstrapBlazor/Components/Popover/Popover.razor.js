@@ -1,5 +1,6 @@
 ﻿import { getDescribedElement, hackTooltip } from "../../modules/utility.js"
 import EventHandler from "../../modules/event-handler.js"
+import bootstrap from "../../modules/bootstrap.js"
 
 export function init(id, options) {
     const el = document.getElementById(id)
