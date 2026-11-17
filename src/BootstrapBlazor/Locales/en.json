@@ -129,6 +129,9 @@
     "MaxErrorMessage": "At most {0} items can be selected",
     "NoSearchDataText": "No Result"
   },
+  "BootstrapBlazor.Components.Nav": {
+    "More": "More"
+  },
   "BootstrapBlazor.Components.Pagination": {
     "GotoNavigatorLabelText": "Goto"
   },

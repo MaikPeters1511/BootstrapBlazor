@@ -129,6 +129,9 @@
     "MaxErrorMessage": "最多可以选择 {0} 项",
     "NoSearchDataText": "无数据"
   },
+  "BootstrapBlazor.Components.Nav": {
+    "More": "更多"
+  },
   "BootstrapBlazor.Components.Pagination": {
     "GotoNavigatorLabelText": "导航到"
   },
