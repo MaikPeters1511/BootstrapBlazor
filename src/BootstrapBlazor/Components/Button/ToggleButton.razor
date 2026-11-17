@@ -3,7 +3,7 @@
 
 <button @attributes="@AdditionalAttributes" @onclick="@OnClickButton" id="@Id" class="@ToggleClassName" disabled="@Disabled"
         role="button" data-bs-placement="@PlacementString" data-bs-trigger="@TriggerString"
-        aria-disabled="@DisabledString" tabindex="@Tab" data-bs-toggle="button"
+        aria-disabled="@DisabledString" tabindex="@Tab" data-bs-toggle="button" aria-pressed="@(IsActive ? "true" : "false")"
         @onclick:stopPropagation="@StopPropagation">
     @if(IsAsyncLoading)
     {

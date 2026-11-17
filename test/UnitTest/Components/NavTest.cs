@@ -52,6 +52,25 @@ public class NavTest : BootstrapBlazorTestBase
     }
 
     [Fact]
+    public void IsPillsVertical_UsesPillsVerticalClass()
+    {
+        // Bootstrap 6: .nav-pills is an inline container, .nav-pills-vertical stacks the links over the full width
+        var cut = Context.Render<Nav>(builder =>
+        {
+            builder.Add(s => s.Items, GetItems());
+            builder.Add(s => s.IsPills, true);
+            builder.Add(s => s.IsVertical, true);
+        });
+        Assert.NotNull(cut.Find(".nav-pills.nav-pills-vertical"));
+
+        cut.Render(builder =>
+        {
+            builder.Add(s => s.IsPills, false);
+        });
+        Assert.Empty(cut.FindAll(".nav-pills-vertical"));
+    }
+
+    [Fact]
     public void IsPills_OK()
     {
         var cut = Context.Render<Nav>(builder =>
