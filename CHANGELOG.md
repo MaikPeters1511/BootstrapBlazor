@@ -26,6 +26,7 @@
 * feat(Bootstrap): upgrade to v6.0.0-alpha.1 by @MaikPeters1511 in https://github.com/MaikPeters1511/BootstrapBlazor/pull/1
 * feat(PasswordStrength): new `PasswordStrength` component based on `bootstrap.Strength`: four segments and a text show the strength of a password field (`InputId`, `MinLength`, `ShowText`, `OnStrengthChanged`)
 * feat(Nav): new parameters `IsOverflow` and `OverflowText`: items that do not fit move into a "More" menu (based on the `NavOverflow` of Bootstrap 6)
+* feat(ScrollSpy): new `ScrollSpy` component based on `bootstrap.ScrollSpy`: highlights the matching link of a navigation while the content scrolls (`Target`, `TopMargin`, `RootMargin`, `IsSmoothScroll`, `OnActivate`, `RefreshAsync`)
 
 ### Breaking changes
 * The thresholds of `BreakPoint` and of the `Responsive` component follow Bootstrap 6: `Large` from 1024px (was 992px), `ExtraLarge` from 1280px (was 1200px) and `ExtraExtraLarge` from 1536px (was 1400px); the widths of `dialog-xxl` are unchanged

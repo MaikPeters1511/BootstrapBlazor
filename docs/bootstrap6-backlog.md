@@ -49,6 +49,13 @@ Bootstrap-Version: `6.0.0-alpha.1`. Lokaler Teststand: 2811 von 2813 (Release), 
 | G15 | ~~Neue Bootstrap-6-Bausteine als Chance bewerten (Combobox, Datepicker, Stepper, Avatar, …)~~ bewertet 2026-11-17, Avatar-Fehler behoben | P3 | M |
 | G15a | ~~Neue Komponente `PasswordStrength` auf Basis von `bootstrap.Strength` (BB hat keine)~~ erledigt 2026-11-17 | P3 | M |
 | G15b | ~~`NavOverflow` für `Nav` und Tabs prüfen (Überlauf mit „Mehr“-Menü)~~ erledigt 2026-11-17 (`Nav` ja, `Tab` bewusst nein) | P3 | M |
+| H1 | ~~Neue Komponente `ScrollSpy` (BB hat nur `Anchor`, das beim Klick scrollt)~~ erledigt 2026-11-17 | P3 | M |
+| H2 | `.form-field` und `.form-group` (Raster für Beschriftung, Eingabe, Hilfetext) für `ValidateForm`/`BootstrapInput` bewerten | P3 | L |
+| H3 | `.form-adorn` (Symbol oder Text im Eingabefeld) mit den Präfix-/Suffix-Möglichkeiten von `BootstrapInput` vergleichen | P3 | M |
+| H4 | `bootstrap.Range` (Füllung, Wertblase, Teilstriche) mit `Slider` vergleichen | P3 | M |
+| H5 | `.prose` für das HTML der Markdown-Komponenten (`Markdown`, `CherryMarkdown`) prüfen | P3 | S |
+| H6 | `Avatar`: `avatar-status`, `avatar-stack`, `avatar-subtle` aus Bootstrap 6 übernehmen oder als Parameter anbieten | P3 | M |
+| H7 | Hilfsklassen `hover-lift`, Motion und Transitions in der Demo vorführen (Klassen sind im Bundle, kein BB-Code nötig) | P4 | S |
 
 ---
 
@@ -406,3 +413,57 @@ Quelle: <https://getbootstrap.com/docs/6.0/>, gelesen am 2026-11-16: der Migrati
 - Die Navbar nutzt weiter Collapse statt Drawer (Bootstrap 6 empfiehlt Drawer); der Umschalter funktioniert (D3).
 - Sass-Umbauten (`@use`, `$breakpoints`, entfernte Variablen, PostCSS-Präfix): BB kompiliert nur eigenes SCSS, nicht das Sass von Bootstrap; das mitgelieferte CSS ist fertig.
 - `show()`/`hide()` liefern jetzt ein Promise: optional lassen sich die Zeitüberbrückungen (`getTransitionDelayDurationFromElement` in `Menu.razor.js`) damit ersetzen; kein Fehler.
+
+---
+
+## H – Neues aus der Installationsseite von Bootstrap 6 (2026-11-17)
+
+Quelle: `https://getbootstrap.com/docs/6.0/getting-started/install/` und die Seiten der dort als „New (Added in v6.0.0)“ markierten Bausteine.
+
+**Abgleich der mitgelieferten Dateien:** Die vier Dateien in `wwwroot/core/bootstrap` (`css/bootstrap.css`, `css/bootstrap.min.css`, `js/bootstrap.bundle.js`, `js/bootstrap.bundle.min.js`) sind **byte-identisch** mit den veröffentlichten Dateien von `bootstrap@6.0.0-alpha.1` auf jsDelivr (Größe und SHA-384 geprüft; `bootstrap.min.css` stimmt auch mit dem `integrity`-Wert der Installationsseite überein). Es gibt keine neuere Fassung: npm führt `6.0.0-alpha.1` als `next`. Neu gegenüber dem, was wir ausliefern, ist nur eine Variante: `js/bootstrap.min.js` (ohne eingebautes Floating UI und Vanilla Calendar Pro, lädt sie über eine Import-Map nach: `@floating-ui/dom` 1.7.6, `vanilla-calendar-pro` 3.4.0). Wir brauchen sie nicht: Das Bundle enthält beides, und BB stellt `window.bootstrap` aus dem Bundle bereit (G14).
+
+**Stand der als neu markierten Bausteine:**
+
+| Baustein | Stand in BB |
+| --- | --- |
+| Accordion, Carousel, Dialog, Menu, Navbar | in Benutzung (`Collapse`, `Carousel`, `Modal`, Menu über `bootstrap.Menu`, `Navbar`) |
+| Drawer | BB hat den eigenen `bb-drawer`; die Wischgeste von Bootstrap läuft damit nicht (D3) |
+| Avatar | BB `Avatar` mit eigenem CSS; Text-Fehler behoben (G15); Zusatzklassen offen: H6 |
+| Nav overflow | `Nav.IsOverflow` (G15b) |
+| Password strength | `PasswordStrength` (G15a) |
+| Scrollspy | **`ScrollSpy` neu (H1, dieser Eintrag)** |
+| Stepper, OTP input, Chips, Combobox, Datepicker | bewertet in G15, BB behalten |
+| Range, Field, Form adorn, Prose | offen: H2 bis H5 |
+| Toggler | nur Daten-Attribute, kein BB-Code nötig (Anwendungscode kann `data-bs-toggle="toggler"` nutzen) |
+| Hover lift, Motion, Transitions, Color scheme, Theme, Space | Hilfsklassen im Bundle; Space (G5), Theme (`theme-*`, G12) und Color scheme (G13) geprüft; Rest: H7 |
+
+### H1 – `ScrollSpy` – erledigt 2026-11-17
+- **Ergebnis:** Neue Komponente `ScrollSpy` (`Components/ScrollSpy/`). Sie rendert einen Scroll-Bereich (`div.bb-scroll-spy`, `tabindex="0"`) mit dem Inhalt als `ChildContent` und legt `bootstrap.ScrollSpy` darauf an (über `modules/bootstrap.js`). Parameter: `Target` (Pflicht, Selektor der Navigation), `TopMargin`, `RootMargin`, `IsSmoothScroll`, `OnActivate` (liefert das `href` des aktiven Links), `RefreshAsync()` für nachträgliche Höhenänderungen. Bootstrap 6 nutzt `IntersectionObserver` statt Scroll-Abfragen und setzt `active` an den Links; die Navigation darf deshalb gewöhnliches Markup (`nav.nav` mit `a.nav-link`) oder `Nav` sein.
+- **Warum:** BB hatte `Anchor` und `AnchorLink`, die nur beim Klick scrollen; das Hervorheben beim Scrollen fehlte.
+- **Prüfung:** 6 neue Tests in `ScrollSpyTest` (Markup, Attribute, Rückruf mit und ohne Wert, ohne Rückruf, `RefreshAsync`); 2910 von 2912 Tests grün (nur die 2 bekannten `#if DEBUG`-Fehler). Im Browser (Demo `/scroll-spy`): beim Scrollen wechselt `active` von Link 1 über 2 nach 3 (`100`, `010`, `001`), die Anzeige „Active link“ zeigt `#scroll-spy-3`.
+- **Grenze:** Der Scroll-Bereich braucht eine Höhe und `overflow-y: auto`; der Bereich ist eine eigene Scroll-Fläche, nicht die ganze Seite (`data-bs-spy` auf `body` wird nicht angeboten).
+
+### H2 – `.form-field` und `.form-group`
+- **Bootstrap 6:** `.form-field` ist ein CSS-Raster (eine Spalte; mit direktem Kind `.check`, `.radio` oder `.switch` zwei Spalten über `:has()`), `.form-field-content` für Beschriftung plus Hilfetext, `.form-field-card` für Optionen als Karte, `.form-group` für mehrere Felder unter einer Beschriftung, `.form-label` über der Eingabe, `data-bs-validate` am Formular.
+- **BB:** `ValidateForm` und die Eingabekomponenten bringen eigene Beschriftung (`BootstrapLabel`, `ShowLabel`), Hilfetext und Prüfmeldungen mit; ein Umbau auf `.form-field` würde das Markup aller Eingabekomponenten ändern.
+- **Vorgehen:** Erst bewerten, ob nur `CheckboxList`, `RadioList` und `Switch` das Raster für Beschriftung plus Hilfetext übernehmen sollen; ein Umbau von `ValidateForm` lohnt sich nur bei einem klaren Gewinn.
+
+### H3 – `.form-adorn`
+- **Bootstrap 6:** `label.form-control.form-adorn` mit `.form-adorn-icon` oder `.form-adorn-text` und `input.form-ghost`; `.form-adorn-end` setzt die Zierde ans Ende, `form-control-sm`/`-lg` skalieren; keine Schaltflächen im Wrapper.
+- **BB:** `BootstrapInput` hat keine Präfix-/Suffix-Parameter; dafür gibt es `BootstrapInputGroup` mit `BootstrapInputGroupIcon`/`Label`.
+- **Vorgehen:** Prüfen, ob ein Parameter wie `PrefixIcon`/`SuffixText` an `BootstrapInput` nötig ist oder ob `BootstrapInputGroup` genügt.
+
+### H4 – `bootstrap.Range`
+- **Bootstrap 6:** `.form-range` mit `.form-range-input`; `bootstrap.Range` zeichnet die Füllung (ohne das Skript fehlt sie), `data-bs-bubble` zeigt eine Wertblase, ein `datalist` ergibt Teilstriche, `formatter`, Ereignis `changed.bs.range`.
+- **BB:** `Slider` hat eigenes Markup und CSS. Prüfen, ob die Füllung der nativen Eingabe `Slider` im Bundle überhaupt trifft (`input[type=range]` mit Klasse `form-range`).
+
+### H5 – `.prose`
+- **Bootstrap 6:** `.prose` setzt Schriftgröße, Zeilenhöhe, Listen-, Überschriften-, Zitat- und Code-Abstände für Inhalt ohne eigene Klassen; `.not-prose` nimmt Elemente aus.
+- **BB:** `Markdown` und `CherryMarkdown` erzeugen HTML ohne Klassen; Bootstrap 6 setzt die Reboot-Stile sparsamer. Prüfen, ob die Ausgabe mit `.prose` besser aussieht.
+
+### H6 – `Avatar`-Zusätze
+- **Bootstrap 6:** `avatar-status` (Statuspunkt), `avatar-stack` und Größen (`avatar-stack-xs` bis `-xl`) für überlappende Avatare, `avatar-subtle`.
+- **BB:** Der Avatar hat eigene Größen (`avatar-xs` bis `-xxl`) und Rundung (`avatar-circle`), kein Status und keine Stapelung. Entscheidung: übernehmen oder als eigene Parameter (`Status`, `IsStack`) anbieten.
+
+### H7 – Hilfsklassen
+- `hover-lift`, Motion-Klassen und Transitions kommen mit dem Bundle; BB-Code ist nicht nötig. Nur eine Demo-Seite (zum Beispiel unter „Utilities“) könnte sie zeigen.

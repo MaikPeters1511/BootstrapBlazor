@@ -3,6 +3,7 @@
     "ajax": "Ajaxs",
     "alert": "Alerts",
     "anchor-link": "AnchorLinks",
+    "scroll-spy": "ScrollSpies",
     "anchor": "Anchors",
     "auto-complete": "AutoCompletes",
     "auto-fill": "AutoFills",
@@ -371,6 +372,7 @@
     "导航组件": [
       "Anchor",
       "AnchorLink",
+      "ScrollSpy",
       "Breadcrumb",
       "Dropdown",
       "DropdownItem",

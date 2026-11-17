@@ -1,0 +1,31 @@
+@page "/scroll-spy"
+@inject IStringLocalizer<ScrollSpies> Localizer
+
+<h3>@Localizer["ScrollSpiesTitle"]</h3>
+
+<h4>@Localizer["ScrollSpiesDescription"]</h4>
+
+<DemoBlock Title="@Localizer["ScrollSpiesNormalTitle"]"
+           Introduction="@Localizer["ScrollSpiesNormalIntro"]"
+           Name="Normal">
+    <nav id="scroll-spy-nav" class="nav nav-pills mb-3">
+        <a class="nav-link" href="#scroll-spy-1">@Localizer["ScrollSpiesFirst"]</a>
+        <a class="nav-link" href="#scroll-spy-2">@Localizer["ScrollSpiesSecond"]</a>
+        <a class="nav-link" href="#scroll-spy-3">@Localizer["ScrollSpiesThird"]</a>
+    </nav>
+    <ScrollSpy Target="#scroll-spy-nav" IsSmoothScroll="true" OnActivate="OnActivate" style="height: 220px; overflow-y: auto;" class="border rounded p-3">
+        <h5 id="scroll-spy-1">@Localizer["ScrollSpiesFirst"]</h5>
+        <p>@Localizer["ScrollSpiesText"]</p>
+        <p>@Localizer["ScrollSpiesText"]</p>
+        <h5 id="scroll-spy-2">@Localizer["ScrollSpiesSecond"]</h5>
+        <p>@Localizer["ScrollSpiesText"]</p>
+        <p>@Localizer["ScrollSpiesText"]</p>
+        <h5 id="scroll-spy-3">@Localizer["ScrollSpiesThird"]</h5>
+        <p>@Localizer["ScrollSpiesText"]</p>
+        <p>@Localizer["ScrollSpiesText"]</p>
+        <p>@Localizer["ScrollSpiesText"]</p>
+    </ScrollSpy>
+    <div class="mt-2">@Localizer["ScrollSpiesActive"]: @_active</div>
+</DemoBlock>
+
+<AttributeTable Type="typeof(ScrollSpy)" />
