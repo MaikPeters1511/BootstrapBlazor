@@ -84,7 +84,7 @@ public partial class Progress
         .Build();
 
     private string? ClassName => CssBuilder.Default("progress-bar")
-        .AddClass($"bg-{Color.ToDescriptionString()}", Color != Color.None)
+        .AddClass($"theme-{Color.ToDescriptionString()}", Color != Color.None)
         .AddClass("progress-bar-striped", IsStriped)
         .AddClass("progress-bar-animated", IsAnimated)
         .Build();

@@ -18,12 +18,13 @@
     --bs-secondary-contrast: light-dark(#3F4254, #fff);
     --bs-success-base: #50CD89;
     --bs-success-bg: #50CD89;
+    --bs-success-contrast: var(--bs-gray-900);
     --bs-info-base: #7239EA;
     --bs-info-bg: #7239EA;
     --bs-info-contrast: #fff;
     --bs-warning-base: #FFC700;
     --bs-warning-bg: #FFC700;
-    --bs-warning-contrast: #fff;
+    --bs-warning-contrast: var(--bs-gray-900);
     --bs-danger-base: #F1416C;
     --bs-danger-bg: #F1416C;
     --bs-dark: #181C32;

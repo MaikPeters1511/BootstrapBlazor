@@ -581,6 +581,21 @@ public class BootstrapAssetsTest
         Assert.DoesNotContain("rounded-2", content);
     }
 
+    [Theory]
+    [InlineData("success")]
+    [InlineData("warning")]
+    public void Motronic_LightColorsHaveDarkText(string name)
+    {
+        // White text on the Metronic green (#50CD89) has a contrast of 2.0 and on the yellow (#FFC700) of 1.6 (WCAG asks for 4.5): dark text instead
+        var css = ReadSource("src", "BootstrapBlazor", "wwwroot", "css", "motronic.min.css");
+        var match = Regex.Match(css, $@"--bs-{name}-contrast:\s*([^;}}]+)");
+        Assert.True(match.Success, $"--bs-{name}-contrast is not set");
+        var value = match.Groups[1].Value.Trim().ToLowerInvariant();
+        Assert.NotEqual("#fff", value);
+        Assert.NotEqual("#ffffff", value);
+        Assert.NotEqual("white", value);
+    }
+
     [Fact]
     public void MenuJs_ExpandAll_ShowsCollapse()
     {
