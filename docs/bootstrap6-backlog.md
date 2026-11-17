@@ -40,7 +40,7 @@ Bootstrap-Version: `6.0.0-alpha.1`. Lokaler Teststand: 2811 von 2813 (Release), 
 | G8 | ~~Tote Selektoren aus Bootstrap 5 aufräumen (`.was-validated`, `.has-validation`)~~ erledigt 2026-11-16 | P3 | S |
 | G9 | ~~`rgba(var(--bs-*-rgb))` durch `color-mix()` ersetzen, Compat-Variablen entfernen~~ erledigt 2026-11-17 | P3 | M |
 | G10 | ~~Reste von Bootstrap 5 in der Demo (`lead`, `text-body-secondary`, `--bs-border-radius-lg`, `xxl`)~~ erledigt 2026-11-16 | P3 | S |
-| G11 | Fokusringe über die Tokens `--bs-focus-ring*` vereinheitlichen | P3 | M |
+| G11 | ~~Fokusringe über die Tokens `--bs-focus-ring*` vereinheitlichen~~ erledigt 2026-11-17 | P3 | M |
 | G12 | ~~Kontrast der Motronic-Farben (weisse Schrift auf `primary`, `success`, `warning`)~~ success/warning erledigt 2026-11-17 | P3 | M |
 | G12b | ~~Komponenten mit `bg-success`/`bg-warning` und Text darauf: Collapse, FileIcon, Toggle (Kontrast 1,2 bis 2,0)~~ erledigt 2026-11-17 | P3 | M |
 | G13 | ~~`iframe` und `color-scheme` (Reboot setzt `color-scheme: light dark`) prüfen~~ geprüft, kein Fehler 2026-11-17 | P3 | S |
@@ -330,7 +330,10 @@ Quelle: <https://getbootstrap.com/docs/6.0/>, gelesen am 2026-11-16: der Migrati
 - `Index.razor.css`: `.lead`, `.text-body-secondary` (beide entfallen), `--bs-border-radius-lg` (nicht definiert, Ersatz `--bs-radius-5`); `Breakpoints.razor` (siehe G4); `rounded-2` in `TwoFactor*.razor` (neue Skala, G5).
 - **Ergebnis:** `Index.razor.css`: `--bs-border-radius-lg` durch `--bs-radius-5` ersetzt (Button-Radius 8 px wie vorher), die ungenutzten Regeln für `.text-body-secondary` entfernt. `Index.razor`: die Hinweis-Pille nutzte `rounded-5` (Bootstrap 5: 2rem, also rund), jetzt `rounded-pill`. `TwoFactor.razor` und `TwoFactorApp.razor`: `rounded-2` (Bootstrap 5: .375rem) -> `rounded-4`. `.lead` bleibt: die Klasse hat in Bootstrap 6 keinen eigenen Stil mehr, die Seite definiert sie selbst (`.bd-masthead .lead`). `xxl` war bereits in G4 erledigt. Wächter-Tests `IndexDemo_NoBootstrap5Leftovers` und `TwoFactorDemo_UsesBootstrap6RoundedScale` (3 Fälle, alle waren rot). **Beobachtung:** der Untertitel `.lead` rendert 23 px gross, obwohl die Regel `font-size: 1rem` setzt; nicht untersucht, hat mit diesem Punkt nichts zu tun.
 
-### G11 – Fokusringe
+### G11 – Fokusringe – erledigt 2026-11-17
+- **Ergebnis:** Mit echter Tastatur (Klick auf die Seite, ein Tab, dann Fokus per Skript je Elementtyp) auf `/multi-select`, `/datetime-picker`, `/calendar`, `/tab`, `/dropdown` und `/switch` geprüft, ob der Fokus sichtbar wird (Outline, Schatten, Rand-, Hintergrund- oder Textfarbe). Button, Eingabe, Select, Checkbox, Radio, Dropdown, Calendar-Schaltflächen und Datumseingabe zeigen den Bootstrap-6-Ring. Zwei Lücken: das Feld von `MultiSelect` (`.dropdown-toggle` samt `.multi-select-input`) und die Pfeiltasten `.picker-panel-icon-btn` im `DateTimePicker` setzten `outline: none` und hatten keinen Ersatz. Beide nutzen jetzt `outline: var(--bs-focus-ring)` und `outline-offset: var(--bs-focus-ring-offset)` bei `:focus-visible` (`Components_FocusVisible_UsesFocusRingTokens`, beide Fälle waren rot).
+- **Bewusst gelassen:** Die Reste von Bootstrap 5 (`box-shadow: none` bei `:focus` in `Checkbox`, `ValidateForm`, `Select`, `CheckboxList`, Token `$bb-select-focus-shadow: none`) wirken nicht mehr, weil Bootstrap 6 den Fokus über `outline` zeichnet; sie schaden nicht. Der Schalter `Switch` (`span` ohne `tabindex`) und der Tooltip-Auslöser sind per Tastatur nicht erreichbar bzw. ohne Ring; das war schon in Bootstrap 5 so und ist eine Frage der Bedienbarkeit, nicht der Umstellung.
+- Ursprüngliche Beschreibung:
 - Bootstrap 6 vereinheitlicht den Fokus über `--focus-ring`, `--focus-ring-width`, `--focus-ring-offset`, `--focus-ring-color` (Mixin `focus-ring`). BB setzt eigene Fokus-Schatten (`$bb-select-focus-shadow` und andere). Tastaturfokus ist an Button, Eingabe, Checkbox und Select sichtbar (D1); eine Vereinheitlichung wäre optisch und für Anpassungen sauberer, ist aber kein Fehler.
 
 ### G12 – Kontrast der Motronic-Farben – success und warning erledigt 2026-11-17
