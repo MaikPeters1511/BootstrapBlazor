@@ -10,7 +10,7 @@ Bootstrap-Version: `6.0.0-alpha.1`. Lokaler Teststand: 2811 von 2813 (Release), 
 | ID | Task | Prio | Aufwand |
 | --- | --- | --- | --- |
 | A1 | ~~CI im Fork zum Laufen bringen~~ erledigt 2026-11-14 | P1 | S |
-| A1b | CI im Fork läuft seit 2026-11-16 20:35 UTC nicht mehr: GitHub hat Workflows für den Fork gesperrt, ein Maintainer muss sie auf der Actions-Seite wieder aktivieren | P1 | S |
+| A1b | ~~CI im Fork läuft seit 2026-11-16 20:35 UTC nicht mehr: GitHub hat Workflows für den Fork gesperrt, ein Maintainer muss sie auf der Actions-Seite wieder aktivieren~~ erledigt 2026-11-17 | P1 | S |
 | A2 | ~~Testsuite im Debug-Build ausführen~~ erledigt 2026-11-14 (in A1 mit CI) | P1 | S |
 | A3 | ~~NuGet-Paket und JS-Konvertierung prüfen~~ erledigt 2026-11-14 | P1 | M |
 | B1 | ~~Layer-Konflikte systematisch suchen~~ erledigt 2026-11-14 | P1 | L |
@@ -59,7 +59,8 @@ Bootstrap-Version: `6.0.0-alpha.1`. Lokaler Teststand: 2811 von 2813 (Release), 
 - **Hinweis:** Ob das erneute Setzen oder etwas anderes den Lauf ausgelöst hat, ist nicht geklärt. Die Workflows `pack`, `docker` und `publish` laufen nur auf den Branches `pack`, `release`, `hotfix`, `docker` und `publish` und brauchen Secrets, die im Fork fehlen.
 - **Offen:** `auto-approve.yml` wird übersprungen (nur für den Autor `ArgoZhang`); `build.yml` (Push auf `main`, mit Codecov-Upload) ist noch nicht gelaufen.
 
-### A1b – CI im Fork gesperrt – Ursache gefunden 2026-11-17
+### A1b – CI im Fork gesperrt – erledigt 2026-11-17
+- **Ergebnis:** Der Eigentümer hat die Workflows auf der Actions-Seite wieder aktiviert (Hinweis „re-enable“). Danach startete beim Probe-PR #52 (`main` plus leerer Commit) sofort `Auto PR test(bot)`; `run test` lief 2 Minuten und war grün. Damit hat die CI den gesamten ohne CI gemergten Stand (#39 bis #51) bestanden. `Auto Approve PR(bot)` wird wie zuvor übersprungen (gilt nur für den Autor `ArgoZhang`). Das Wieder-Aktivieren kann GitHub bei hoher Last erneut verlangen: Bleiben Checks wieder aus, zuerst die Actions-Seite des Forks auf den Hinweis prüfen.
 - **Befund:** Seit dem Push auf `main` am 2026-11-16 20:35 UTC (Lauf `Build project #36`) startet im Fork kein Workflow mehr, weder für Pull Requests noch für Pushes auf `main`. Die PRs #39 bis #49 haben deshalb nie Checks bekommen und wurden mit den lokalen Tests gemergt. Die API meldet alles aktiv (`actions/permissions`: `enabled=true`, `allowed_actions=all`; sechs Workflows `active`; githubstatus „Actions operational“), das Neusetzen der Rechte (wie in A1) und ein Probe-PR (#50, geschlossen) änderten nichts.
 - **Ursache:** Auf der Seite `https://github.com/MaikPeters1511/BootstrapBlazor/actions` steht ein Hinweis von GitHub: „Workflows are not currently being run on this fork due to the scale of GitHub Actions usage. A repository maintainer can choose to re-enable these.“ GitHub hat die Workflows des Forks wegen der Gesamtlast durch Forks gestoppt. Die API zeigt das nicht an.
 - **Behebung (nur mit Anmeldung als Eigentümer möglich):** Auf der Actions-Seite im Hinweis auf „re-enable“ klicken. Danach einen PR öffnen und prüfen, ob `Auto PR test(bot)` startet. Das konnte ich nicht selbst tun: Das Browser-Pane war nicht angemeldet, und ich melde mich nicht in fremde Konten an.
