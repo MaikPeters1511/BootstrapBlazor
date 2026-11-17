@@ -482,6 +482,11 @@ internal static class MenusLocalizerExtensions
                 },
                 new()
                 {
+                    Text = Localizer["PasswordStrength"],
+                    Url = "password-strength"
+                },
+                new()
+                {
                     Text = Localizer["OnScreenKeyboard"],
                     Url = "onscreen-keyboard"
                 },

@@ -24,6 +24,7 @@
 
 ### Features
 * feat(Bootstrap): 更新 `bootstrap` 到 `v6.0.0-alpha.1` by @MaikPeters1511 in https://github.com/MaikPeters1511/BootstrapBlazor/pull/1
+* feat(PasswordStrength): 新增基于 `bootstrap.Strength` 的 `PasswordStrength` 密码强度组件：四段条和文字显示密码输入框的强度（`InputId`、`MinLength`、`ShowText`、`OnStrengthChanged`）
 
 ### Breaking changes
 * `BreakPoint` 枚举和 `Responsive` 组件的断点阈值与 Bootstrap 6 保持一致：`Large` 从 1024px 开始（原为 992px），`ExtraLarge` 从 1280px 开始（原为 1200px），`ExtraExtraLarge` 从 1536px 开始（原为 1400px）；`dialog-xxl` 的宽度不变

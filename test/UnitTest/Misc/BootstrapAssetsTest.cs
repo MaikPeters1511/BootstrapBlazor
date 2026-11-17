@@ -709,6 +709,21 @@ public class BootstrapAssetsTest
         Assert.Contains("font-weight: inherit", block);
     }
 
+    [Theory]
+    [InlineData("en.json")]
+    [InlineData("zh.json")]
+    public void PasswordStrength_Locales_HaveLevels(string file)
+    {
+        // the texts below the strength segments come from IStringLocalizer<PasswordStrength>, one key per level
+        var content = ReadSource("src", "BootstrapBlazor", "Locales", file);
+        using var doc = JsonDocument.Parse(content);
+        var section = doc.RootElement.GetProperty("BootstrapBlazor.Components.PasswordStrength");
+        foreach (var key in new[] { "Weak", "Fair", "Good", "Strong" })
+        {
+            Assert.False(string.IsNullOrEmpty(section.GetProperty(key).GetString()), key);
+        }
+    }
+
     [Fact]
     public void DemoHeaderCss_Buttons_Transparent()
     {
