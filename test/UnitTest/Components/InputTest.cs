@@ -228,6 +228,18 @@ public class InputTest : BootstrapBlazorTestBase
     }
 
     [Fact]
+    public void FloatingLabel_LabelBeforeInput()
+    {
+        // Bootstrap 6 lifts the label with label:has(~ .form-control:focus), so the label has to come before the input (Bootstrap 5: after it)
+        var cut = Context.Render<FloatingLabel<string>>(pb =>
+        {
+            pb.Add(a => a.DisplayText, "Name");
+        });
+        var root = cut.Find(".form-floating");
+        Assert.Equal(["LABEL", "INPUT"], root.Children.Select(c => c.TagName).ToArray());
+    }
+
+        [Fact]
     public void FloatingLabel_Ok()
     {
         var cut = Context.Render<FloatingLabel<string>>();
