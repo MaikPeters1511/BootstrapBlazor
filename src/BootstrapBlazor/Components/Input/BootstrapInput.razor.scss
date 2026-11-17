@@ -33,3 +33,18 @@
         border-color: transparent;
     }
 }
+
+// the clear icon of an input with adornments sits inside the label
+.form-adorn {
+    > .form-control-clear-icon {
+        display: none;
+        flex-shrink: 0;
+        color: var(--bb-border-hover-color);
+        cursor: pointer;
+    }
+
+    &:hover > .form-control-clear-icon,
+    &:focus-within > .form-control-clear-icon {
+        display: block;
+    }
+}

@@ -64,6 +64,56 @@ public partial class BootstrapInput<TValue>
     [Parameter]
     public string? ClearIcon { get; set; }
 
+    /// <summary>
+    /// <para lang="zh">获得/设置 输入框前面的图标，基于 Bootstrap 6 的 <c>form-adorn</c>。默认 null</para>
+    /// <para lang="en">Gets or sets the icon before the input, based on the <c>form-adorn</c> of Bootstrap 6. Default is null</para>
+    /// <para><version>11.1.1</version></para>
+    /// </summary>
+    [Parameter]
+    public string? PrefixIcon { get; set; }
+
+    /// <summary>
+    /// <para lang="zh">获得/设置 输入框前面的文字，如 <c>https://</c>。默认 null</para>
+    /// <para lang="en">Gets or sets the text before the input such as <c>https://</c>. Default is null</para>
+    /// <para><version>11.1.1</version></para>
+    /// </summary>
+    [Parameter]
+    public string? PrefixText { get; set; }
+
+    /// <summary>
+    /// <para lang="zh">获得/设置 输入框后面的图标。默认 null</para>
+    /// <para lang="en">Gets or sets the icon after the input. Default is null</para>
+    /// <para><version>11.1.1</version></para>
+    /// </summary>
+    [Parameter]
+    public string? SuffixIcon { get; set; }
+
+    /// <summary>
+    /// <para lang="zh">获得/设置 输入框后面的文字，如 <c>@example.com</c>。默认 null</para>
+    /// <para lang="en">Gets or sets the text after the input such as <c>@example.com</c>. Default is null</para>
+    /// <para><version>11.1.1</version></para>
+    /// </summary>
+    [Parameter]
+    public string? SuffixText { get; set; }
+
+    private bool HasPrefix => !string.IsNullOrEmpty(PrefixIcon) || !string.IsNullOrEmpty(PrefixText);
+
+    private bool HasSuffix => !string.IsNullOrEmpty(SuffixIcon) || !string.IsNullOrEmpty(SuffixText);
+
+    private bool HasAdorn => HasPrefix || HasSuffix;
+
+    // with adornments the label is the control (border, focus ring, size) and the input inside is a ghost
+    private string? AdornClassString => CssBuilder.Default("form-control form-adorn")
+        .AddClass($"border-{Color.ToDescriptionString()}", Color != Color.None && !IsDisabled && !IsValid.HasValue)
+        .Build();
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    protected override string? ClassName => HasAdorn
+        ? CssBuilder.Default("form-ghost").AddClass(CssClass).AddClass(ValidCss).Build()
+        : base.ClassName;
+
     [Inject]
     [NotNull]
     private IIconTheme? IconTheme { get; set; }

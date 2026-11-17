@@ -2943,6 +2943,8 @@
     "InputNumbersValidateFormTitle": "The label is displayed"
   },
   "BootstrapBlazor.Server.Components.Samples.Inputs": {
+    "InputsAdornIntro": "Put an icon or a text before or after the input with <code>PrefixIcon</code>, <code>PrefixText</code>, <code>SuffixIcon</code> and <code>SuffixText</code> (based on the <code>form-adorn</code> of Bootstrap 6). The border, the focus ring and <code>Color</code> belong to the whole control; <code>IsClearable</code> still works. For buttons or several controls in one line use <code>BootstrapInputGroup</code>.",
+    "InputsAdornTitle": "Adornments",
     "ClearableIntro": "By setting the <code>Clearable=\"true\"</code> parameter, a small <b>Clear</b> button will be displayed when the component gains focus or when the mouse hovers over it.",
     "ClearableTitle": "Clearable",
     "InputLabelsText": "Custom labels",

@@ -7,7 +7,25 @@
     <BootstrapLabel required="@Required" for="@Id" ShowLabelTooltip="ShowLabelTooltip" Value="@DisplayText" />
 }
 
-@if (IsClearable)
+@if (HasAdorn)
+{
+    <label class="@AdornClassString">
+        @if (HasPrefix)
+        {
+            @RenderAdorn(PrefixIcon, PrefixText)
+        }
+        @RenderInput
+        @if (HasSuffix)
+        {
+            @RenderAdorn(SuffixIcon, SuffixText)
+        }
+        @if (IsClearable && !IsDisabled && !Readonly)
+        {
+            <i class="@ClearableIconString" @onclick="OnClickClear"></i>
+        }
+    </label>
+}
+else if (IsClearable)
 {
     <div class="bb-clearable-input">
         @RenderInput
@@ -23,6 +41,18 @@ else
 }
 
 @code {
+    RenderFragment RenderAdorn(string? icon, string? text) =>
+    @<text>
+        @if (!string.IsNullOrEmpty(icon))
+        {
+            <div class="form-adorn-icon" aria-hidden="true"><i class="@icon"></i></div>
+        }
+        @if (!string.IsNullOrEmpty(text))
+        {
+            <span class="form-adorn-text" aria-hidden="true">@text</span>
+        }
+    </text>;
+
     RenderFragment RenderInput =>
     @<input @attributes="@AdditionalAttributes" type="@Type" id="@Id" class="@ClassName"
             readonly="@ReadonlyString" disabled="@Disabled"

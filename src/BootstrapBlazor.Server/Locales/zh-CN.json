@@ -2943,6 +2943,8 @@
     "InputNumbersValidateFormTitle": "显示标签"
   },
   "BootstrapBlazor.Server.Components.Samples.Inputs": {
+    "InputsAdornIntro": "通过 <code>PrefixIcon</code>、<code>PrefixText</code>、<code>SuffixIcon</code>、<code>SuffixText</code> 在输入框前后放置图标或文字（基于 Bootstrap 6 的 <code>form-adorn</code>）。边框、焦点环和 <code>Color</code> 作用于整个控件，<code>IsClearable</code> 仍可使用。需要按钮或多个控件同行时请使用 <code>BootstrapInputGroup</code>。",
+    "InputsAdornTitle": "前后缀",
     "ClearableIntro": "通过设置 <code>Clearable=\"true\"</code> 参数，使组件获得焦点或者鼠标悬浮时显示一个 <b>清除</b> 小按钮",
     "ClearableTitle": "清除",
     "InputLabelsText": "自定义标签",
