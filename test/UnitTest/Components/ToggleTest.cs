@@ -16,7 +16,8 @@ public class ToggleTest : BootstrapBlazorTestBase
             builder.Add(s => s.Value, true);
         });
 
-        Assert.Contains("bg-success", cut.Markup);
+        Assert.Contains("theme-success", cut.Markup);
+        Assert.DoesNotContain("bg-success", cut.Markup);
     }
 
     [Fact]

@@ -17,7 +17,7 @@ public partial class FileIcon
         .Build();
 
     private string? IconClassString => CssBuilder.Default("badge")
-        .AddClass($"bg-{IconColor.ToDescriptionString()}", IconColor != Color.None)
+        .AddClass($"theme-{IconColor.ToDescriptionString()}", IconColor != Color.None)
         .Build();
 
     /// <summary>
