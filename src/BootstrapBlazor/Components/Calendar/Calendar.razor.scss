@@ -149,7 +149,7 @@
             }
 
             &:not(.is-range) td.next, &:not(.is-range) td.prev {
-                color: rgba(var(--bs-body-color-rgb), 0.5);
+                color: color-mix(in oklab, var(--bs-fg-body) 50%, transparent);
             }
         }
     }

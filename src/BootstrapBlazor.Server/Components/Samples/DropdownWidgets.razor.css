@@ -1,5 +1,5 @@
 ﻿.widget-demo {
-    background-color: rgba(var(--bs-body-color-rgb), .12);
+    background-color: color-mix(in oklab, var(--bs-fg-body) 12%, transparent);
     border-radius: var(--bs-border-radius);
 }
 

@@ -61,7 +61,7 @@ form {
 
 @keyframes bb-validation-pending {
     50% {
-        box-shadow: var(--bb-validating-box-shadow, 0 0 0 .2rem rgba(var(--bs-primary-rgb), .2));
+        box-shadow: var(--bb-validating-box-shadow, 0 0 0 .2rem color-mix(in oklab, var(--bs-primary-bg) 20%, transparent));
     }
 }
 
