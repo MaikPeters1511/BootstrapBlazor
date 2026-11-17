@@ -19,6 +19,13 @@
         cursor: pointer;
         transition: border 0.15s ease-in-out;
 
+        // the toggle and its input drop the outline, keyboard focus shows the Bootstrap 6 focus ring
+        &:focus-visible,
+        &:has(.multi-select-input:focus-visible) {
+            outline: var(--bs-focus-ring);
+            outline-offset: var(--bs-focus-ring-offset);
+        }
+
         &.is-fixed {
             --bb-multi-select-max-height: var(--bb-multi-select-min-height);
         }

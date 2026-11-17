@@ -660,6 +660,20 @@ public class BootstrapAssetsTest
         Assert.DoesNotMatch(@"--bs-(body-color|body-bg|emphasis-color|primary)-rgb\s*:", compat);
     }
 
+    [Theory]
+    [InlineData("DateTimePicker", "DatePickerBody.razor.scss", "&:focus-visible")]
+    [InlineData("Select", "MultiSelect.razor.scss", "&:focus-visible")]
+    public void Components_FocusVisible_UsesFocusRingTokens(string folder, string file, string selector)
+    {
+        // controls that reset their outline need their own keyboard focus indicator, built from the Bootstrap 6 focus ring tokens
+        var content = ReadSource("src", "BootstrapBlazor", "Components", folder, file);
+        var index = content.IndexOf(selector, StringComparison.Ordinal);
+        Assert.True(index >= 0, $"{selector} missing in {file}");
+        var block = content[index..Math.Min(content.Length, index + 400)];
+        Assert.Contains("outline: var(--bs-focus-ring)", block);
+        Assert.Contains("outline-offset: var(--bs-focus-ring-offset)", block);
+    }
+
     [Fact]
     public void DemoHeaderCss_Buttons_Transparent()
     {

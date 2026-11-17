@@ -45,6 +45,11 @@
             &:hover {
                 color: var(--bb-picker-hover-color);
             }
+
+            &:focus-visible {
+                outline: var(--bs-focus-ring);
+                outline-offset: var(--bs-focus-ring-offset);
+            }
         }
 
         .picker-panel-header-bar {
