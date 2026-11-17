@@ -169,6 +169,7 @@ Hintergrund: Bootstrap 6 legt sein CSS in `@layer`. Ungelayertes BB-CSS gewinnt 
 - **Warum:** Der Eintrag verlinkt auf `MaikPeters1511/BootstrapBlazor#1`; die CHANGELOG-Dateien sind seit V7.11.1 (2023-10) nicht mehr gepflegt.
 - **Schritte:** Klären, ob die Dateien im Hauptrepo gepflegt werden (laut `.agents/skills/release-notes/SKILL.md` kommen Release Notes nach `ChangeLogs/{version}_en.md` und `_zh.md`; den Ordner gibt es im Repo noch nicht); Link auf das Hauptrepo ändern; Issue im Hauptrepo anlegen, weil die Projektregeln ein verknüpftes Issue verlangen; Screenshots für den PR erstellen (hell und dunkel).
 - **Entscheidung nötig:** Soll die Änderung überhaupt ins Hauptrepo? Bootstrap 6 ist eine Alpha, das Hauptrepo liefert Bootstrap 5.
+- **Stand 2026-11-17:** Plan und Entwurf der Notiz für die Diskussion `dotnetcore/BootstrapBlazor#8739` liegen in `docs/bootstrap6-upstream-plan.md` (Zahlen aktualisiert: 15 Commits Vorsprung im Hauptrepo, 4 Konflikte beim Probe-Merge, 2904 von 2906 Tests, CI läuft wieder). Der Maintainer wartet auf die Beta von Bootstrap 6; npm führt am 2026-11-17 weiter `6.0.0-alpha.1` als `next`. Nichts wurde im Hauptrepo gepostet oder verändert; das Posten braucht deine ausdrückliche Freigabe.
 
 ---
 
