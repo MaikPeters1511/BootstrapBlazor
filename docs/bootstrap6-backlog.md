@@ -10,6 +10,7 @@ Bootstrap-Version: `6.0.0-alpha.1`. Lokaler Teststand: 2811 von 2813 (Release), 
 | ID | Task | Prio | Aufwand |
 | --- | --- | --- | --- |
 | A1 | ~~CI im Fork zum Laufen bringen~~ erledigt 2026-11-14 | P1 | S |
+| A1b | CI im Fork läuft seit 2026-11-16 20:35 UTC nicht mehr: GitHub hat Workflows für den Fork gesperrt, ein Maintainer muss sie auf der Actions-Seite wieder aktivieren | P1 | S |
 | A2 | ~~Testsuite im Debug-Build ausführen~~ erledigt 2026-11-14 (in A1 mit CI) | P1 | S |
 | A3 | ~~NuGet-Paket und JS-Konvertierung prüfen~~ erledigt 2026-11-14 | P1 | M |
 | B1 | ~~Layer-Konflikte systematisch suchen~~ erledigt 2026-11-14 | P1 | L |
@@ -22,7 +23,7 @@ Bootstrap-Version: `6.0.0-alpha.1`. Lokaler Teststand: 2811 von 2813 (Release), 
 | C3 | CHANGELOG-Link und Upstream-Vorbereitung | P2 | S |
 | D1 | Sichtprüfung aller Demo-Seiten (automatisierter Teil, Bildvergleich im dunklen und hellen Design sowie Popup-, Hover- und Fokus-Zustände erledigt 2026-11-15/16; Rest siehe unten) | P2 | L |
 | D2 | ~~Drucken von Dialogen prüfen~~ erledigt 2026-11-15 | P3 | S |
-| D3 | Schmale Breiten und Touch prüfen (Überlauf, Navbar, Tabellen-Beschriftungen, `carousel-no-touch`, EditorForm/SearchForm-Raster erledigt 2026-11-15/16; echtes Wischen auf einem Touch-Gerät offen) | P2 | M |
+| D3 | Schmale Breiten und Touch prüfen (Überlauf, Navbar, Tabellen-Beschriftungen, `carousel-no-touch`, EditorForm/SearchForm-Raster erledigt 2026-11-15/16; Wischen: Bootstrap 6 hat kein JavaScript dafür, siehe unten; nur der Test auf einem echten Gerät steht aus) | P2 | M |
 | D4 | ~~Tastaturbedienung prüfen~~ erledigt 2026-11-15 (Dropdown, Select, Dialog, Seitenmenü, gestapelte Dialoge) | P2 | M |
 | D5 | ~~Einzelne Komponenten prüfen~~ erledigt 2026-11-15 | P2 | M |
 | D6 | ~~Starter-Vorlage `Bs6Test` prüfen und ablegen~~ erledigt 2026-11-15 (bleibt ausserhalb des Repos) | P3 | S |
@@ -57,6 +58,12 @@ Bootstrap-Version: `6.0.0-alpha.1`. Lokaler Teststand: 2811 von 2813 (Release), 
 - **Ergebnis:** Actions waren in der API als aktiv gemeldet, es gab aber nie einen Lauf (auch nicht für PR #1 bis #3). Nach dem erneuten Setzen von `actions/permissions` (`enabled=true`, `allowed_actions=all`) starten die Workflows. Der Probe-PR #4 (inzwischen geschlossen) hat „Auto PR test(bot)“ ausgelöst: 2 Minuten, 2813 von 2813 Tests grün, auf Linux, im Debug-Build.
 - **Hinweis:** Ob das erneute Setzen oder etwas anderes den Lauf ausgelöst hat, ist nicht geklärt. Die Workflows `pack`, `docker` und `publish` laufen nur auf den Branches `pack`, `release`, `hotfix`, `docker` und `publish` und brauchen Secrets, die im Fork fehlen.
 - **Offen:** `auto-approve.yml` wird übersprungen (nur für den Autor `ArgoZhang`); `build.yml` (Push auf `main`, mit Codecov-Upload) ist noch nicht gelaufen.
+
+### A1b – CI im Fork gesperrt – Ursache gefunden 2026-11-17
+- **Befund:** Seit dem Push auf `main` am 2026-11-16 20:35 UTC (Lauf `Build project #36`) startet im Fork kein Workflow mehr, weder für Pull Requests noch für Pushes auf `main`. Die PRs #39 bis #49 haben deshalb nie Checks bekommen und wurden mit den lokalen Tests gemergt. Die API meldet alles aktiv (`actions/permissions`: `enabled=true`, `allowed_actions=all`; sechs Workflows `active`; githubstatus „Actions operational“), das Neusetzen der Rechte (wie in A1) und ein Probe-PR (#50, geschlossen) änderten nichts.
+- **Ursache:** Auf der Seite `https://github.com/MaikPeters1511/BootstrapBlazor/actions` steht ein Hinweis von GitHub: „Workflows are not currently being run on this fork due to the scale of GitHub Actions usage. A repository maintainer can choose to re-enable these.“ GitHub hat die Workflows des Forks wegen der Gesamtlast durch Forks gestoppt. Die API zeigt das nicht an.
+- **Behebung (nur mit Anmeldung als Eigentümer möglich):** Auf der Actions-Seite im Hinweis auf „re-enable“ klicken. Danach einen PR öffnen und prüfen, ob `Auto PR test(bot)` startet. Das konnte ich nicht selbst tun: Das Browser-Pane war nicht angemeldet, und ich melde mich nicht in fremde Konten an.
+- **Folge:** Alle ohne CI gemergten PRs (#39 bis #49) sollten nach der Aktivierung einmal gegen den aktuellen `main` laufen (ein Push auf `main` löst `Build project` aus); lokal waren die Tests jeweils grün (2885 bis 2904 von 2887 bis 2906, nur die 2 bekannten `#if DEBUG`-Fehler).
 
 (Ursprüngliche Beschreibung:)
 - **Warum:** Die drei PRs wurden ohne Checks gemergt (`mergeStateStatus: CLEAN`, aber 0 Checks).
@@ -205,7 +212,7 @@ Voraussetzung für alle: Demo-App wie in der Memory-Notiz `desktop-write-protect
 - **Bleibt:** `/select-city` (Paket `BootstrapBlazor.Region` nutzt noch `dropdown-menu`, nicht in diesem Repo), `/circle` und `/query-builder` (4–6 px), schmalere Schaltflächen in `/button`, `/sweet-alert` (Demo-Raster, ähnlich wie in Bootstrap 5).
 - **Geprüft 2026-11-15, ohne Befund (Browser-Pane, 375 px und 800 px):** Navbar-Toggler (`/navbar`: öffnet auf 245 px Höhe, schliesst mit `display: none`); Tabellen-Toolbar (`/table/toolbar`: bei 375 px alle `d-none sm:d-inline-block`-Beschriftungen weg, Zahnrad `sm:d-none` sichtbar und sein Menü geht auf, kein Überlauf; bei 800 px Beschriftungen sichtbar, Zahnrad weg); `carousel-no-touch` (per Skript gesetzt: `overflow-x: hidden`, `touch-action: pan-y`, die Pfeile schalten weiter). Die `sm:`-Klassen von Bootstrap 6 haben denselben Breakpoint (576 px) wie die der alten Klassen.
 - **Geprüft 2026-11-16, ohne Befund (Browser-Pane, 375/800/1280 px):** `sm:`-/`md:`-Raster in EditorForm (`/editor-form`) und SearchForm (`/table/search`). Die Klassen `sm:col-N` und `md:col-N` gibt es in Bootstrap 6 (Media-Query ab 576 px bzw. 768 px, wie in Bootstrap 5). Bei 375 px steht jedes Element in voller Breite (kein Überlauf), ab 576 px zu 50 %, `ItemsPerRow="3"` ergibt bei 1280 px 33 %. Beachten: Die Breakpoints richten sich nach dem Viewport, nicht nach der Breite des Formulars, daher sind die Felder bei 800 px neben dem Seitenmenü der Demo (Formular ca. 350 px) schmal, genau wie in Bootstrap 5.
-- **Noch nicht geprüft:** echtes Wischen auf einem Touch-Gerät (der Emulator liefert nur Mausklicks).
+- **Wischen, geklärt 2026-11-17 (Quelltext von Bootstrap 6 und Browser-Pane mit Touch-Emulation 375 px, `maxTouchPoints` 5):** Das Carousel von Bootstrap 6 hat kein JavaScript fürs Wischen mehr. `.carousel-inner` ist ein Scroll-Container (`overflow-x: auto`, `scroll-snap-type: x mandatory`, `scroll-snap-align: start` an den Einträgen), das Wischen erledigt der Browser. Das `Swipe`-Hilfsobjekt (Zeiger vom Typ `touch` oder `pen`, Schwelle 40 px) nutzt in Bootstrap nur der Drawer; BB benutzt dafür den eigenen `bb-drawer`, also läuft diese Wischgeste hier nicht. Das BB-Stück ist `carousel-no-touch` (`overflow-x: hidden`, `touch-action: pan-y`), das am 2026-11-15 geprüft wurde. Mit Touch-Emulation: In 3 von 6 Carousels der Demo stehen die Einträge in einem Scroll-Container mit `overflow-x: auto`, ein Scrollen per Skript bewegte den Inhalt (280 px); ob Bootstrap dabei das Attribut `active` und die Anzeige nachzieht, kam in der Vorschau nicht zuverlässig an (der Bereich läuft gedrosselt, `scrollend` kam nicht). Ein echter Fingerwisch lässt sich im Pane nicht erzeugen; das bleibt ein Test auf einem Gerät, ist aber kein Code von BB.
 - **Prüfen:** Navbar eingeklappt (Toggler öffnet und schliesst `navbar-collapse`), Tabelle mit `d-none sm:d-inline-block`-Beschriftungen, `sm:`-/`md:`-Raster in EditorForm und SearchForm, `DisableTouchSwiping` beim Carousel (`carousel-no-touch`) auf einem Touch-Gerät oder im Emulator.
 
 ### D4 – Tastaturbedienung
