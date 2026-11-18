@@ -29,6 +29,7 @@
 * feat(ScrollSpy): 新增基于 `bootstrap.ScrollSpy` 的 `ScrollSpy` 滚动监听组件：内容滚动时高亮导航中对应的链接（`Target`、`TopMargin`、`RootMargin`、`IsSmoothScroll`、`OnActivate`、`RefreshAsync`）
 * feat(Input): `BootstrapInput`（及其子类）新增 `PrefixIcon`、`PrefixText`、`SuffixIcon`、`SuffixText`：在输入框前后放置图标或文字，基于 Bootstrap 6 的 `form-adorn`
 * feat(Avatar): `Avatar` 新增 `Status`（状态点）、`Color` 和 `IsSubtle`；新增 `AvatarStack` 头像堆叠组件（基于 Bootstrap 6 的 `avatar-status`、`avatar-subtle`、`avatar-stack`）
+* feat(Slider): `Slider` 使用 Bootstrap 6 的 `Range`（`div.form-range` 包裹 `input.form-range-input`），新增 `IsShowBubble`、`IsShowTicks` 和 `Color`
 * docs(Demo): 新增“动效辅助类”示例页（`/motion-helpers`），演示 Bootstrap 6 的 `hover-lift`、`animation-shake`、`animation-pop`、`animation-none`、`transition-none`
 
 ### Breaking changes

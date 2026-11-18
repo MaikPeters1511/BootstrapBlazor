@@ -29,6 +29,7 @@
 * feat(ScrollSpy): new `ScrollSpy` component based on `bootstrap.ScrollSpy`: highlights the matching link of a navigation while the content scrolls (`Target`, `TopMargin`, `RootMargin`, `IsSmoothScroll`, `OnActivate`, `RefreshAsync`)
 * feat(Input): `BootstrapInput` (and its subclasses) get `PrefixIcon`, `PrefixText`, `SuffixIcon` and `SuffixText`: an icon or text before or after the input, based on the `form-adorn` of Bootstrap 6
 * feat(Avatar): `Avatar` gets `Status` (status dot), `Color` and `IsSubtle`; new `AvatarStack` component for overlapping avatars (based on the `avatar-status`, `avatar-subtle` and `avatar-stack` of Bootstrap 6)
+* feat(Slider): `Slider` renders the `Range` of Bootstrap 6 (`div.form-range` around `input.form-range-input`) and gets `IsShowBubble`, `IsShowTicks` and `Color`
 * docs(Demo): new page "Motion helpers" (`/motion-helpers`) for the Bootstrap 6 helper classes `hover-lift`, `animation-shake`, `animation-pop`, `animation-none` and `transition-none`
 
 ### Breaking changes

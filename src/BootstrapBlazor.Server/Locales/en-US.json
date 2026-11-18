@@ -4508,6 +4508,8 @@
     "SlidersDescription": "Select within a fixed interval by dragging the slider",
     "SlidersIsDisabledIntro": "Disable components by setting <code>IsDisabled=\"true\"</code>",
     "SlidersIsDisabledTitle": "Disabled",
+    "SlidersLookIntro": "<code>IsShowBubble</code> shows the current value above the thumb, <code>IsShowTicks</code> draws a tick mark at every <code>Step</code> (up to 100), <code>Color</code> colors the fill and the thumb (based on the <code>Range</code> of Bootstrap 6).",
+    "SlidersLookTitle": "Bubble, ticks and color",
     "SlidersNormalIntro": "Change the current value as you drag the slider",
     "SlidersNormalTitle": "Basic usage",
     "SlidersRangeIntro": "Auto generate <code>min</code> <code>max</code> by set <code>RangeAttribute</code>",

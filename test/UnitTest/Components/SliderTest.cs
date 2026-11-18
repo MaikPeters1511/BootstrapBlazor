@@ -128,6 +128,97 @@ public class SliderTest : BootstrapBlazorTestBase
     }
 
     [Fact]
+    public void Markup_FormRange_Ok()
+    {
+        // Bootstrap 6: .form-range is the wrapper (track, fill, bubble), the input inside is .form-range-input
+        var cut = Context.Render<Slider<int>>(builder =>
+        {
+            builder.Add(s => s.Value, 10);
+        });
+
+        var input = cut.Find("div.form-range > input.form-range-input[type=\"range\"]");
+        Assert.False(string.IsNullOrEmpty(input.Id));
+        Assert.DoesNotContain("form-range ", input.ClassName + " ");
+        Assert.Empty(cut.FindAll("datalist"));
+    }
+
+    [Fact]
+    public void Color_Ok()
+    {
+        var cut = Context.Render<Slider<int>>(builder =>
+        {
+            builder.Add(s => s.Value, 10);
+        });
+        Assert.DoesNotContain("theme-", cut.Markup);
+
+        cut.Render(builder => builder.Add(s => s.Color, Color.Success));
+        Assert.Contains("theme-success", cut.Find("div.form-range").ClassName);
+    }
+
+    [Fact]
+    public void AdditionalAttributes_StayOnInput()
+    {
+        var cut = Context.Render<Slider<int>>(builder =>
+        {
+            builder.Add(s => s.Value, 10);
+            builder.Add(s => s.AdditionalAttributes, new Dictionary<string, object> { ["class"] = "my-range" });
+        });
+
+        Assert.Contains("my-range", cut.Find("input").ClassName);
+        Assert.DoesNotContain("my-range", cut.Find("div.form-range").ClassName);
+    }
+
+    [Fact]
+    public void IsShowTicks_Ok()
+    {
+        var cut = Context.Render<Slider<int>>(builder =>
+        {
+            builder.Add(s => s.Value, 50);
+            builder.Add(s => s.Min, 0);
+            builder.Add(s => s.Max, 100);
+            builder.Add(s => s.Step, 25);
+            builder.Add(s => s.IsShowTicks, true);
+        });
+
+        var input = cut.Find("input");
+        var list = input.GetAttribute("list");
+        Assert.False(string.IsNullOrEmpty(list));
+        var datalist = cut.Find("datalist");
+        Assert.Equal(list, datalist.Id);
+        Assert.Equal(["0", "25", "50", "75", "100"], datalist.QuerySelectorAll("option").Select(i => i.GetAttribute("value")).ToArray());
+    }
+
+    [Fact]
+    public void IsShowTicks_TooMany_NoTicks()
+    {
+        // 0..1000 in steps of 1 would be a thousand ticks
+        var cut = Context.Render<Slider<int>>(builder =>
+        {
+            builder.Add(s => s.Value, 50);
+            builder.Add(s => s.Min, 0);
+            builder.Add(s => s.Max, 1000);
+            builder.Add(s => s.Step, 1);
+            builder.Add(s => s.IsShowTicks, true);
+        });
+
+        Assert.Empty(cut.FindAll("datalist"));
+        Assert.Null(cut.Find("input").GetAttribute("list"));
+    }
+
+    [Fact]
+    public void IsShowBubble_Ok()
+    {
+        // the bubble is built by Bootstrap in the browser, the parameter only has to render and reach the module
+        var cut = Context.Render<Slider<int>>(builder =>
+        {
+            builder.Add(s => s.Value, 10);
+            builder.Add(s => s.IsShowBubble, true);
+        });
+
+        Assert.NotNull(cut.Find("input"));
+    }
+
+    [Fact]
     public void Range_OK()
     {
         var model = new SliderModel();
