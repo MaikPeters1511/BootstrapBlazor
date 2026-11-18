@@ -57,4 +57,43 @@
     </div>
 </DemoBlock>
 
+<DemoBlock Title="@Localizer["StatusTitle"]" Introduction="@Localizer["StatusIntro"]" Name="Status">
+    <div class="d-flex gap-3 align-items-center">
+        <Avatar IsCircle="true" IsText="true" Text="On" Color="Color.Primary" Status="AvatarStatus.Online" />
+        <Avatar IsCircle="true" IsText="true" Text="Off" Color="Color.Secondary" Status="AvatarStatus.Offline" />
+        <Avatar IsCircle="true" IsText="true" Text="Bu" Color="Color.Danger" Status="AvatarStatus.Busy" />
+        <Avatar IsCircle="true" IsText="true" Text="Aw" Color="Color.Warning" Status="AvatarStatus.Away" />
+        <Avatar IsCircle="true" Url="@WebsiteOption.Value.GetAssetUrl("images/Argo-C.png")" Status="AvatarStatus.Online" />
+        <Avatar Url="@WebsiteOption.Value.GetAssetUrl("images/Argo.png")" Status="AvatarStatus.Busy" />
+    </div>
+</DemoBlock>
+
+<DemoBlock Title="@Localizer["ColorTitle"]" Introduction="@Localizer["ColorIntro"]" Name="Color">
+    <div class="d-flex gap-3 align-items-center mb-3">
+        <Avatar IsCircle="true" IsText="true" Text="AB" Color="Color.Primary" />
+        <Avatar IsCircle="true" IsText="true" Text="AB" Color="Color.Success" />
+        <Avatar IsCircle="true" IsText="true" Text="AB" Color="Color.Danger" />
+        <Avatar IsCircle="true" IsText="true" Text="AB" Color="Color.Warning" />
+        <Avatar IsCircle="true" IsText="true" Text="AB" Color="Color.Info" />
+    </div>
+    <div class="d-flex gap-3 align-items-center">
+        <Avatar IsCircle="true" IsText="true" Text="AB" Color="Color.Primary" IsSubtle="true" />
+        <Avatar IsCircle="true" IsText="true" Text="AB" Color="Color.Success" IsSubtle="true" />
+        <Avatar IsCircle="true" IsText="true" Text="AB" Color="Color.Danger" IsSubtle="true" />
+        <Avatar IsCircle="true" IsText="true" Text="AB" Color="Color.Warning" IsSubtle="true" />
+        <Avatar IsCircle="true" IsText="true" Text="AB" Color="Color.Info" IsSubtle="true" />
+    </div>
+</DemoBlock>
+
+<DemoBlock Title="@Localizer["StackTitle"]" Introduction="@Localizer["StackIntro"]" Name="Stack">
+    <AvatarStack>
+        <Avatar IsCircle="true" IsText="true" Text="D" Color="Color.Info" />
+        <Avatar IsCircle="true" IsText="true" Text="C" Color="Color.Warning" />
+        <Avatar IsCircle="true" IsText="true" Text="B" Color="Color.Success" />
+        <Avatar IsCircle="true" IsText="true" Text="A" Color="Color.Primary" />
+    </AvatarStack>
+</DemoBlock>
+
 <AttributeTable Type="typeof(Avatar)" />
+
+<AttributeTable Type="typeof(AvatarStack)" />

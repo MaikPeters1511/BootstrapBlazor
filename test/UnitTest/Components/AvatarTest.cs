@@ -14,6 +14,60 @@ public class AvatarTest : BootstrapBlazorTestBase
         Assert.Contains("avatar-circle", cut.Markup);
     }
 
+    [Theory]
+    [InlineData(AvatarStatus.Online, "status-online")]
+    [InlineData(AvatarStatus.Offline, "status-offline")]
+    [InlineData(AvatarStatus.Busy, "status-busy")]
+    [InlineData(AvatarStatus.Away, "status-away")]
+    public void Status_Ok(AvatarStatus status, string expected)
+    {
+        var cut = Context.Render<Avatar>(builder =>
+        {
+            builder.Add(a => a.IsText, true);
+            builder.Add(a => a.Text, "AB");
+            builder.Add(a => a.Status, status);
+        });
+
+        // Bootstrap 6 status dot inside the avatar; the dot sits on the edge, so the avatar must not clip it
+        var avatar = cut.Find("span.avatar");
+        Assert.Contains("avatar-has-status", avatar.ClassName);
+        var dot = avatar.QuerySelector($"span.avatar-status.{expected}");
+        Assert.NotNull(dot);
+        Assert.Equal("true", dot.GetAttribute("aria-hidden"));
+    }
+
+    [Fact]
+    public void Status_None_NoDot()
+    {
+        var cut = Context.Render<Avatar>(builder =>
+        {
+            builder.Add(a => a.IsText, true);
+            builder.Add(a => a.Text, "AB");
+        });
+
+        Assert.Empty(cut.FindAll(".avatar-status"));
+        Assert.DoesNotContain("avatar-has-status", cut.Find("span.avatar").ClassName);
+    }
+
+    [Fact]
+    public void Color_Subtle_Ok()
+    {
+        var cut = Context.Render<Avatar>(builder =>
+        {
+            builder.Add(a => a.IsText, true);
+            builder.Add(a => a.Text, "AB");
+        });
+        Assert.DoesNotContain("theme-", cut.Markup);
+        Assert.DoesNotContain("avatar-subtle", cut.Markup);
+
+        cut.Render(builder => builder.Add(a => a.Color, Color.Success));
+        Assert.Contains("theme-success", cut.Find("span.avatar").ClassName);
+        Assert.DoesNotContain("avatar-subtle", cut.Markup);
+
+        cut.Render(builder => builder.Add(a => a.IsSubtle, true));
+        Assert.Contains("avatar-subtle", cut.Find("span.avatar").ClassName);
+    }
+
     [Fact]
     public void Url_Ok()
     {
