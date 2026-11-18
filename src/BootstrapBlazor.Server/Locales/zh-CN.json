@@ -4508,6 +4508,8 @@
     "SlidersDescription": "通过拖动滑块在一个固定区间内进行选择",
     "SlidersIsDisabledIntro": "通过设置 <code>IsDisabled=\"true\" 禁用组件",
     "SlidersIsDisabledTitle": "禁用",
+    "SlidersLookIntro": "<code>IsShowBubble</code> 在滑块按钮上方显示当前值，<code>IsShowTicks</code> 按 <code>Step</code> 绘制刻度（最多 100 个），<code>Color</code> 设置填充和滑块按钮的颜色（基于 Bootstrap 6 的 <code>Range</code>）。",
+    "SlidersLookTitle": "气泡、刻度和颜色",
     "SlidersNormalIntro": "在拖动滑块时，改变当前值",
     "SlidersNormalTitle": "基础用法",
     "SlidersRangeIntro": "通过设置绑定值标签 <code>RangeAttribute</code> 自动生成 <code>min</code> <code>max</code>",

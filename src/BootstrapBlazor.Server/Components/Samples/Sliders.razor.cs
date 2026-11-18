@@ -20,6 +20,10 @@ public partial class Sliders
 
     private double Step { get; set; } = 20;
 
+    private double BubbleValue { get; set; } = 60;
+
+    private double TicksValue { get; set; } = 50;
+
     private bool IsDisabled { get; set; }
 
     private bool UseInput { get; set; }

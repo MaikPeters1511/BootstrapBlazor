@@ -102,4 +102,21 @@
     </div>
 </DemoBlock>
 
+<DemoBlock Title="@Localizer["SlidersLookTitle"]" Introduction="@Localizer["SlidersLookIntro"]" Name="Look">
+    <div class="row g-4">
+        <div class="col-12 sm:col-6">
+            <Slider @bind-Value="@BubbleValue" Min="0" Max="100" IsShowBubble="true" UseInputEvent="true" ShowLabel="true" DisplayText="IsShowBubble"></Slider>
+        </div>
+        <div class="col-12 sm:col-6">
+            <Slider @bind-Value="@TicksValue" Min="0" Max="100" Step="25" IsShowTicks="true" IsShowBubble="true" ShowLabel="true" DisplayText="IsShowTicks"></Slider>
+        </div>
+        <div class="col-12 sm:col-6">
+            <Slider @bind-Value="@BubbleValue" Min="0" Max="100" Color="Color.Success" ShowLabel="true" DisplayText="Color"></Slider>
+        </div>
+        <div class="col-12 sm:col-6">
+            <Slider @bind-Value="@BubbleValue" Min="0" Max="100" Color="Color.Danger" IsDisabled="true" ShowLabel="true" DisplayText="IsDisabled"></Slider>
+        </div>
+    </div>
+</DemoBlock>
+
 <AttributeTable Type="typeof(Slider<>)"></AttributeTable>

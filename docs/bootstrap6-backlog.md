@@ -52,7 +52,7 @@ Bootstrap-Version: `6.0.0-alpha.1`. Lokaler Teststand: 2811 von 2813 (Release), 
 | H1 | ~~Neue Komponente `ScrollSpy` (BB hat nur `Anchor`, das beim Klick scrollt)~~ erledigt 2026-11-17 | P3 | M |
 | H2 | `.form-field` und `.form-group` (Raster für Beschriftung, Eingabe, Hilfetext) für `ValidateForm`/`BootstrapInput` bewerten | P3 | L |
 | H3 | ~~`.form-adorn` (Symbol oder Text im Eingabefeld) mit den Präfix-/Suffix-Möglichkeiten von `BootstrapInput` vergleichen~~ erledigt 2026-11-17 | P3 | M |
-| H4 | `bootstrap.Range` (Füllung, Wertblase, Teilstriche) mit `Slider` vergleichen | P3 | M |
+| H4 | ~~`bootstrap.Range` (Füllung, Wertblase, Teilstriche) mit `Slider` vergleichen~~ erledigt 2026-11-18 | P3 | M |
 | H5 | ~~`.prose` für das HTML der Markdown-Komponenten (`Markdown`, `CherryMarkdown`) prüfen~~ geprüft, keine Änderung 2026-11-18 | P3 | S |
 | H6 | ~~`Avatar`: `avatar-status`, `avatar-stack`, `avatar-subtle` aus Bootstrap 6 übernehmen oder als Parameter anbieten~~ erledigt 2026-11-18 | P3 | M |
 | H7 | ~~Hilfsklassen `hover-lift`, Motion und Transitions in der Demo vorführen (Klassen sind im Bundle, kein BB-Code nötig)~~ erledigt 2026-11-18 | P4 | S |
@@ -457,7 +457,12 @@ Quelle: `https://getbootstrap.com/docs/6.0/getting-started/install/` und die Sei
 - **BB:** `BootstrapInput` hat keine Präfix-/Suffix-Parameter; dafür gibt es `BootstrapInputGroup` mit `BootstrapInputGroupIcon`/`Label`.
 - **Vorgehen:** Prüfen, ob ein Parameter wie `PrefixIcon`/`SuffixText` an `BootstrapInput` nötig ist oder ob `BootstrapInputGroup` genügt.
 
-### H4 – `bootstrap.Range`
+### H4 – `bootstrap.Range` – erledigt 2026-11-18
+- **Befund:** `Slider` rendert `input.form-range` ohne JavaScript: Bootstrap 6 nutzt `.form-range` aber als Hülle um `input.form-range-input`, deshalb bekam das Feld nichts von der Spur, dem Griff und dem Fokusring von Bootstrap 6 und erschien als natives Browser-Element (`appearance: auto`, Primärfarbe über `accent-color`). Die eigene Regel `.form-range:disabled` (BB) war damit ebenfalls wirkungslos.
+- **Ergebnis:** `Slider<TValue>` rendert jetzt `div.form-range` (Hülle, mit `theme-{Farbe}`) um `input.form-range-input`; Min, Max, Schritt, Beschriftung, Validierung, `UseInputEvent` und `AdditionalAttributes` (am `input`) bleiben. Neu: `Slider.razor.js` legt `bootstrap.Range` an der Hülle an (über `modules/bootstrap.js`), ruft nach jedem Rendern `update()` auf (die Füllung folgt Werten, die das Programm setzt) und räumt auf. Neue Parameter: `IsShowBubble` (Wertblase über dem Griff, nach dem ersten Rendern nicht mehr ändern), `IsShowTicks` (ein `datalist` mit einem Teilstrich je Schritt von Min bis Max; nicht gesetzte Werte zählen als 0, 100 und 1; mehr als 100 Teilstriche werden nicht gezeichnet) und der von der Basisklasse geerbte `Color` (Füllung und Griff).
+- **Prüfung:** 6 neue Tests in `SliderTest` (Markup mit Hülle, `Color`, Attribute am `input`, Teilstriche, zu viele Teilstriche, Blase); die vorhandenen Tests liefen ohne Änderung weiter; 2937 von 2939 Tests grün (nur die 2 bekannten `#if DEBUG`-Fehler). Im Browser (dunkel, `/slider`): alle 7 Regler haben eine `bootstrap.Range`-Instanz; ein echter Klick in die Mitte setzt 55 (Min 10, Max 100), die Anzeige in Blazor zeigt 55 und `--bs-range-fill` ist 0,5; ein Wert, der über das Eingabefeld „CurrentValue“ gesetzt wird (60 bei -100 bis 100), schiebt Regler und Füllung auf 0,8; Wertblase, Teilstriche (0, 25, 50, 75, 100) und `theme-success` werden gezeichnet, ein deaktivierter Regler ist grau.
+- **Nicht geprüft:** das helle Design, Tastatursteuerung und der Fokusring, `IsShowBubble` oder `IsShowTicks` nach dem ersten Rendern zu ändern (wird nicht unterstützt), Dezimal-Schritte bei den Teilstrichen (Rechnung mit `decimal`, im Test nur ganze Zahlen).
+- Ursprüngliche Beschreibung:
 - **Bootstrap 6:** `.form-range` mit `.form-range-input`; `bootstrap.Range` zeichnet die Füllung (ohne das Skript fehlt sie), `data-bs-bubble` zeigt eine Wertblase, ein `datalist` ergibt Teilstriche, `formatter`, Ereignis `changed.bs.range`.
 - **BB:** `Slider` hat eigenes Markup und CSS. Prüfen, ob die Füllung der nativen Eingabe `Slider` im Bundle überhaupt trifft (`input[type=range]` mit Klasse `form-range`).
 
