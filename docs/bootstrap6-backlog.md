@@ -53,7 +53,7 @@ Bootstrap-Version: `6.0.0-alpha.1`. Lokaler Teststand: 2811 von 2813 (Release), 
 | H2 | `.form-field` und `.form-group` (Raster für Beschriftung, Eingabe, Hilfetext) für `ValidateForm`/`BootstrapInput` bewerten | P3 | L |
 | H3 | ~~`.form-adorn` (Symbol oder Text im Eingabefeld) mit den Präfix-/Suffix-Möglichkeiten von `BootstrapInput` vergleichen~~ erledigt 2026-11-17 | P3 | M |
 | H4 | `bootstrap.Range` (Füllung, Wertblase, Teilstriche) mit `Slider` vergleichen | P3 | M |
-| H5 | `.prose` für das HTML der Markdown-Komponenten (`Markdown`, `CherryMarkdown`) prüfen | P3 | S |
+| H5 | ~~`.prose` für das HTML der Markdown-Komponenten (`Markdown`, `CherryMarkdown`) prüfen~~ geprüft, keine Änderung 2026-11-18 | P3 | S |
 | H6 | `Avatar`: `avatar-status`, `avatar-stack`, `avatar-subtle` aus Bootstrap 6 übernehmen oder als Parameter anbieten | P3 | M |
 | H7 | Hilfsklassen `hover-lift`, Motion und Transitions in der Demo vorführen (Klassen sind im Bundle, kein BB-Code nötig) | P4 | S |
 
@@ -461,7 +461,11 @@ Quelle: `https://getbootstrap.com/docs/6.0/getting-started/install/` und die Sei
 - **Bootstrap 6:** `.form-range` mit `.form-range-input`; `bootstrap.Range` zeichnet die Füllung (ohne das Skript fehlt sie), `data-bs-bubble` zeigt eine Wertblase, ein `datalist` ergibt Teilstriche, `formatter`, Ereignis `changed.bs.range`.
 - **BB:** `Slider` hat eigenes Markup und CSS. Prüfen, ob die Füllung der nativen Eingabe `Slider` im Bundle überhaupt trifft (`input[type=range]` mit Klasse `form-range`).
 
-### H5 – `.prose`
+### H5 – `.prose` – geprüft, keine Änderung 2026-11-18
+- **Befund:** Die Komponenten `Markdown` (Toast UI Editor) und `CherryMarkdown` liegen nicht in diesem Repo, sondern im NuGet-Paket `BootstrapBlazor.Markdown` (Version 11.0.0 in `BootstrapBlazor.Server.csproj`). Sie bringen ein eigenes Stylesheet mit (`bootstrap.blazor.markdown.min.css`) und zeichnen ihre Vorschau in eigenen Containern (`.toastui-editor-contents` und so weiter) mit eigener Schrift (13 px). Im Repo gibt es keine Stelle, die Markdown in HTML umwandelt.
+- **Versuch im Demo-Browser (`/markdown`):** Die Klasse `prose` an `.toastui-editor-contents` verändert fast nichts außer den Nebenwirkungen: `display: flex` mit 24 px Abstand, `max-width: 1000px` und `margin-inline: auto` (zentriert), die Zeilenhöhe steigt von 13 px auf 19,5 px; die Schriftgröße bleibt 13 px, weil der Editor sie selbst setzt. Ein Gewinn für die Darstellung ist nicht erkennbar.
+- **Entscheidung:** Keine Änderung. `.prose` ist für HTML ohne eigene Stile gedacht (aus Markdown-Übersetzern, WYSIWYG-Editoren); es setzt den Container als Flex-Spalte und zentriert ihn, das passt nicht als Hülle um die fertig gestalteten Editor-Vorschauen. Wer HTML selbst ausgibt (zum Beispiel per `MarkupString`), kann `.prose` am umgebenden Element setzen; für einzelne Teile darin gibt es `.not-prose`. Sollte das Paket `BootstrapBlazor.Markdown` auf Bootstrap 6 umgestellt werden, gehört die Prüfung dorthin.
+- Ursprüngliche Beschreibung:
 - **Bootstrap 6:** `.prose` setzt Schriftgröße, Zeilenhöhe, Listen-, Überschriften-, Zitat- und Code-Abstände für Inhalt ohne eigene Klassen; `.not-prose` nimmt Elemente aus.
 - **BB:** `Markdown` und `CherryMarkdown` erzeugen HTML ohne Klassen; Bootstrap 6 setzt die Reboot-Stile sparsamer. Prüfen, ob die Ausgabe mit `.prose` besser aussieht.
 
