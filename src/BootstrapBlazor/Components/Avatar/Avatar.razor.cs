@@ -17,11 +17,25 @@ public partial class Avatar
     /// </summary>
     private string? ClassName => CssBuilder.Default("avatar")
         .AddClass("avatar-circle", IsCircle)
+        .AddClass($"theme-{Color.ToDescriptionString()}", Color != Color.None)
+        .AddClass("avatar-subtle", IsSubtle)
+        .AddClass("avatar-has-status", Status != AvatarStatus.None)
         .AddClass($"avatar-{Size.ToDescriptionString()}", Size != Size.None && Size != Size.Medium)
         .AddClass("border border-info", IsBorder)
         .AddClass("border-success", IsBorder && IsLoaded.HasValue && IsLoaded.Value && !IsIcon && !IsText)
         .AddClass("border-danger", IsBorder && IsLoaded.HasValue && !IsLoaded.Value)
         .AddClassFromAttributes(AdditionalAttributes)
+        .Build();
+
+    private string? StatusClassString => CssBuilder.Default("avatar-status")
+        .AddClass(Status switch
+        {
+            AvatarStatus.Online => "status-online",
+            AvatarStatus.Offline => "status-offline",
+            AvatarStatus.Busy => "status-busy",
+            AvatarStatus.Away => "status-away",
+            _ => null
+        }, Status != AvatarStatus.None)
         .Build();
 
     /// <summary>
@@ -85,6 +99,30 @@ public partial class Avatar
     /// </summary>
     [Parameter]
     public bool IsBorder { get; set; }
+
+    /// <summary>
+    /// <para lang="zh">获得/设置 状态点，基于 Bootstrap 6 的 <c>avatar-status</c>，显示在头像右下角。默认 <see cref="AvatarStatus.None"/></para>
+    /// <para lang="en">Gets or sets the status dot, based on the <c>avatar-status</c> of Bootstrap 6, shown at the bottom right. Default is <see cref="AvatarStatus.None"/></para>
+    /// <para><version>11.1.1</version></para>
+    /// </summary>
+    [Parameter]
+    public AvatarStatus Status { get; set; }
+
+    /// <summary>
+    /// <para lang="zh">获得/设置 头像颜色，文字或图标头像使用主题色背景。默认 <see cref="Color.None"/></para>
+    /// <para lang="en">Gets or sets the color, a text or icon avatar uses the theme color as background. Default is <see cref="Color.None"/></para>
+    /// <para><version>11.1.1</version></para>
+    /// </summary>
+    [Parameter]
+    public Color Color { get; set; } = Color.None;
+
+    /// <summary>
+    /// <para lang="zh">获得/设置 是否使用柔和配色（浅色背景，深色文字），需设置 <see cref="Color"/>。默认 false</para>
+    /// <para lang="en">Gets or sets whether the subtle colors are used (light background, colored text); set <see cref="Color"/> too. Default is false</para>
+    /// <para><version>11.1.1</version></para>
+    /// </summary>
+    [Parameter]
+    public bool IsSubtle { get; set; }
 
     /// <summary>
     /// <para lang="zh">获得/设置 获取图片地址异步回调方法</para>

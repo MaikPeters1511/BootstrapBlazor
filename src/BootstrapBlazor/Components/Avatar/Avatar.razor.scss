@@ -7,6 +7,8 @@
     --bb-avatar-bg: #{$bb-avatar-bg};
     --bb-avatar-color: #{$bb-avatar-color};
     --bb-avatar-icon-font-size: #{$bb-avatar-icon-font-size};
+    // the size of the avatar-stack of Bootstrap 6 (overlap) follows the size of the avatar
+    --bs-avatar-size: var(--bb-avatar-width);
     border-radius: var(--bb-avatar-border-radius);
     width: var(--bb-avatar-width);
     height: var(--bb-avatar-height);
@@ -57,4 +59,29 @@
 .avatar-xxl {
     --bb-avatar-width: 80px;
     --bb-avatar-height: 80px;
+}
+
+// the status dot sits on the edge of the avatar: the avatar must not clip it, the image follows the radius itself
+.avatar.avatar-has-status {
+    overflow: visible;
+
+    img {
+        border-radius: inherit;
+    }
+}
+
+// color: the theme color is the background of a text or icon avatar, subtle uses the light variant
+.avatar[class*="theme-"] {
+    background-color: var(--bs-theme-bg);
+    color: var(--bs-theme-contrast);
+}
+
+.avatar.avatar-subtle[class*="theme-"] {
+    background-color: var(--bs-theme-bg-subtle);
+    color: var(--bs-theme-fg);
+}
+
+// the stack of Bootstrap 6 is a reversed row: in a flex or grid parent it would stretch and push the avatars to the right
+.avatar-stack {
+    width: fit-content;
 }

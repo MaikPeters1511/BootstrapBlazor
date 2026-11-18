@@ -54,7 +54,7 @@ Bootstrap-Version: `6.0.0-alpha.1`. Lokaler Teststand: 2811 von 2813 (Release), 
 | H3 | ~~`.form-adorn` (Symbol oder Text im Eingabefeld) mit den Präfix-/Suffix-Möglichkeiten von `BootstrapInput` vergleichen~~ erledigt 2026-11-17 | P3 | M |
 | H4 | `bootstrap.Range` (Füllung, Wertblase, Teilstriche) mit `Slider` vergleichen | P3 | M |
 | H5 | ~~`.prose` für das HTML der Markdown-Komponenten (`Markdown`, `CherryMarkdown`) prüfen~~ geprüft, keine Änderung 2026-11-18 | P3 | S |
-| H6 | `Avatar`: `avatar-status`, `avatar-stack`, `avatar-subtle` aus Bootstrap 6 übernehmen oder als Parameter anbieten | P3 | M |
+| H6 | ~~`Avatar`: `avatar-status`, `avatar-stack`, `avatar-subtle` aus Bootstrap 6 übernehmen oder als Parameter anbieten~~ erledigt 2026-11-18 | P3 | M |
 | H7 | Hilfsklassen `hover-lift`, Motion und Transitions in der Demo vorführen (Klassen sind im Bundle, kein BB-Code nötig) | P4 | S |
 
 ---
@@ -469,7 +469,13 @@ Quelle: `https://getbootstrap.com/docs/6.0/getting-started/install/` und die Sei
 - **Bootstrap 6:** `.prose` setzt Schriftgröße, Zeilenhöhe, Listen-, Überschriften-, Zitat- und Code-Abstände für Inhalt ohne eigene Klassen; `.not-prose` nimmt Elemente aus.
 - **BB:** `Markdown` und `CherryMarkdown` erzeugen HTML ohne Klassen; Bootstrap 6 setzt die Reboot-Stile sparsamer. Prüfen, ob die Ausgabe mit `.prose` besser aussieht.
 
-### H6 – `Avatar`-Zusätze
+### H6 – `Avatar`-Zusätze – erledigt 2026-11-18
+- **Ergebnis:** `Avatar` hat die Parameter `Status` (Enum `AvatarStatus`: `None`, `Online`, `Offline`, `Busy`, `Away`; Statuspunkt unten rechts als `span.avatar-status.status-*`, `aria-hidden`), `Color` (`theme-{Farbe}`: Hintergrund und passende Schrift aus einem Token-Paar) und `IsSubtle` (`avatar-subtle`: helle Variante, mit `Color`). Neue Komponente `AvatarStack` (`div.avatar-stack`) lässt mehrere Avatare überlappen; der Avatar unter der Maus hebt sich. Die Größen der Avatare bleiben die von BB (`xs` bis `xxl`).
+- **Anpassungen am CSS (`Avatar.razor.scss`):** (1) BB-CSS liegt nicht in einer Ebene und schlägt die Regeln von Bootstrap 6: `.avatar[class*="theme-"]` und `.avatar-subtle` setzen Hintergrund und Schrift deshalb selbst aus `--bs-theme-*`. (2) `.avatar` setzt `--bs-avatar-size: var(--bb-avatar-width)`, damit die Überlappung des Stapels (30 % der Größe) zur tatsächlichen BB-Größe passt. (3) Mit Status ist `overflow: visible` (der Punkt sitzt auf dem Rand), das Bild übernimmt die Rundung selbst (`border-radius: inherit`). (4) `.avatar-stack` bekommt `width: fit-content`: Die umgekehrte Zeile von Bootstrap würde sonst in einem Flex-Elternteil die ganze Breite einnehmen und die Avatare nach rechts schieben.
+- **Reihenfolge im Stapel:** Das erste Element steht rechts (unten), das letzte links und zuoberst (Bootstrap setzt `flex-direction: row-reverse`).
+- **Prüfung:** 7 neue Tests (`AvatarTest`: Status 4 Fälle, kein Punkt ohne Status, `Color` und `IsSubtle`; `AvatarStackTest`: 2); 2926 von 2928 Tests grün (nur die 2 bekannten `#if DEBUG`-Fehler). Im Browser (`/avatar`, dunkles Design): Punkte 12 px, 2 px über den Rand, Farben grün/grau/rot/gelb; Textavatare mit Farbe (z. B. Erfolg: dunkle Schrift auf Grün, Kontrast aus G12) und subtil; Stapel mit 15 px Überlappung bei 50 px, der letzte Avatar zuoberst, linksbündig.
+- **Nicht geprüft:** Die Stapel-Größen `avatar-stack-xs` bis `-xl` von Bootstrap (BB-Avatare behalten ihre eigene Größe), das helle Design, Status am Avatar mit Rahmen (`IsBorder`).
+- Ursprüngliche Beschreibung:
 - **Bootstrap 6:** `avatar-status` (Statuspunkt), `avatar-stack` und Größen (`avatar-stack-xs` bis `-xl`) für überlappende Avatare, `avatar-subtle`.
 - **BB:** Der Avatar hat eigene Größen (`avatar-xs` bis `-xxl`) und Rundung (`avatar-circle`), kein Status und keine Stapelung. Entscheidung: übernehmen oder als eigene Parameter (`Status`, `IsStack`) anbieten.
 

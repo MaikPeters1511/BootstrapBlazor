@@ -28,6 +28,7 @@
 * feat(Nav): 新增参数 `IsOverflow` 和 `OverflowText`：空间不足时放不下的导航项收进“更多”菜单（基于 Bootstrap 6 的 `NavOverflow`）
 * feat(ScrollSpy): 新增基于 `bootstrap.ScrollSpy` 的 `ScrollSpy` 滚动监听组件：内容滚动时高亮导航中对应的链接（`Target`、`TopMargin`、`RootMargin`、`IsSmoothScroll`、`OnActivate`、`RefreshAsync`）
 * feat(Input): `BootstrapInput`（及其子类）新增 `PrefixIcon`、`PrefixText`、`SuffixIcon`、`SuffixText`：在输入框前后放置图标或文字，基于 Bootstrap 6 的 `form-adorn`
+* feat(Avatar): `Avatar` 新增 `Status`（状态点）、`Color` 和 `IsSubtle`；新增 `AvatarStack` 头像堆叠组件（基于 Bootstrap 6 的 `avatar-status`、`avatar-subtle`、`avatar-stack`）
 
 ### Breaking changes
 * `BreakPoint` 枚举和 `Responsive` 组件的断点阈值与 Bootstrap 6 保持一致：`Large` 从 1024px 开始（原为 992px），`ExtraLarge` 从 1280px 开始（原为 1200px），`ExtraExtraLarge` 从 1536px 开始（原为 1400px）；`dialog-xxl` 的宽度不变
