@@ -724,6 +724,19 @@ public class BootstrapAssetsTest
         }
     }
 
+    [Theory]
+    [InlineData("hover-lift")]
+    [InlineData("animation-shake")]
+    [InlineData("animation-pop")]
+    [InlineData("animation-none")]
+    [InlineData("transition-none")]
+    public void MotionHelpers_ExistInBootstrap(string name)
+    {
+        // the demo page "motion helpers" uses these helper classes of Bootstrap 6 without any BB code
+        var css = File.ReadAllText(GetBootstrapPath("css", "bootstrap.css"));
+        Assert.Matches($@"\.{Regex.Escape(name)}\b", css);
+    }
+
     [Fact]
     public void DemoHeaderCss_Buttons_Transparent()
     {

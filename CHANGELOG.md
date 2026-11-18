@@ -29,6 +29,7 @@
 * feat(ScrollSpy): new `ScrollSpy` component based on `bootstrap.ScrollSpy`: highlights the matching link of a navigation while the content scrolls (`Target`, `TopMargin`, `RootMargin`, `IsSmoothScroll`, `OnActivate`, `RefreshAsync`)
 * feat(Input): `BootstrapInput` (and its subclasses) get `PrefixIcon`, `PrefixText`, `SuffixIcon` and `SuffixText`: an icon or text before or after the input, based on the `form-adorn` of Bootstrap 6
 * feat(Avatar): `Avatar` gets `Status` (status dot), `Color` and `IsSubtle`; new `AvatarStack` component for overlapping avatars (based on the `avatar-status`, `avatar-subtle` and `avatar-stack` of Bootstrap 6)
+* docs(Demo): new page "Motion helpers" (`/motion-helpers`) for the Bootstrap 6 helper classes `hover-lift`, `animation-shake`, `animation-pop`, `animation-none` and `transition-none`
 
 ### Breaking changes
 * The thresholds of `BreakPoint` and of the `Responsive` component follow Bootstrap 6: `Large` from 1024px (was 992px), `ExtraLarge` from 1280px (was 1200px) and `ExtraExtraLarge` from 1536px (was 1400px); the widths of `dialog-xxl` are unchanged
