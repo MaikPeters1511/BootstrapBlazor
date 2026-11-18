@@ -1,0 +1,81 @@
+@page "/motion-helpers"
+@inject IStringLocalizer<MotionHelpers> Localizer
+
+<h3>@Localizer["Title"]</h3>
+
+<h4>@((MarkupString)Localizer["Description"].Value)</h4>
+
+<h5 class="mt-4">@Localizer["HoverLiftTitle"]</h5>
+<p>@((MarkupString)Localizer["HoverLiftIntro"].Value)</p>
+<div class="row g-3 mb-3">
+    <div class="col-12 sm:col-4">
+        <a href="#" class="card hover-lift text-decoration-none" @onclick:preventDefault>
+            <div class="card-body">
+                <h5 class="card-title">@Localizer["HoverLiftCardTitle"]</h5>
+                <p class="card-text mb-0">@Localizer["HoverLiftCardText"]</p>
+            </div>
+        </a>
+    </div>
+    <div class="col-12 sm:col-4">
+        <a href="#" class="card hover-lift text-decoration-none" style="--bs-hover-lift-transform: translateY(-.5rem); --bs-hover-lift-transition-duration: .1s;" @onclick:preventDefault>
+            <div class="card-body">
+                <h5 class="card-title">@Localizer["HoverLiftBigTitle"]</h5>
+                <p class="card-text mb-0">@Localizer["HoverLiftBigText"]</p>
+            </div>
+        </a>
+    </div>
+    <div class="col-12 sm:col-4 d-flex align-items-start">
+        <Button Color="Color.Primary" class="hover-lift" Text="@Localizer["HoverLiftButton"]" />
+    </div>
+</div>
+
+<h5 class="mt-4">@Localizer["AnimationTitle"]</h5>
+<p>@((MarkupString)Localizer["AnimationIntro"].Value)</p>
+<div class="row g-3 mb-3 align-items-start">
+    <div class="col-12 sm:col-4">
+        <input @key="_shakeKey" type="text" class="form-control is-invalid animation-shake" value="@Localizer["AnimationShakeValue"]" readonly />
+        <Button Color="Color.Secondary" class="mt-2" Text="@Localizer["AnimationReplay"]" OnClick="ReplayShake" />
+    </div>
+    <div class="col-12 sm:col-4">
+        <span @key="_popKey" class="badge theme-primary animation-pop">@Localizer["AnimationPopText"]</span>
+        <div>
+            <Button Color="Color.Secondary" class="mt-2" Text="@Localizer["AnimationReplay"]" OnClick="ReplayPop" />
+        </div>
+    </div>
+    <div class="col-12 sm:col-4 d-flex gap-3 align-items-center">
+        <div class="spinner-border" role="status"></div>
+        <div class="spinner-border animation-none" role="status"></div>
+        <span>@Localizer["AnimationNoneText"]</span>
+    </div>
+</div>
+
+<h5 class="mt-4">@Localizer["TransitionTitle"]</h5>
+<p>@((MarkupString)Localizer["TransitionIntro"].Value)</p>
+<div class="d-flex gap-3 mb-3">
+    <Button Color="Color.Primary" Text="@Localizer["TransitionDefault"]" />
+    <Button Color="Color.Primary" class="transition-none" Text="@Localizer["TransitionNone"]" />
+</div>
+<p>@((MarkupString)Localizer["TransitionTokens"].Value)</p>
+<pre class="border rounded p-3"><code>.toast {
+  --bs-toast-transition-duration: .6s;
+  --bs-toast-transition-timing: ease-in-out;
+}</code></pre>
+
+@code {
+    private int _shakeKey;
+
+    private int _popKey;
+
+    private Task ReplayShake()
+    {
+        // a new key creates the element again, the animation starts from the beginning
+        _shakeKey++;
+        return Task.CompletedTask;
+    }
+
+    private Task ReplayPop()
+    {
+        _popKey++;
+        return Task.CompletedTask;
+    }
+}

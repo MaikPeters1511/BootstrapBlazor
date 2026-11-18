@@ -55,7 +55,7 @@ Bootstrap-Version: `6.0.0-alpha.1`. Lokaler Teststand: 2811 von 2813 (Release), 
 | H4 | `bootstrap.Range` (Füllung, Wertblase, Teilstriche) mit `Slider` vergleichen | P3 | M |
 | H5 | ~~`.prose` für das HTML der Markdown-Komponenten (`Markdown`, `CherryMarkdown`) prüfen~~ geprüft, keine Änderung 2026-11-18 | P3 | S |
 | H6 | ~~`Avatar`: `avatar-status`, `avatar-stack`, `avatar-subtle` aus Bootstrap 6 übernehmen oder als Parameter anbieten~~ erledigt 2026-11-18 | P3 | M |
-| H7 | Hilfsklassen `hover-lift`, Motion und Transitions in der Demo vorführen (Klassen sind im Bundle, kein BB-Code nötig) | P4 | S |
+| H7 | ~~Hilfsklassen `hover-lift`, Motion und Transitions in der Demo vorführen (Klassen sind im Bundle, kein BB-Code nötig)~~ erledigt 2026-11-18 | P4 | S |
 
 ---
 
@@ -479,5 +479,9 @@ Quelle: `https://getbootstrap.com/docs/6.0/getting-started/install/` und die Sei
 - **Bootstrap 6:** `avatar-status` (Statuspunkt), `avatar-stack` und Größen (`avatar-stack-xs` bis `-xl`) für überlappende Avatare, `avatar-subtle`.
 - **BB:** Der Avatar hat eigene Größen (`avatar-xs` bis `-xxl`) und Rundung (`avatar-circle`), kein Status und keine Stapelung. Entscheidung: übernehmen oder als eigene Parameter (`Status`, `IsStack`) anbieten.
 
-### H7 – Hilfsklassen
+### H7 – Hilfsklassen – erledigt 2026-11-18
+- **Ergebnis:** Neue Demo-Seite „Motion helpers“ (`/motion-helpers`, Menü unter „Breakpoints“, `Components/Pages/MotionHelpers.razor`). Sie zeigt `hover-lift` (Karte, größere Anhebung über `--bs-hover-lift-transform` und `--bs-hover-lift-transition-duration`, Schaltfläche), `animation-shake` (ungültiges Feld mit „Replay“), `animation-pop` (Badge mit „Replay“), `animation-none` (Spinner mit und ohne), `transition-none` (Schaltfläche) und die drei Übergangs-Variablen (`--bs-{Komponente}-transition-duration`, `-timing`, `-property`) mit einem Toast-Beispiel. „Replay“ erzeugt das Element über `@key` neu, damit die Animation von vorn läuft. Kein BB-Code nötig, die Klassen stammen aus dem Bundle.
+- **Prüfung:** Wächter `MotionHelpers_ExistInBootstrap` (5 Klassen im mitgelieferten `bootstrap.css`); 2931 von 2933 Tests grün (nur die 2 bekannten `#if DEBUG`-Fehler). Im Browser: `hover-lift` bei echtem Hover `translateY(-4px)` mit Schatten (Standard), Übergang 0,2 s; `animation-shake` und `animation-pop` setzen ihre Animation, `animation-none` setzt `none` am zweiten Spinner, `transition-none` hat 0 s; „Replay“ erzeugt das Feld neu.
+- **Nicht geprüft:** das Verhalten bei `prefers-reduced-motion: reduce` (im Pane nicht umschaltbar; laut Bootstrap sind Shake, Pop und Lift dann aus), das helle Design.
+- Ursprüngliche Beschreibung:
 - `hover-lift`, Motion-Klassen und Transitions kommen mit dem Bundle; BB-Code ist nicht nötig. Nur eine Demo-Seite (zum Beispiel unter „Utilities“) könnte sie zeigen.

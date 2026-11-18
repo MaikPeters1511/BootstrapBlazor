@@ -341,6 +341,11 @@ internal static class MenusLocalizerExtensions
                 },
                 new()
                 {
+                    Text = Localizer["MotionHelpers"],
+                    Url = "motion-helpers"
+                },
+                new()
+                {
                     Text = Localizer["ZIndex"],
                     Url = "z-index"
                 },
