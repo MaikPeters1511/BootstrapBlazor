@@ -108,10 +108,12 @@ public partial class Slider<TValue>
     {
         // a value of 0 or nothing means "not set": the browser uses 0, 100 and 1
         var ret = new List<string>();
+        // the overload without NumberStyles needs .NET 7, the library also targets older versions
         var culture = System.Globalization.CultureInfo.InvariantCulture;
-        var min = decimal.TryParse(MinString, culture, out var minValue) ? minValue : 0;
-        var max = decimal.TryParse(MaxString, culture, out var maxValue) ? maxValue : 100;
-        var step = decimal.TryParse(StepString, culture, out var stepValue) ? stepValue : 1;
+        var style = System.Globalization.NumberStyles.Number;
+        var min = decimal.TryParse(MinString, style, culture, out var minValue) ? minValue : 0;
+        var max = decimal.TryParse(MaxString, style, culture, out var maxValue) ? maxValue : 100;
+        var step = decimal.TryParse(StepString, style, culture, out var stepValue) ? stepValue : 1;
         if (step > 0 && max > min && (max - min) / step <= MaxTicks)
         {
             for (var value = min; value <= max; value += step)
